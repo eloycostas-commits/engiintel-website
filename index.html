@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1219;
+    --surface2: #111820;
+    --border: #1a2433;
+    --accent: #00d4ff;
+    --accent2: #0066ff;
+    --accent3: #00ff9d;
+    --text: #e8edf2;
+    --text-dim: #6b7d8f;
+    --text-mid: #9baab8;
+    --danger: #ff4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    mix-blend-mode: screen;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
+    padding: 10px 24px;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: #33ddff !important;
+    color: var(--bg) !important;
+    box-shadow: 0 0 30px rgba(0,212,255,0.4) !important;
+  }
+
+  /* Lang switcher */
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+    margin-left: 20px;
+  }
+
+  .lang-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 4px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active, .lang-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+    background: rgba(0,212,255,0.05);
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+
+  h1 .accent { color: var(--accent); }
+  h1 .accent2 { color: var(--accent3); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 16px 36px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: none;
+  }
+
+  .btn-primary:hover {
+    background: #33ddff;
+    box-shadow: 0 0 50px rgba(0,212,255,0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    padding: 16px 36px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    opacity: 0.85;
+  }
+
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.1);
+  }
+
+  .terminal-header {
+    background: var(--surface2);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+
+  .terminal-title {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .terminal-body {
+    padding: 24px;
+    line-height: 1.8;
+  }
+
+  .t-dim { color: var(--text-dim); }
+  .t-accent { color: var(--accent); }
+  .t-green { color: var(--accent3); }
+  .t-yellow { color: #ffd700; }
+  .t-white { color: var(--text); }
+
+  .typing::after {
+    content: '█';
+    animation: blink 1s infinite;
+    color: var(--accent);
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat {
+    padding: 0 40px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Sections */
+  section {
+    padding: 100px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 60px;
+    font-weight: 300;
+  }
+
+  /* Features grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .feature-card {
+    background: var(--surface);
+    padding: 40px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .feature-card:hover { background: var(--surface2); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .feature-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .feature-desc {
+    font-size: 0.87rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .feature-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent3);
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(0,255,157,0.2);
+    padding: 3px 10px;
+  }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  .step {
+    padding: 0 30px;
+    text-align: center;
+  }
+
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 0 auto 24px;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Industries */
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .industry-card {
+    border: 1px solid var(--border);
+    padding: 32px;
+    transition: all 0.3s;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .industry-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .industry-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .industry-card:hover::after { opacity: 1; }
+
+  .industry-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+
+  .industry-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .industry-desc {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Privacy section */
+  .privacy-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .privacy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .privacy-visual {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 32px;
+    line-height: 2;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .check-icon {
+    width: 22px; height: 22px;
+    border: 1px solid var(--accent3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--accent3);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
+  .check-text strong { color: var(--text); font-weight: 500; }
+
+  /* Roadmap */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .roadmap-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .roadmap-item:last-child { border-bottom: none; }
+
+  .roadmap-phase {
+    padding: 28px 32px;
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .phase-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .phase-done { color: var(--accent3); }
+  .phase-current { color: var(--accent); }
+  .phase-next { color: var(--text-mid); }
+
+  .roadmap-content {
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .roadmap-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .roadmap-tag.done {
+    border-color: rgba(0,255,157,0.3);
+    color: var(--accent3);
+    background: rgba(0,255,157,0.05);
+  }
+
+  .roadmap-tag.active {
+    border-color: rgba(0,212,255,0.3);
+    color: var(--accent);
+    background: rgba(0,212,255,0.05);
+  }
+
+  /* Contact */
+  .contact-section {
+    background: var(--bg);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 { margin-bottom: 16px; }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  .contact-detail span { color: var(--accent); font-size: 1rem; }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  input, textarea, select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0,212,255,0.2);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--text-dim);
+  }
+
+  select option { background: var(--surface2); }
+
+  textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .form-submit:hover {
+    background: #33ddff;
+    box-shadow: 0 0 40px rgba(0,212,255,0.4);
+  }
+
+  .form-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .hero-visual { display: none; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .steps::before { display: none; }
+    nav { padding: 20px 30px; }
+    section { padding: 80px 30px; }
+    .stats-strip { padding: 32px 30px; }
+    footer { padding: 32px 30px; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 100px 30px 60px; }
+    .features-grid, .industries-grid, .privacy-grid, .contact-grid { grid-template-columns: 1fr; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .stat { border-right: none; padding: 0; }
+    .steps { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .roadmap-item { grid-template-columns: 1fr; }
+    .roadmap-phase { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    background: rgba(0,255,157,0.1);
+    border: 1px solid rgba(0,255,157,0.3);
+    color: var(--accent3);
+    padding: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Engi<span>Intel</span></a>
+  <ul class="nav-links">
+    <li><a href="#features" data-en="Features" data-es="Funciones">Features</a></li>
+    <li><a href="#how" data-en="How It Works" data-es="Cómo Funciona">How It Works</a></li>
+    <li><a href="#industries" data-en="Industries" data-es="Industrias">Industries</a></li>
+    <li><a href="#roadmap" data-en="Roadmap" data-es="Roadmap">Roadmap</a></li>
+    <li><a href="#contact" class="nav-cta" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge" data-en="LOCAL AI · ZERO DATA LEAKAGE · ENTERPRISE READY" data-es="IA LOCAL · DATOS 100% SEGUROS · LISTO PARA EMPRESA">
+      LOCAL AI · ZERO DATA LEAKAGE · ENTERPRISE READY
+    </div>
+    <h1>
+      <span data-en="Your Technical<br>Documents,<br>" data-es="Tu Documentación<br>Técnica,<br>">Your Technical<br>Documents,<br></span>
+      <span class="accent" data-en="Instantly" data-es="Consultable">Instantly</span>
+      <span data-en=" " data-es=" "> </span>
+      <span class="accent2" data-en="Queryable" data-es="al Instante">Queryable</span>
+    </h1>
+    <p class="hero-sub" data-en="EngiIntel deploys on your own infrastructure. Engineers query manuals, regulations and technical specs in natural language — with page-level citations. No cloud. No data risk." data-es="EngiIntel se despliega en tu propia infraestructura. Los ingenieros consultan manuales, normativas y especificaciones técnicas en lenguaje natural — con citas de página exacta. Sin nube. Sin riesgo de datos.">
+      EngiIntel deploys on your own infrastructure. Engineers query manuals, regulations and technical specs in natural language — with page-level citations. No cloud. No data risk.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
+      <a href="#how" class="btn-secondary" data-en="See How It Works" data-es="Cómo Funciona">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">ENGIINTEL CORE · ACTIVE SESSION</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-dim">›</span> <span class="t-accent">QUERY:</span> <span class="t-white">"What documentation is required for an elevator installation?"</span></div>
+        <br>
+        <div><span class="t-dim">⟳ Searching</span> <span class="t-yellow">3 documents</span> <span class="t-dim">· 847 chunks · dept: Engineering</span></div>
+        <div><span class="t-dim">⟳ Reranking</span> <span class="t-yellow">top 10 matches</span><span class="t-dim">...</span></div>
+        <br>
+        <div><span class="t-green">✓ RESPONSE READY</span> <span class="t-dim">· 2.3s · local inference</span></div>
+        <br>
+        <div><span class="t-white">"According to BOE-A-1997-20731, p.29: the</span></div>
+        <div><span class="t-white">manufacturer must maintain documentation for</span></div>
+        <div><span class="t-white">10 years including: design drawings, CE</span></div>
+        <div><span class="t-white">certificates, test results..."</span></div>
+        <br>
+        <div><span class="t-dim">SOURCES:</span> <span class="t-accent">BOE-A-1997-20731.pdf</span> <span class="t-dim">· p.29 · 76%</span></div>
+        <div class="typing"><span class="t-dim">›</span> </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip fade-in">
+  <div class="stat">
+    <div class="stat-num">0ms</div>
+    <div class="stat-label" data-en="Cloud Latency" data-es="Latencia en Nube">Cloud Latency</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label" data-en="Data Stays On-Premise" data-es="Datos en Tu Servidor">Data Stays On-Premise</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1 cmd</div>
+    <div class="stat-label" data-en="Deployment — docker-compose up" data-es="Despliegue — docker-compose up">Deployment — docker-compose up</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label" data-en="Queries — No API Costs" data-es="Consultas — Sin Coste de API">Queries — No API Costs</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label" data-en="Capabilities" data-es="Capacidades">Capabilities</div>
+  <h2 data-en="Everything your engineers need,<br>nothing your legal team fears." data-es="Todo lo que tus ingenieros necesitan,<br>nada que tema tu equipo legal.">Everything your engineers need,<br>nothing your legal team fears.</h2>
+  <p class="section-sub" data-en="Built specifically for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable." data-es="Construido específicamente para industrias reguladas donde la precisión documental, trazabilidad y confidencialidad de datos no son negociables.">Built specifically for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable.</p>
+
+  <div class="features-grid fade-in">
+    <div class="feature-card">
+      <span class="feature-icon">🔍</span>
+      <div class="feature-title" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
+      <div class="feature-desc" data-en="Ask questions in plain Spanish or English. Get precise answers from your technical documentation with exact page citations." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas de tu documentación técnica con citas de página exactas.">Ask questions in plain Spanish or English. Get precise answers from your technical documentation with exact page citations.</div>
+      <span class="feature-tag">RAG · HYBRID SEARCH</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔒</span>
+      <div class="feature-title" data-en="100% On-Premise AI" data-es="IA 100% Local">100% On-Premise AI</div>
+      <div class="feature-desc" data-en="Runs entirely on your hardware. No data sent to OpenAI, Google or any third party. Full GDPR compliance by design." data-es="Se ejecuta completamente en tu hardware. Sin datos enviados a OpenAI, Google ni terceros. Cumplimiento GDPR por diseño.">Runs entirely on your hardware. No data sent to OpenAI, Google or any third party. Full GDPR compliance by design.</div>
+      <span class="feature-tag">LOCAL LLM · OLLAMA</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📄</span>
+      <div class="feature-title" data-en="OCR for Scanned Documents" data-es="OCR para Documentos Escaneados">OCR for Scanned Documents</div>
+      <div class="feature-desc" data-en="Processes scanned PDFs and image-based documents. Legacy manuals and old regulations work just as well as native PDFs." data-es="Procesa PDFs escaneados y documentos basados en imagen. Los manuales heredados y normativas antiguas funcionan igual que PDFs nativos.">Processes scanned PDFs and image-based documents. Legacy manuals and old regulations work just as well as native PDFs.</div>
+      <span class="feature-tag">TESSERACT · VISION AI</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏗️</span>
+      <div class="feature-title" data-en="Hierarchical Knowledge Base" data-es="Base de Conocimiento Jerárquica">Hierarchical Knowledge Base</div>
+      <div class="feature-desc" data-en="Organise documents in folders with AI context instructions. Query by department, project, or regulation type — scope narrows automatically." data-es="Organiza documentos en carpetas con instrucciones de contexto para la IA. Consulta por departamento, proyecto o tipo de normativa — el alcance se estrecha automáticamente.">Organise documents in folders with AI context instructions. Query by department, project, or regulation type.</div>
+      <span class="feature-tag">SMART SCOPING</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">👥</span>
+      <div class="feature-title" data-en="Department Access Control" data-es="Control de Acceso por Departamento">Department Access Control</div>
+      <div class="feature-desc" data-en="Each department sees only its own documents. Admins manage users, roles and permissions from a dedicated panel." data-es="Cada departamento ve solo sus propios documentos. Los administradores gestionan usuarios, roles y permisos desde un panel dedicado.">Each department sees only its own documents. Admins manage users, roles and permissions from a dedicated panel.</div>
+      <span class="feature-tag">RBAC · MULTI-TENANT</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <div class="feature-title" data-en="Audit Logging & Compliance" data-es="Registro de Auditoría y Cumplimiento">Audit Logging & Compliance</div>
+      <div class="feature-desc" data-en="Every query, upload and action is logged with user, timestamp and response time. Full traceability for ISO and regulatory audits." data-es="Cada consulta, subida y acción se registra con usuario, marca de tiempo y tiempo de respuesta. Trazabilidad completa para auditorías ISO y normativas.">Every query, upload and action is logged with user, timestamp and response time. Full traceability for audits.</div>
+      <span class="feature-tag">ISO READY · IMMUTABLE LOGS</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📈</span>
+      <div class="feature-title" data-en="Excel & Workbook Analysis" data-es="Análisis de Excel y Libros de Trabajo">Excel & Workbook Analysis</div>
+      <div class="feature-desc" data-en="Ingest and query Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable." data-es="Ingesta y consulta libros Excel junto con PDFs. Especificaciones técnicas, resultados de pruebas y fichas de datos, todo buscable.">Ingest and query Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable.</div>
+      <span class="feature-tag">XLSX · MULTI-FORMAT</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔗</span>
+      <div class="feature-title" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors <span style="font-size:0.7rem;color:var(--accent);font-family:'DM Mono',monospace"> COMING</span></div>
+      <div class="feature-desc" data-en="Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads." data-es="Sincronización automática desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados sin subidas manuales.">Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads.</div>
+      <span class="feature-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <div class="feature-title" data-en="One-Command Deployment" data-es="Despliegue en Un Comando">One-Command Deployment</div>
+      <div class="feature-desc" data-en="Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes." data-es="Completamente contenorizado con Docker. TI ejecuta un comando y toda la pila — IA, base de datos, app — está activa en minutos.">Fully containerised with Docker. IT runs one command and the entire stack is live in minutes.</div>
+      <span class="feature-tag">DOCKER · SELF-HOSTED</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-label" data-en="Process" data-es="Proceso">Process</div>
+  <h2 data-en="From document to answer<br>in seconds." data-es="Del documento a la respuesta<br>en segundos.">From document to answer<br>in seconds.</h2>
+  <p class="section-sub" data-en="No complex setup. No training required. Upload your documents, ask your question, get your answer." data-es="Sin configuración compleja. Sin formación necesaria. Sube tus documentos, haz tu pregunta, obtén tu respuesta.">No complex setup. No training required. Upload your documents, ask your question, get your answer.</p>
+
+  <div class="steps fade-in">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title" data-en="Deploy on Your Server" data-es="Desplegar en Tu Servidor">Deploy on Your Server</div>
+      <div class="step-desc" data-en="IT runs docker-compose up. The full stack — AI models, vector database, application — starts automatically on your hardware." data-es="TI ejecuta docker-compose up. La pila completa — modelos IA, base de datos vectorial, aplicación — arranca automáticamente en tu hardware.">IT runs docker-compose up. The full stack starts automatically on your hardware.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title" data-en="Upload Documents" data-es="Subir Documentos">Upload Documents</div>
+      <div class="step-desc" data-en="Upload PDFs, scanned documents or Excel files. EngiIntel processes, chunks and embeds them using local AI models." data-es="Sube PDFs, documentos escaneados o archivos Excel. EngiIntel los procesa, trocea e integra usando modelos IA locales.">Upload PDFs, scanned documents or Excel files. EngiIntel processes and indexes them using local AI.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title" data-en="Ask in Natural Language" data-es="Preguntar en Lenguaje Natural">Ask in Natural Language</div>
+      <div class="step-desc" data-en="Engineers type their question in plain language. The system searches semantically across all indexed documents." data-es="Los ingenieros escriben su pregunta en lenguaje natural. El sistema busca semánticamente en todos los documentos indexados.">Engineers type their question in plain language. The system searches semantically across all indexed documents.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title" data-en="Get Cited Answers" data-es="Obtener Respuestas Citadas">Get Cited Answers</div>
+      <div class="step-desc" data-en="Receive precise answers with document name and page number for every claim. Verify directly in the source in one click." data-es="Recibe respuestas precisas con nombre de documento y número de página para cada afirmación. Verifica directamente en la fuente con un clic.">Receive precise answers with document name and page number. Verify in the source in one click.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-label" data-en="Industries" data-es="Industrias">Industries</div>
+  <h2 data-en="Built for regulated<br>environments." data-es="Construido para entornos<br>regulados.">Built for regulated<br>environments.</h2>
+  <p class="section-sub" data-en="Where documentation accuracy is a legal requirement, not a preference." data-es="Donde la precisión documental es un requisito legal, no una preferencia.">Where documentation accuracy is a legal requirement, not a preference.</p>
+
+  <div class="industries-grid fade-in">
+    <div class="industry-card">
+      <span class="industry-icon">⚗️</span>
+      <div class="industry-name" data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical</div>
+      <div class="industry-desc" data-en="SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail." data-es="SOPs, protocolos de validación, presentaciones regulatorias y documentación GMP — todo consultable con trazabilidad completa.">SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail.</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">✈️</span>
+      <div class="industry-name" data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</div>
+      <div class="industry-desc" data-en="Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy." data-es="Manuales de mantenimiento, directivas de aeronavegabilidad, órdenes técnicas y especificaciones de componentes — precisión crítica.">Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy.</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">⚡</span>
+      <div class="industry-name" data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</div>
+      <div class="industry-desc" data-en="Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations." data-es="Documentación de planta, procedimientos de seguridad, normas IEC e informes de inspección. Acceso inmediato durante operaciones.">Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations.</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🏭</span>
+      <div class="industry-name" data-en="Manufacturing & Industry" data-es="Manufactura e Industria">Manufacturing & Industry</div>
+      <div class="industry-desc" data-en="Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer on the floor." data-es="Especificaciones técnicas, documentación CE, directivas de maquinaria y manuales de calidad — consultables por cualquier ingeniero.">Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer.</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🏗️</span>
+      <div class="industry-name" data-en="Construction & Infrastructure" data-es="Construcción e Infraestructura">Construction & Infrastructure</div>
+      <div class="industry-desc" data-en="Building codes, structural calculations, project specifications and inspection reports — all searchable from site." data-es="Códigos de construcción, cálculos estructurales, especificaciones de proyecto e informes de inspección — todo buscable desde obra.">Building codes, structural calculations, project specifications and inspection reports — all searchable from site.</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🔬</span>
+      <div class="industry-name" data-en="Research & Development" data-es="Investigación y Desarrollo">Research & Development</div>
+      <div class="industry-desc" data-en="Lab protocols, research papers, patent documentation and internal technical reports — knowledge stays inside the lab." data-es="Protocolos de laboratorio, artículos de investigación, documentación de patentes e informes técnicos internos — el conocimiento permanece en el laboratorio.">Lab protocols, research papers, patent documentation and technical reports — knowledge stays inside the lab.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="privacy-section">
+  <div class="privacy-grid fade-in">
+    <div>
+      <div class="section-label" data-en="Data Sovereignty" data-es="Soberanía de Datos">Data Sovereignty</div>
+      <h2 data-en="Your data never<br>leaves your building." data-es="Tus datos nunca<br>salen de tu edificio.">Your data never<br>leaves your building.</h2>
+      <p class="section-sub" data-en="EngiIntel was designed from day one for environments where data confidentiality is non-negotiable." data-es="EngiIntel fue diseñado desde el primer día para entornos donde la confidencialidad de los datos no es negociable.">EngiIntel was designed from day one for environments where data confidentiality is non-negotiable.</p>
+
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text"><strong data-en="Zero cloud dependency" data-es="Cero dependencia en la nube">Zero cloud dependency</strong> — <span data-en="AI inference runs locally. No OpenAI, no Google, no external APIs required." data-es="La inferencia IA se ejecuta localmente. Sin OpenAI, sin Google, sin APIs externas.">AI inference runs locally. No OpenAI, no Google, no external APIs required.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text"><strong data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</strong> — <span data-en="Data never crosses jurisdictional boundaries. Residency guaranteed." data-es="Los datos nunca cruzan fronteras jurisdiccionales. Residencia garantizada.">Data never crosses jurisdictional boundaries. Residency guaranteed.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text"><strong data-en="Works fully offline" data-es="Funciona completamente sin conexión">Works fully offline</strong> — <span data-en="Deploy on your intranet. No internet connection required after initial setup." data-es="Despliega en tu intranet. Sin conexión a internet después de la configuración inicial.">Deploy on your intranet. No internet required after initial setup.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-text"><strong data-en="IT has full control" data-es="TI tiene control total">IT has full control</strong> — <span data-en="Standard Docker deployment. Your team manages the server, backups and access." data-es="Despliegue Docker estándar. Tu equipo gestiona el servidor, copias de seguridad y acceso.">Standard Docker deployment. Your team manages the server, backups and access.</span></div>
+      </div>
+    </div>
+
+    <div class="privacy-visual">
+      <div><span class="t-dim"># Architecture overview</span></div>
+      <br>
+      <div><span class="t-accent">[ Your Server ]</span></div>
+      <div>  <span class="t-green">├──</span> <span class="t-white">EngiIntel App</span> <span class="t-dim">(port 3000)</span></div>
+      <div>  <span class="t-green">├──</span> <span class="t-white">PostgreSQL + pgvector</span> <span class="t-dim">(port 5432)</span></div>
+      <div>  <span class="t-green">├──</span> <span class="t-white">Ollama LLM</span> <span class="t-dim">(port 11434)</span></div>
+      <div>  <span class="t-green">│     ├──</span> <span class="t-yellow">mxbai-embed-large</span></div>
+      <div>  <span class="t-green">│     └──</span> <span class="t-yellow">qwen2.5:7b</span></div>
+      <div>  <span class="t-green">└──</span> <span class="t-white">pgAdmin</span> <span class="t-dim">(port 5050)</span></div>
+      <br>
+      <div><span class="t-dim">─────────────────────────</span></div>
+      <div><span class="t-danger">✗ OpenAI API</span>  <span class="t-dim">not connected</span></div>
+      <div><span class="t-danger">✗ Google API</span>   <span class="t-dim">not connected</span></div>
+      <div><span class="t-danger">✗ Any cloud</span>    <span class="t-dim">not connected</span></div>
+      <br>
+      <div><span class="t-green">✓ 100% local inference</span></div>
+      <div><span class="t-green">✓ Zero data egress</span></div>
+      <div><span class="t-green">✓ Offline capable</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label" data-en="Roadmap" data-es="Hoja de Ruta">Roadmap</div>
+  <h2 data-en="Built in public.<br>Shipping fast." data-es="Construido abiertamente.<br>Enviando rápido.">Built in public.<br>Shipping fast.</h2>
+  <p class="section-sub" data-en="EngiIntel is under active development. Current features are stable and production-ready. What's coming next:" data-es="EngiIntel está en desarrollo activo. Las funciones actuales son estables y listas para producción. Lo que viene:">EngiIntel is under active development. Current features are stable and production-ready.</p>
+
+  <div class="roadmap fade-in">
+    <div class="roadmap-item">
+      <div class="roadmap-phase">
+        <div class="phase-label" data-en="Foundation" data-es="Fundación">Foundation</div>
+        <div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div>
+      </div>
+      <div class="roadmap-content">
+        <span class="roadmap-tag done">Docker</span>
+        <span class="roadmap-tag done">Local AI</span>
+        <span class="roadmap-tag done">OCR</span>
+        <span class="roadmap-tag done">RAG Pipeline</span>
+        <span class="roadmap-tag done">JWT Auth</span>
+        <span class="roadmap-tag done">Audit Logs</span>
+        <span class="roadmap-tag done">Admin Panel</span>
+        <span class="roadmap-tag done">Self-hosted DB</span>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">
+        <div class="phase-label" data-en="Security" data-es="Seguridad">Security</div>
+        <div class="phase-name phase-current" data-en="→ In Progress" data-es="→ En Progreso">→ In Progress</div>
+      </div>
+      <div class="roadmap-content">
+        <span class="roadmap-tag active">Folder System</span>
+        <span class="roadmap-tag active">Dept Filtering</span>
+        <span class="roadmap-tag active">Bulk Permissions</span>
+        <span class="roadmap-tag">Modular Architecture</span>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">
+        <div class="phase-label" data-en="Connectors" data-es="Conectores">Connectors</div>
+        <div class="phase-name phase-next" data-en="Q2 2026" data-es="Q2 2026">Q2 2026</div>
+      </div>
+      <div class="roadmap-content">
+        <span class="roadmap-tag">SharePoint</span>
+        <span class="roadmap-tag">Google Drive</span>
+        <span class="roadmap-tag">Confluence</span>
+        <span class="roadmap-tag">Auto-sync</span>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">
+        <div class="phase-label" data-en="ERP & Analytics" data-es="ERP y Analítica">ERP & Analytics</div>
+        <div class="phase-name phase-next" data-en="Q3 2026" data-es="Q3 2026">Q3 2026</div>
+      </div>
+      <div class="roadmap-content">
+        <span class="roadmap-tag">SAP Integration</span>
+        <span class="roadmap-tag">Metrics Dashboard</span>
+        <span class="roadmap-tag">Usage Analytics</span>
+        <span class="roadmap-tag">Coverage Gaps</span>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">
+        <div class="phase-label" data-en="Enterprise" data-es="Enterprise">Enterprise</div>
+        <div class="phase-name phase-next" data-en="Q4 2026" data-es="Q4 2026">Q4 2026</div>
+      </div>
+      <div class="roadmap-content">
+        <span class="roadmap-tag">Entra ID SSO</span>
+        <span class="roadmap-tag">PII Detection</span>
+        <span class="roadmap-tag">Multilingual</span>
+        <span class="roadmap-tag">SIEM Export</span>
+        <span class="roadmap-tag">vLLM Scale</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label" data-en="Get Started" data-es="Empezar">Get Started</div>
+  <div class="contact-grid fade-in">
+    <div class="contact-info">
+      <h2 data-en="Ready to deploy AI<br>on your infrastructure?" data-es="¿Listo para desplegar IA<br>en tu infraestructura?">Ready to deploy AI<br>on your infrastructure?</h2>
+      <p class="section-sub" data-en="Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups." data-es="Reserva una demo y te mostraremos EngiIntel funcionando en vivo con un conjunto de documentos real de tu industria — sin diapositivas, sin maquetas.">Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups.</p>
+
+      <div class="contact-detail">
+        <span>📧</span>
+        <span>contact@engiintel.com</span>
+      </div>
+      <div class="contact-detail">
+        <span>📍</span>
+        <span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span>
+      </div>
+      <div class="contact-detail">
+        <span>⏱</span>
+        <span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span>
+      </div>
+    </div>
+
+    <div>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Name / Nombre" required data-en-placeholder="Name" data-es-placeholder="Nombre">
+          <input type="text" placeholder="Company / Empresa" required data-en-placeholder="Company" data-es-placeholder="Empresa">
+        </div>
+        <input type="email" placeholder="Email" required>
+        <select required>
+          <option value="" disabled selected data-en="Industry" data-es="Industria">Industry / Industria</option>
+          <option data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical / Farmacéutica</option>
+          <option data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</option>
+          <option data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</option>
+          <option data-en="Manufacturing" data-es="Manufactura">Manufacturing / Manufactura</option>
+          <option data-en="Construction" data-es="Construcción">Construction / Construcción</option>
+          <option data-en="Other" data-es="Otro">Other / Otro</option>
+        </select>
+        <textarea placeholder="Tell us about your document challenge... / Cuéntanos tu reto con documentos..."></textarea>
+        <button type="submit" class="form-submit" data-en="Request Demo" data-es="Solicitar Demo">Request Demo</button>
+        <p class="form-note" data-en="No commitment required. We'll reach out within 24h." data-es="Sin compromiso. Nos pondremos en contacto en 24h.">No commitment required. We'll reach out within 24h.</p>
+      </form>
+      <div class="success-msg" id="successMsg" data-en="✓ Message received. We'll be in touch within 24 hours." data-es="✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.">
+        ✓ Message received. We'll be in touch within 24 hours.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Engi<span>Intel</span></div>
+  <div class="footer-copy" data-en="© 2026 EngiIntel. All rights reserved." data-es="© 2026 EngiIntel. Todos los derechos reservados.">© 2026 EngiIntel. All rights reserved.</div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX - 4 + 'px';
+    cursor.style.top = mouseY - 4 + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX - 16) * 0.15;
+    ringY += (mouseY - ringY - 16) * 0.15;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, input, textarea, select').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      ring.style.transform = 'scale(1.5)';
+      ring.style.borderColor = 'rgba(0,212,255,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+      ring.style.borderColor = 'rgba(0,212,255,0.4)';
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Language switcher
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn:${lang === 'en' ? 'first' : 'last'}-child`).classList.add('active');
+
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+
+    document.querySelectorAll('[data-' + lang + '-placeholder]').forEach(el => {
+      el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
+    });
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    msg.textContent = currentLang === 'es'
+      ? '✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.'
+      : '✓ Message received. We\'ll be in touch within 24 hours.';
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(0,212,255,0.2)' : 'var(--border)';
+  });
+</script>
+</body>
+</html>
