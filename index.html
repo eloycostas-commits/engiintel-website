@@ -4,8 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  SEO — Primary meta tags                            ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<meta name="description" content="EngiIntel is a self-hosted AI platform for regulated industries. Query regulations, manage a knowledge base, track assets, generate incident reports and run autonomous AI agents — with zero data leaving your server.">
+<meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
+<meta name="author" content="EngiIntel">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://engiintel-website.vercel.app/">
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  Open Graph (LinkedIn, Facebook, WhatsApp, Slack)   ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EngiIntel">
+<meta property="og:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
+<meta property="og:description" content="Self-hosted AI that queries regulations, manages your knowledge base, tracks assets, generates incident reports and runs autonomous AI agents. No cloud. No data risk.">
+<meta property="og:url" content="https://engiintel-website.vercel.app/">
+<meta property="og:image" content="https://engiintel-website.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EngiIntel — AI Agent Mode running on local infrastructure">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  Twitter / X Card                                   ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
+<meta name="twitter:description" content="Self-hosted AI for engineers. Query regulations, track assets, generate incident reports and run autonomous agents. Zero data leaves your server.">
+<meta name="twitter:image" content="https://engiintel-website.vercel.app/og-image.png">
+<meta name="twitter:image:alt" content="EngiIntel — AI Agent Mode terminal demo">
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  Structured Data — SoftwareApplication (JSON-LD)   ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EngiIntel",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Linux, Docker",
+  "description": "Self-hosted AI document intelligence platform for regulated industries. Features RAG-powered document search, wiki and knowledge base, asset registry, incident report generation and autonomous AI agent mode.",
+  "url": "https://engiintel-website.vercel.app/",
+  "softwareVersion": "1.0",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "49",
+      "priceCurrency": "EUR",
+      "billingIncrement": "monthly"
+    }
+  ],
+  "featureList": [
+    "RAG document search with page-level citations",
+    "Wiki and knowledge base with version history",
+    "Asset registry and incident report generation",
+    "AI Agent Mode with ReAct loop",
+    "On-premise deployment — no cloud required",
+    "OCR for scanned documents",
+    "SharePoint, Google Drive and Confluence connectors",
+    "Multilingual support"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "EngiIntel",
+    "url": "https://engiintel-website.vercel.app/"
+  }
+}
+</script>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║  Favicon (replace paths with your actual assets)   ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#080c10">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #080c10;
@@ -16,840 +105,263 @@
     --accent2: #0066ff;
     --accent3: #00ff9d;
     --text: #e8edf2;
-    --text-dim: #6b7d8f;
-    --text-mid: #9baab8;
+    --text-dim: #8a9bab;
+    --text-mid: #b0bec8;
     --danger: #ff4444;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     overflow-x: hidden;
-    cursor: none;
   }
 
   /* Custom cursor */
-  .cursor {
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: screen;
-  }
-  .cursor-ring {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(0,212,255,0.4);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.15s ease;
-    mix-blend-mode: screen;
-  }
+  .cursor { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: screen; left: -20px; top: -20px; }
+  .cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(0,212,255,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.15s ease; left: -40px; top: -40px; }
 
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* Subtle grid */
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
 
-  /* Nav */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    text-decoration: none;
-  }
-
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(8,12,16,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 0.85rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; transition: color 0.2s; position: relative; padding-bottom: 3px; }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transition: transform 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-cta { background: var(--accent) !important; color: var(--bg) !important; padding: 9px 22px !important; font-family: 'Syne', sans-serif !important; font-weight: 700 !important; font-size: 0.82rem !important; letter-spacing: 0.04em !important; }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: #33ddff !important; box-shadow: 0 0 24px rgba(0,212,255,0.35) !important; }
+  .lang-switch { display: flex; gap: 4px; margin-left: 20px; }
+  .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 4px 10px; font-family: 'DM Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
+  .lang-btn.active, .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-  }
+  /* ── HERO ── */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; z-index: 1; }
+  .hero-content { max-width: 660px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,212,255,0.3); padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 36px; background: rgba(0,212,255,0.05); }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
-  .nav-links a {
-    color: var(--text-mid);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--bg) !important;
-    padding: 10px 24px;
-    font-weight: 500 !important;
-    letter-spacing: 0.02em !important;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover {
-    background: #33ddff !important;
-    color: var(--bg) !important;
-    box-shadow: 0 0 30px rgba(0,212,255,0.4) !important;
-  }
-
-  /* Lang switcher */
-  .lang-switch {
-    display: flex;
-    gap: 4px;
-    margin-left: 20px;
-  }
-
-  .lang-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 4px 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .lang-btn.active, .lang-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* Hero */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 60px 80px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-content {
-    max-width: 680px;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid rgba(0,212,255,0.3);
-    padding: 6px 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 40px;
-    background: rgba(0,212,255,0.05);
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent3);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 28px;
-  }
-
+  h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 4.5vw, 4.2rem); line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 28px; color: var(--text); }
   h1 .accent { color: var(--accent); }
   h1 .accent2 { color: var(--accent3); }
 
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    max-width: 520px;
-    margin-bottom: 48px;
-    font-weight: 300;
-  }
+  .hero-sub { font-size: 1.1rem; color: var(--text-mid); line-height: 1.75; max-width: 520px; margin-bottom: 44px; font-weight: 400; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
 
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+  .hero-trust { display: flex; align-items: center; gap: 28px; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .trust-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
+  .trust-item .tick { color: var(--accent3); }
 
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 16px 36px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    display: inline-block;
-    cursor: none;
-  }
+  .btn-primary { background: var(--accent); color: var(--bg); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; cursor: pointer; }
+  .btn-primary:hover { background: #33ddff; box-shadow: 0 0 48px rgba(0,212,255,0.4); transform: translateY(-2px); }
+  .btn-secondary { border: 1px solid var(--border); color: var(--text-mid); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; cursor: pointer; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-  .btn-primary:hover {
-    background: #33ddff;
-    box-shadow: 0 0 50px rgba(0,212,255,0.5);
-    transform: translateY(-2px);
-  }
-
-  .btn-secondary {
-    border: 1px solid var(--border);
-    color: var(--text-mid);
-    padding: 16px 36px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    display: inline-block;
-    cursor: none;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* Hero visual */
-  .hero-visual {
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 520px;
-    opacity: 0.85;
-  }
-
-  .terminal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.1);
-  }
-
-  .terminal-header {
-    background: var(--surface2);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
+  /* Hero terminal */
+  .hero-visual { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 500px; opacity: 0.9; }
+  .terminal { background: var(--surface); border: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.78rem; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.08); }
+  .terminal-header { background: var(--surface2); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
   .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
+  .dot-r{background:#ff5f57} .dot-y{background:#febc2e} .dot-g{background:#28c840}
+  .terminal-title { margin-left: auto; color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.05em; }
+  .terminal-body { padding: 24px; line-height: 1.8; }
+  .t-dim{color:var(--text-dim)} .t-accent{color:var(--accent)} .t-green{color:var(--accent3)} .t-yellow{color:#ffd700} .t-white{color:var(--text)} .t-danger{color:var(--danger)}
+  .typing::after { content:'█'; animation: blink 1s infinite; color: var(--accent); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  .terminal-title {
-    margin-left: auto;
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-  }
+  /* ── STATS ── */
+  .stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 60px; display: grid; grid-template-columns: repeat(4,1fr); position: relative; z-index: 1; }
+  .stat { padding: 0 40px; border-right: 1px solid var(--border); }
+  .stat:first-child{padding-left:0} .stat:last-child{border-right:none}
+  .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  .terminal-body {
-    padding: 24px;
-    line-height: 1.8;
-  }
+  /* ── PROBLEM ── */
+  .problem-section { padding: 100px 60px; background: var(--surface); border-bottom: 1px solid var(--border); position: relative; z-index: 1; }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .problem-quote { font-family: 'Syne', sans-serif; font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-weight: 700; line-height: 1.35; color: var(--text); border-left: 3px solid var(--accent); padding-left: 28px; margin-bottom: 24px; }
+  .problem-quote em { color: var(--accent); font-style: normal; }
+  .problem-desc { font-size: 1rem; color: var(--text-mid); line-height: 1.75; font-weight: 400; }
+  .problem-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .problem-stat { background: var(--bg); border: 1px solid var(--border); padding: 28px 24px; }
+  .problem-stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .problem-stat-label { font-size: 0.84rem; color: var(--text-mid); line-height: 1.5; font-weight: 400; }
 
-  .t-dim { color: var(--text-dim); }
-  .t-accent { color: var(--accent); }
-  .t-green { color: var(--accent3); }
-  .t-yellow { color: #ffd700; }
-  .t-white { color: var(--text); }
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; position: relative; z-index: 1; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+  h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 20px; }
+  .section-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.75; max-width: 520px; margin-bottom: 56px; font-weight: 400; }
 
-  .typing::after {
-    content: '█';
-    animation: blink 1s infinite;
-    color: var(--accent);
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  /* Stats strip */
-  .stats-strip {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 32px 60px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .stat {
-    padding: 0 40px;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat:first-child { padding-left: 0; }
-  .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 2.2rem;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* Sections */
-  section {
-    padding: 100px 60px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::before {
-    content: '';
-    width: 30px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
-
-  .section-sub {
-    color: var(--text-mid);
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 520px;
-    margin-bottom: 60px;
-    font-weight: 300;
-  }
-
-  /* Features grid */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .feature-card {
-    background: var(--surface);
-    padding: 40px;
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
+  /* ── FEATURES ── */
+  .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .feature-card { background: var(--surface); padding: 40px; transition: background 0.3s; position: relative; overflow: hidden; }
+  .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
   .feature-card:hover { background: var(--surface2); }
   .feature-card:hover::before { opacity: 1; }
+  .feature-icon { font-size: 1.8rem; margin-bottom: 20px; display: block; }
+  .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 12px; color: var(--text); }
+  .feature-desc { font-size: 0.87rem; color: var(--text-dim); line-height: 1.75; font-weight: 400; }
+  .feature-tag { display: inline-block; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent3); letter-spacing: 0.08em; border: 1px solid rgba(0,255,157,0.2); padding: 3px 10px; }
 
-  .feature-icon {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    display: block;
-  }
+  /* Features expand */
+  .features-more { overflow: hidden; max-height: 0; transition: max-height 0.5s ease; border: 1px solid var(--border); border-top: none; }
+  .features-more.open { max-height: 2000px; }
+  .features-more-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+  .features-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 2px; padding: 13px; border: 1px solid var(--border); background: transparent; color: var(--text-dim); font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; width: 100%; }
+  .features-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .toggle-arrow { transition: transform 0.3s; display: inline-block; }
+  .toggle-arrow.open { transform: rotate(180deg); }
 
-  .feature-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
+  /* ── HOW IT WORKS ── */
+  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), var(--accent), transparent); opacity: 0.3; }
+  .step { padding: 0 30px; text-align: center; }
+  .step-num { width: 56px; height: 56px; border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent); margin: 0 auto 24px; background: var(--bg); position: relative; z-index: 1; }
+  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; }
+  .step-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; font-weight: 400; }
 
-  .feature-desc {
-    font-size: 0.87rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .feature-tag {
-    display: inline-block;
-    margin-top: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent3);
-    letter-spacing: 0.08em;
-    border: 1px solid rgba(0,255,157,0.2);
-    padding: 3px 10px;
-  }
-
-  /* How it works */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-  }
-
-  .steps::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), var(--accent), transparent);
-    opacity: 0.3;
-  }
-
-  .step {
-    padding: 0 30px;
-    text-align: center;
-  }
-
-  .step-num {
-    width: 56px; height: 56px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
-    margin: 0 auto 24px;
-    background: var(--bg);
-    position: relative;
-    z-index: 1;
-  }
-
-  .step-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-  }
-
-  .step-desc {
-    font-size: 0.83rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  /* Industries */
-  .industries-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .industry-card {
-    border: 1px solid var(--border);
-    padding: 32px;
-    transition: all 0.3s;
-    background: var(--surface);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .industry-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .industry-card:hover {
-    border-color: rgba(0,212,255,0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-
+  /* ── INDUSTRIES ── */
+  .industries-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .industry-card { border: 1px solid var(--border); padding: 32px; transition: all 0.3s; background: var(--surface); position: relative; overflow: hidden; }
+  .industry-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent); opacity: 0; transition: opacity 0.3s; }
+  .industry-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .industry-card:hover::after { opacity: 1; }
-
   .industry-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .industry-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+  .industry-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; font-weight: 400; }
 
-  .industry-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
+  /* ── PRIVACY ── */
+  .privacy-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .privacy-visual { font-family: 'DM Mono', monospace; font-size: 0.78rem; background: var(--bg); border: 1px solid var(--border); padding: 32px; line-height: 2; }
+  .check-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .check-icon { width: 22px; height: 22px; border: 1px solid var(--accent3); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent3); flex-shrink: 0; margin-top: 2px; }
+  .check-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.55; font-weight: 400; }
+  .check-text strong { color: var(--text); font-weight: 600; }
 
-  .industry-desc {
-    font-size: 0.83rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
+  /* ── PRICING ── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; background: var(--border); border: 1px solid var(--border); margin-bottom: 20px; }
+  .pricing-card { background: var(--surface); padding: 48px 40px; position: relative; }
+  .pricing-card.featured { background: var(--surface2); outline: 2px solid var(--accent2); outline-offset: -2px; z-index: 2; }
+  .pricing-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--accent2); color: white; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; padding: 4px 16px; text-transform: uppercase; white-space: nowrap; }
+  .pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  .pricing-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); line-height: 1; margin-bottom: 6px; }
+  .pricing-price sup { font-size: 1.4rem; vertical-align: top; margin-top: 8px; display: inline-block; }
+  .pricing-period { font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px; line-height: 1.5; }
+  .pricing-features { list-style: none; margin-bottom: 36px; }
+  .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 9px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; font-weight: 400; line-height: 1.5; }
+  .pricing-features li:last-child { border-bottom: none; }
+  .pricing-features li::before { content: '✓'; color: var(--accent3); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+  .pricing-features li.muted { color: var(--text-dim); }
+  .pricing-features li.muted::before { color: var(--border); }
+  .pricing-cta { display: block; text-align: center; padding: 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; width: 100%; }
+  .pricing-cta.solid { background: var(--accent2); color: white; }
+  .pricing-cta.solid:hover { background: #0055dd; box-shadow: 0 0 28px rgba(0,102,255,0.4); }
+  .pricing-cta.ghost { background: transparent; color: var(--text-mid); border: 1px solid var(--border); }
+  .pricing-cta.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .pricing-note { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-align: center; letter-spacing: 0.03em; }
 
-  /* Privacy section */
-  .privacy-section {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .privacy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .privacy-visual {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 32px;
-    line-height: 2;
-  }
-
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .check-icon {
-    width: 22px; height: 22px;
-    border: 1px solid var(--accent3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: var(--accent3);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .check-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
-  .check-text strong { color: var(--text); font-weight: 500; }
-
-  /* Roadmap */
-  .roadmap {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-
-  .roadmap-item {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
+  /* ── ROADMAP ── */
+  .roadmap { display: flex; flex-direction: column; border: 1px solid var(--border); }
+  .roadmap-item { display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid var(--border); overflow: hidden; }
   .roadmap-item:last-child { border-bottom: none; }
+  .roadmap-phase { padding: 28px 32px; background: var(--surface2); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+  .phase-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .phase-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; }
+  .phase-done{color:var(--accent3)} .phase-current{color:var(--accent)} .phase-next{color:var(--text-mid)}
+  .roadmap-content { padding: 28px 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .roadmap-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; padding: 4px 12px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: 0.05em; }
+  .roadmap-tag.done { border-color: rgba(0,255,157,0.3); color: var(--accent3); background: rgba(0,255,157,0.05); }
+  .roadmap-tag.active { border-color: rgba(0,212,255,0.3); color: var(--accent); background: rgba(0,212,255,0.05); }
 
-  .roadmap-phase {
-    padding: 28px 32px;
-    background: var(--surface2);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  /* ── FAQ ── */
+  .faq-list { border: 1px solid var(--border); }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-question { padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text); transition: color 0.2s; user-select: none; gap: 16px; }
+  .faq-question:hover { color: var(--accent); }
+  .faq-icon { font-family: 'DM Mono', monospace; font-size: 1.2rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .faq-icon.open { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-answer.open { max-height: 400px; }
+  .faq-answer-inner { padding: 16px 28px 22px; font-size: 0.89rem; color: var(--text-mid); line-height: 1.75; font-weight: 400; border-top: 1px solid var(--border); }
 
-  .phase-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
+  /* ── CONTACT ── */
+  .contact-section { background: var(--surface); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-detail { display: flex; align-items: center; gap: 12px; margin-top: 24px; font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
 
-  .phase-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-  }
-
-  .phase-done { color: var(--accent3); }
-  .phase-current { color: var(--accent); }
-  .phase-next { color: var(--text-mid); }
-
-  .roadmap-content {
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .roadmap-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    padding: 4px 12px;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
-
-  .roadmap-tag.done {
-    border-color: rgba(0,255,157,0.3);
-    color: var(--accent3);
-    background: rgba(0,255,157,0.05);
-  }
-
-  .roadmap-tag.active {
-    border-color: rgba(0,212,255,0.3);
-    color: var(--accent);
-    background: rgba(0,212,255,0.05);
-  }
-
-  /* Contact */
-  .contact-section {
-    background: var(--bg);
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .contact-info h2 { margin-bottom: 16px; }
-
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 32px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    color: var(--text-dim);
-  }
-
-  .contact-detail span { color: var(--accent); font-size: 1rem; }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  input, textarea, select {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 14px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 300;
-    transition: border-color 0.2s;
-    outline: none;
-    width: 100%;
-  }
-
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px rgba(0,212,255,0.2);
-  }
-
-  input::placeholder, textarea::placeholder {
-    color: var(--text-dim);
-  }
-
+  /* Form */
+  form { display: flex; flex-direction: column; gap: 12px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-label { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+  input, textarea, select { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400; transition: border-color 0.2s; outline: none; width: 100%; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(0,212,255,0.12); }
+  input::placeholder, textarea::placeholder { color: var(--text-dim); }
   select option { background: var(--surface2); }
+  textarea { resize: vertical; min-height: 110px; }
+  .form-error { display: none; color: var(--danger); font-family: 'DM Mono', monospace; font-size: 0.74rem; padding: 6px 0; letter-spacing: 0.02em; }
+  .form-submit { background: var(--accent); color: var(--bg); border: none; padding: 15px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; width: 100%; margin-top: 4px; }
+  .form-submit:hover { background: #33ddff; box-shadow: 0 0 40px rgba(0,212,255,0.3); }
+  .form-note { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-align: center; margin-top: 4px; }
+  .success-msg { display: none; background: rgba(0,255,157,0.08); border: 1px solid rgba(0,255,157,0.3); color: var(--accent3); padding: 24px; font-family: 'DM Mono', monospace; font-size: 0.84rem; text-align: center; letter-spacing: 0.04em; line-height: 1.6; }
 
-  textarea { resize: vertical; min-height: 120px; }
-
-  .form-submit {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 16px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: none;
-    transition: all 0.2s;
-    width: 100%;
-  }
-
-  .form-submit:hover {
-    background: #33ddff;
-    box-shadow: 0 0 40px rgba(0,212,255,0.4);
-  }
-
-  .form-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    text-align: center;
-    margin-top: 4px;
-  }
-
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--text-dim);
-  }
-
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
   .footer-logo span { color: var(--accent); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
-  .footer-copy {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
+  /* Back to top */
+  .back-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; z-index: 50; opacity: 0; transform: translateY(8px); transition: all 0.3s; text-decoration: none; }
+  .back-top.visible { opacity: 1; transform: translateY(0); }
+  .back-top:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.7s ease;
-  }
+  /* Mobile sticky CTA */
+  .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 20px; background: rgba(8,12,16,0.96); border-top: 1px solid var(--border); backdrop-filter: blur(20px); z-index: 90; }
+  .mobile-cta a { display: block; text-align: center; padding: 14px; background: var(--accent); color: var(--bg); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; }
 
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* ── Animations ── */
+  .fade-in { opacity: 1; transform: none; }
+  .fade-in.animate { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.animate.visible { opacity: 1; transform: translateY(0); }
 
-  /* Responsive */
+  /* ── Responsive ── */
   @media (max-width: 1100px) {
     .hero-visual { display: none; }
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
-    .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .features-grid, .features-more-grid { grid-template-columns: repeat(2,1fr); }
+    .steps { grid-template-columns: repeat(2,1fr); gap: 40px; }
     .steps::before { display: none; }
-    nav { padding: 20px 30px; }
-    section { padding: 80px 30px; }
-    .stats-strip { padding: 32px 30px; }
-    footer { padding: 32px 30px; }
+    nav, section, footer { padding-left: 30px; padding-right: 30px; }
+    .stats-strip, .problem-section { padding-left: 30px; padding-right: 30px; }
   }
-
   @media (max-width: 768px) {
-    .hero { padding: 100px 30px 60px; }
-    .features-grid, .industries-grid, .privacy-grid, .contact-grid { grid-template-columns: 1fr; }
-    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .hero { padding: 100px 24px 60px; }
+    .features-grid, .features-more-grid, .industries-grid, .privacy-grid, .contact-grid, .pricing-grid, .problem-grid { grid-template-columns: 1fr; }
+    .stats-strip { grid-template-columns: repeat(2,1fr); gap: 28px; padding: 28px 24px; }
     .stat { border-right: none; padding: 0; }
     .steps { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .form-row { grid-template-columns: 1fr; }
     .roadmap-item { grid-template-columns: 1fr; }
     .roadmap-phase { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-
-  /* Success message */
-  .success-msg {
-    display: none;
-    background: rgba(0,255,157,0.1);
-    border: 1px solid rgba(0,255,157,0.3);
-    color: var(--accent3);
-    padding: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    text-align: center;
-    letter-spacing: 0.05em;
+    .problem-stats { grid-template-columns: repeat(2,1fr); }
+    .mobile-cta { display: block; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-trust { gap: 16px; }
   }
 </style>
 </head>
@@ -857,15 +369,18 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+<a href="#" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+<div class="mobile-cta"><a href="#contact" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a></div>
 
-<!-- NAV -->
-<nav>
+<!-- ── NAV ── -->
+<nav id="mainNav">
   <a href="#" class="nav-logo">Engi<span>Intel</span></a>
   <ul class="nav-links">
     <li><a href="#features" data-en="Features" data-es="Funciones">Features</a></li>
     <li><a href="#how" data-en="How It Works" data-es="Cómo Funciona">How It Works</a></li>
     <li><a href="#industries" data-en="Industries" data-es="Industrias">Industries</a></li>
-    <li><a href="#roadmap" data-en="Roadmap" data-es="Roadmap">Roadmap</a></li>
+    <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
+    <li><a href="https://rag-v2-omega.vercel.app/" target="_blank" rel="noopener noreferrer" data-en="Try Free →" data-es="Probar Gratis →">Try Free →</a></li>
     <li><a href="#contact" class="nav-cta" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a></li>
   </ul>
   <div class="lang-switch">
@@ -874,86 +389,113 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge" data-en="LOCAL AI · ZERO DATA LEAKAGE · ENTERPRISE READY" data-es="IA LOCAL · DATOS 100% SEGUROS · LISTO PARA EMPRESA">
-      LOCAL AI · ZERO DATA LEAKAGE · ENTERPRISE READY
-    </div>
+    <div class="hero-badge" data-en="LOCAL AI · ZERO DATA LEAKAGE · 7-DAY FREE TRIAL" data-es="IA LOCAL · DATOS 100% SEGUROS · 7 DÍAS GRATIS">LOCAL AI · ZERO DATA LEAKAGE · 7-DAY FREE TRIAL</div>
     <h1>
-      <span data-en="Your Technical<br>Documents,<br>" data-es="Tu Documentación<br>Técnica,<br>">Your Technical<br>Documents,<br></span>
-      <span class="accent" data-en="Instantly" data-es="Consultable">Instantly</span>
-      <span data-en=" " data-es=" "> </span>
-      <span class="accent2" data-en="Queryable" data-es="al Instante">Queryable</span>
+      <span data-en="Your regulations.<br>" data-es="Tu normativa.<br>">Your regulations.<br></span>
+      <span class="accent" data-en="Your server." data-es="Tu servidor.">Your server.</span><br>
+      <span class="accent2" data-en="Your answers." data-es="Tus respuestas.">Your answers.</span>
     </h1>
-    <p class="hero-sub" data-en="EngiIntel deploys on your own infrastructure. Engineers query manuals, regulations and technical specs in natural language — with page-level citations. No cloud. No data risk." data-es="EngiIntel se despliega en tu propia infraestructura. Los ingenieros consultan manuales, normativas y especificaciones técnicas en lenguaje natural — con citas de página exacta. Sin nube. Sin riesgo de datos.">
-      EngiIntel deploys on your own infrastructure. Engineers query manuals, regulations and technical specs in natural language — with page-level citations. No cloud. No data risk.
+    <p class="hero-sub" data-en="EngiIntel deploys on your own infrastructure. Engineers query regulations, manage a built-in knowledge base, track assets, generate incident reports and run autonomous AI agents — with zero data leaving your server." data-es="EngiIntel se despliega en tu propia infraestructura. Los ingenieros consultan normativas, gestionan una base de conocimiento, registran activos, generan informes de incidencia y ejecutan agentes IA autónomos — todo sin que ningún dato salga de tu servidor.">
+      EngiIntel deploys on your own infrastructure. Engineers query regulations, manage a built-in knowledge base, track assets, generate incident reports and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
-      <a href="#how" class="btn-secondary" data-en="See How It Works" data-es="Cómo Funciona">See How It Works</a>
+      <a href="https://rag-v2-omega.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" data-en="Try Free for 7 Days →" data-es="Prueba Gratis 7 Días →">Try Free for 7 Days →</a>
+      <a href="#contact" class="btn-secondary" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="tick">✓</span><span data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</span></div>
+      <div class="trust-item"><span class="tick">✓</span><span data-en="Zero external API calls" data-es="Sin llamadas a APIs externas">Zero external API calls</span></div>
+      <div class="trust-item"><span class="tick">✓</span><span data-en="Works fully offline" data-es="Funciona sin conexión">Works fully offline</span></div>
+      <div class="trust-item"><span class="tick" style="color:#f5a623">★</span><span data-en="13× Anthropic AI Certified" data-es="13× Certificado Anthropic AI">13× Anthropic AI Certified</span></div>
     </div>
   </div>
-
   <div class="hero-visual">
     <div class="terminal">
       <div class="terminal-header">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <span class="terminal-title">ENGIINTEL CORE · ACTIVE SESSION</span>
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="terminal-title">ENGIINTEL AGENT · ACTIVE SESSION</span>
       </div>
       <div class="terminal-body">
-        <div><span class="t-dim">›</span> <span class="t-accent">QUERY:</span> <span class="t-white">"What documentation is required for an elevator installation?"</span></div>
-        <br>
-        <div><span class="t-dim">⟳ Searching</span> <span class="t-yellow">3 documents</span> <span class="t-dim">· 847 chunks · dept: Engineering</span></div>
-        <div><span class="t-dim">⟳ Reranking</span> <span class="t-yellow">top 10 matches</span><span class="t-dim">...</span></div>
-        <br>
-        <div><span class="t-green">✓ RESPONSE READY</span> <span class="t-dim">· 2.3s · local inference</span></div>
-        <br>
-        <div><span class="t-white">"According to BOE-A-1997-20731, p.29: the</span></div>
-        <div><span class="t-white">manufacturer must maintain documentation for</span></div>
-        <div><span class="t-white">10 years including: design drawings, CE</span></div>
-        <div><span class="t-white">certificates, test results..."</span></div>
-        <br>
-        <div><span class="t-dim">SOURCES:</span> <span class="t-accent">BOE-A-1997-20731.pdf</span> <span class="t-dim">· p.29 · 76%</span></div>
-        <div class="typing"><span class="t-dim">›</span> </div>
+        <div><span class="t-dim">›</span> <span class="t-accent">AGENT:</span> <span class="t-white">"File incident report for LIFT-CM14-03 fault"</span></div><br>
+        <div><span class="t-dim">⟳ [1/4]</span> <span class="t-yellow">search_documents</span><span class="t-dim"> → EN 81-20 §9.7 · 3 results · 1.8s</span></div>
+        <div><span class="t-dim">⟳ [2/4]</span> <span class="t-yellow">get_asset</span><span class="t-dim"> → LIFT-CM14-03 · operational</span></div>
+        <div><span class="t-dim">⟳ [3/4]</span> <span class="t-yellow">create_task</span><span class="t-dim"> → EU-47 · priority: high</span></div>
+        <div><span class="t-dim">⟳ [4/4]</span> <span class="t-yellow">generate_incident_report</span><span class="t-dim"> → IR-2026-047</span></div><br>
+        <div><span class="t-green">✓ AGENT COMPLETE</span> <span class="t-dim">· 4 steps · 3.4s · fully local</span></div><br>
+        <div><span class="t-white">"Incident IR-2026-047 created and linked to</span></div>
+        <div><span class="t-white">LIFT-CM14-03. Deadline: 4h per EN 81-20 §9.7.</span></div>
+        <div><span class="t-white">Task EU-47 assigned. Wiki page published."</span></div><br>
+        <div><span class="t-dim">TOOLS:</span> <span class="t-accent">search · asset · task · report</span> <span class="t-dim">· local llm</span></div>
+        <div class="typing"><span class="t-dim">› </span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
+<!-- ── STATS ── -->
 <div class="stats-strip fade-in">
-  <div class="stat">
-    <div class="stat-num">0ms</div>
-    <div class="stat-label" data-en="Cloud Latency" data-es="Latencia en Nube">Cloud Latency</div>
+  <div class="stat"><div class="stat-num">0ms</div><div class="stat-label" data-en="Cloud Latency" data-es="Latencia en Nube">Cloud Latency</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-en="Data Stays On-Premise" data-es="Datos en Tu Servidor">Data Stays On-Premise</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label" data-en="Queries — No API Costs" data-es="Consultas — Sin Coste de API">Queries — No API Costs</div></div>
+</div>
+
+<!-- ── TRIAL CALLOUT ── -->
+<div style="background:linear-gradient(90deg,rgba(0,102,255,0.12),rgba(0,212,255,0.08));border-top:1px solid rgba(0,212,255,0.15);border-bottom:1px solid rgba(0,212,255,0.15);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;flex-wrap:wrap;gap:16px">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.12em;border:1px solid rgba(0,212,255,0.3);padding:4px 12px">FREE TRIAL</span>
+    <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem" data-en="Start your 7-day free trial — no credit card, no commitment." data-es="Inicia tu prueba gratuita de 7 días — sin tarjeta, sin compromiso.">Start your 7-day free trial — no credit card, no commitment.</span>
   </div>
-  <div class="stat">
-    <div class="stat-num">100%</div>
-    <div class="stat-label" data-en="Data Stays On-Premise" data-es="Datos en Tu Servidor">Data Stays On-Premise</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">1 cmd</div>
-    <div class="stat-label" data-en="Deployment — docker-compose up" data-es="Despliegue — docker-compose up">Deployment — docker-compose up</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">∞</div>
-    <div class="stat-label" data-en="Queries — No API Costs" data-es="Consultas — Sin Coste de API">Queries — No API Costs</div>
+  <a href="https://rag-v2-omega.vercel.app/" target="_blank" rel="noopener noreferrer" style="background:var(--accent2);color:#fff;padding:12px 28px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.05em;text-decoration:none;text-transform:uppercase;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.background='#0055dd'" onmouseout="this.style.background='var(--accent2)'" data-en="Launch Demo App →" data-es="Abrir App Demo →">Launch Demo App →</a>
+</div>
+
+<!-- ── PROBLEM ── -->
+<div class="problem-section fade-in">
+  <div class="problem-grid">
+    <div>
+      <div class="section-label" data-en="The Problem" data-es="El Problema">The Problem</div>
+      <div class="problem-quote" data-en='Engineers spend <em>30 minutes</em> searching for an answer that should take <em>30 seconds.</em>' data-es='Los ingenieros pasan <em>30 minutos</em> buscando una respuesta que debería llevar <em>30 segundos.</em>'>
+        Engineers spend <em>30 minutes</em> searching for an answer that should take <em>30 seconds.</em>
+      </div>
+      <p class="problem-desc" data-en="Regulated industries run on documentation. But finding the right clause in the right regulation, across hundreds of PDFs, costs your team hours every day — hours that could be spent on actual engineering work." data-es="Las industrias reguladas funcionan con documentación. Pero encontrar la cláusula correcta en la normativa correcta, entre cientos de PDFs, cuesta a tu equipo horas cada día.">
+        Regulated industries run on documentation. But finding the right clause in the right regulation, across hundreds of PDFs, costs your team hours every day — hours that could be spent on actual engineering work.
+      </p>
+    </div>
+    <div class="problem-stats">
+      <div class="problem-stat">
+        <div class="problem-stat-num">73%</div>
+        <div class="problem-stat-label" data-en="of engineering time spent searching for information, not creating it" data-es="del tiempo de ingeniería se gasta buscando información, no creándola">of engineering time spent searching for information, not creating it</div>
+      </div>
+      <div class="problem-stat">
+        <div class="problem-stat-num">4h</div>
+        <div class="problem-stat-label" data-en="lost per engineer per week to manual document search" data-es="perdidas por ingeniero a la semana en búsqueda manual de documentos">lost per engineer per week to manual document search</div>
+      </div>
+      <div class="problem-stat">
+        <div class="problem-stat-num">€960</div>
+        <div class="problem-stat-label" data-en="recovered per engineer/month with EngiIntel at €80/h" data-es="recuperados por ingeniero/mes con EngiIntel a €80/h">recovered per engineer/month with EngiIntel at €80/h</div>
+      </div>
+      <div class="problem-stat">
+        <div class="problem-stat-num">0</div>
+        <div class="problem-stat-label" data-en="documents leave your server. Ever." data-es="documentos salen de tu servidor. Nunca.">documents leave your server. Ever.</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- FEATURES -->
+<!-- ── FEATURES ── -->
 <section id="features">
   <div class="section-label" data-en="Capabilities" data-es="Capacidades">Capabilities</div>
   <h2 data-en="Everything your engineers need,<br>nothing your legal team fears." data-es="Todo lo que tus ingenieros necesitan,<br>nada que tema tu equipo legal.">Everything your engineers need,<br>nothing your legal team fears.</h2>
-  <p class="section-sub" data-en="Built specifically for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable." data-es="Construido específicamente para industrias reguladas donde la precisión documental, trazabilidad y confidencialidad de datos no son negociables.">Built specifically for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable.</p>
+  <p class="section-sub" data-en="Built for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable." data-es="Construido para industrias reguladas donde la precisión documental, trazabilidad y confidencialidad de datos no son negociables.">Built for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable.</p>
 
   <div class="features-grid fade-in">
     <div class="feature-card">
       <span class="feature-icon">🔍</span>
       <div class="feature-title" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
-      <div class="feature-desc" data-en="Ask questions in plain Spanish or English. Get precise answers from your technical documentation with exact page citations." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas de tu documentación técnica con citas de página exactas.">Ask questions in plain Spanish or English. Get precise answers from your technical documentation with exact page citations.</div>
+      <div class="feature-desc" data-en="Ask questions in plain Spanish or English. Get precise answers with exact page citations from your technical documentation." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas con citas de página exactas de tu documentación técnica.">Ask questions in plain Spanish or English. Get precise answers with exact page citations from your technical documentation.</div>
       <span class="feature-tag">RAG · HYBRID SEARCH</span>
     </div>
     <div class="feature-card">
@@ -969,10 +511,10 @@
       <span class="feature-tag">TESSERACT · VISION AI</span>
     </div>
     <div class="feature-card">
-      <span class="feature-icon">🏗️</span>
-      <div class="feature-title" data-en="Hierarchical Knowledge Base" data-es="Base de Conocimiento Jerárquica">Hierarchical Knowledge Base</div>
-      <div class="feature-desc" data-en="Organise documents in folders with AI context instructions. Query by department, project, or regulation type — scope narrows automatically." data-es="Organiza documentos en carpetas con instrucciones de contexto para la IA. Consulta por departamento, proyecto o tipo de normativa — el alcance se estrecha automáticamente.">Organise documents in folders with AI context instructions. Query by department, project, or regulation type.</div>
-      <span class="feature-tag">SMART SCOPING</span>
+      <span class="feature-icon">🔗</span>
+      <div class="feature-title" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors</div>
+      <div class="feature-desc" data-en="Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads." data-es="Sincronización automática desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados sin subidas manuales.">Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads.</div>
+      <span class="feature-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
     </div>
     <div class="feature-card">
       <span class="feature-icon">👥</span>
@@ -983,142 +525,167 @@
     <div class="feature-card">
       <span class="feature-icon">📊</span>
       <div class="feature-title" data-en="Audit Logging & Compliance" data-es="Registro de Auditoría y Cumplimiento">Audit Logging & Compliance</div>
-      <div class="feature-desc" data-en="Every query, upload and action is logged with user, timestamp and response time. Full traceability for ISO and regulatory audits." data-es="Cada consulta, subida y acción se registra con usuario, marca de tiempo y tiempo de respuesta. Trazabilidad completa para auditorías ISO y normativas.">Every query, upload and action is logged with user, timestamp and response time. Full traceability for audits.</div>
+      <div class="feature-desc" data-en="Every query, upload and action is logged with user, timestamp and response time. Full traceability for ISO and regulatory audits." data-es="Cada consulta, subida y acción se registra con usuario, marca de tiempo y tiempo de respuesta. Trazabilidad completa para auditorías.">Every query, upload and action is logged with user, timestamp and response time. Full traceability for audits.</div>
       <span class="feature-tag">ISO READY · IMMUTABLE LOGS</span>
     </div>
-    <div class="feature-card">
-      <span class="feature-icon">📈</span>
-      <div class="feature-title" data-en="Excel & Workbook Analysis" data-es="Análisis de Excel y Libros de Trabajo">Excel & Workbook Analysis</div>
-      <div class="feature-desc" data-en="Ingest and query Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable." data-es="Ingesta y consulta libros Excel junto con PDFs. Especificaciones técnicas, resultados de pruebas y fichas de datos, todo buscable.">Ingest and query Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable.</div>
-      <span class="feature-tag">XLSX · MULTI-FORMAT</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔗</span>
-      <div class="feature-title" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors <span style="font-size:0.7rem;color:var(--accent);font-family:'DM Mono',monospace"> COMING</span></div>
-      <div class="feature-desc" data-en="Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads." data-es="Sincronización automática desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados sin subidas manuales.">Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads.</div>
-      <span class="feature-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">⚡</span>
-      <div class="feature-title" data-en="One-Command Deployment" data-es="Despliegue en Un Comando">One-Command Deployment</div>
-      <div class="feature-desc" data-en="Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes." data-es="Completamente contenorizado con Docker. TI ejecuta un comando y toda la pila — IA, base de datos, app — está activa en minutos.">Fully containerised with Docker. IT runs one command and the entire stack is live in minutes.</div>
-      <span class="feature-tag">DOCKER · SELF-HOSTED</span>
+  </div>
+
+  <div class="features-more" id="featuresMore">
+    <div class="features-more-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🏗️</span>
+        <div class="feature-title" data-en="Hierarchical Knowledge Base" data-es="Base de Conocimiento Jerárquica">Hierarchical Knowledge Base</div>
+        <div class="feature-desc" data-en="Organise documents in folders with AI context instructions. Query by department, project or regulation type — scope narrows automatically." data-es="Organiza documentos en carpetas con instrucciones de contexto para IA. Consulta por departamento, proyecto o normativa.">Organise documents in folders with AI context instructions. Query by department, project or regulation type — scope narrows automatically.</div>
+        <span class="feature-tag">SMART SCOPING</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📈</span>
+        <div class="feature-title" data-en="ROI & Usage Analytics" data-es="ROI y Analítica de Uso">ROI & Usage Analytics</div>
+        <div class="feature-desc" data-en="Track hours saved and recovered engineering time per team. One-click executive PDF report for quarterly reviews." data-es="Registra horas ahorradas y tiempo de ingeniería recuperado por equipo. Informe PDF ejecutivo en un clic.">Track hours saved and recovered engineering time per team. One-click executive PDF report for quarterly reviews.</div>
+        <span class="feature-tag">ROI DASHBOARD · PDF EXPORT</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔐</span>
+        <div class="feature-title" data-en="SSO & Enterprise Auth" data-es="SSO y Autenticación Enterprise">SSO & Enterprise Auth</div>
+        <div class="feature-desc" data-en="Microsoft Entra ID SSO out of the box. GitHub OAuth fallback. RBAC with Admin, Editor and Viewer roles scoped per department." data-es="Microsoft Entra ID SSO incluido. OAuth de GitHub como alternativa. RBAC con roles por departamento.">Microsoft Entra ID SSO out of the box. GitHub OAuth fallback. RBAC scoped per department.</div>
+        <span class="feature-tag">ENTRA ID · OAUTH · RBAC</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <div class="feature-title" data-en="PII Detection & GDPR" data-es="Detección de PII y GDPR">PII Detection & GDPR</div>
+        <div class="feature-desc" data-en="Automatic scanning for emails, phone numbers, ID documents and IBANs. GDPR right-to-erasure endpoint included." data-es="Escaneo automático de emails, teléfonos, documentos de identidad e IBANs. Endpoint de borrado GDPR incluido.">Automatic PII scanning across all indexed content. GDPR right-to-erasure endpoint included.</div>
+        <span class="feature-tag">PII SCAN · GDPR ERASURE</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔌</span>
+        <div class="feature-title" data-en="Public API & Webhooks" data-es="API Pública y Webhooks">Public API & Webhooks</div>
+        <div class="feature-desc" data-en="Versioned REST API with per-tenant API keys and rate limiting. Webhooks for document indexing, PII and confidence alerts." data-es="API REST versionada con claves por tenant. Webhooks para indexación, PII y alertas de confianza.">Versioned REST API with per-tenant API keys. Webhooks for document indexing, PII and confidence alerts.</div>
+        <span class="feature-tag">REST API · WEBHOOKS · HMAC</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title" data-en="One-Command Deployment" data-es="Despliegue en Un Comando">One-Command Deployment</div>
+        <div class="feature-desc" data-en="Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes." data-es="Completamente contenorizado con Docker. TI ejecuta un comando y toda la pila está activa en minutos.">Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes.</div>
+        <span class="feature-tag">DOCKER · SELF-HOSTED</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <div class="feature-title" data-en="Excel & Multi-Format Support" data-es="Excel y Soporte Multi-Formato">Excel & Multi-Format Support</div>
+        <div class="feature-desc" data-en="Ingest Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable." data-es="Ingesta libros Excel junto con PDFs. Especificaciones técnicas, resultados de pruebas y fichas de datos, todo buscable.">Ingest Excel workbooks alongside PDFs. Technical specifications, test results and data sheets all searchable.</div>
+        <span class="feature-tag">XLSX · MULTI-FORMAT</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔄</span>
+        <div class="feature-title" data-en="Document Comparison" data-es="Comparación de Documentos">Document Comparison</div>
+        <div class="feature-desc" data-en="Semantically compare two documents side by side. Identify differences and conflicts between regulation versions instantly." data-es="Compara semánticamente dos documentos en paralelo. Identifica diferencias y conflictos entre versiones de normativa al instante.">Semantically compare two documents side by side. Identify differences and conflicts between regulation versions instantly.</div>
+        <span class="feature-tag">SEMANTIC DIFF · STREAMING</span>
+      </div>
+      <!-- ── Sprint 7 Features ── -->
+      <div class="feature-card">
+        <span class="feature-icon">🧠</span>
+        <div class="feature-title" data-en="Query Result Cache" data-es="Caché de Consultas">Query Result Cache</div>
+        <div class="feature-desc" data-en="Near-identical questions return instantly from an in-memory LRU cache — no inference needed. Cosine similarity (≥98%) detects duplicates per organisation, with a 1-hour TTL." data-es="Las preguntas casi idénticas se responden al instante desde una caché LRU en memoria. La similitud coseno (≥98%) detecta duplicados por organización, con TTL de 1 hora.">Near-identical questions return instantly from an in-memory LRU cache — no inference needed. Cosine similarity (≥98%) detects duplicates per organisation, with a 1-hour TTL.</div>
+        <span class="feature-tag">LRU CACHE · COSINE SIM</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔂</span>
+        <div class="feature-title" data-en="Document Deduplication" data-es="Deduplicación de Documentos">Document Deduplication</div>
+        <div class="feature-desc" data-en="SHA-256 hash check at upload time prevents the same file being indexed twice. Zero silent vector store pollution — exact match detected with a clear error showing the original document." data-es="Verificación SHA-256 en la subida evita que el mismo archivo se indexe dos veces. Cero contaminación silenciosa del almacén vectorial, con mensaje claro mostrando el documento original.">SHA-256 hash check at upload time prevents the same file being indexed twice. Zero silent vector store pollution — exact match detected with a clear error showing the original document.</div>
+        <span class="feature-tag">SHA-256 · DEDUP</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📐</span>
+        <div class="feature-title" data-en="Latency Percentiles p50/p95/p99" data-es="Percentiles de Latencia p50/p95/p99">Latency Percentiles p50/p95/p99</div>
+        <div class="feature-desc" data-en="The admin dashboard shows full response time breakdowns — p50, p95 and p99 — not just the average. Track tail latency accurately before making any SLA commitments." data-es="El panel de administración muestra desgloses completos de tiempo de respuesta — p50, p95 y p99 — no solo el promedio. Controla la latencia de cola con precisión antes de comprometerte a un SLA.">The admin dashboard shows full response time breakdowns — p50, p95 and p99 — not just the average. Track tail latency accurately before making any SLA commitments.</div>
+        <span class="feature-tag">P95 · LATENCY · SLA</span>
+      </div>
+      <!-- ── Sprint 5-7 + AI Context + Agent Mode ── -->
+      <div class="feature-card">
+        <span class="feature-icon">📖</span>
+        <div class="feature-title" data-en="Wiki & Knowledge Base" data-es="Wiki y Base de Conocimiento">Wiki & Knowledge Base</div>
+        <div class="feature-desc" data-en="Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes and incident reports. All pages are RAG-indexed automatically and searchable via AI queries." data-es="Wiki integrada con editor Markdown, historial de versiones, plantillas y tipos de página — procedimientos, checklists, notas y reportes de incidencia. Todas las páginas se indexan automáticamente por RAG y son buscables mediante consultas IA.">Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes and incident reports. All pages are RAG-indexed automatically and searchable via AI queries.</div>
+        <span class="feature-tag">WIKI · VERSION HISTORY · RAG</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏗️</span>
+        <div class="feature-title" data-en="Asset Registry & Incident Reports" data-es="Registro de Activos e Informes de Incidencia">Asset Registry & Incident Reports</div>
+        <div class="feature-desc" data-en="Register and track physical assets — elevators, escalators, equipment. Link incidents to assets, track regulatory response deadlines and auto-generate AI-written incident reports directly from task data." data-es="Registra y gestiona activos físicos — ascensores, escaleras mecánicas, equipos. Vincula incidencias a activos, rastrea plazos de respuesta regulatorios y genera automáticamente informes de incidencia con IA a partir de datos de tareas.">Register and track physical assets — elevators, escalators, equipment. Link incidents to assets, track regulatory response deadlines and auto-generate AI-written incident reports directly from task data.</div>
+        <span class="feature-tag">ASSETS · INCIDENTS · AUTO-REPORT</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🧩</span>
+        <div class="feature-title" data-en="Cross-Module AI Context" data-es="Contexto IA entre Módulos">Cross-Module AI Context</div>
+        <div class="feature-desc" data-en="Pin any record — wiki page, asset, incident, task — to the persistent context panel. Ask the AI one question that synthesises all pinned items simultaneously. The AI also passively tracks what you're viewing across every module." data-es="Fija cualquier registro — página wiki, activo, incidencia, tarea — en el panel de contexto persistente. Haz una pregunta que sintetice todos los elementos fijados a la vez. La IA también rastrea pasivamente lo que estás viendo en cada módulo.">Pin any record — wiki page, asset, incident, task — to the persistent context panel. Ask the AI one question that synthesises all pinned items simultaneously. The AI also passively tracks what you're viewing across every module.</div>
+        <span class="feature-tag">CONTEXT PANEL · CROSS-MODULE</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <div class="feature-title" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div>
+        <div class="feature-desc" data-en="Switch to Agent Mode and let the AI autonomously execute multi-step workflows: search documents, create tasks, query assets, generate incident reports — a full ReAct loop with live step-by-step reasoning visible in the UI." data-es="Activa el Modo Agente y deja que la IA ejecute flujos de trabajo de forma autónoma: busca documentos, crea tareas, consulta activos, genera informes de incidencia — un bucle ReAct completo con razonamiento paso a paso visible en la UI.">Switch to Agent Mode and let the AI autonomously execute multi-step workflows: search documents, create tasks, query assets, generate incident reports — a full ReAct loop with live step-by-step reasoning visible in the UI.</div>
+        <span class="feature-tag">REACT LOOP · AUTONOMOUS · SSE</span>
+      </div>
     </div>
   </div>
+
+  <button class="features-toggle" id="featuresToggle" onclick="toggleFeatures()">
+    <span id="toggleText" data-en="Show all 21 features" data-es="Ver las 21 funciones">Show all 21 features</span>
+    <span class="toggle-arrow" id="toggleArrow">▼</span>
+  </button>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<!-- ── HOW IT WORKS ── -->
+<section id="how" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="section-label" data-en="Process" data-es="Proceso">Process</div>
   <h2 data-en="From document to answer<br>in seconds." data-es="Del documento a la respuesta<br>en segundos.">From document to answer<br>in seconds.</h2>
   <p class="section-sub" data-en="No complex setup. No training required. Upload your documents, ask your question, get your answer." data-es="Sin configuración compleja. Sin formación necesaria. Sube tus documentos, haz tu pregunta, obtén tu respuesta.">No complex setup. No training required. Upload your documents, ask your question, get your answer.</p>
-
   <div class="steps fade-in">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title" data-en="Deploy on Your Server" data-es="Desplegar en Tu Servidor">Deploy on Your Server</div>
-      <div class="step-desc" data-en="IT runs docker-compose up. The full stack — AI models, vector database, application — starts automatically on your hardware." data-es="TI ejecuta docker-compose up. La pila completa — modelos IA, base de datos vectorial, aplicación — arranca automáticamente en tu hardware.">IT runs docker-compose up. The full stack starts automatically on your hardware.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title" data-en="Upload Documents" data-es="Subir Documentos">Upload Documents</div>
-      <div class="step-desc" data-en="Upload PDFs, scanned documents or Excel files. EngiIntel processes, chunks and embeds them using local AI models." data-es="Sube PDFs, documentos escaneados o archivos Excel. EngiIntel los procesa, trocea e integra usando modelos IA locales.">Upload PDFs, scanned documents or Excel files. EngiIntel processes and indexes them using local AI.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title" data-en="Ask in Natural Language" data-es="Preguntar en Lenguaje Natural">Ask in Natural Language</div>
-      <div class="step-desc" data-en="Engineers type their question in plain language. The system searches semantically across all indexed documents." data-es="Los ingenieros escriben su pregunta en lenguaje natural. El sistema busca semánticamente en todos los documentos indexados.">Engineers type their question in plain language. The system searches semantically across all indexed documents.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-title" data-en="Get Cited Answers" data-es="Obtener Respuestas Citadas">Get Cited Answers</div>
-      <div class="step-desc" data-en="Receive precise answers with document name and page number for every claim. Verify directly in the source in one click." data-es="Recibe respuestas precisas con nombre de documento y número de página para cada afirmación. Verifica directamente en la fuente con un clic.">Receive precise answers with document name and page number. Verify in the source in one click.</div>
-    </div>
+    <div class="step"><div class="step-num">01</div><div class="step-title" data-en="Deploy on Your Server" data-es="Desplegar en Tu Servidor">Deploy on Your Server</div><div class="step-desc" data-en="IT runs docker-compose up. The full stack — AI models, vector database, app — starts automatically on your hardware." data-es="TI ejecuta docker-compose up. La pila completa arranca automáticamente en tu hardware.">IT runs docker-compose up. The full stack — AI models, vector database, app — starts automatically on your hardware.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title" data-en="Upload Documents" data-es="Subir Documentos">Upload Documents</div><div class="step-desc" data-en="Upload PDFs, scanned documents or Excel files. EngiIntel deduplicates, processes and indexes them using local AI models." data-es="Sube PDFs, documentos escaneados o archivos Excel. EngiIntel deduplica, procesa e indexa con modelos IA locales.">Upload PDFs, scanned documents or Excel files. EngiIntel deduplicates, processes and indexes them using local AI models.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title" data-en="Ask in Natural Language" data-es="Preguntar en Lenguaje Natural">Ask in Natural Language</div><div class="step-desc" data-en="Engineers type their question in plain language. The system checks the cache, then searches semantically across all indexed documents with cross-encoder reranking." data-es="Los ingenieros escriben su pregunta. El sistema comprueba la caché y luego busca semánticamente con reranking de codificador cruzado.">Engineers type their question in plain language. The system checks the cache, then searches semantically across all indexed documents with cross-encoder reranking.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title" data-en="Get Cited Answers" data-es="Obtener Respuestas Citadas">Get Cited Answers</div><div class="step-desc" data-en="Receive precise answers with document name and page number. Verify directly in the source in one click." data-es="Recibe respuestas precisas con nombre de documento y número de página. Verifica en la fuente con un clic.">Receive precise answers with document name and page number. Verify directly in the source in one click.</div></div>
   </div>
 </section>
 
-<!-- INDUSTRIES -->
+<!-- ── INDUSTRIES ── -->
 <section id="industries">
   <div class="section-label" data-en="Industries" data-es="Industrias">Industries</div>
   <h2 data-en="Built for regulated<br>environments." data-es="Construido para entornos<br>regulados.">Built for regulated<br>environments.</h2>
   <p class="section-sub" data-en="Where documentation accuracy is a legal requirement, not a preference." data-es="Donde la precisión documental es un requisito legal, no una preferencia.">Where documentation accuracy is a legal requirement, not a preference.</p>
-
   <div class="industries-grid fade-in">
-    <div class="industry-card">
-      <span class="industry-icon">⚗️</span>
-      <div class="industry-name" data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical</div>
-      <div class="industry-desc" data-en="SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail." data-es="SOPs, protocolos de validación, presentaciones regulatorias y documentación GMP — todo consultable con trazabilidad completa.">SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail.</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">✈️</span>
-      <div class="industry-name" data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</div>
-      <div class="industry-desc" data-en="Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy." data-es="Manuales de mantenimiento, directivas de aeronavegabilidad, órdenes técnicas y especificaciones de componentes — precisión crítica.">Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy.</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">⚡</span>
-      <div class="industry-name" data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</div>
-      <div class="industry-desc" data-en="Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations." data-es="Documentación de planta, procedimientos de seguridad, normas IEC e informes de inspección. Acceso inmediato durante operaciones.">Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations.</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">🏭</span>
-      <div class="industry-name" data-en="Manufacturing & Industry" data-es="Manufactura e Industria">Manufacturing & Industry</div>
-      <div class="industry-desc" data-en="Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer on the floor." data-es="Especificaciones técnicas, documentación CE, directivas de maquinaria y manuales de calidad — consultables por cualquier ingeniero.">Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer.</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">🏗️</span>
-      <div class="industry-name" data-en="Construction & Infrastructure" data-es="Construcción e Infraestructura">Construction & Infrastructure</div>
-      <div class="industry-desc" data-en="Building codes, structural calculations, project specifications and inspection reports — all searchable from site." data-es="Códigos de construcción, cálculos estructurales, especificaciones de proyecto e informes de inspección — todo buscable desde obra.">Building codes, structural calculations, project specifications and inspection reports — all searchable from site.</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">🔬</span>
-      <div class="industry-name" data-en="Research & Development" data-es="Investigación y Desarrollo">Research & Development</div>
-      <div class="industry-desc" data-en="Lab protocols, research papers, patent documentation and internal technical reports — knowledge stays inside the lab." data-es="Protocolos de laboratorio, artículos de investigación, documentación de patentes e informes técnicos internos — el conocimiento permanece en el laboratorio.">Lab protocols, research papers, patent documentation and technical reports — knowledge stays inside the lab.</div>
-    </div>
+    <div class="industry-card"><span class="industry-icon">🛗</span><div class="industry-name" data-en="Elevator & Vertical Transport" data-es="Ascensores y Transporte Vertical">Elevator & Vertical Transport</div><div class="industry-desc" data-en="BOE regulations, EN 81 series, inspection reports, maintenance schedules and modernisation projects — cited answers in seconds." data-es="Normativas BOE, serie EN 81, informes de inspección, planes de mantenimiento y proyectos de modernización — respuestas citadas en segundos.">BOE regulations, EN 81 series, inspection reports, maintenance schedules and modernisation projects — cited answers in seconds.</div></div>
+    <div class="industry-card"><span class="industry-icon">⚗️</span><div class="industry-name" data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical</div><div class="industry-desc" data-en="SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail." data-es="SOPs, protocolos de validación, presentaciones regulatorias y documentación GMP — todo consultable con trazabilidad completa.">SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail.</div></div>
+    <div class="industry-card"><span class="industry-icon">✈️</span><div class="industry-name" data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</div><div class="industry-desc" data-en="Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy." data-es="Manuales de mantenimiento, directivas de aeronavegabilidad, órdenes técnicas y especificaciones de componentes — precisión crítica.">Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy.</div></div>
+    <div class="industry-card"><span class="industry-icon">⚡</span><div class="industry-name" data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</div><div class="industry-desc" data-en="Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations." data-es="Documentación de planta, procedimientos de seguridad, normas IEC e informes de inspección. Acceso inmediato durante operaciones.">Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations.</div></div>
+    <div class="industry-card"><span class="industry-icon">🏭</span><div class="industry-name" data-en="Manufacturing & Industry" data-es="Manufactura e Industria">Manufacturing & Industry</div><div class="industry-desc" data-en="Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer on the floor." data-es="Especificaciones técnicas, documentación CE, directivas de maquinaria y manuales de calidad — consultables por cualquier ingeniero.">Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer.</div></div>
+    <div class="industry-card"><span class="industry-icon">🏗️</span><div class="industry-name" data-en="Construction & Infrastructure" data-es="Construcción e Infraestructura">Construction & Infrastructure</div><div class="industry-desc" data-en="Building codes, structural calculations, project specifications and inspection reports — all searchable from site." data-es="Códigos de construcción, cálculos estructurales, especificaciones de proyecto e informes — todo buscable desde obra.">Building codes, structural calculations, project specifications and inspection reports — all searchable from site.</div></div>
   </div>
 </section>
 
-<!-- PRIVACY -->
+<!-- ── PRIVACY ── -->
 <section class="privacy-section">
   <div class="privacy-grid fade-in">
     <div>
       <div class="section-label" data-en="Data Sovereignty" data-es="Soberanía de Datos">Data Sovereignty</div>
       <h2 data-en="Your data never<br>leaves your building." data-es="Tus datos nunca<br>salen de tu edificio.">Your data never<br>leaves your building.</h2>
       <p class="section-sub" data-en="EngiIntel was designed from day one for environments where data confidentiality is non-negotiable." data-es="EngiIntel fue diseñado desde el primer día para entornos donde la confidencialidad de los datos no es negociable.">EngiIntel was designed from day one for environments where data confidentiality is non-negotiable.</p>
-
-      <div class="check-item">
-        <div class="check-icon">✓</div>
-        <div class="check-text"><strong data-en="Zero cloud dependency" data-es="Cero dependencia en la nube">Zero cloud dependency</strong> — <span data-en="AI inference runs locally. No OpenAI, no Google, no external APIs required." data-es="La inferencia IA se ejecuta localmente. Sin OpenAI, sin Google, sin APIs externas.">AI inference runs locally. No OpenAI, no Google, no external APIs required.</span></div>
-      </div>
-      <div class="check-item">
-        <div class="check-icon">✓</div>
-        <div class="check-text"><strong data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</strong> — <span data-en="Data never crosses jurisdictional boundaries. Residency guaranteed." data-es="Los datos nunca cruzan fronteras jurisdiccionales. Residencia garantizada.">Data never crosses jurisdictional boundaries. Residency guaranteed.</span></div>
-      </div>
-      <div class="check-item">
-        <div class="check-icon">✓</div>
-        <div class="check-text"><strong data-en="Works fully offline" data-es="Funciona completamente sin conexión">Works fully offline</strong> — <span data-en="Deploy on your intranet. No internet connection required after initial setup." data-es="Despliega en tu intranet. Sin conexión a internet después de la configuración inicial.">Deploy on your intranet. No internet required after initial setup.</span></div>
-      </div>
-      <div class="check-item">
-        <div class="check-icon">✓</div>
-        <div class="check-text"><strong data-en="IT has full control" data-es="TI tiene control total">IT has full control</strong> — <span data-en="Standard Docker deployment. Your team manages the server, backups and access." data-es="Despliegue Docker estándar. Tu equipo gestiona el servidor, copias de seguridad y acceso.">Standard Docker deployment. Your team manages the server, backups and access.</span></div>
-      </div>
+      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="Zero cloud dependency" data-es="Cero dependencia en la nube">Zero cloud dependency</strong> — <span data-en="AI inference runs locally. No OpenAI, no Google, no external APIs required." data-es="La inferencia IA se ejecuta localmente. Sin OpenAI, sin Google, sin APIs externas.">AI inference runs locally. No OpenAI, no Google, no external APIs required.</span></div></div>
+      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</strong> — <span data-en="Data never crosses jurisdictional boundaries. Residency guaranteed." data-es="Los datos nunca cruzan fronteras jurisdiccionales. Residencia garantizada.">Data never crosses jurisdictional boundaries. Residency guaranteed.</span></div></div>
+      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="Works fully offline" data-es="Funciona completamente sin conexión">Works fully offline</strong> — <span data-en="Deploy on your intranet. No internet required after initial setup." data-es="Despliega en tu intranet. Sin conexión a internet después de la configuración inicial.">Deploy on your intranet. No internet required after initial setup.</span></div></div>
+      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="IT has full control" data-es="TI tiene control total">IT has full control</strong> — <span data-en="Standard Docker deployment. Your team manages the server, backups and access." data-es="Despliegue Docker estándar. Tu equipo gestiona el servidor, copias de seguridad y acceso.">Standard Docker deployment. Your team manages the server, backups and access.</span></div></div>
     </div>
-
     <div class="privacy-visual">
-      <div><span class="t-dim"># Architecture overview</span></div>
-      <br>
+      <div><span class="t-dim"># Architecture overview</span></div><br>
       <div><span class="t-accent">[ Your Server ]</span></div>
-      <div>  <span class="t-green">├──</span> <span class="t-white">EngiIntel App</span> <span class="t-dim">(port 3000)</span></div>
-      <div>  <span class="t-green">├──</span> <span class="t-white">PostgreSQL + pgvector</span> <span class="t-dim">(port 5432)</span></div>
-      <div>  <span class="t-green">├──</span> <span class="t-white">Ollama LLM</span> <span class="t-dim">(port 11434)</span></div>
-      <div>  <span class="t-green">│     ├──</span> <span class="t-yellow">mxbai-embed-large</span></div>
-      <div>  <span class="t-green">│     └──</span> <span class="t-yellow">qwen2.5:7b</span></div>
-      <div>  <span class="t-green">└──</span> <span class="t-white">pgAdmin</span> <span class="t-dim">(port 5050)</span></div>
-      <br>
+      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">EngiIntel App</span> <span class="t-dim">(port 3000)</span></div>
+      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">PostgreSQL + pgvector</span> <span class="t-dim">(port 5432)</span></div>
+      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">Ollama LLM</span> <span class="t-dim">(port 11434)</span></div>
+      <div>&nbsp;&nbsp;<span class="t-green">│&nbsp;&nbsp;&nbsp;&nbsp;├──</span> <span class="t-yellow">mxbai-embed-large</span></div>
+      <div>&nbsp;&nbsp;<span class="t-green">│&nbsp;&nbsp;&nbsp;&nbsp;└──</span> <span class="t-yellow">llama3.1:8b</span></div>
+      <div>&nbsp;&nbsp;<span class="t-green">└──</span> <span class="t-white">pgAdmin</span> <span class="t-dim">(port 5050)</span></div><br>
       <div><span class="t-dim">─────────────────────────</span></div>
-      <div><span class="t-danger">✗ OpenAI API</span>  <span class="t-dim">not connected</span></div>
-      <div><span class="t-danger">✗ Google API</span>   <span class="t-dim">not connected</span></div>
-      <div><span class="t-danger">✗ Any cloud</span>    <span class="t-dim">not connected</span></div>
-      <br>
+      <div><span class="t-danger">✗ OpenAI API</span>&nbsp;&nbsp;<span class="t-dim">not connected</span></div>
+      <div><span class="t-danger">✗ Google API</span>&nbsp;&nbsp;&nbsp;<span class="t-dim">not connected</span></div>
+      <div><span class="t-danger">✗ Any cloud</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-dim">not connected</span></div><br>
       <div><span class="t-green">✓ 100% local inference</span></div>
       <div><span class="t-green">✓ Zero data egress</span></div>
       <div><span class="t-green">✓ Offline capable</span></div>
@@ -1126,212 +693,268 @@
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section id="roadmap">
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
+  <h2 data-en="Simple, transparent pricing." data-es="Precios simples y transparentes.">Simple, transparent pricing.</h2>
+  <p class="section-sub" data-en="Start free. Scale when you're ready. No hidden fees, no per-query costs, no cloud lock-in." data-es="Empieza gratis. Escala cuando estés listo. Sin costes ocultos, sin coste por consulta, sin dependencia en la nube.">Start free. Scale when you're ready. No hidden fees, no per-query costs, no cloud lock-in.</p>
+
+  <div class="pricing-grid fade-in">
+    <div class="pricing-card">
+      <div class="pricing-plan" data-en="Free" data-es="Gratis">Free</div>
+      <div class="pricing-price"><sup>€</sup>0</div>
+      <div class="pricing-period" data-en="forever · no credit card required" data-es="para siempre · sin tarjeta de crédito">forever · no credit card required</div>
+      <ul class="pricing-features">
+        <li data-en="1 user seat" data-es="1 usuario">1 user seat</li>
+        <li data-en="50 documents" data-es="50 documentos">50 documents</li>
+        <li data-en="All query types (RAG + OCR)" data-es="Todos los tipos de consulta (RAG + OCR)">All query types (RAG + OCR)</li>
+        <li data-en="Local AI — zero API costs" data-es="IA local — sin coste de API">Local AI — zero API costs</li>
+        <li class="muted" data-en="No document connectors" data-es="Sin conectores de documentos">No document connectors</li>
+        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
+      </ul>
+      <a href="#contact" class="pricing-cta ghost" data-en="Get Started Free" data-es="Empezar Gratis">Get Started Free</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
+      <div class="pricing-plan" data-en="Pro" data-es="Pro">Pro</div>
+      <div class="pricing-price"><sup>€</sup>49</div>
+      <div class="pricing-period" data-en="per seat / month" data-es="por usuario / mes">per seat / month</div>
+      <ul class="pricing-features">
+        <li data-en="Unlimited users & documents" data-es="Usuarios y documentos ilimitados">Unlimited users & documents</li>
+        <li data-en="All 5 document connectors" data-es="Los 5 conectores de documentos">All 5 document connectors</li>
+        <li data-en="ROI dashboard + PDF export" data-es="Dashboard ROI + exportación PDF">ROI dashboard + PDF export</li>
+        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
+        <li data-en="PII detection & GDPR erasure" data-es="Detección PII y borrado GDPR">PII detection & GDPR erasure</li>
+        <li data-en="Document comparison module" data-es="Módulo de comparación de documentos">Document comparison module</li>
+      </ul>
+      <a href="https://rag-v2-omega.vercel.app/" target="_blank" rel="noopener noreferrer" class="pricing-cta solid" data-en="Start 7-Day Free Trial" data-es="Iniciar 7 Días Gratis">Start 7-Day Free Trial</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-plan" data-en="Enterprise" data-es="Enterprise">Enterprise</div>
+      <div class="pricing-price" style="font-size:2rem;padding-top:10px" data-en="Custom" data-es="Personalizado">Custom</div>
+      <div class="pricing-period" data-en="tailored to your organisation" data-es="adaptado a tu organización">tailored to your organisation</div>
+      <ul class="pricing-features">
+        <li data-en="Everything in Pro" data-es="Todo lo de Pro">Everything in Pro</li>
+        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
+        <li data-en="SOC 2 audit trail export" data-es="Exportación auditoría SOC 2">SOC 2 audit trail export</li>
+        <li data-en="IP allowlisting" data-es="Lista blanca de IPs">IP allowlisting</li>
+        <li data-en="Dedicated SLA & support" data-es="SLA dedicado y soporte">Dedicated SLA & support</li>
+        <li data-en="Custom deployment assistance" data-es="Asistencia de despliegue personalizada">Custom deployment assistance</li>
+      </ul>
+      <a href="mailto:eloycostas@outlook.com" class="pricing-cta ghost" data-en="Contact Sales" data-es="Contactar Ventas">Contact Sales</a>
+    </div>
+  </div>
+  <p class="pricing-note" data-en="All plans: local AI inference · self-hosted · no per-query costs · Docker install in minutes" data-es="Todos los planes: inferencia IA local · self-hosted · sin coste por consulta · instalación Docker en minutos">All plans: local AI inference · self-hosted · no per-query costs · Docker install in minutes</p>
+</section>
+
+<!-- ── ROADMAP ── -->
+<section id="roadmap" style="background:var(--surface);border-top:1px solid var(--border)">
   <div class="section-label" data-en="Roadmap" data-es="Hoja de Ruta">Roadmap</div>
   <h2 data-en="Built in public.<br>Shipping fast." data-es="Construido abiertamente.<br>Enviando rápido.">Built in public.<br>Shipping fast.</h2>
-  <p class="section-sub" data-en="EngiIntel is under active development. Current features are stable and production-ready. What's coming next:" data-es="EngiIntel está en desarrollo activo. Las funciones actuales son estables y listas para producción. Lo que viene:">EngiIntel is under active development. Current features are stable and production-ready.</p>
-
+  <p class="section-sub" data-en="EngiIntel is production-ready. All core features are live. Active development continues on enterprise scale and deeper integrations." data-es="EngiIntel está listo para producción. Todas las funcionalidades principales están disponibles. El desarrollo continúa en escala enterprise e integraciones más profundas.">EngiIntel is production-ready. All core features are live. Active development continues on enterprise scale and deeper integrations.</p>
   <div class="roadmap fade-in">
     <div class="roadmap-item">
-      <div class="roadmap-phase">
-        <div class="phase-label" data-en="Foundation" data-es="Fundación">Foundation</div>
-        <div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div>
-      </div>
-      <div class="roadmap-content">
-        <span class="roadmap-tag done">Docker</span>
-        <span class="roadmap-tag done">Local AI</span>
-        <span class="roadmap-tag done">OCR</span>
-        <span class="roadmap-tag done">RAG Pipeline</span>
-        <span class="roadmap-tag done">JWT Auth</span>
-        <span class="roadmap-tag done">Audit Logs</span>
-        <span class="roadmap-tag done">Admin Panel</span>
-        <span class="roadmap-tag done">Self-hosted DB</span>
-      </div>
+      <div class="roadmap-phase"><div class="phase-label" data-en="Foundation" data-es="Fundación">Foundation</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Docker</span><span class="roadmap-tag done">Local AI</span><span class="roadmap-tag done">OCR</span><span class="roadmap-tag done">RAG Pipeline</span><span class="roadmap-tag done">JWT Auth</span><span class="roadmap-tag done">Audit Logs</span><span class="roadmap-tag done">Admin Panel</span><span class="roadmap-tag done">Self-hosted DB</span></div>
     </div>
     <div class="roadmap-item">
-      <div class="roadmap-phase">
-        <div class="phase-label" data-en="Security" data-es="Seguridad">Security</div>
-        <div class="phase-name phase-current" data-en="→ In Progress" data-es="→ En Progreso">→ In Progress</div>
-      </div>
-      <div class="roadmap-content">
-        <span class="roadmap-tag active">Folder System</span>
-        <span class="roadmap-tag active">Dept Filtering</span>
-        <span class="roadmap-tag active">Bulk Permissions</span>
-        <span class="roadmap-tag">Modular Architecture</span>
-      </div>
+      <div class="roadmap-phase"><div class="phase-label" data-en="Connectors & Security" data-es="Conectores y Seguridad">Connectors & Security</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">SharePoint Sync</span><span class="roadmap-tag done">Google Drive</span><span class="roadmap-tag done">Confluence</span><span class="roadmap-tag done">Entra ID SSO</span><span class="roadmap-tag done">PII Detection</span><span class="roadmap-tag done">Multilingual</span><span class="roadmap-tag done">RBAC</span><span class="roadmap-tag done">Folder System</span></div>
     </div>
     <div class="roadmap-item">
-      <div class="roadmap-phase">
-        <div class="phase-label" data-en="Connectors" data-es="Conectores">Connectors</div>
-        <div class="phase-name phase-next" data-en="Q2 2026" data-es="Q2 2026">Q2 2026</div>
-      </div>
-      <div class="roadmap-content">
-        <span class="roadmap-tag">SharePoint</span>
-        <span class="roadmap-tag">Google Drive</span>
-        <span class="roadmap-tag">Confluence</span>
-        <span class="roadmap-tag">Auto-sync</span>
-      </div>
+      <div class="roadmap-phase"><div class="phase-label" data-en="Platform & Billing" data-es="Plataforma y Facturación">Platform & Billing</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Multi-tenant SaaS</span><span class="roadmap-tag done">Stripe Billing</span><span class="roadmap-tag done">ROI Dashboard</span><span class="roadmap-tag done">Onboarding Wizard</span><span class="roadmap-tag done">Public REST API</span><span class="roadmap-tag done">Webhooks</span><span class="roadmap-tag done">GDPR Erasure</span><span class="roadmap-tag done">SOC 2 Export</span></div>
     </div>
     <div class="roadmap-item">
-      <div class="roadmap-phase">
-        <div class="phase-label" data-en="ERP & Analytics" data-es="ERP y Analítica">ERP & Analytics</div>
-        <div class="phase-name phase-next" data-en="Q3 2026" data-es="Q3 2026">Q3 2026</div>
-      </div>
-      <div class="roadmap-content">
-        <span class="roadmap-tag">SAP Integration</span>
-        <span class="roadmap-tag">Metrics Dashboard</span>
-        <span class="roadmap-tag">Usage Analytics</span>
-        <span class="roadmap-tag">Coverage Gaps</span>
-      </div>
+      <div class="roadmap-phase"><div class="phase-label" data-en="Answer Quality" data-es="Calidad de Respuesta">Answer Quality</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Confidence Scoring</span><span class="roadmap-tag done">ReAct Agent Loop</span><span class="roadmap-tag done">Query Expansion</span><span class="roadmap-tag done">Cross-Encoder Reranking</span><span class="roadmap-tag done">Chunk Summaries</span></div>
     </div>
     <div class="roadmap-item">
-      <div class="roadmap-phase">
-        <div class="phase-label" data-en="Enterprise" data-es="Enterprise">Enterprise</div>
-        <div class="phase-name phase-next" data-en="Q4 2026" data-es="Q4 2026">Q4 2026</div>
-      </div>
-      <div class="roadmap-content">
-        <span class="roadmap-tag">Entra ID SSO</span>
-        <span class="roadmap-tag">PII Detection</span>
-        <span class="roadmap-tag">Multilingual</span>
-        <span class="roadmap-tag">SIEM Export</span>
-        <span class="roadmap-tag">vLLM Scale</span>
-      </div>
+      <div class="roadmap-phase"><div class="phase-label" data-en="Performance & Scale" data-es="Rendimiento y Escala">Performance & Scale</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Query Cache</span><span class="roadmap-tag done">Doc Deduplication</span><span class="roadmap-tag done">Top-20 Rerank</span><span class="roadmap-tag done">Latency p50/p95/p99</span><span class="roadmap-tag done">Lazy Loading</span></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase"><div class="phase-label" data-en="Wiki & Incidents" data-es="Wiki e Incidencias">Wiki & Incidents</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Wiki Engine</span><span class="roadmap-tag done">Version History</span><span class="roadmap-tag done">Asset Registry</span><span class="roadmap-tag done">Incident Reports</span><span class="roadmap-tag done">AI Report Gen</span><span class="roadmap-tag done">RAG Auto-Index</span></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase"><div class="phase-label" data-en="Context Intelligence" data-es="Inteligencia Contextual">Context Intelligence</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">Passive Context</span><span class="roadmap-tag done">Pinned Panel</span><span class="roadmap-tag done">Cross-Module AI</span><span class="roadmap-tag done">Full Resolution</span><span class="roadmap-tag done">Wiki Sources in RAG</span></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase"><div class="phase-label" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag done">ReAct Loop</span><span class="roadmap-tag done">8 Tool Executors</span><span class="roadmap-tag done">SSE Streaming</span><span class="roadmap-tag done">Step Rendering</span><span class="roadmap-tag done">Autonomous Tasks</span></div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase"><div class="phase-label" data-en="Enterprise Scale" data-es="Escala Enterprise">Enterprise Scale</div><div class="phase-name phase-next">Q3 2026</div></div>
+      <div class="roadmap-content"><span class="roadmap-tag">SAML 2.0 / SCIM</span><span class="roadmap-tag">IP Allowlisting</span><span class="roadmap-tag">vLLM Scale</span><span class="roadmap-tag">SIEM Export</span><span class="roadmap-tag">Custom SLA</span></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="section-label" data-en="FAQ" data-es="Preguntas Frecuentes">FAQ</div>
+  <h2 data-en="Questions IT always asks." data-es="Las preguntas que siempre hace TI.">Questions IT always asks.</h2>
+  <p class="section-sub" data-en="Straight answers to the questions that come up in every security review." data-es="Respuestas directas a las preguntas que surgen en cada revisión de seguridad.">Straight answers to the questions that come up in every security review.</p>
+  <div class="faq-list fade-in">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Where is our data stored?" data-es="¿Dónde se almacenan nuestros datos?">Where is our data stored?</span><span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner" data-en="100% on your own server. EngiIntel stores all documents, embeddings and query logs in a PostgreSQL database running in Docker on your hardware. No data is ever sent to any external service." data-es="100% en tu propio servidor. EngiIntel almacena todos los documentos, embeddings y registros en una base de datos PostgreSQL que se ejecuta en Docker en tu hardware. Nunca se envían datos a ningún servicio externo.">100% on your own server. EngiIntel stores all documents, embeddings and query logs in a PostgreSQL database running in Docker on your hardware. No data is ever sent to any external service.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Does it work without internet?" data-es="¿Funciona sin internet?">Does it work without internet?</span><span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner" data-en="Yes. After initial setup and model download, EngiIntel operates entirely offline. It can be deployed on an air-gapped intranet with no outbound internet access required." data-es="Sí. Después de la configuración inicial y la descarga del modelo, EngiIntel funciona completamente sin conexión. Puede desplegarse en una intranet aislada sin acceso a internet saliente.">Yes. After initial setup and model download, EngiIntel operates entirely offline. It can be deployed on an air-gapped intranet with no outbound internet access required.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="What hardware do we need?" data-es="¿Qué hardware necesitamos?">What hardware do we need?</span><span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner" data-en="For small teams (1–10 users): a modern workstation with 32GB RAM and a mid-range GPU (8GB+ VRAM) runs comfortably. For larger deployments a server with a GPU is recommended. EngiIntel runs on Windows, Linux and macOS via Docker." data-es="Para equipos pequeños (1–10 usuarios): una estación de trabajo moderna con 32GB RAM y una GPU de gama media (8GB+ VRAM) funciona cómodamente. Para despliegues mayores se recomienda un servidor con GPU.">For small teams (1–10 users): a modern workstation with 32GB RAM and a mid-range GPU (8GB+ VRAM) runs comfortably. For larger deployments a server with GPU is recommended. Runs on Windows, Linux and macOS via Docker.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Is it GDPR compliant?" data-es="¿Cumple con el GDPR?">Is it GDPR compliant?</span><span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner" data-en="Yes, by architecture. Since all data stays on your infrastructure, there is no cross-border data transfer. EngiIntel includes a GDPR right-to-erasure endpoint, PII detection scanning, and full audit trail export for compliance reviews." data-es="Sí, por arquitectura. Dado que todos los datos permanecen en tu infraestructura, no hay transferencia de datos transfronteriza. EngiIntel incluye endpoint de borrado GDPR, escaneo PII y exportación completa de auditoría.">Yes, by architecture. Since all data stays on your infrastructure, there is no cross-border data transfer. Includes a GDPR right-to-erasure endpoint, PII detection, and full audit trail export.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="What happens if the server goes down?" data-es="¿Qué pasa si el servidor se cae?">What happens if the server goes down?</span><span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner" data-en="EngiIntel is a standard Docker application. Your IT team manages backups, redundancy and uptime using your existing infrastructure procedures. Enterprise plans include deployment assistance and SLA documentation." data-es="EngiIntel es una aplicación Docker estándar. Tu equipo de TI gestiona los respaldos, la redundancia y el tiempo de actividad. Los planes Enterprise incluyen asistencia de despliegue y documentación SLA.">EngiIntel is a standard Docker application. Your IT team manages backups, redundancy and uptime using your existing infrastructure procedures. Enterprise plans include deployment assistance and SLA documentation.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
 <section id="contact" class="contact-section">
   <div class="section-label" data-en="Get Started" data-es="Empezar">Get Started</div>
   <div class="contact-grid fade-in">
-    <div class="contact-info">
+    <div>
       <h2 data-en="Ready to deploy AI<br>on your infrastructure?" data-es="¿Listo para desplegar IA<br>en tu infraestructura?">Ready to deploy AI<br>on your infrastructure?</h2>
       <p class="section-sub" data-en="Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups." data-es="Reserva una demo y te mostraremos EngiIntel funcionando en vivo con un conjunto de documentos real de tu industria — sin diapositivas, sin maquetas.">Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups.</p>
-
-      <div class="contact-detail">
-        <span>📧</span>
-        <span>contact@engiintel.com</span>
-      </div>
-      <div class="contact-detail">
-        <span>📍</span>
-        <span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span>
-      </div>
-      <div class="contact-detail">
-        <span>⏱</span>
-        <span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span>
-      </div>
+      <div class="contact-detail"><span>📧</span><a href="mailto:eloycostas@outlook.com" style="color:var(--accent);text-decoration:none">eloycostas@outlook.com</a></div>
+      <div class="contact-detail"><span>📍</span><span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span></div>
+      <div class="contact-detail"><span>⏱</span><span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span></div>
     </div>
-
     <div>
-      <form id="contactForm" onsubmit="handleSubmit(event)">
+      <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
-          <input type="text" placeholder="Name / Nombre" required data-en-placeholder="Name" data-es-placeholder="Nombre">
-          <input type="text" placeholder="Company / Empresa" required data-en-placeholder="Company" data-es-placeholder="Empresa">
+          <div class="form-group">
+            <label class="form-label" for="fName" data-en="Name *" data-es="Nombre *">Name *</label>
+            <input type="text" id="fName" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fCompany" data-en="Company *" data-es="Empresa *">Company *</label>
+            <input type="text" id="fCompany" placeholder="Acme Engineering" required>
+          </div>
         </div>
-        <input type="email" placeholder="Email" required>
-        <select required>
-          <option value="" disabled selected data-en="Industry" data-es="Industria">Industry / Industria</option>
-          <option data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical / Farmacéutica</option>
-          <option data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</option>
-          <option data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</option>
-          <option data-en="Manufacturing" data-es="Manufactura">Manufacturing / Manufactura</option>
-          <option data-en="Construction" data-es="Construcción">Construction / Construcción</option>
-          <option data-en="Other" data-es="Otro">Other / Otro</option>
-        </select>
-        <textarea placeholder="Tell us about your document challenge... / Cuéntanos tu reto con documentos..."></textarea>
-        <button type="submit" class="form-submit" data-en="Request Demo" data-es="Solicitar Demo">Request Demo</button>
+        <div class="form-group">
+          <label class="form-label" for="fEmail">Email *</label>
+          <input type="email" id="fEmail" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fIndustry" data-en="Industry *" data-es="Industria *">Industry *</label>
+          <select id="fIndustry" required>
+            <option value="" disabled selected data-en="Select your industry..." data-es="Selecciona tu industria...">Select your industry...</option>
+            <option data-en="Elevator & Vertical Transport" data-es="Ascensores y Transporte Vertical">Elevator &amp; Vertical Transport</option>
+            <option data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical / Farmacéutica</option>
+            <option data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace &amp; Defence</option>
+            <option data-en="Energy & Utilities" data-es="Energía y Utilities">Energy &amp; Utilities</option>
+            <option data-en="Manufacturing" data-es="Manufactura">Manufacturing / Manufactura</option>
+            <option data-en="Construction" data-es="Construcción">Construction / Construcción</option>
+            <option data-en="Other" data-es="Otro">Other / Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fMsg" data-en="Your document challenge (optional)" data-es="Tu reto con documentos (opcional)">Your document challenge (optional)</label>
+          <textarea id="fMsg" placeholder="We have 500 regulatory PDFs our engineers search daily..."></textarea>
+        </div>
+        <div class="form-error" id="formErr"></div>
+        <button type="submit" class="form-submit" data-en="Request Demo →" data-es="Solicitar Demo →">Request Demo →</button>
         <p class="form-note" data-en="No commitment required. We'll reach out within 24h." data-es="Sin compromiso. Nos pondremos en contacto en 24h.">No commitment required. We'll reach out within 24h.</p>
       </form>
-      <div class="success-msg" id="successMsg" data-en="✓ Message received. We'll be in touch within 24 hours." data-es="✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.">
-        ✓ Message received. We'll be in touch within 24 hours.
-      </div>
+      <div class="success-msg" id="successMsg"></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">Engi<span>Intel</span></div>
   <div class="footer-copy" data-en="© 2026 EngiIntel. All rights reserved." data-es="© 2026 EngiIntel. Todos los derechos reservados.">© 2026 EngiIntel. All rights reserved.</div>
 </footer>
 
 <script>
-  // Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursor.style.left = mouseX - 4 + 'px';
-    cursor.style.top = mouseY - 4 + 'px';
+// ── Cursor ──
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+if (cur && ring) {
+  document.body.style.cursor = 'none';
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-4+'px';cur.style.top=my-4+'px';});
+  (function tick(){rx+=(mx-rx-16)*0.15;ry+=(my-ry-16)*0.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';ring.style.borderColor='rgba(0,212,255,0.8)';});
+    el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.borderColor='rgba(0,212,255,0.4)';});
   });
+}
 
-  function animateRing() {
-    ringX += (mouseX - ringX - 16) * 0.15;
-    ringY += (mouseY - ringY - 16) * 0.15;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
+// ── Fade-in observer ──
+const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.05});
+document.querySelectorAll('.fade-in').forEach(el=>{el.classList.add('animate');obs.observe(el);});
+setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible')),700);
 
-  document.querySelectorAll('a, button, input, textarea, select').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2.5)';
-      ring.style.transform = 'scale(1.5)';
-      ring.style.borderColor = 'rgba(0,212,255,0.8)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.transform = 'scale(1)';
-      ring.style.borderColor = 'rgba(0,212,255,0.4)';
-    });
-  });
+// ── Nav active on scroll ──
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('section[id],div[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-140)cur=s.id;});
+  navAnchors.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>600);
+},{ passive:true });
 
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
+// ── Features expand ──
+let featOpen=false;
+function toggleFeatures(){
+  featOpen=!featOpen;
+  document.getElementById('featuresMore').classList.toggle('open',featOpen);
+  document.getElementById('toggleArrow').classList.toggle('open',featOpen);
+  const t=document.getElementById('toggleText');
+  const isEs=document.documentElement.lang==='es';
+  t.textContent=featOpen?(isEs?'Ver menos funciones':'Show fewer features'):(isEs?'Ver las 17 funciones':'Show all 17 features');
+}
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// ── FAQ accordion ──
+function toggleFaq(el){
+  const ans=el.nextElementSibling, icon=el.querySelector('.faq-icon'), isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-answer.open').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen){ans.classList.add('open');icon.classList.add('open');}
+}
 
-  // Language switcher
-  let currentLang = 'en';
+// ── Language ──
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');
+  document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));
+  document.querySelectorAll('[data-'+l+'-placeholder]').forEach(el=>el.placeholder=el.getAttribute('data-'+l+'-placeholder'));
+}
 
-  function setLang(lang) {
-    currentLang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector(`.lang-btn:${lang === 'en' ? 'first' : 'last'}-child`).classList.add('active');
-
-    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-      el.innerHTML = el.getAttribute('data-' + lang);
-    });
-
-    document.querySelectorAll('[data-' + lang + '-placeholder]').forEach(el => {
-      el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
-    });
-  }
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('contactForm').style.display = 'none';
-    const msg = document.getElementById('successMsg');
-    msg.style.display = 'block';
-    msg.textContent = currentLang === 'es'
-      ? '✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.'
-      : '✓ Message received. We\'ll be in touch within 24 hours.';
-  }
-
-  // Nav scroll effect
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(0,212,255,0.2)' : 'var(--border)';
-  });
+// ── Form validation ──
+function handleSubmit(e){
+  e.preventDefault();
+  const name=document.getElementById('fName').value.trim();
+  const email=document.getElementById('fEmail').value.trim();
+  const industry=document.getElementById('fIndustry').value;
+  const errEl=document.getElementById('formErr');
+  const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!name){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu nombre.':'⚠ Please enter your name.';return;}
+  if(!re.test(email)){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce un email válido.':'⚠ Please enter a valid email address.';return;}
+  if(!industry){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor selecciona tu industria.':'⚠ Please select your industry.';return;}
+  errEl.style.display='none';
+  document.getElementById('contactForm').style.display='none';
+  const msg=document.getElementById('successMsg');
+  msg.style.display='block';
+  msg.textContent=lang==='es'?'✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.':'✓ Message received. We\'ll be in touch within 24 hours.';
+}
 </script>
 </body>
 </html>
