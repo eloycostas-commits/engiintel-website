@@ -30,6 +30,7 @@ export default async function handler(req, res) {
     await send({
       from: 'onboarding@resend.dev',
       to: [founderEmail],
+      reply_to: email,
       subject: `New EngiIntel Beta Signup – ${safe(email)}`,
       html: `<p><strong>New beta signup received:</strong></p>
 <ul>
