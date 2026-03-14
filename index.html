@@ -945,18 +945,32 @@ function setLang(l){
   document.querySelectorAll('[data-'+l+'-placeholder]').forEach(el=>el.placeholder=el.getAttribute('data-'+l+'-placeholder'));
 }
 
-// ── Form validation ──
-function handleSubmit(e){
+// ── Form validation & submission ──
+async function handleSubmit(e){
   e.preventDefault();
   const name=document.getElementById('fName').value.trim();
   const email=document.getElementById('fEmail').value.trim();
+  const company=document.getElementById('fCompany').value.trim();
   const industry=document.getElementById('fIndustry').value;
+  const message=document.getElementById('fMsg').value.trim();
   const errEl=document.getElementById('formErr');
+  const btn=document.querySelector('.form-submit');
   const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!name){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu nombre.':'⚠ Please enter your name.';return;}
   if(!re.test(email)){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce un email válido.':'⚠ Please enter a valid email address.';return;}
   if(!industry){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor selecciona tu industria.':'⚠ Please select your industry.';return;}
   errEl.style.display='none';
+  btn.disabled=true;
+  btn.textContent=lang==='es'?'Enviando...':'Sending...';
+  try{
+    await fetch('https://rag-v2-omega.vercel.app/api/beta-signup',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,company,industry,message})
+    });
+  }catch(err){
+    console.warn('signup post failed',err);
+  }
   document.getElementById('contactForm').style.display='none';
   const msg=document.getElementById('successMsg');
   msg.style.display='block';
