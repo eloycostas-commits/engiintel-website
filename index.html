@@ -12,7 +12,7 @@
 <meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
 <meta name="author" content="EngiIntel">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://engiintel-website.vercel.app/">
+<link rel="canonical" href="https://engiintel.com/">
 
 <!-- ╔══════════════════════════════════════════════════════╗ -->
 <!-- ║  Open Graph (LinkedIn, Facebook, WhatsApp, Slack)   ║ -->
@@ -21,8 +21,8 @@
 <meta property="og:site_name" content="EngiIntel">
 <meta property="og:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
 <meta property="og:description" content="Self-hosted AI that queries regulations, manages your knowledge base, tracks assets, generates incident reports, automates workflows with n8n and runs autonomous AI agents. No cloud. No data risk.">
-<meta property="og:url" content="https://engiintel-website.vercel.app/">
-<meta property="og:image" content="https://engiintel-website.vercel.app/og-image.png">
+<meta property="og:url" content="https://engiintel.com/">
+<meta property="og:image" content="https://engiintel.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="EngiIntel — AI Agent Mode running on local infrastructure">
@@ -35,7 +35,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
 <meta name="twitter:description" content="Self-hosted AI for engineers. Query regulations, track assets, generate incident reports, automate workflows with n8n and run autonomous agents. Zero data leaves your server.">
-<meta name="twitter:image" content="https://engiintel-website.vercel.app/og-image.png">
+<meta name="twitter:image" content="https://engiintel.com/og-image.png">
 <meta name="twitter:image:alt" content="EngiIntel — AI Agent Mode terminal demo">
 
 <!-- ╔══════════════════════════════════════════════════════╗ -->
@@ -49,7 +49,7 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Linux, Docker",
   "description": "Self-hosted AI document intelligence platform for regulated industries. Features RAG-powered document search, wiki and knowledge base, asset registry, incident report generation, n8n workflow automation and autonomous AI agent mode.",
-  "url": "https://engiintel-website.vercel.app/",
+  "url": "https://engiintel.com/",
   "softwareVersion": "1.0",
   "offers": [
     {
@@ -80,7 +80,7 @@
   "publisher": {
     "@type": "Organization",
     "name": "EngiIntel",
-    "url": "https://engiintel-website.vercel.app/"
+    "url": "https://engiintel.com/"
   }
 }
 </script>
@@ -326,107 +326,6 @@
   .footer-logo span { color: var(--accent); }
   .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
-  /* ── MODULES ── */
-  .modules-section { padding: 100px 60px; background: var(--bg); border-top: 1px solid var(--border); position: relative; z-index: 1; }
-  .module-core-banner { border: 1px solid rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-bottom: 48px; flex-wrap: wrap; }
-  .module-core-left { display: flex; align-items: center; gap: 20px; }
-  .module-core-icon { font-size: 2rem; flex-shrink: 0; }
-  .module-core-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--accent); margin-bottom: 4px; }
-  .module-core-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.6; max-width: 500px; }
-  .module-core-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); border: 1px solid rgba(0,212,255,0.4); padding: 5px 14px; letter-spacing: 0.1em; white-space: nowrap; flex-shrink: 0; }
-  .module-core-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .module-core-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent3); border: 1px solid rgba(0,255,157,0.2); padding: 3px 10px; letter-spacing: 0.06em; }
-
-  .modules-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
-  .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .module-card { background: var(--surface); padding: 36px; position: relative; overflow: hidden; transition: background 0.3s; cursor: default; }
-  .module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.3s; }
-  .module-card:hover { background: var(--surface2); }
-  .module-card:hover::before { opacity: 1; }
-  .module-card.mod-ops::before { background: linear-gradient(90deg, var(--accent), transparent); }
-  .module-card.mod-excel::before { background: linear-gradient(90deg, var(--accent3), transparent); }
-  .module-card.mod-wiki::before { background: linear-gradient(90deg, #a78bfa, transparent); }
-  .module-card.mod-incidents::before { background: linear-gradient(90deg, #fb923c, transparent); }
-  .module-card.mod-agent::before { background: linear-gradient(90deg, var(--accent2), transparent); }
-  .module-card.mod-analytics::before { background: linear-gradient(90deg, #f472b6, transparent); }
-  .module-number { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.12em; margin-bottom: 16px; }
-  .module-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
-  .module-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
-  .module-tagline { font-family: 'DM Mono', monospace; font-size: 0.7rem; margin-bottom: 14px; letter-spacing: 0.04em; }
-  .module-card.mod-ops .module-tagline { color: var(--accent); }
-  .module-card.mod-excel .module-tagline { color: var(--accent3); }
-  .module-card.mod-wiki .module-tagline { color: #a78bfa; }
-  .module-card.mod-incidents .module-tagline { color: #fb923c; }
-  .module-card.mod-agent .module-tagline { color: var(--accent2); }
-  .module-card.mod-analytics .module-tagline { color: #f472b6; }
-  .module-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 20px; }
-  .module-features { list-style: none; margin-bottom: 20px; }
-  .module-features li { font-size: 0.82rem; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid rgba(26,36,51,0.6); display: flex; align-items: flex-start; gap: 8px; line-height: 1.45; }
-  .module-features li:last-child { border-bottom: none; }
-  .module-features li::before { content: '→'; font-family: 'DM Mono', monospace; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
-  .module-card.mod-ops .module-features li::before { color: var(--accent); }
-  .module-card.mod-excel .module-features li::before { color: var(--accent3); }
-  .module-card.mod-wiki .module-features li::before { color: #a78bfa; }
-  .module-card.mod-incidents .module-features li::before { color: #fb923c; }
-  .module-card.mod-agent .module-features li::before { color: var(--accent2); }
-  .module-card.mod-analytics .module-features li::before { color: #f472b6; }
-  .module-price-hint { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.06em; }
-
-  .modules-composer { margin-top: 32px; border: 1px solid var(--border); background: var(--surface); padding: 36px 40px; }
-  .composer-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-  .composer-sub { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 28px; line-height: 1.6; }
-  .composer-row { display: flex; align-items: center; gap: 0; flex-wrap: wrap; border: 1px solid var(--border); }
-  .composer-module { flex: 1; min-width: 120px; padding: 14px 16px; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
-  .composer-module:last-child { border-right: none; }
-  .composer-module-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--text); }
-  .composer-module-price { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
-  .composer-note { margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.04em; }
-
-  @media (max-width: 1100px) { .modules-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 768px) { .modules-grid { grid-template-columns: 1fr; } .modules-section { padding: 60px 24px; } .module-core-banner { padding: 24px; } .modules-composer { padding: 24px; } .composer-row { flex-direction: column; } .composer-module { border-right: none; border-bottom: 1px solid var(--border); width: 100%; } .composer-module:last-child { border-bottom: none; } }
-
-  /* ── MODULE PRICING CALCULATOR ── */
-  .pricing-calc { border: 1px solid var(--border); background: var(--surface); margin-bottom: 48px; overflow: hidden; }
-  .calc-header { padding: 28px 36px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .calc-header-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
-  .calc-header-sub { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-  .calc-body { display: grid; grid-template-columns: 1fr 300px; }
-  .calc-left { padding: 28px 36px; border-right: 1px solid var(--border); }
-  .calc-right { padding: 28px 28px; display: flex; flex-direction: column; gap: 0; }
-  .calc-section-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-  .calc-seats { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-  .calc-seats-label { font-size: 0.88rem; color: var(--text-mid); min-width: 60px; }
-  .seats-input { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 1rem; padding: 8px 14px; width: 80px; text-align: center; appearance: none; -moz-appearance: textfield; }
-  .seats-input::-webkit-inner-spin-button { display: none; }
-  .seats-btn { width: 32px; height: 32px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-mid); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Mono', monospace; }
-  .seats-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .calc-modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .calc-module-toggle { border: 1px solid var(--border); padding: 14px 16px; cursor: pointer; transition: all 0.2s; background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: 8px; user-select: none; }
-  .calc-module-toggle:hover { border-color: rgba(0,212,255,0.3); }
-  .calc-module-toggle.selected { border-color: var(--accent); background: rgba(0,212,255,0.05); }
-  .calc-module-toggle.core-mod { border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); cursor: default; }
-  .calc-mod-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text); }
-  .calc-mod-icon { font-size: 1rem; flex-shrink: 0; }
-  .calc-mod-check { width: 18px; height: 18px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; color: var(--accent3); transition: all 0.15s; }
-  .calc-module-toggle.selected .calc-mod-check { background: var(--accent3); color: var(--bg); border-color: var(--accent3); }
-  .calc-module-toggle.core-mod .calc-mod-check { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  /* Summary panel */
-  .calc-summary-line { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .calc-summary-line:last-of-type { border-bottom: none; }
-  .calc-summary-key { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-  .calc-summary-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); }
-  .calc-total-row { margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--accent); display: flex; justify-content: space-between; align-items: baseline; }
-  .calc-total-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
-  .calc-total-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); line-height: 1; }
-  .calc-total-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); }
-  .calc-cta { display: block; text-align: center; padding: 13px; background: var(--accent2); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; margin-top: 20px; transition: all 0.2s; }
-  .calc-cta:hover { background: #0055dd; box-shadow: 0 0 20px rgba(0,102,255,0.35); }
-  .calc-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-align: center; margin-top: 10px; line-height: 1.5; }
-  @media (max-width: 768px) { .calc-body { grid-template-columns: 1fr; } .calc-left { border-right: none; border-bottom: 1px solid var(--border); } .calc-modules-grid { grid-template-columns: 1fr; } }
-
-  .pricing-card.calc-highlight { outline: 2px solid var(--accent3); outline-offset: -2px; }
-  .pricing-card.calc-highlight:not(.featured) { background: var(--surface2); }
-
   /* Back to top */
   .back-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; z-index: 50; opacity: 0; transform: translateY(8px); transition: all 0.3s; text-decoration: none; }
   .back-top.visible { opacity: 1; transform: translateY(0); }
@@ -479,7 +378,6 @@
   <a href="#" class="nav-logo">Engi<span>Intel</span></a>
   <ul class="nav-links">
     <li><a href="#features" data-en="Features" data-es="Funciones">Features</a></li>
-    <li><a href="#modules" data-en="Modules" data-es="Módulos">Modules</a></li>
     <li><a href="#how" data-en="How It Works" data-es="Cómo Funciona">How It Works</a></li>
     <li><a href="#industries" data-en="Industries" data-es="Industrias">Industries</a></li>
     <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
@@ -742,162 +640,6 @@
   </button>
 </section>
 
-<!-- ── MODULES ── -->
-<section id="modules" class="modules-section fade-in">
-  <div class="section-label" data-en="Modular Platform" data-es="Plataforma Modular">Modular Platform</div>
-  <h2 data-en="Build your stack.<br>Pay for what you use." data-es="Construye tu stack.<br>Paga solo lo que usas.">Build your stack.<br>Pay for what you use.</h2>
-  <p class="section-sub" data-en="Every module works standalone or combined. Start with the RAG core and add capabilities as your team grows — no bloated suites, no forced bundles." data-es="Cada módulo funciona solo o combinado. Empieza con el núcleo RAG y añade capacidades según crece tu equipo — sin suites infladas, sin paquetes forzados.">Every module works standalone or combined. Start with the RAG core and add capabilities as your team grows — no bloated suites, no forced bundles.</p>
-
-  <!-- Core module — mandatory base -->
-  <div class="module-core-banner">
-    <div class="module-core-left">
-      <span class="module-core-icon">🧠</span>
-      <div>
-        <div class="module-core-title" data-en="Core — Document Intelligence Engine" data-es="Core — Motor de Inteligencia Documental">Core — Document Intelligence Engine</div>
-        <div class="module-core-desc" data-en="The mandatory base of every EngiIntel deployment. RAG pipeline with hybrid search, zero-hallucination answers with page-level citations, document connectors (SharePoint, Google Drive, Confluence), hierarchical folder system, role-based access control, OCR for scanned docs, and full audit logging. Your documents never leave your server." data-es="La base obligatoria de todo despliegue EngiIntel. Pipeline RAG con búsqueda híbrida, respuestas sin alucinación con citas de página exactas, conectores de documentos, sistema de carpetas jerárquico, control de acceso por roles, OCR y registro de auditoría completo. Tus documentos nunca salen de tu servidor.">The mandatory base of every EngiIntel deployment. RAG pipeline with hybrid search, zero-hallucination answers with page-level citations, document connectors (SharePoint, Google Drive, Confluence), hierarchical folder system, role-based access control, OCR for scanned docs, and full audit logging. Your documents never leave your server.</div>
-        <div class="module-core-tags">
-          <span class="module-core-tag">RAG · HYBRID SEARCH</span>
-          <span class="module-core-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
-          <span class="module-core-tag">OCR · RBAC · AUDIT LOGS</span>
-          <span class="module-core-tag">LOCAL LLM · OLLAMA</span>
-        </div>
-      </div>
-    </div>
-    <div class="module-core-badge" data-en="INCLUDED IN ALL PLANS" data-es="INCLUIDO EN TODOS LOS PLANES">INCLUDED IN ALL PLANS</div>
-  </div>
-
-  <!-- Optional modules grid -->
-  <div class="modules-label" data-en="Optional modules — combine freely" data-es="Módulos opcionales — combina libremente">Optional modules — combine freely</div>
-  <div class="modules-grid">
-
-    <!-- Module 01: Operations Hub -->
-    <div class="module-card mod-ops">
-      <div class="module-number">MODULE 01</div>
-      <span class="module-icon">🗂️</span>
-      <div class="module-name" data-en="Operations Hub" data-es="Hub de Operaciones">Operations Hub</div>
-      <div class="module-tagline" data-en="Tasks · Kanban · Projects · Milestones" data-es="Tareas · Kanban · Proyectos · Hitos">Tasks · Kanban · Projects · Milestones</div>
-      <div class="module-desc" data-en="Full project and task management with kanban boards, milestone tracking, and deadline control — all integrated with the RAG engine so your team can query project status in natural language." data-es="Gestión completa de proyectos y tareas con tableros kanban, seguimiento de hitos y control de plazos — integrado con el motor RAG para consultar el estado del proyecto en lenguaje natural.">Full project and task management with kanban boards, milestone tracking, and deadline control — all integrated with the RAG engine so your team can query project status in natural language.</div>
-      <ul class="module-features">
-        <li data-en="Kanban board with custom columns" data-es="Tablero kanban con columnas personalizables">Kanban board with custom columns</li>
-        <li data-en="Milestone and deadline tracking" data-es="Seguimiento de hitos y plazos">Milestone and deadline tracking</li>
-        <li data-en="AI queries on task and project status" data-es="Consultas IA sobre estado de tareas y proyectos">AI queries on task and project status</li>
-        <li data-en="Cross-module context pinning" data-es="Fijado de contexto entre módulos">Cross-module context pinning</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 02: Excel Copilot -->
-    <div class="module-card mod-excel">
-      <div class="module-number">MODULE 02</div>
-      <span class="module-icon">📊</span>
-      <div class="module-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</div>
-      <div class="module-tagline" data-en="Natural language → formulas, pivots, charts" data-es="Lenguaje natural → fórmulas, tablas dinámicas, gráficos">Natural language → formulas, pivots, charts</div>
-      <div class="module-desc" data-en="Engineers without advanced Excel skills get any result they need. Describe what you want in plain language — the AI generates the formula, macro, or pivot table and explains the logic step by step." data-es="Los ingenieros sin conocimientos avanzados de Excel obtienen cualquier resultado que necesiten. Describe lo que quieres en lenguaje natural y la IA genera la fórmula, macro o tabla dinámica explicando la lógica paso a paso.">Engineers without advanced Excel skills get any result they need. Describe what you want in plain language — the AI generates the formula, macro, or pivot table and explains the logic step by step.</div>
-      <ul class="module-features">
-        <li data-en="Natural language to formula / macro" data-es="Lenguaje natural a fórmula / macro">Natural language to formula / macro</li>
-        <li data-en="Pivot table and chart generation" data-es="Generación de tablas dinámicas y gráficos">Pivot table and chart generation</li>
-        <li data-en="Step-by-step explanation of logic" data-es="Explicación paso a paso de la lógica">Step-by-step explanation of logic</li>
-        <li data-en="Works with existing workbooks" data-es="Funciona con libros existentes">Works with existing workbooks</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 03: Wiki & Knowledge Base -->
-    <div class="module-card mod-wiki">
-      <div class="module-number">MODULE 03</div>
-      <span class="module-icon">📖</span>
-      <div class="module-name" data-en="Wiki & Knowledge Base" data-es="Wiki y Base de Conocimiento">Wiki & Knowledge Base</div>
-      <div class="module-tagline" data-en="Procedures · Checklists · Version history" data-es="Procedimientos · Checklists · Historial de versiones">Procedures · Checklists · Version history</div>
-      <div class="module-desc" data-en="Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes. All pages are RAG-indexed automatically and searchable alongside your uploaded documents." data-es="Wiki integrada con editor Markdown, historial de versiones y tipos de página. Todas las páginas se indexan automáticamente por RAG y son buscables junto a tus documentos subidos.">Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes. All pages are RAG-indexed automatically and searchable alongside your uploaded documents.</div>
-      <ul class="module-features">
-        <li data-en="Markdown editor with templates" data-es="Editor Markdown con plantillas">Markdown editor with templates</li>
-        <li data-en="Full version history and diff view" data-es="Historial completo y vista de diferencias">Full version history and diff view</li>
-        <li data-en="Auto-indexed in RAG on save" data-es="Auto-indexado en RAG al guardar">Auto-indexed in RAG on save</li>
-        <li data-en="Procedures, checklists, meeting notes" data-es="Procedimientos, checklists, notas de reunión">Procedures, checklists, meeting notes</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 04: Incidents & Assets -->
-    <div class="module-card mod-incidents">
-      <div class="module-number">MODULE 04</div>
-      <span class="module-icon">🏗️</span>
-      <div class="module-name" data-en="Incidents & Asset Registry" data-es="Incidencias y Registro de Activos">Incidents & Asset Registry</div>
-      <div class="module-tagline" data-en="Assets · Incidents · Regulatory deadlines" data-es="Activos · Incidencias · Plazos regulatorios">Assets · Incidents · Regulatory deadlines</div>
-      <div class="module-desc" data-en="Register and track physical assets — elevators, equipment, installations. Link incidents to assets, track regulatory response deadlines, and auto-generate AI-written incident reports directly from task data." data-es="Registra y gestiona activos físicos. Vincula incidencias a activos, rastrea plazos de respuesta regulatorios y genera automáticamente informes de incidencia con IA a partir de los datos de las tareas.">Register and track physical assets — elevators, equipment, installations. Link incidents to assets, track regulatory response deadlines, and auto-generate AI-written incident reports directly from task data.</div>
-      <ul class="module-features">
-        <li data-en="Asset registry with status tracking" data-es="Registro de activos con seguimiento de estado">Asset registry with status tracking</li>
-        <li data-en="Incident linked to asset and regulation" data-es="Incidencia vinculada a activo y normativa">Incident linked to asset and regulation</li>
-        <li data-en="AI-generated incident report (one click)" data-es="Informe de incidencia generado por IA (un clic)">AI-generated incident report (one click)</li>
-        <li data-en="Regulatory response deadline alerts" data-es="Alertas de plazo de respuesta regulatorio">Regulatory response deadline alerts</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 05: AI Agent Mode -->
-    <div class="module-card mod-agent">
-      <div class="module-number">MODULE 05</div>
-      <span class="module-icon">🤖</span>
-      <div class="module-name" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div>
-      <div class="module-tagline" data-en="Autonomous multi-step task execution" data-es="Ejecución autónoma de tareas en múltiples pasos">Autonomous multi-step task execution</div>
-      <div class="module-desc" data-en="Give the AI a complex instruction and it executes a multi-step plan autonomously — searching documents, creating tasks, generating reports, and updating assets in a single ReAct loop. Everything runs locally." data-es="Dale a la IA una instrucción compleja y ejecuta un plan de múltiples pasos de forma autónoma — buscando documentos, creando tareas, generando informes y actualizando activos en un único bucle ReAct. Todo corre localmente.">Give the AI a complex instruction and it executes a multi-step plan autonomously — searching documents, creating tasks, generating reports, and updating assets in a single ReAct loop. Everything runs locally.</div>
-      <ul class="module-features">
-        <li data-en="ReAct loop with 8 tool executors" data-es="Bucle ReAct con 8 ejecutores de herramientas">ReAct loop with 8 tool executors</li>
-        <li data-en="Real-time SSE step streaming" data-es="Streaming de pasos en tiempo real por SSE">Real-time SSE step streaming</li>
-        <li data-en="Cross-module autonomous actions" data-es="Acciones autónomas entre módulos">Cross-module autonomous actions</li>
-        <li data-en="Fully local — no external API" data-es="Completamente local — sin API externa">Fully local — no external API</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 06: Analytics & ROI -->
-    <div class="module-card mod-analytics">
-      <div class="module-number">MODULE 06</div>
-      <span class="module-icon">📈</span>
-      <div class="module-name" data-en="Analytics & ROI Dashboard" data-es="Panel de Analítica y ROI">Analytics & ROI Dashboard</div>
-      <div class="module-tagline" data-en="Usage · Hours saved · Executive reports" data-es="Uso · Horas ahorradas · Informes ejecutivos">Usage · Hours saved · Executive reports</div>
-      <div class="module-desc" data-en="Track query volume, response times (p50/p95/p99), hours saved per team, and recovered engineering time. One-click executive PDF report for quarterly reviews and ROI justification." data-es="Registra volumen de consultas, tiempos de respuesta, horas ahorradas por equipo y tiempo de ingeniería recuperado. Informe PDF ejecutivo en un clic para revisiones trimestrales y justificación de ROI.">Track query volume, response times (p50/p95/p99), hours saved per team, and recovered engineering time. One-click executive PDF report for quarterly reviews and ROI justification.</div>
-      <ul class="module-features">
-        <li data-en="Query volume and latency tracking" data-es="Seguimiento de volumen de consultas y latencia">Query volume and latency tracking</li>
-        <li data-en="Hours saved per team per week" data-es="Horas ahorradas por equipo a la semana">Hours saved per team per week</li>
-        <li data-en="One-click executive PDF report" data-es="Informe PDF ejecutivo en un clic">One-click executive PDF report</li>
-        <li data-en="ROI calculator for management" data-es="Calculadora de ROI para dirección">ROI calculator for management</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-  </div>
-
-  <!-- Composer callout -->
-  <div class="modules-composer">
-    <div class="composer-title" data-en="Example: a 3-module stack for a maintenance company" data-es="Ejemplo: un stack de 3 módulos para una empresa de mantenimiento">Example: a 3-module stack for a maintenance company</div>
-    <div class="composer-sub" data-en="Core + Incidents & Assets + Wiki — everything needed to query regulations, manage assets, track incidents with automated reports, and build internal procedures. No kanban, no analytics, no Excel. Pay only for what your team actually uses." data-es="Core + Incidencias y Activos + Wiki — todo lo necesario para consultar normativa, gestionar activos, registrar incidencias con informes automáticos y construir procedimientos internos. Sin kanban, sin analítica, sin Excel. Paga solo lo que tu equipo usa.">Core + Incidents & Assets + Wiki — everything needed to query regulations, manage assets, track incidents with automated reports, and build internal procedures. No kanban, no analytics, no Excel. Pay only for what your team actually uses.</div>
-    <div class="composer-row">
-      <div class="composer-module">
-        <span style="font-size:1.2rem">🧠</span>
-        <div class="composer-module-name" data-en="Core" data-es="Core">Core</div>
-        <div class="composer-module-price" data-en="always included" data-es="siempre incluido">always included</div>
-      </div>
-      <div class="composer-module">
-        <span style="font-size:1.2rem">🏗️</span>
-        <div class="composer-module-name" data-en="Incidents & Assets" data-es="Incidencias y Activos">Incidents & Assets</div>
-        <div class="composer-module-price" data-en="module 04" data-es="módulo 04">module 04</div>
-      </div>
-      <div class="composer-module">
-        <span style="font-size:1.2rem">📖</span>
-        <div class="composer-module-name" data-en="Wiki" data-es="Wiki">Wiki</div>
-        <div class="composer-module-price" data-en="module 03" data-es="módulo 03">module 03</div>
-      </div>
-      <div class="composer-module" style="background:rgba(0,212,255,0.04);border-left:2px solid rgba(0,212,255,0.3)">
-        <span style="font-size:1.2rem">✓</span>
-        <div class="composer-module-name" style="color:var(--accent)" data-en="Your stack" data-es="Tu stack">Your stack</div>
-        <div class="composer-module-price" data-en="configured at onboarding" data-es="configurado en el onboarding">configured at onboarding</div>
-      </div>
-    </div>
-    <div class="composer-note" data-en="All module combinations are supported · Modules can be added or removed at any time · Pricing scales with modules + seats" data-es="Todas las combinaciones de módulos están soportadas · Los módulos se pueden añadir o eliminar en cualquier momento · El precio escala con módulos + seats">All module combinations are supported · Modules can be added or removed at any time · Pricing scales with modules + seats</div>
-  </div>
-</section>
-
 <!-- ── HOW IT WORKS ── -->
 <section id="how" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="section-label" data-en="Process" data-es="Proceso">Process</div>
@@ -961,214 +703,56 @@
 <!-- ── PRICING ── -->
 <section id="pricing">
   <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
-  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
-  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
+  <h2 data-en="Simple, transparent pricing." data-es="Precios simples y transparentes.">Simple, transparent pricing.</h2>
+  <p class="section-sub" data-en="7-day free trial, no credit card required. Then choose the plan that fits your team." data-es="Prueba gratuita de 7 días, sin tarjeta de crédito. Luego elige el plan que se adapte a tu equipo.">7-day free trial, no credit card required. Then choose the plan that fits your team.</p>
 
-  <!-- Interactive pricing calculator -->
-  <div class="pricing-calc fade-in">
-    <div class="calc-header">
-      <div>
-        <div class="calc-header-title" data-en="Configure your plan" data-es="Configura tu plan">Configure your plan</div>
-        <div class="calc-header-sub" data-en="Select seats and modules — price updates in real time" data-es="Selecciona seats y módulos — el precio se actualiza en tiempo real">Select seats and modules — price updates in real time</div>
-      </div>
-    </div>
-    <div class="calc-body">
-      <div class="calc-left">
-        <div class="calc-section-label" data-en="Number of seats" data-es="Número de seats">Number of seats</div>
-        <div class="calc-seats">
-          <button class="seats-btn" onclick="adjustSeats(-1)">−</button>
-          <input class="seats-input" type="number" id="seatsInput" value="5" min="1" max="500" oninput="calcPrice()">
-          <button class="seats-btn" onclick="adjustSeats(1)">+</button>
-          <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
-        </div>
-
-        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
-        <div class="calc-modules-grid">
-          <div class="calc-module-toggle core-mod">
-            <span class="calc-mod-icon">🧠</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
-            <span class="calc-mod-check">✓</span>
-          </div>
-          <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
-            <span class="calc-mod-icon">🗂️</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
-            <span class="calc-mod-check" id="chk-ops"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
-            <span class="calc-mod-icon">📊</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
-            <span class="calc-mod-check" id="chk-excel"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
-            <span class="calc-mod-icon">📖</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
-            <span class="calc-mod-check" id="chk-wiki"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
-            <span class="calc-mod-icon">🏗️</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
-            <span class="calc-mod-check" id="chk-incidents"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
-            <span class="calc-mod-icon">🤖</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
-            <span class="calc-mod-check" id="chk-agent"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
-            <span class="calc-mod-icon">📈</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
-            <span class="calc-mod-check" id="chk-analytics"></span>
-          </div>
-        </div>
-      </div>
-      <div class="calc-right">
-        <div class="calc-section-label" data-en="Your plan" data-es="Tu plan">Your plan</div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" data-en="Core · per seat" data-es="Core · por seat">Core · per seat</span>
-          <span class="calc-summary-val">€8<span style="font-size:0.75rem;font-weight:400;color:var(--text-dim)">/mo</span></span>
-        </div>
-        <div class="calc-summary-line" id="sum-modules-row" style="display:none">
-          <span class="calc-summary-key" id="sum-modules-label">+ 0 modules · per seat</span>
-          <span class="calc-summary-val" id="sum-modules-val">€0/mo</span>
-        </div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" id="sum-seats-label" data-en="× seats" data-es="× seats">× seats</span>
-          <span class="calc-summary-val" id="sum-seats-val">5</span>
-        </div>
-        <div class="calc-summary-line" id="sum-discount-row" style="display:none">
-          <span class="calc-summary-key" id="sum-discount-label" style="color:var(--accent3)">Volume discount</span>
-          <span class="calc-summary-val" id="sum-discount-val" style="color:var(--accent3)">−€0</span>
-        </div>
-        <div class="calc-total-row">
-          <div>
-            <div class="calc-total-label" data-en="Total / month" data-es="Total / mes">Total / month</div>
-            <div class="calc-total-period" data-en="billed monthly · cancel anytime" data-es="factura mensual · cancela cuando quieras">billed monthly · cancel anytime</div>
-          </div>
-          <div class="calc-total-price" id="calcTotal">€40</div>
-        </div>
-        <a href="#contact" class="calc-cta" data-en="Request this plan →" data-es="Solicitar este plan →">Request this plan →</a>
-        <div class="calc-note" id="calcNote" data-en="On-premise · no per-query costs · Docker install" data-es="On-premise · sin coste por consulta · instalación Docker">On-premise · no per-query costs · Docker install</div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- Tier reference cards -->
   <div class="pricing-grid fade-in">
     <div class="pricing-card">
-      <div class="pricing-plan">Starter</div>
-      <div class="pricing-price"><sup>€</sup>8</div>
-      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
+      <div class="pricing-plan" data-en="Trial" data-es="Prueba">Trial</div>
+      <div class="pricing-price"><sup>€</sup>0</div>
+      <div class="pricing-period" data-en="7 days · full access · no credit card" data-es="7 días · acceso completo · sin tarjeta">7 days · full access · no credit card</div>
       <ul class="pricing-features">
-        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
-        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
+        <li data-en="1 user — full platform access" data-es="1 usuario — acceso completo a la plataforma">1 user — full platform access</li>
+        <li data-en="All modules: RAG, Tasks, Wiki, Incidents" data-es="Todos los módulos: RAG, Tareas, Wiki, Incidencias">All modules: RAG, Tasks, Wiki, Incidents</li>
+        <li data-en="Up to 20 documents" data-es="Hasta 20 documentos">Up to 20 documents</li>
+        <li data-en="50 AI queries" data-es="50 consultas IA">50 AI queries</li>
+        <li class="muted" data-en="Expires after 7 days" data-es="Expira a los 7 días">Expires after 7 days</li>
         <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
       </ul>
       <a href="#contact" class="pricing-cta ghost" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</a>
     </div>
     <div class="pricing-card featured">
       <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
-      <div class="pricing-plan">Team</div>
-      <div class="pricing-price"><sup>€</sup>20</div>
-      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
+      <div class="pricing-plan" data-en="Pro" data-es="Pro">Pro</div>
+      <div class="pricing-price"><sup>€</sup>99</div>
+      <div class="pricing-period" data-en="per team / month · up to 10 users" data-es="por equipo / mes · hasta 10 usuarios">per team / month · up to 10 users</div>
       <ul class="pricing-features">
-        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
+        <li data-en="Up to 10 users included" data-es="Hasta 10 usuarios incluidos">Up to 10 users included</li>
         <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
+        <li data-en="Tasks + Wiki + Incidents + Assets" data-es="Tareas + Wiki + Incidencias + Activos">Tasks + Wiki + Incidents + Assets</li>
+        <li data-en="Preventive maintenance schedules" data-es="Planificación de mantenimiento preventivo">Preventive maintenance schedules</li>
         <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
         <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
       </ul>
-      <a href="#contact" class="pricing-cta solid" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</a>
+      <a href="#contact" class="pricing-cta solid" data-en="Start Pro Trial" data-es="Iniciar Prueba Pro">Start Pro Trial</a>
     </div>
     <div class="pricing-card">
-      <div class="pricing-plan">Enterprise</div>
-      <div class="pricing-price"><sup>€</sup>32</div>
-      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
+      <div class="pricing-plan" data-en="Enterprise" data-es="Enterprise">Enterprise</div>
+      <div class="pricing-price"><sup>€</sup>499</div>
+      <div class="pricing-period" data-en="per month · unlimited users" data-es="por mes · usuarios ilimitados">per month · unlimited users</div>
       <ul class="pricing-features">
-        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
+        <li data-en="Everything in Pro" data-es="Todo lo de Pro">Everything in Pro</li>
+        <li data-en="Unlimited users — full company" data-es="Usuarios ilimitados — toda la empresa">Unlimited users — full company</li>
+        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
         <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
         <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
         <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
-        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
       </ul>
       <a href="#contact" class="pricing-cta ghost" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</a>
     </div>
   </div>
-  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
+  <p class="pricing-note" data-en="All plans: on-premise · no per-query costs · bilingual EN + ES · Docker install in minutes · cancel anytime" data-es="Todos los planes: on-premise · sin coste por consulta · bilingüe EN + ES · instalación Docker en minutos · cancela cuando quieras">All plans: on-premise · no per-query costs · bilingual EN + ES · Docker install in minutes · cancel anytime</p>
 </section>
-
-<script>
-// ── Pricing calculator ──
-// Single source of truth: Core €8/seat + €4/seat per optional module
-// Volume discounts: ≥15 seats −10%, ≥25 −15%, ≥50 −20%
-const CORE_PER_SEAT = 8;
-const MODULE_PRICE_PER_SEAT = 4; // flat €4 per module per seat
-const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
-const selected = new Set();
-
-function toggleMod(id){
-  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
-  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
-  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
-  calcPrice();
-}
-function adjustSeats(delta){
-  const inp=document.getElementById('seatsInput');
-  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
-  inp.value=v; calcPrice();
-}
-function calcPrice(){
-  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
-  const modCount=selected.size;
-  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
-  let subtotal=pricePerSeat*seats;
-  let discountPct=0;
-  if(seats>=50) discountPct=20;
-  else if(seats>=25) discountPct=15;
-  else if(seats>=15) discountPct=10;
-  const discount=Math.round(subtotal*discountPct/100);
-  const total=subtotal-discount;
-
-  document.getElementById('calcTotal').textContent='€'+total;
-  document.getElementById('sum-seats-val').textContent=seats;
-
-  // modules line
-  const modRow=document.getElementById('sum-modules-row');
-  if(modCount>0){
-    modRow.style.display='flex';
-    const isEs=document.documentElement.lang==='es';
-    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
-    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
-  } else { modRow.style.display='none'; }
-
-  // discount line
-  const discRow=document.getElementById('sum-discount-row');
-  if(discount>0){
-    discRow.style.display='flex';
-    const isEs=document.documentElement.lang==='es';
-    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
-    document.getElementById('sum-discount-val').textContent='−€'+discount;
-  } else { discRow.style.display='none'; }
-
-  // note
-  const note=document.getElementById('calcNote');
-  const isEs=document.documentElement.lang==='es';
-  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
-  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
-
-  // highlight matching tier card
-  document.querySelectorAll('.pricing-card').forEach(c=>c.classList.remove('calc-highlight'));
-  if(modCount===0) document.querySelectorAll('.pricing-card')[0]?.classList.add('calc-highlight');
-  else if(modCount<=3) document.querySelectorAll('.pricing-card')[1]?.classList.add('calc-highlight');
-  else document.querySelectorAll('.pricing-card')[2]?.classList.add('calc-highlight');
-}
-calcPrice();
-</script>
 
 <!-- ── ROADMAP ── -->
 <section id="roadmap" style="background:var(--surface);border-top:1px solid var(--border)">
@@ -1251,7 +835,7 @@ calcPrice();
     <div>
       <h2 data-en="Ready to deploy AI<br>on your infrastructure?" data-es="¿Listo para desplegar IA<br>en tu infraestructura?">Ready to deploy AI<br>on your infrastructure?</h2>
       <p class="section-sub" data-en="Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups." data-es="Reserva una demo y te mostraremos EngiIntel funcionando en vivo con un conjunto de documentos real de tu industria — sin diapositivas, sin maquetas.">Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups.</p>
-      <div class="contact-detail"><span>📧</span><a href="/cdn-cgi/l/email-protection#dabfb6b5a3b9b5a9aebba99ab5afaeb6b5b5b1f4b9b5b7" style="color:var(--accent);text-decoration:none"><span class="__cf_email__" data-cfemail="2b4e4744524844585f4a586b445e5f4744444005484446">[email&#160;protected]</span></a></div>
+      <div class="contact-detail"><span>📧</span><a href="mailto:eloycostas@outlook.com" style="color:var(--accent);text-decoration:none">eloycostas@outlook.com</a></div>
       <div class="contact-detail"><span>📍</span><span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span></div>
       <div class="contact-detail"><span>⏱</span><span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span></div>
     </div>
@@ -1303,32 +887,19 @@ calcPrice();
   <div class="footer-copy" data-en="© 2026 EngiIntel. All rights reserved." data-es="© 2026 EngiIntel. Todos los derechos reservados.">© 2026 EngiIntel. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 // ── Cursor ──
-(function(){
-  const curDot = document.getElementById('cursor'), curRing = document.getElementById('cursorRing');
-  if(!curDot || !curRing) return;
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+if (cur && ring) {
   document.body.style.cursor = 'none';
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX; my=e.clientY;
-    curDot.style.left=(mx-4)+'px'; curDot.style.top=(my-4)+'px';
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-4+'px';cur.style.top=my-4+'px';});
+  (function tick(){rx+=(mx-rx-16)*0.15;ry+=(my-ry-16)*0.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';ring.style.borderColor='rgba(0,212,255,0.8)';});
+    el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.borderColor='rgba(0,212,255,0.4)';});
   });
-  (function tick(){
-    rx+=(mx-rx-16)*0.15; ry+=(my-ry-16)*0.15;
-    curRing.style.left=rx+'px'; curRing.style.top=ry+'px';
-    requestAnimationFrame(tick);
-  })();
-  function attachCursor(){
-    document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
-      el.addEventListener('mouseenter',()=>{curDot.style.transform='scale(2.5)';curRing.style.borderColor='rgba(0,212,255,0.8)';});
-      el.addEventListener('mouseleave',()=>{curDot.style.transform='scale(1)';curRing.style.borderColor='rgba(0,212,255,0.4)';});
-    });
-  }
-  attachCursor();
-  window._reattachCursor = attachCursor;
-})();
+}
 
 // ── Fade-in observer ──
 const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.05});
@@ -1338,9 +909,9 @@ setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.ad
 // ── Nav active on scroll ──
 const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
 window.addEventListener('scroll',()=>{
-  let activeId='';
-  document.querySelectorAll('section[id],div[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-140)activeId=s.id;});
-  navAnchors.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+activeId);});
+  let cur='';
+  document.querySelectorAll('section[id],div[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-140)cur=s.id;});
+  navAnchors.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
   document.getElementById('backTop').classList.toggle('visible',window.scrollY>600);
 },{ passive:true });
 
@@ -1369,12 +940,9 @@ function setLang(l){
   lang=l;
   document.documentElement.lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    if(b.textContent.trim().toUpperCase()===l.toUpperCase()) b.classList.add('active');
-  });
+  document.querySelector('.lang-btn:'+(l==='en'?'first':'last')+'-child').classList.add('active');
   document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));
   document.querySelectorAll('[data-'+l+'-placeholder]').forEach(el=>el.placeholder=el.getAttribute('data-'+l+'-placeholder'));
-  if(window._reattachCursor) window._reattachCursor();
 }
 
 // ── Form validation & submission ──
@@ -1400,14 +968,15 @@ async function handleSubmit(e){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name,email,company,industry,message})
     });
-  }catch(err){ console.warn('signup post failed',err); }
+  }catch(err){
+    console.warn('signup post failed',err);
+  }
   document.getElementById('contactForm').style.display='none';
   const msg=document.getElementById('successMsg');
   msg.style.display='block';
-  msg.innerHTML=lang==='es'
-    ?'<p style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent3);margin-bottom:8px">✓ Solicitud recibida</p><p style="color:var(--text-mid);font-size:0.9rem">Nos pondremos en contacto en menos de 24 horas.</p>'
-    :'<p style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent3);margin-bottom:8px">✓ Request received</p><p style="color:var(--text-mid);font-size:0.9rem">We\'ll reach out within 24 hours.</p>';
+  msg.textContent=lang==='es'?'✓ Mensaje recibido. Nos pondremos en contacto en 24 horas.':'✓ Message received. We\'ll be in touch within 24 hours.';
 }
 </script>
 </body>
 </html>
+ 
