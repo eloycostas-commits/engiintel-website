@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TD9DTDX9');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — EngiIntel</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://engiintel.com/thank-you">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1219;
+    --surface2: #111820;
+    --border: #1a2433;
+    --accent: #00d4ff;
+    --accent2: #0066ff;
+    --accent3: #00ff9d;
+    --text: #e8edf2;
+    --text-dim: #8a9bab;
+    --text-mid: #b0bec8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  /* Glowing orb effect */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .container {
+    max-width: 680px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 60px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+  }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 32px;
+    background: rgba(0,255,157,0.1);
+    border: 2px solid var(--accent3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  @keyframes scaleIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .accent { color: var(--accent); }
+
+  .message {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 36px;
+  }
+
+  .info-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-bottom: 36px;
+    text-align: left;
+  }
+
+  .info-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-list li {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .info-list li::before {
+    content: '→';
+    color: var(--accent3);
+    font-family: 'DM Mono', monospace;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 14px 32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover {
+    background: #33ddff;
+    box-shadow: 0 0 32px rgba(0,212,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .footer-note {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-note a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-note a:hover {
+    color: var(--accent3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .card {
+      padding: 40px 28px;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Track page view and conversion event
+  window.dataLayer = window.dataLayer || [];
+  
+  // Push conversion event to GTM
+  window.dataLayer.push({
+    'event': 'form_submission',
+    'form_type': 'contact_demo',
+    'conversion_type': 'lead',
+    'page_path': '/thank-you'
+  });
+
+  // Also push a specific conversion event for Google Analytics
+  window.dataLayer.push({
+    'event': 'conversion',
+    'conversion_label': 'demo_request_submitted'
+  });
+
+  console.log('[GTM] Conversion events pushed to dataLayer');
+</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD9DTDX9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="container">
+    <div class="card">
+      <div class="success-icon">✓</div>
+      
+      <h1>
+        <span class="accent">Thank you!</span><br>
+        Your request has been received.
+      </h1>
+
+      <p class="message">
+        We've received your demo request and will get back to you within 24 hours. 
+        Our team is excited to show you how EngiIntel can transform your engineering workflows.
+      </p>
+
+      <div class="info-box">
+        <div class="info-title">What happens next?</div>
+        <ul class="info-list">
+          <li>Our team will review your request and contact you via email</li>
+          <li>We'll schedule a personalized demo at your convenience</li>
+          <li>You'll see EngiIntel in action with your specific use case</li>
+          <li>We'll discuss deployment options and answer all your questions</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+        <a href="https://github.com/engiintel" class="btn btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+
+      <div class="footer-note">
+        Questions? Email us at <a href="mailto:hello@engiintel.com">hello@engiintel.com</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Track button clicks
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const btnText = this.textContent.trim();
+        const btnType = this.classList.contains('btn-primary') ? 'primary' : 'secondary';
+        
+        window.dataLayer.push({
+          'event': 'button_click',
+          'button_text': btnText,
+          'button_type': btnType,
+          'page_location': window.location.href
+        });
+        
+        console.log('[GTM] Button click tracked:', btnText);
+      });
+    });
+
+    // Track time on page
+    let startTime = Date.now();
+    
+    window.addEventListener('beforeunload', function() {
+      const timeSpent = Math.round((Date.now() - startTime) / 1000);
+      
+      window.dataLayer.push({
+        'event': 'time_on_page',
+        'page_path': '/thank-you',
+        'time_seconds': timeSpent
+      });
+    });
+  </script>
+</body>
+</html>
