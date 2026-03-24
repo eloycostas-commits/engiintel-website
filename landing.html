@@ -1414,12 +1414,8 @@ async function handleSubmit(e){
       body:JSON.stringify({name,email,company,industry,message})
     });
   }catch(err){ console.warn('signup post failed',err); }
-  document.getElementById('contactForm').style.display='none';
-  const msg=document.getElementById('successMsg');
-  msg.style.display='block';
-  msg.innerHTML=lang==='es'
-    ?'<p style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent3);margin-bottom:8px">✓ Solicitud recibida</p><p style="color:var(--text-mid);font-size:0.9rem">Nos pondremos en contacto en menos de 24 horas.</p>'
-    :'<p style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent3);margin-bottom:8px">✓ Request received</p><p style="color:var(--text-mid);font-size:0.9rem">We\'ll reach out within 24 hours.</p>';
+  // Redirect to thank you page
+  window.location.href='/thank-you.html';
 }
 </script>
 </body>
