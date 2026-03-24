@@ -1264,7 +1264,7 @@ calcPrice();
     <div>
       <h2 data-en="Ready to deploy AI<br>on your infrastructure?" data-es="¿Listo para desplegar IA<br>en tu infraestructura?">Ready to deploy AI<br>on your infrastructure?</h2>
       <p class="section-sub" data-en="Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups." data-es="Reserva una demo y te mostraremos EngiIntel funcionando en vivo con un conjunto de documentos real de tu industria — sin diapositivas, sin maquetas.">Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups.</p>
-      <div class="contact-detail"><span>📧</span><a href="/cdn-cgi/l/email-protection#dabfb6b5a3b9b5a9aebba99ab5afaeb6b5b5b1f4b9b5b7" style="color:var(--accent);text-decoration:none"><span class="__cf_email__" data-cfemail="2b4e4744524844585f4a586b445e5f4744444005484446">[email&#160;protected]</span></a></div>
+      <div class="contact-detail"><span>📧</span><a href="mailto:eloycostas@engiintel.com" style="color:var(--accent);text-decoration:none">eloycostas@engiintel.com</a></div>
       <div class="contact-detail"><span>📍</span><span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span></div>
       <div class="contact-detail"><span>⏱</span><span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span></div>
     </div>
@@ -1402,6 +1402,7 @@ async function handleSubmit(e){
   const btn=document.querySelector('.form-submit');
   const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!name){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu nombre.':'⚠ Please enter your name.';return;}
+  if(!company){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu empresa.':'⚠ Please enter your company.';return;}
   if(!re.test(email)){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce un email válido.':'⚠ Please enter a valid email address.';return;}
   if(!industry){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor selecciona tu industria.':'⚠ Please select your industry.';return;}
   errEl.style.display='none';
