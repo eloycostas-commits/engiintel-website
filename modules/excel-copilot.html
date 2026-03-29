@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5P3VL8DTRG');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Copilot — AI-Powered Excel Analysis | EngiIntel</title>
+<meta name="description" content="Query Excel data in natural language. Generate charts with one command. Save queries as reusable macros. Multi-sheet analysis and workflow automation.">
+<link rel="canonical" href="https://engiintel.com/modules/excel-copilot.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+/* Module Hero */
+.module-hero { min-height: 60vh; display: flex; align-items: center; padding: 140px 60px 80px; background: linear-gradient(135deg, rgba(0,255,157,0.08), rgba(0,212,255,0.05)); border-bottom: 1px solid var(--border); }
+.module-hero-content { max-width: 700px; }
+.module-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,255,157,0.3); padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent3); letter-spacing: 0.1em; margin-bottom: 24px; background: rgba(0,255,157,0.05); }
+.module-hero h1 { font-size: clamp(2.4rem, 4vw, 3.6rem); color: var(--accent3); }
+.module-hero-sub { font-size: 1.15rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 36px; }
+
+/* Features Grid */
+.feature-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+.feature-item { background: var(--surface); border: 1px solid var(--border); padding: 32px; transition: all 0.3s; }
+.feature-item:hover { border-color: rgba(0,255,157,0.3); transform: translateY(-4px); }
+.feature-item-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+.feature-item-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; color: var(--accent3); }
+.feature-item-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px; }
+.feature-item-example { background: var(--bg); border: 1px solid var(--border); padding: 12px 16px; font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-mid); margin-top: 12px; }
+
+/* Use Cases */
+.use-cases { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.use-case { background: var(--surface); border-left: 3px solid var(--accent3); padding: 24px; }
+.use-case-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+.use-case-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+
+/* Pricing Box */
+.pricing-box { background: var(--surface); border: 2px solid var(--accent3); padding: 40px; text-align: center; max-width: 500px; margin: 0 auto; }
+.pricing-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+.pricing-amount { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.5rem; color: var(--accent3); line-height: 1; margin-bottom: 8px; }
+.pricing-period { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 24px; }
+.pricing-note { font-size: 0.8rem; color: var(--text-dim); margin-top: 16px; }
+
+/* Demo Section */
+.demo-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.demo-placeholder { background: var(--bg); border: 1px solid var(--border); padding: 80px 40px; text-align: center; color: var(--text-dim); font-family: 'DM Mono', monospace; font-size: 0.85rem; }
+
+@media (max-width: 768px) {
+  .module-hero { padding: 120px 20px 60px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .use-cases { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<a href="#" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">Engi<span>Intel</span></a>
+  <ul class="nav-links">
+    <li><a href="../features.html">Features</a></li>
+    <li class="nav-dropdown">
+      <a href="../modules.html" class="nav-dropdown-toggle">Modules ▼</a>
+      <div class="nav-dropdown-menu">
+        <a href="../modules.html">All Modules</a>
+        <a href="document-intelligence.html">📄 Document Intelligence</a>
+        <a href="excel-copilot.html" class="new-badge">📊 Excel Copilot</a>
+        <a href="wiki.html">📚 Wiki & Knowledge Base</a>
+        <a href="assets.html">🏢 Asset Registry</a>
+        <a href="incidents.html">⚠️ Incident Reports</a>
+        <a href="ai-agent.html">🤖 AI Agent Mode</a>
+      </div>
+    </li>
+    <li><a href="../industries.html">Industries</a></li>
+    <li><a href="../pricing.html">Pricing</a></li>
+    <li><a href="../how-it-works.html">How It Works</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../contact.html" class="nav-cta">Book a Demo</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<!-- ── MODULE HERO ── -->
+<section class="module-hero">
+  <div class="module-hero-content">
+    <div class="module-badge">MODULE 02 · NEW</div>
+    <h1>Turn Excel into Your AI Assistant</h1>
+    <p class="module-hero-sub">
+      Query Excel data in natural language. Generate charts with one command. Save queries as reusable macros. No Excel expertise required.
+    </p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="../contact.html" class="btn-primary">Try Excel Copilot →</a>
+      <a href="../pricing.html" class="btn-secondary">See Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section>
+  <div class="section-label">Capabilities</div>
+  <h2>Everything you need to work with Excel data,<br>without the Excel complexity.</h2>
+  <p class="section-sub">Engineers without advanced Excel skills get any result they need. Just describe what you want in plain language.</p>
+  
+  <div class="feature-grid fade-in animate">
+    <div class="feature-item">
+      <span class="feature-item-icon">💬</span>
+      <div class="feature-item-title">Natural Language Queries</div>
+      <div class="feature-item-desc">Ask questions about your Excel data in plain Spanish or English. Get instant tables with filtered, sorted, and aggregated results.</div>
+      <div class="feature-item-example">
+        "Show me elevators with 1966 regulations by region"<br>
+        → Instant filtered table with results
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-item-icon">📊</span>
+      <div class="feature-item-title">One-Command Chart Generation</div>
+      <div class="feature-item-desc">Generate bar charts, line charts, and pie charts with a single command. The AI creates the chart and embeds it in a downloadable Excel file.</div>
+      <div class="feature-item-example">
+        "Create a bar chart showing elevators by region"<br>
+        → Chart generated and ready to download
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-item-icon">💾</span>
+      <div class="feature-item-title">Macro System</div>
+      <div class="feature-item-desc">Save frequent queries as macros with one click. Reuse them instantly without retyping. Share macros with your team for consistent results.</div>
+      <div class="feature-item-example">
+        Click "Save as Macro" → Name it → One-click reuse<br>
+        Perfect for recurring reports
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-item-icon">🔄</span>
+      <div class="feature-item-title">Workflow Automation</div>
+      <div class="feature-item-desc">Define custom workflows with business logic. The AI follows your rules automatically for consistent, repeatable analysis.</div>
+      <div class="feature-item-example">
+        WORKFLOW: Filter by region → Filter by regulation → Count<br>
+        → AI applies your logic every time
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-item-icon">📑</span>
+      <div class="feature-item-title">Multi-Sheet Analysis</div>
+      <div class="feature-item-desc">Query across multiple sheets in the same workbook. The AI understands relationships and correlates data automatically.</div>
+      <div class="feature-item-example">
+        "Compare data from Sheet1 and Sheet2"<br>
+        → Cross-sheet analysis in seconds
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <span class="feature-item-icon">🔒</span>
+      <div class="feature-item-title">100% Local Processing</div>
+      <div class="feature-item-desc">All Excel analysis runs on your server. No data sent to external APIs. Full GDPR compliance by design.</div>
+      <div class="feature-item-example">
+        Your data never leaves your infrastructure<br>
+        → Complete privacy and control
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── USE CASES ── -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-label">Use Cases</div>
+  <h2>Real-world applications<br>across regulated industries.</h2>
+  <p class="section-sub">From compliance tracking to cost analysis, Excel Copilot handles the complexity.</p>
+  
+  <div class="use-cases fade-in animate">
+    <div class="use-case">
+      <div class="use-case-title">Regulatory Compliance Tracking</div>
+      <div class="use-case-desc">Track which assets comply with which regulations. Generate compliance reports by region, date, or regulation type.</div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-title">Asset Inventory Analysis</div>
+      <div class="use-case-desc">Analyze asset data by location, type, age, or status. Identify maintenance patterns and predict failures.</div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-title">Maintenance Schedule Optimization</div>
+      <div class="use-case-desc">Query maintenance history, identify bottlenecks, and optimize schedules based on historical data.</div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-title">Incident Data Reporting</div>
+      <div class="use-case-desc">Aggregate incident data by severity, location, or asset type. Generate executive reports in seconds.</div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-title">Cost Analysis & Forecasting</div>
+      <div class="use-case-desc">Analyze cost trends, compare budgets vs actuals, and forecast future expenses based on historical patterns.</div>
+    </div>
+    <div class="use-case">
+      <div class="use-case-title">Performance Metrics Dashboard</div>
+      <div class="use-case-desc">Track KPIs across teams, projects, or time periods. Generate visual dashboards without manual Excel work.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEMO ── -->
+<section class="demo-section">
+  <div class="section-label">See It In Action</div>
+  <h2>Watch Excel Copilot in action</h2>
+  <p class="section-sub">See how engineers query Excel data, generate charts, and save macros — all in natural language.</p>
+  
+  <div class="demo-placeholder fade-in animate">
+    📹 Demo video coming soon<br>
+    <span style="font-size:0.75rem;margin-top:12px;display:block">
+      In the meantime, <a href="../contact.html" style="color:var(--accent)">book a live demo</a> to see it in action
+    </span>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section>
+  <div class="section-label">Pricing</div>
+  <h2>Simple, transparent pricing</h2>
+  <p class="section-sub">Excel Copilot is an add-on module. Add it to any Pro or Enterprise plan.</p>
+  
+  <div class="pricing-box fade-in animate">
+    <div class="pricing-label">Excel Copilot Module</div>
+    <div class="pricing-amount">€15</div>
+    <div class="pricing-period">per seat / month</div>
+    <a href="../contact.html" class="btn-primary" style="width:100%">Add to Your Plan →</a>
+    <div class="pricing-note">
+      Requires Pro or Enterprise plan (€49/month base)<br>
+      Includes unlimited queries, charts, and macros
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div style="background:linear-gradient(90deg,rgba(0,255,157,0.12),rgba(0,212,255,0.08));border-top:1px solid rgba(0,255,157,0.15);border-bottom:1px solid rgba(0,255,157,0.15);padding:60px;text-align:center">
+  <h2 style="margin-bottom:16px">Ready to try Excel Copilot?</h2>
+  <p style="font-size:1.05rem;color:var(--text-mid);margin-bottom:32px">Book a demo and we'll show you how it works with your Excel files.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <a href="../contact.html" class="btn-primary">Book a Demo →</a>
+    <a href="../modules.html" class="btn-secondary">View All Modules</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Engi<span>Intel</span></div>
+  <div class="footer-copy">© 2026 EngiIntel. All rights reserved.</div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
