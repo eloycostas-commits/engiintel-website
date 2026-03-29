@@ -12,596 +12,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
-
-<!-- ╔══════════════════════════════════════════════════════╗ -->
-<!-- ║  SEO — Primary meta tags                            ║ -->
-<!-- ╚══════════════════════════════════════════════════════╝ -->
-<meta name="description" content="EngiIntel is a self-hosted AI platform for regulated industries. Query regulations, manage a knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents — with zero data leaving your server.">
-<meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
-<meta name="author" content="EngiIntel">
-<meta name="robots" content="index, follow">
+<meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage knowledge, track assets, automate workflows — with zero data leaving your server.">
 <link rel="canonical" href="https://engiintel.com/">
-
-<!-- ╔══════════════════════════════════════════════════════╗ -->
-<!-- ║  Open Graph (LinkedIn, Facebook, WhatsApp, Slack)   ║ -->
-<!-- ╚══════════════════════════════════════════════════════╝ -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EngiIntel">
-<meta property="og:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
-<meta property="og:description" content="Self-hosted AI that queries regulations, manages your knowledge base, tracks assets, generates incident reports, automates workflows with n8n and runs autonomous AI agents. No cloud. No data risk.">
-<meta property="og:url" content="https://engiintel.com/">
-<meta property="og:image" content="https://engiintel.com/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="EngiIntel — AI Agent Mode running on local infrastructure">
-<meta property="og:locale" content="en_GB">
-<meta property="og:locale:alternate" content="es_ES">
-
-<!-- ╔══════════════════════════════════════════════════════╗ -->
-<!-- ║  Twitter / X Card                                   ║ -->
-<!-- ╚══════════════════════════════════════════════════════╝ -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
-<meta name="twitter:description" content="Self-hosted AI for engineers. Query regulations, track assets, generate incident reports, automate workflows with n8n and run autonomous agents. Zero data leaves your server.">
-<meta name="twitter:image" content="https://engiintel.com/og-image.png">
-<meta name="twitter:image:alt" content="EngiIntel — AI Agent Mode terminal demo">
-
-<!-- ╔══════════════════════════════════════════════════════╗ -->
-<!-- ║  Structured Data — SoftwareApplication (JSON-LD)   ║ -->
-<!-- ╚══════════════════════════════════════════════════════╝ -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "EngiIntel",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Linux, Docker",
-  "description": "Self-hosted AI document intelligence platform for regulated industries. Features RAG-powered document search, wiki and knowledge base, asset registry, incident report generation, n8n workflow automation and autonomous AI agent mode.",
-  "url": "https://engiintel.com/",
-  "softwareVersion": "1.0",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Free",
-      "price": "0",
-      "priceCurrency": "EUR"
-    },
-    {
-      "@type": "Offer",
-      "name": "Pro",
-      "price": "49",
-      "priceCurrency": "EUR",
-      "billingIncrement": "monthly"
-    }
-  ],
-  "featureList": [
-    "RAG document search with page-level citations",
-    "Wiki and knowledge base with version history",
-    "Asset registry and incident report generation",
-    "AI Agent Mode with ReAct loop",
-    "n8n workflow automation and integrations",
-    "On-premise deployment — no cloud required",
-    "OCR for scanned documents",
-    "SharePoint, Google Drive and Confluence connectors",
-    "Multilingual support"
-  ],
-  "publisher": {
-    "@type": "Organization",
-    "name": "EngiIntel",
-    "url": "https://engiintel.com/"
-  }
-}
-</script>
-
-<!-- ╔══════════════════════════════════════════════════════╗ -->
-<!-- ║  Favicon (replace paths with your actual assets)   ║ -->
-<!-- ╚══════════════════════════════════════════════════════╝ -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#080c10">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <style>
-  :root {
-    --bg: #080c10;
-    --surface: #0d1219;
-    --surface2: #111820;
-    --border: #1a2433;
-    --accent: #00d4ff;
-    --accent2: #0066ff;
-    --accent3: #00ff9d;
-    --text: #e8edf2;
-    --text-dim: #8a9bab;
-    --text-mid: #b0bec8;
-    --danger: #ff4444;
-  }
+/* Hero */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; z-index: 1; }
+.hero-content { max-width: 660px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,212,255,0.3); padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 36px; background: rgba(0,212,255,0.05); }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero-sub { font-size: 1.1rem; color: var(--text-mid); line-height: 1.75; max-width: 520px; margin-bottom: 44px; font-weight: 400; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-trust { display: flex; align-items: center; gap: 28px; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.trust-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
+.trust-item .tick { color: var(--accent3); }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+/* Stats */
+.stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 60px; display: grid; grid-template-columns: repeat(4,1fr); position: relative; z-index: 1; }
+.stat { padding: 0 40px; border-right: 1px solid var(--border); }
+.stat:first-child{padding-left:0} .stat:last-child{border-right:none}
+.stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    overflow-x: hidden;
-  }
+/* Benefits */
+.benefits-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.benefit-card { background: var(--surface); border: 1px solid var(--border); padding: 36px; transition: all 0.3s; }
+.benefit-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.benefit-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+.benefit-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; color: var(--text); }
+.benefit-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; }
 
-  /* Custom cursor */
-  .cursor { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: screen; left: -20px; top: -20px; }
-  .cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(0,212,255,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.15s ease; left: -40px; top: -40px; }
+/* CTA Section */
+.cta-section { background: linear-gradient(90deg,rgba(0,102,255,0.12),rgba(0,212,255,0.08)); border-top: 1px solid rgba(0,212,255,0.15); border-bottom: 1px solid rgba(0,212,255,0.15); padding: 60px; text-align: center; }
+.cta-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; margin-bottom: 16px; }
+.cta-sub { font-size: 1.05rem; color: var(--text-mid); margin-bottom: 32px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-  /* Subtle grid */
-
-  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
-
-
-  /* ── NAV ── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(8,12,16,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-  .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 0.85rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; transition: color 0.2s; position: relative; padding-bottom: 3px; }
-  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transition: transform 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-  .nav-cta { background: var(--accent) !important; color: var(--bg) !important; padding: 9px 22px !important; font-family: 'Syne', sans-serif !important; font-weight: 700 !important; font-size: 0.82rem !important; letter-spacing: 0.04em !important; }
-  .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: #33ddff !important; box-shadow: 0 0 24px rgba(0,212,255,0.35) !important; }
-  .lang-switch { display: flex; gap: 4px; margin-left: 20px; }
-  .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 4px 10px; font-family: 'DM Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
-  .lang-btn.active, .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── HERO ── */
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; z-index: 1; }
-  .hero-content { max-width: 660px; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(0,212,255,0.3); padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 36px; background: rgba(0,212,255,0.05); }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-
-  h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 4.5vw, 4.2rem); line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 28px; color: var(--text); }
-  h1 .accent { color: var(--accent); }
-  h1 .accent2 { color: var(--accent3); }
-
-  .hero-sub { font-size: 1.1rem; color: var(--text-mid); line-height: 1.75; max-width: 520px; margin-bottom: 44px; font-weight: 400; }
-  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
-
-  .hero-trust { display: flex; align-items: center; gap: 28px; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; }
-  .trust-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
-  .trust-item .tick { color: var(--accent3); }
-
-  .btn-primary { background: var(--accent); color: var(--bg); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; cursor: pointer; }
-  .btn-primary:hover { background: #33ddff; box-shadow: 0 0 48px rgba(0,212,255,0.4); transform: translateY(-2px); }
-  .btn-secondary { border: 1px solid var(--border); color: var(--text-mid); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; cursor: pointer; }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Hero terminal */
-  .hero-visual { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 500px; opacity: 0.9; }
-  .terminal { background: var(--surface); border: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.78rem; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.08); }
-  .terminal-header { background: var(--surface2); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r{background:#ff5f57} .dot-y{background:#febc2e} .dot-g{background:#28c840}
-  .terminal-title { margin-left: auto; color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.05em; }
-  .terminal-body { padding: 24px; line-height: 1.8; }
-  .t-dim{color:var(--text-dim)} .t-accent{color:var(--accent)} .t-green{color:var(--accent3)} .t-yellow{color:#ffd700} .t-white{color:var(--text)} .t-danger{color:var(--danger)}
-  .typing::after { content:'█'; animation: blink 1s infinite; color: var(--accent); }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  /* ── STATS ── */
-  .stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 60px; display: grid; grid-template-columns: repeat(4,1fr); position: relative; z-index: 1; }
-  .stat { padding: 0 40px; border-right: 1px solid var(--border); }
-  .stat:first-child{padding-left:0} .stat:last-child{border-right:none}
-  .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 6px; }
-  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
-
-  /* ── PROBLEM ── */
-  .problem-section { padding: 100px 60px; background: var(--surface); border-bottom: 1px solid var(--border); position: relative; z-index: 1; }
-  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .problem-quote { font-family: 'Syne', sans-serif; font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-weight: 700; line-height: 1.35; color: var(--text); border-left: 3px solid var(--accent); padding-left: 28px; margin-bottom: 24px; }
-  .problem-quote em { color: var(--accent); font-style: normal; }
-  .problem-desc { font-size: 1rem; color: var(--text-mid); line-height: 1.75; font-weight: 400; }
-  .problem-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .problem-stat { background: var(--bg); border: 1px solid var(--border); padding: 28px 24px; }
-  .problem-stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-  .problem-stat-label { font-size: 0.84rem; color: var(--text-mid); line-height: 1.5; font-weight: 400; }
-
-  /* ── SECTIONS ── */
-  section { padding: 100px 60px; position: relative; z-index: 1; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-  h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 20px; }
-  .section-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.75; max-width: 520px; margin-bottom: 56px; font-weight: 400; }
-
-  /* ── FEATURES ── */
-  .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .feature-card { background: var(--surface); padding: 40px; transition: background 0.3s; position: relative; overflow: hidden; }
-  .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
-  .feature-card:hover { background: var(--surface2); }
-  .feature-card:hover::before { opacity: 1; }
-  .feature-icon { font-size: 1.8rem; margin-bottom: 20px; display: block; }
-  .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 12px; color: var(--text); }
-  .feature-desc { font-size: 0.87rem; color: var(--text-dim); line-height: 1.75; font-weight: 400; }
-  .feature-tag { display: inline-block; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent3); letter-spacing: 0.08em; border: 1px solid rgba(0,255,157,0.2); padding: 3px 10px; }
-
-  /* Features expand */
-  .features-more { overflow: hidden; max-height: 0; transition: max-height 0.5s ease; border: 1px solid var(--border); border-top: none; }
-  .features-more.open { max-height: 2000px; }
-  .features-more-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
-  .features-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 2px; padding: 13px; border: 1px solid var(--border); background: transparent; color: var(--text-dim); font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; width: 100%; }
-  .features-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .toggle-arrow { transition: transform 0.3s; display: inline-block; }
-  .toggle-arrow.open { transform: rotate(180deg); }
-
-  /* ── HOW IT WORKS ── */
-  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
-  .steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), var(--accent), transparent); opacity: 0.3; }
-  .step { padding: 0 30px; text-align: center; }
-  .step-num { width: 56px; height: 56px; border: 1px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent); margin: 0 auto 24px; background: var(--bg); position: relative; z-index: 1; }
-  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; }
-  .step-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; font-weight: 400; }
-
-  /* ── INDUSTRIES ── */
-  .industries-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-  .industry-card { border: 1px solid var(--border); padding: 32px; transition: all 0.3s; background: var(--surface); position: relative; overflow: hidden; }
-  .industry-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent); opacity: 0; transition: opacity 0.3s; }
-  .industry-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-  .industry-card:hover::after { opacity: 1; }
-  .industry-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-  .industry-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
-  .industry-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; font-weight: 400; }
-
-  /* ── PRIVACY ── */
-  .privacy-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .privacy-visual { font-family: 'DM Mono', monospace; font-size: 0.78rem; background: var(--bg); border: 1px solid var(--border); padding: 32px; line-height: 2; }
-  .check-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
-  .check-icon { width: 22px; height: 22px; border: 1px solid var(--accent3); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent3); flex-shrink: 0; margin-top: 2px; }
-  .check-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.55; font-weight: 400; }
-  .check-text strong { color: var(--text); font-weight: 600; }
-
-  /* ── PRICING ── */
-  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; background: var(--border); border: 1px solid var(--border); margin-bottom: 20px; }
-  .pricing-card { background: var(--surface); padding: 48px 40px; position: relative; }
-  .pricing-card.featured { background: var(--surface2); outline: 2px solid var(--accent2); outline-offset: -2px; z-index: 2; }
-  .pricing-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--accent2); color: white; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; padding: 4px 16px; text-transform: uppercase; white-space: nowrap; }
-  .pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
-  .pricing-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); line-height: 1; margin-bottom: 6px; }
-  .pricing-price sup { font-size: 1.4rem; vertical-align: top; margin-top: 8px; display: inline-block; }
-  .pricing-period { font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px; line-height: 1.5; }
-  .pricing-features { list-style: none; margin-bottom: 36px; }
-  .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 9px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; font-weight: 400; line-height: 1.5; }
-  .pricing-features li:last-child { border-bottom: none; }
-  .pricing-features li::before { content: '✓'; color: var(--accent3); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-  .pricing-features li.muted { color: var(--text-dim); }
-  .pricing-features li.muted::before { color: var(--border); }
-  .pricing-cta { display: block; text-align: center; padding: 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; width: 100%; }
-  .pricing-cta.solid { background: var(--accent2); color: white; }
-  .pricing-cta.solid:hover { background: #0055dd; box-shadow: 0 0 28px rgba(0,102,255,0.4); }
-  .pricing-cta.ghost { background: transparent; color: var(--text-mid); border: 1px solid var(--border); }
-  .pricing-cta.ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .pricing-note { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-align: center; letter-spacing: 0.03em; }
-
-  /* ── ROADMAP ── */
-  .roadmap { display: flex; flex-direction: column; border: 1px solid var(--border); }
-  .roadmap-item { display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid var(--border); overflow: hidden; }
-  .roadmap-item:last-child { border-bottom: none; }
-  .roadmap-phase { padding: 28px 32px; background: var(--surface2); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-  .phase-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-  .phase-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; }
-  .phase-done{color:var(--accent3)} .phase-current{color:var(--accent)} .phase-next{color:var(--text-mid)}
-  .roadmap-content { padding: 28px 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .roadmap-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; padding: 4px 12px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: 0.05em; }
-  .roadmap-tag.done { border-color: rgba(0,255,157,0.3); color: var(--accent3); background: rgba(0,255,157,0.05); }
-  .roadmap-tag.active { border-color: rgba(0,212,255,0.3); color: var(--accent); background: rgba(0,212,255,0.05); }
-
-  /* ── FAQ ── */
-  .faq-list { border: 1px solid var(--border); }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-item:last-child { border-bottom: none; }
-  .faq-question { padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text); transition: color 0.2s; user-select: none; gap: 16px; }
-  .faq-question:hover { color: var(--accent); }
-  .faq-icon { font-family: 'DM Mono', monospace; font-size: 1.2rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
-  .faq-icon.open { transform: rotate(45deg); }
-  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-  .faq-answer.open { max-height: 400px; }
-  .faq-answer-inner { padding: 16px 28px 22px; font-size: 0.89rem; color: var(--text-mid); line-height: 1.75; font-weight: 400; border-top: 1px solid var(--border); }
-
-  /* ── CONTACT ── */
-  .contact-section { background: var(--surface); border-top: 1px solid var(--border); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .contact-detail { display: flex; align-items: center; gap: 12px; margin-top: 24px; font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
-
-  /* Form */
-  form { display: flex; flex-direction: column; gap: 12px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-label { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
-  input, textarea, select { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400; transition: border-color 0.2s; outline: none; width: 100%; }
-  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(0,212,255,0.12); }
-  input::placeholder, textarea::placeholder { color: var(--text-dim); }
-  select option { background: var(--surface2); }
-  textarea { resize: vertical; min-height: 110px; }
-  .form-error { display: none; color: var(--danger); font-family: 'DM Mono', monospace; font-size: 0.74rem; padding: 6px 0; letter-spacing: 0.02em; }
-  .form-submit { background: var(--accent); color: var(--bg); border: none; padding: 15px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; width: 100%; margin-top: 4px; }
-  .form-submit:hover { background: #33ddff; box-shadow: 0 0 40px rgba(0,212,255,0.3); }
-  .form-note { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-align: center; margin-top: 4px; }
-  .success-msg { display: none; background: rgba(0,255,157,0.08); border: 1px solid rgba(0,255,157,0.3); color: var(--accent3); padding: 24px; font-family: 'DM Mono', monospace; font-size: 0.84rem; text-align: center; letter-spacing: 0.04em; line-height: 1.6; }
-
-  /* ── FOOTER ── */
-  footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
-  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
-  .footer-logo span { color: var(--accent); }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.05em; }
-
-  /* ── MODULES ── */
-  .modules-section { padding: 100px 60px; background: var(--bg); border-top: 1px solid var(--border); position: relative; z-index: 1; }
-  .module-core-banner { border: 1px solid rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-bottom: 48px; flex-wrap: wrap; }
-  .module-core-left { display: flex; align-items: center; gap: 20px; }
-  .module-core-icon { font-size: 2rem; flex-shrink: 0; }
-  .module-core-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--accent); margin-bottom: 4px; }
-  .module-core-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.6; max-width: 500px; }
-  .module-core-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); border: 1px solid rgba(0,212,255,0.4); padding: 5px 14px; letter-spacing: 0.1em; white-space: nowrap; flex-shrink: 0; }
-  .module-core-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .module-core-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent3); border: 1px solid rgba(0,255,157,0.2); padding: 3px 10px; letter-spacing: 0.06em; }
-
-  .modules-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
-  .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .module-card { background: var(--surface); padding: 36px; position: relative; overflow: hidden; transition: background 0.3s; cursor: default; }
-  .module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.3s; }
-  .module-card:hover { background: var(--surface2); }
-  .module-card:hover::before { opacity: 1; }
-  .module-card.mod-ops::before { background: linear-gradient(90deg, var(--accent), transparent); }
-  .module-card.mod-excel::before { background: linear-gradient(90deg, var(--accent3), transparent); }
-  .module-card.mod-wiki::before { background: linear-gradient(90deg, #a78bfa, transparent); }
-  .module-card.mod-incidents::before { background: linear-gradient(90deg, #fb923c, transparent); }
-  .module-card.mod-agent::before { background: linear-gradient(90deg, var(--accent2), transparent); }
-  .module-card.mod-analytics::before { background: linear-gradient(90deg, #f472b6, transparent); }
-  .module-number { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.12em; margin-bottom: 16px; }
-  .module-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
-  .module-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
-  .module-tagline { font-family: 'DM Mono', monospace; font-size: 0.7rem; margin-bottom: 14px; letter-spacing: 0.04em; }
-  .module-card.mod-ops .module-tagline { color: var(--accent); }
-  .module-card.mod-excel .module-tagline { color: var(--accent3); }
-  .module-card.mod-wiki .module-tagline { color: #a78bfa; }
-  .module-card.mod-incidents .module-tagline { color: #fb923c; }
-  .module-card.mod-agent .module-tagline { color: var(--accent2); }
-  .module-card.mod-analytics .module-tagline { color: #f472b6; }
-  .module-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 20px; }
-  .module-features { list-style: none; margin-bottom: 20px; }
-  .module-features li { font-size: 0.82rem; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid rgba(26,36,51,0.6); display: flex; align-items: flex-start; gap: 8px; line-height: 1.45; }
-  .module-features li:last-child { border-bottom: none; }
-  .module-features li::before { content: '→'; font-family: 'DM Mono', monospace; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
-  .module-card.mod-ops .module-features li::before { color: var(--accent); }
-  .module-card.mod-excel .module-features li::before { color: var(--accent3); }
-  .module-card.mod-wiki .module-features li::before { color: #a78bfa; }
-  .module-card.mod-incidents .module-features li::before { color: #fb923c; }
-  .module-card.mod-agent .module-features li::before { color: var(--accent2); }
-  .module-card.mod-analytics .module-features li::before { color: #f472b6; }
-  .module-price-hint { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.06em; }
-
-  .modules-composer { margin-top: 32px; border: 1px solid var(--border); background: var(--surface); padding: 36px 40px; }
-  .composer-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-  .composer-sub { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 28px; line-height: 1.6; }
-  .composer-row { display: flex; align-items: center; gap: 0; flex-wrap: wrap; border: 1px solid var(--border); }
-  .composer-module { flex: 1; min-width: 120px; padding: 14px 16px; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
-  .composer-module:last-child { border-right: none; }
-  .composer-module-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--text); }
-  .composer-module-price { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
-  .composer-note { margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.04em; }
-
-  @media (max-width: 1100px) { .modules-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 768px) { .modules-grid { grid-template-columns: 1fr; } .modules-section { padding: 60px 24px; } .module-core-banner { padding: 24px; } .modules-composer { padding: 24px; } .composer-row { flex-direction: column; } .composer-module { border-right: none; border-bottom: 1px solid var(--border); width: 100%; } .composer-module:last-child { border-bottom: none; } }
-
-  /* ── MODULE PRICING CALCULATOR ── */
-  .pricing-calc { border: 1px solid var(--border); background: var(--surface); margin-bottom: 48px; overflow: hidden; }
-  .calc-header { padding: 28px 36px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .calc-header-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
-  .calc-header-sub { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-  .calc-body { display: grid; grid-template-columns: 1fr 300px; }
-  .calc-left { padding: 28px 36px; border-right: 1px solid var(--border); }
-  .calc-right { padding: 28px 28px; display: flex; flex-direction: column; gap: 0; }
-  .calc-section-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-  .calc-seats { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-  .calc-seats-label { font-size: 0.88rem; color: var(--text-mid); min-width: 60px; }
-  .seats-input { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 1rem; padding: 8px 14px; width: 80px; text-align: center; appearance: none; -moz-appearance: textfield; }
-  .seats-input::-webkit-inner-spin-button { display: none; }
-  .seats-btn { width: 32px; height: 32px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-mid); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Mono', monospace; }
-  .seats-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .calc-modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .calc-module-toggle { border: 1px solid var(--border); padding: 14px 16px; cursor: pointer; transition: all 0.2s; background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: 8px; user-select: none; }
-  .calc-module-toggle:hover { border-color: rgba(0,212,255,0.3); }
-  .calc-module-toggle.selected { border-color: var(--accent); background: rgba(0,212,255,0.05); }
-  .calc-module-toggle.core-mod { border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); cursor: default; }
-  .calc-mod-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text); }
-  .calc-mod-icon { font-size: 1rem; flex-shrink: 0; }
-  .calc-mod-check { width: 18px; height: 18px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; color: var(--accent3); transition: all 0.15s; }
-  .calc-module-toggle.selected .calc-mod-check { background: var(--accent3); color: var(--bg); border-color: var(--accent3); }
-  .calc-module-toggle.core-mod .calc-mod-check { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  /* Summary panel */
-  .calc-summary-line { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .calc-summary-line:last-of-type { border-bottom: none; }
-  .calc-summary-key { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-  .calc-summary-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); }
-  .calc-total-row { margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--accent); display: flex; justify-content: space-between; align-items: baseline; }
-  .calc-total-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
-  .calc-total-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); line-height: 1; }
-  .calc-total-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); }
-  .calc-cta { display: block; text-align: center; padding: 13px; background: var(--accent2); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; margin-top: 20px; transition: all 0.2s; }
-  .calc-cta:hover { background: #0055dd; box-shadow: 0 0 20px rgba(0,102,255,0.35); }
-  .calc-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-align: center; margin-top: 10px; line-height: 1.5; }
-  @media (max-width: 768px) { .calc-body { grid-template-columns: 1fr; } .calc-left { border-right: none; border-bottom: 1px solid var(--border); } .calc-modules-grid { grid-template-columns: 1fr; } }
-
-  .pricing-card.calc-highlight { outline: 2px solid var(--accent3); outline-offset: -2px; }
-  .pricing-card.calc-highlight:not(.featured) { background: var(--surface2); }
-
-  /* Back to top */
-  .back-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; z-index: 50; opacity: 0; transform: translateY(8px); transition: all 0.3s; text-decoration: none; }
-  .back-top.visible { opacity: 1; transform: translateY(0); }
-  .back-top:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Mobile sticky CTA */
-  .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 20px; background: rgba(8,12,16,0.96); border-top: 1px solid var(--border); backdrop-filter: blur(20px); z-index: 90; }
-  .mobile-cta a { display: block; text-align: center; padding: 14px; background: var(--accent); color: var(--bg); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; }
-
-  /* ── Animations ── */
-  .fade-in { opacity: 1; transform: none; }
-  .fade-in.animate { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .fade-in.animate.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── Mobile CTA Button ── */
-  .mobile-cta {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 12px 20px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-  }
-  .mobile-cta a {
-    display: block;
-    background: var(--accent);
-    color: var(--bg);
-    text-align: center;
-    padding: 14px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  /* ── Back to Top Button ── */
-  .back-top {
-    position: fixed;
-    bottom: 80px;
-    right: 24px;
-    width: 48px;
-    height: 48px;
-    background: var(--accent);
-    color: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    text-decoration: none;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
-    z-index: 98;
-  }
-  .back-top.visible {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 1100px) {
-    .hero-visual { display: none; }
-    .features-grid, .features-more-grid { grid-template-columns: repeat(2,1fr); }
-    .steps { grid-template-columns: repeat(2,1fr); gap: 40px; }
-    .steps::before { display: none; }
-    nav, section, footer { padding-left: 30px; padding-right: 30px; }
-    .stats-strip, .problem-section { padding-left: 30px; padding-right: 30px; }
-    .calc-body { grid-template-columns: 1fr; }
-    .calc-left { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-  
-  @media (max-width: 768px) {
-    /* Hide custom cursor on mobile */
-    .cursor, .cursor-ring { display: none !important; }
-    body { cursor: auto !important; }
-    
-    /* Navigation */
-    nav { padding: 16px 20px; }
-    .nav-logo { font-size: 1.1rem; }
-    .nav-links { display: none; }
-    
-    /* Hero */
-    .hero { padding: 100px 20px 60px; min-height: auto; }
-    .hero-content { max-width: 100%; }
-    .hero-badge { font-size: 0.68rem; padding: 5px 12px; }
-    h1 { font-size: 2rem; line-height: 1.15; }
-    .hero-sub { font-size: 1rem; }
-    .hero-actions { flex-direction: column; width: 100%; }
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
-    .hero-trust { flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 20px; }
-    
-    /* Stats */
-    .stats-strip { grid-template-columns: repeat(2,1fr); gap: 20px; padding: 24px 20px; }
-    .stat { border-right: none; padding: 0; }
-    .stat-num { font-size: 1.8rem; }
-    .stat-label { font-size: 0.68rem; }
-    
-    /* Sections */
-    section { padding: 60px 20px; }
-    .section-label { font-size: 0.68rem; }
-    h2 { font-size: 1.6rem; }
-    .section-sub { font-size: 0.95rem; }
-    
-    /* Grids */
-    .features-grid, .features-more-grid, .industries-grid, .privacy-grid, .contact-grid, .pricing-grid, .problem-grid { grid-template-columns: 1fr; }
-    .feature-card, .industry-card { padding: 28px 20px; }
-    
-    /* Steps */
-    .steps { grid-template-columns: 1fr; gap: 32px; }
-    .step { padding: 0 20px; }
-    
-    /* Problem section */
-    .problem-section { padding: 60px 20px; }
-    .problem-stats { grid-template-columns: 1fr; gap: 16px; }
-    .problem-quote { font-size: 1.2rem; padding-left: 20px; }
-    
-    /* Pricing */
-    .pricing-card { padding: 32px 24px; }
-    .pricing-price { font-size: 2.4rem; }
-    
-    /* Roadmap */
-    .roadmap-item { grid-template-columns: 1fr; }
-    .roadmap-phase { border-right: none; border-bottom: 1px solid var(--border); padding: 20px; }
-    .roadmap-content { padding: 20px; }
-    
-    /* FAQ */
-    .faq-question { padding: 16px 20px; font-size: 0.9rem; }
-    .faq-answer-inner { padding: 12px 20px 18px; font-size: 0.85rem; }
-    
-    /* Contact Form */
-    .form-row { grid-template-columns: 1fr; }
-    .contact-detail { font-size: 0.78rem; }
-    
-    /* Footer */
-    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
-    
-    /* Mobile CTA */
-    .mobile-cta { display: block; }
-    
-    /* Module pricing calculator */
-    .calc-header { padding: 20px; }
-    .calc-left, .calc-right { padding: 20px; }
-    .calc-modules-grid { grid-template-columns: 1fr; }
-    
-    /* Terminal */
-    .terminal { font-size: 0.7rem; }
-    .terminal-body { padding: 16px; }
-  }
-  
-  @media (max-width: 480px) {
-    /* Extra small screens */
-    h1 { font-size: 1.75rem; }
-    .hero-sub { font-size: 0.95rem; }
-    .stats-strip { grid-template-columns: 1fr; }
-    .stat-num { font-size: 2rem; }
-    .problem-stats { grid-template-columns: 1fr; }
-    .pricing-price { font-size: 2rem; }
-    .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 0.82rem; }
-  }
+@media (max-width: 768px) {
+  .hero { padding: 100px 20px 60px; min-height: auto; }
+  .stats-strip { grid-template-columns: repeat(2,1fr); gap: 20px; padding: 24px 20px; }
+  .stat { border-right: none; padding: 0; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 40px 20px; }
+}
 </style>
 </head>
 <body>
@@ -609,19 +65,29 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <a href="#" class="back-top" id="backTop" aria-label="Back to top">↑</a>
-<div class="mobile-cta"><a href="#contact" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a></div>
 
 <!-- ── NAV ── -->
 <nav id="mainNav">
-  <a href="#" class="nav-logo">Engi<span>Intel</span></a>
+  <a href="index.html" class="nav-logo">Engi<span>Intel</span></a>
   <ul class="nav-links">
-    <li><a href="#features" data-en="Features" data-es="Funciones">Features</a></li>
-    <li><a href="#modules" data-en="Modules" data-es="Módulos">Modules</a></li>
-    <li><a href="#how" data-en="How It Works" data-es="Cómo Funciona">How It Works</a></li>
-    <li><a href="#industries" data-en="Industries" data-es="Industrias">Industries</a></li>
-    <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
-    <li><a href="#contact" data-en="Request Access →" data-es="Solicitar Acceso →">Request Access →</a></li>
-    <li><a href="#contact" class="nav-cta" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a></li>
+    <li><a href="index-old-backup.html#features">Features</a></li>
+    <li class="nav-dropdown">
+      <a href="index-old-backup.html#modules" class="nav-dropdown-toggle">Modules ▼</a>
+      <div class="nav-dropdown-menu">
+        <a href="index-old-backup.html#modules">All Modules</a>
+        <a href="index-old-backup.html#modules">📄 Document Intelligence</a>
+        <a href="modules/excel-copilot.html" class="new-badge">📊 Excel Copilot</a>
+        <a href="index-old-backup.html#modules">📚 Wiki & Knowledge Base</a>
+        <a href="index-old-backup.html#modules">🏢 Asset Registry</a>
+        <a href="index-old-backup.html#modules">⚠️ Incident Reports</a>
+        <a href="index-old-backup.html#modules">🤖 AI Agent Mode</a>
+      </div>
+    </li>
+    <li><a href="index-old-backup.html#industries">Industries</a></li>
+    <li><a href="index-old-backup.html#pricing">Pricing</a></li>
+    <li><a href="index-old-backup.html#how">How It Works</a></li>
+    <li><a href="index-old-backup.html#contact">Contact</a></li>
+    <li><a href="index-old-backup.html#contact" class="nav-cta">Book a Demo</a></li>
   </ul>
   <div class="lang-switch">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -632,916 +98,93 @@
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge" data-en="LOCAL AI · ZERO DATA LEAKAGE · CONTROLLED EARLY ACCESS" data-es="IA LOCAL · DATOS 100% SEGUROS · ACCESO ANTICIPADO CONTROLADO">LOCAL AI · ZERO DATA LEAKAGE · CONTROLLED EARLY ACCESS</div>
+    <div class="hero-badge">LOCAL AI · ZERO DATA LEAKAGE · CONTROLLED EARLY ACCESS</div>
     <h1>
-      <span data-en="Your regulations.<br>" data-es="Tu normativa.<br>">Your regulations.<br></span>
-      <span class="accent" data-en="Your server." data-es="Tu servidor.">Your server.</span><br>
-      <span class="accent2" data-en="Your answers." data-es="Tus respuestas.">Your answers.</span>
+      Your regulations.<br>
+      <span class="accent">Your server.</span><br>
+      <span class="accent2">Your answers.</span>
     </h1>
-    <p class="hero-sub" data-en="EngiIntel deploys on your own infrastructure. Engineers query regulations, manage a built-in knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents — with zero data leaving your server." data-es="EngiIntel se despliega en tu propia infraestructura. Los ingenieros consultan normativas, gestionan una base de conocimiento, registran activos, generan informes de incidencia, automatizan flujos con n8n y ejecutan agentes IA autónomos — todo sin que ningún dato salga de tu servidor.">
-      EngiIntel deploys on your own infrastructure. Engineers query regulations, manage a built-in knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents — with zero data leaving your server.
+    <p class="hero-sub">
+      EngiIntel deploys on your own infrastructure. Engineers query regulations, manage knowledge, track assets, generate reports, and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" data-en="Request Beta Access →" data-es="Solicitar Acceso Beta →">Request Beta Access →</a>
-      <a href="#contact" class="btn-secondary" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
+      <a href="index-old-backup.html#contact" class="btn-primary">Request Beta Access →</a>
+      <a href="index-old-backup.html#contact" class="btn-secondary">Book a Demo</a>
     </div>
     <div class="hero-trust">
-      <div class="trust-item"><span class="tick">✓</span><span data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</span></div>
-      <div class="trust-item"><span class="tick">✓</span><span data-en="Zero external API calls" data-es="Sin llamadas a APIs externas">Zero external API calls</span></div>
-      <div class="trust-item"><span class="tick">✓</span><span data-en="Works fully offline" data-es="Funciona sin conexión">Works fully offline</span></div>
-      <div class="trust-item"><span class="tick" style="color:#f5a623">★</span><span data-en="13× Anthropic AI Certified" data-es="13× Certificado Anthropic AI">13× Anthropic AI Certified</span></div>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="terminal">
-      <div class="terminal-header">
-        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-        <span class="terminal-title">ENGIINTEL AGENT · ACTIVE SESSION</span>
-      </div>
-      <div class="terminal-body">
-        <div><span class="t-dim">›</span> <span class="t-accent">AGENT:</span> <span class="t-white">"File incident report for LIFT-CM14-03 fault"</span></div><br>
-        <div><span class="t-dim">⟳ [1/4]</span> <span class="t-yellow">search_documents</span><span class="t-dim"> → EN 81-20 §9.7 · 3 results · 1.8s</span></div>
-        <div><span class="t-dim">⟳ [2/4]</span> <span class="t-yellow">get_asset</span><span class="t-dim"> → LIFT-CM14-03 · operational</span></div>
-        <div><span class="t-dim">⟳ [3/4]</span> <span class="t-yellow">create_task</span><span class="t-dim"> → EU-47 · priority: high</span></div>
-        <div><span class="t-dim">⟳ [4/4]</span> <span class="t-yellow">generate_incident_report</span><span class="t-dim"> → IR-2026-047</span></div><br>
-        <div><span class="t-green">✓ AGENT COMPLETE</span> <span class="t-dim">· 4 steps · 3.4s · fully local</span></div><br>
-        <div><span class="t-white">"Incident IR-2026-047 created and linked to</span></div>
-        <div><span class="t-white">LIFT-CM14-03. Deadline: 4h per EN 81-20 §9.7.</span></div>
-        <div><span class="t-white">Task EU-47 assigned. Wiki page published."</span></div><br>
-        <div><span class="t-dim">TOOLS:</span> <span class="t-accent">search · asset · task · report</span> <span class="t-dim">· local llm</span></div>
-        <div class="typing"><span class="t-dim">› </span></div>
-      </div>
+      <div class="trust-item"><span class="tick">✓</span><span>GDPR compliant by architecture</span></div>
+      <div class="trust-item"><span class="tick">✓</span><span>Zero external API calls</span></div>
+      <div class="trust-item"><span class="tick">✓</span><span>Works fully offline</span></div>
+      <div class="trust-item"><span class="tick" style="color:#f5a623">★</span><span>13× Anthropic AI Certified</span></div>
     </div>
   </div>
 </section>
 
 <!-- ── STATS ── -->
 <div class="stats-strip fade-in">
-  <div class="stat"><div class="stat-num">0ms</div><div class="stat-label" data-en="Cloud Latency" data-es="Latencia en Nube">Cloud Latency</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-en="Data Stays On-Premise" data-es="Datos en Tu Servidor">Data Stays On-Premise</div></div>
-  <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors</div></div>
-  <div class="stat"><div class="stat-num">∞</div><div class="stat-label" data-en="Queries — No API Costs" data-es="Consultas — Sin Coste de API">Queries — No API Costs</div></div>
+  <div class="stat"><div class="stat-num">0ms</div><div class="stat-label">Cloud Latency</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Data Stays On-Premise</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Modular Capabilities</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Queries — No API Costs</div></div>
 </div>
 
-<!-- ── TRIAL CALLOUT ── -->
-<div style="background:linear-gradient(90deg,rgba(0,102,255,0.12),rgba(0,212,255,0.08));border-top:1px solid rgba(0,212,255,0.15);border-bottom:1px solid rgba(0,212,255,0.15);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;flex-wrap:wrap;gap:16px">
-  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-    <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.12em;border:1px solid rgba(0,212,255,0.3);padding:4px 12px">EARLY ACCESS</span>
-    <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem" data-en="Early access is open — request a slot and we'll onboard you personally." data-es="El acceso anticipado está abierto — solicita tu plaza y te incorporamos personalmente.">Early access is open — request a slot and we'll onboard you personally.</span>
+<!-- ── BENEFITS ── -->
+<section>
+  <div class="section-label">Why EngiIntel</div>
+  <h2>Built for regulated industries<br>where data privacy is non-negotiable.</h2>
+  <p class="section-sub">Everything runs on your infrastructure. No cloud dependencies. No data leakage. Full control.</p>
+  
+  <div class="benefits-grid fade-in animate">
+    <div class="benefit-card">
+      <span class="benefit-icon">🔒</span>
+      <div class="benefit-title">100% On-Premise</div>
+      <div class="benefit-desc">Runs entirely on your hardware. No data sent to OpenAI, Google or any third party. Full GDPR compliance by design.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🔍</span>
+      <div class="benefit-title">RAG-Powered Search</div>
+      <div class="benefit-desc">Natural language queries with page-level citations. Hybrid search with cross-encoder reranking for maximum accuracy.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">📊</span>
+      <div class="benefit-title">Excel Copilot</div>
+      <div class="benefit-desc">Query Excel data in natural language. Generate charts with one command. Save queries as reusable macros.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">📖</span>
+      <div class="benefit-title">Built-in Wiki</div>
+      <div class="benefit-desc">Markdown editor with version history. All pages auto-indexed and searchable via AI alongside your documents.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🏗️</span>
+      <div class="benefit-title">Asset & Incident Tracking</div>
+      <div class="benefit-desc">Register assets, link incidents, track regulatory deadlines. AI-generated incident reports in one click.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🤖</span>
+      <div class="benefit-title">AI Agent Mode</div>
+      <div class="benefit-desc">Autonomous multi-step workflows. Search documents, create tasks, generate reports — all in a single ReAct loop.</div>
+    </div>
   </div>
-  <a href="#contact" style="background:var(--accent2);color:#fff;padding:12px 28px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.05em;text-decoration:none;text-transform:uppercase;white-space:nowrap;transition:all 0.2s" onmouseover="this.style.background='#0055dd'" onmouseout="this.style.background='var(--accent2)'" data-en="Request Beta Access →" data-es="Solicitar Acceso Beta →">Request Beta Access →</a>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-section fade-in animate">
+  <div class="cta-title">Ready to see EngiIntel in action?</div>
+  <div class="cta-sub">Book a personalized demo and we'll show you how EngiIntel works with your documents.</div>
+  <div class="cta-actions">
+    <a href="index-old-backup.html#contact" class="btn-primary">Book a Demo →</a>
+    <a href="index-old-backup.html#features" class="btn-secondary">Explore Features</a>
+    <a href="modules/excel-copilot.html" class="btn-secondary">View Excel Copilot</a>
+  </div>
 </div>
-
-<!-- ── PROBLEM ── -->
-<div class="problem-section fade-in">
-  <div class="problem-grid">
-    <div>
-      <div class="section-label" data-en="The Problem" data-es="El Problema">The Problem</div>
-      <div class="problem-quote" data-en='Engineers spend <em>30 minutes</em> searching for an answer that should take <em>30 seconds.</em>' data-es='Los ingenieros pasan <em>30 minutos</em> buscando una respuesta que debería llevar <em>30 segundos.</em>'>
-        Engineers spend <em>30 minutes</em> searching for an answer that should take <em>30 seconds.</em>
-      </div>
-      <p class="problem-desc" data-en="Regulated industries run on documentation. But finding the right clause in the right regulation, across hundreds of PDFs, costs your team hours every day — hours that could be spent on actual engineering work." data-es="Las industrias reguladas funcionan con documentación. Pero encontrar la cláusula correcta en la normativa correcta, entre cientos de PDFs, cuesta a tu equipo horas cada día.">
-        Regulated industries run on documentation. But finding the right clause in the right regulation, across hundreds of PDFs, costs your team hours every day — hours that could be spent on actual engineering work.
-      </p>
-    </div>
-    <div class="problem-stats">
-      <div class="problem-stat">
-        <div class="problem-stat-num">73%</div>
-        <div class="problem-stat-label" data-en="of engineering time spent searching for information, not creating it" data-es="del tiempo de ingeniería se gasta buscando información, no creándola">of engineering time spent searching for information, not creating it</div>
-      </div>
-      <div class="problem-stat">
-        <div class="problem-stat-num">4h</div>
-        <div class="problem-stat-label" data-en="lost per engineer per week to manual document search" data-es="perdidas por ingeniero a la semana en búsqueda manual de documentos">lost per engineer per week to manual document search</div>
-      </div>
-      <div class="problem-stat">
-        <div class="problem-stat-num">€960</div>
-        <div class="problem-stat-label" data-en="recovered per engineer/month with EngiIntel at €80/h" data-es="recuperados por ingeniero/mes con EngiIntel a €80/h">recovered per engineer/month with EngiIntel at €80/h</div>
-      </div>
-      <div class="problem-stat">
-        <div class="problem-stat-num">0</div>
-        <div class="problem-stat-label" data-en="documents leave your server. Ever." data-es="documentos salen de tu servidor. Nunca.">documents leave your server. Ever.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── FEATURES ── -->
-<section id="features">
-  <div class="section-label" data-en="Capabilities" data-es="Capacidades">Capabilities</div>
-  <h2 data-en="Everything your engineers need,<br>nothing your legal team fears." data-es="Todo lo que tus ingenieros necesitan,<br>nada que tema tu equipo legal.">Everything your engineers need,<br>nothing your legal team fears.</h2>
-  <p class="section-sub" data-en="Built for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable." data-es="Construido para industrias reguladas donde la precisión documental, trazabilidad y confidencialidad de datos no son negociables.">Built for regulated industries where document accuracy, traceability, and data confidentiality are non-negotiable.</p>
-
-  <div class="features-grid fade-in">
-    <div class="feature-card">
-      <span class="feature-icon">🔍</span>
-      <div class="feature-title" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
-      <div class="feature-desc" data-en="Ask questions in plain Spanish or English. Get precise answers with exact page citations from your technical documentation." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas con citas de página exactas de tu documentación técnica.">Ask questions in plain Spanish or English. Get precise answers with exact page citations from your technical documentation.</div>
-      <span class="feature-tag">RAG · HYBRID SEARCH</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔒</span>
-      <div class="feature-title" data-en="100% On-Premise AI" data-es="IA 100% Local">100% On-Premise AI</div>
-      <div class="feature-desc" data-en="Runs entirely on your hardware. No data sent to OpenAI, Google or any third party. Full GDPR compliance by design." data-es="Se ejecuta completamente en tu hardware. Sin datos enviados a OpenAI, Google ni terceros. Cumplimiento GDPR por diseño.">Runs entirely on your hardware. No data sent to OpenAI, Google or any third party. Full GDPR compliance by design.</div>
-      <span class="feature-tag">LOCAL LLM · OLLAMA</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">📄</span>
-      <div class="feature-title" data-en="OCR for Scanned Documents" data-es="OCR para Documentos Escaneados">OCR for Scanned Documents</div>
-      <div class="feature-desc" data-en="Processes scanned PDFs and image-based documents. Legacy manuals and old regulations work just as well as native PDFs." data-es="Procesa PDFs escaneados y documentos basados en imagen. Los manuales heredados y normativas antiguas funcionan igual que PDFs nativos.">Processes scanned PDFs and image-based documents. Legacy manuals and old regulations work just as well as native PDFs.</div>
-      <span class="feature-tag">TESSERACT · VISION AI</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔗</span>
-      <div class="feature-title" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors</div>
-      <div class="feature-desc" data-en="Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads." data-es="Sincronización automática desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados sin subidas manuales.">Automatic sync from SharePoint, Google Drive and Confluence. Documents stay up to date without manual uploads.</div>
-      <span class="feature-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">👥</span>
-      <div class="feature-title" data-en="Department Access Control" data-es="Control de Acceso por Departamento">Department Access Control</div>
-      <div class="feature-desc" data-en="Each department sees only its own documents. Admins manage users, roles and permissions from a dedicated panel." data-es="Cada departamento ve solo sus propios documentos. Los administradores gestionan usuarios, roles y permisos desde un panel dedicado.">Each department sees only its own documents. Admins manage users, roles and permissions from a dedicated panel.</div>
-      <span class="feature-tag">RBAC · MULTI-TENANT</span>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">📊</span>
-      <div class="feature-title" data-en="Audit Logging & Compliance" data-es="Registro de Auditoría y Cumplimiento">Audit Logging & Compliance</div>
-      <div class="feature-desc" data-en="Every query, upload and action is logged with user, timestamp and response time. Full traceability for ISO and regulatory audits." data-es="Cada consulta, subida y acción se registra con usuario, marca de tiempo y tiempo de respuesta. Trazabilidad completa para auditorías.">Every query, upload and action is logged with user, timestamp and response time. Full traceability for audits.</div>
-      <span class="feature-tag">ISO READY · IMMUTABLE LOGS</span>
-    </div>
-  </div>
-
-  <div class="features-more" id="featuresMore">
-    <div class="features-more-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🏗️</span>
-        <div class="feature-title" data-en="Hierarchical Knowledge Base" data-es="Base de Conocimiento Jerárquica">Hierarchical Knowledge Base</div>
-        <div class="feature-desc" data-en="Organise documents in folders with AI context instructions. Query by department, project or regulation type — scope narrows automatically." data-es="Organiza documentos en carpetas con instrucciones de contexto para IA. Consulta por departamento, proyecto o normativa.">Organise documents in folders with AI context instructions. Query by department, project or regulation type — scope narrows automatically.</div>
-        <span class="feature-tag">SMART SCOPING</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📈</span>
-        <div class="feature-title" data-en="ROI & Usage Analytics" data-es="ROI y Analítica de Uso">ROI & Usage Analytics</div>
-        <div class="feature-desc" data-en="Track hours saved and recovered engineering time per team. One-click executive PDF report for quarterly reviews." data-es="Registra horas ahorradas y tiempo de ingeniería recuperado por equipo. Informe PDF ejecutivo en un clic.">Track hours saved and recovered engineering time per team. One-click executive PDF report for quarterly reviews.</div>
-        <span class="feature-tag">ROI DASHBOARD · PDF EXPORT</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔐</span>
-        <div class="feature-title" data-en="SSO & Enterprise Auth" data-es="SSO y Autenticación Enterprise">SSO & Enterprise Auth</div>
-        <div class="feature-desc" data-en="Microsoft Entra ID SSO out of the box. GitHub OAuth fallback. RBAC with Admin, Editor and Viewer roles scoped per department." data-es="Microsoft Entra ID SSO incluido. OAuth de GitHub como alternativa. RBAC con roles por departamento.">Microsoft Entra ID SSO out of the box. GitHub OAuth fallback. RBAC scoped per department.</div>
-        <span class="feature-tag">ENTRA ID · OAUTH · RBAC</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🛡️</span>
-        <div class="feature-title" data-en="PII Detection & GDPR" data-es="Detección de PII y GDPR">PII Detection & GDPR</div>
-        <div class="feature-desc" data-en="Automatic scanning for emails, phone numbers, ID documents and IBANs. GDPR right-to-erasure endpoint included." data-es="Escaneo automático de emails, teléfonos, documentos de identidad e IBANs. Endpoint de borrado GDPR incluido.">Automatic PII scanning across all indexed content. GDPR right-to-erasure endpoint included.</div>
-        <span class="feature-tag">PII SCAN · GDPR ERASURE</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔌</span>
-        <div class="feature-title" data-en="Public API & Webhooks" data-es="API Pública y Webhooks">Public API & Webhooks</div>
-        <div class="feature-desc" data-en="Versioned REST API with per-tenant API keys and rate limiting. Webhooks for document indexing, PII and confidence alerts." data-es="API REST versionada con claves por tenant. Webhooks para indexación, PII y alertas de confianza.">Versioned REST API with per-tenant API keys. Webhooks for document indexing, PII and confidence alerts.</div>
-        <span class="feature-tag">REST API · WEBHOOKS · HMAC</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <div class="feature-title" data-en="One-Command Deployment" data-es="Despliegue en Un Comando">One-Command Deployment</div>
-        <div class="feature-desc" data-en="Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes." data-es="Completamente contenorizado con Docker. TI ejecuta un comando y toda la pila está activa en minutos.">Fully containerised with Docker. IT runs one command and the entire stack — AI, database, app — is live in minutes.</div>
-        <span class="feature-tag">DOCKER · SELF-HOSTED</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📊</span>
-        <div class="feature-title" data-en="Excel Copilot & Data Analysis" data-es="Copiloto Excel y Análisis de Datos">Excel Copilot & Data Analysis</div>
-        <div class="feature-desc" data-en="Query Excel data in natural language, generate charts with one command ('create a bar chart showing...'), and save queries as reusable macros. Multi-sheet analysis, workflow automation, and instant visual insights without Excel expertise." data-es="Consulta datos de Excel en lenguaje natural, genera gráficos con un comando y guarda consultas como macros reutilizables. Análisis multi-hoja, automatización de flujos e insights visuales instantáneos sin experiencia en Excel.">Query Excel data in natural language, generate charts with one command ('create a bar chart showing...'), and save queries as reusable macros. Multi-sheet analysis, workflow automation, and instant visual insights without Excel expertise.</div>
-        <span class="feature-tag">EXCEL COPILOT · CHARTS · MACROS</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔄</span>
-        <div class="feature-title" data-en="Document Comparison" data-es="Comparación de Documentos">Document Comparison</div>
-        <div class="feature-desc" data-en="Semantically compare two documents side by side. Identify differences and conflicts between regulation versions instantly." data-es="Compara semánticamente dos documentos en paralelo. Identifica diferencias y conflictos entre versiones de normativa al instante.">Semantically compare two documents side by side. Identify differences and conflicts between regulation versions instantly.</div>
-        <span class="feature-tag">SEMANTIC DIFF · STREAMING</span>
-      </div>
-      <!-- ── Sprint 7 Features ── -->
-      <div class="feature-card">
-        <span class="feature-icon">🧠</span>
-        <div class="feature-title" data-en="Query Result Cache" data-es="Caché de Consultas">Query Result Cache</div>
-        <div class="feature-desc" data-en="Near-identical questions return instantly from an in-memory LRU cache — no inference needed. Cosine similarity (≥98%) detects duplicates per organisation, with a 1-hour TTL." data-es="Las preguntas casi idénticas se responden al instante desde una caché LRU en memoria. La similitud coseno (≥98%) detecta duplicados por organización, con TTL de 1 hora.">Near-identical questions return instantly from an in-memory LRU cache — no inference needed. Cosine similarity (≥98%) detects duplicates per organisation, with a 1-hour TTL.</div>
-        <span class="feature-tag">LRU CACHE · COSINE SIM</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔂</span>
-        <div class="feature-title" data-en="Document Deduplication" data-es="Deduplicación de Documentos">Document Deduplication</div>
-        <div class="feature-desc" data-en="SHA-256 hash check at upload time prevents the same file being indexed twice. Zero silent vector store pollution — exact match detected with a clear error showing the original document." data-es="Verificación SHA-256 en la subida evita que el mismo archivo se indexe dos veces. Cero contaminación silenciosa del almacén vectorial, con mensaje claro mostrando el documento original.">SHA-256 hash check at upload time prevents the same file being indexed twice. Zero silent vector store pollution — exact match detected with a clear error showing the original document.</div>
-        <span class="feature-tag">SHA-256 · DEDUP</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📐</span>
-        <div class="feature-title" data-en="Latency Percentiles p50/p95/p99" data-es="Percentiles de Latencia p50/p95/p99">Latency Percentiles p50/p95/p99</div>
-        <div class="feature-desc" data-en="The admin dashboard shows full response time breakdowns — p50, p95 and p99 — not just the average. Track tail latency accurately before making any SLA commitments." data-es="El panel de administración muestra desgloses completos de tiempo de respuesta — p50, p95 y p99 — no solo el promedio. Controla la latencia de cola con precisión antes de comprometerte a un SLA.">The admin dashboard shows full response time breakdowns — p50, p95 and p99 — not just the average. Track tail latency accurately before making any SLA commitments.</div>
-        <span class="feature-tag">P95 · LATENCY · SLA</span>
-      </div>
-      <!-- ── Sprint 5-7 + AI Context + Agent Mode ── -->
-      <div class="feature-card">
-        <span class="feature-icon">📖</span>
-        <div class="feature-title" data-en="Wiki & Knowledge Base" data-es="Wiki y Base de Conocimiento">Wiki & Knowledge Base</div>
-        <div class="feature-desc" data-en="Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes and incident reports. All pages are RAG-indexed automatically and searchable via AI queries." data-es="Wiki integrada con editor Markdown, historial de versiones, plantillas y tipos de página — procedimientos, checklists, notas y reportes de incidencia. Todas las páginas se indexan automáticamente por RAG y son buscables mediante consultas IA.">Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes and incident reports. All pages are RAG-indexed automatically and searchable via AI queries.</div>
-        <span class="feature-tag">WIKI · VERSION HISTORY · RAG</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🏗️</span>
-        <div class="feature-title" data-en="Asset Registry & Incident Reports" data-es="Registro de Activos e Informes de Incidencia">Asset Registry & Incident Reports</div>
-        <div class="feature-desc" data-en="Register and track physical assets — elevators, escalators, equipment. Link incidents to assets, track regulatory response deadlines and auto-generate AI-written incident reports directly from task data." data-es="Registra y gestiona activos físicos — ascensores, escaleras mecánicas, equipos. Vincula incidencias a activos, rastrea plazos de respuesta regulatorios y genera automáticamente informes de incidencia con IA a partir de datos de tareas.">Register and track physical assets — elevators, escalators, equipment. Link incidents to assets, track regulatory response deadlines and auto-generate AI-written incident reports directly from task data.</div>
-        <span class="feature-tag">ASSETS · INCIDENTS · AUTO-REPORT</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🧩</span>
-        <div class="feature-title" data-en="Cross-Module AI Context" data-es="Contexto IA entre Módulos">Cross-Module AI Context</div>
-        <div class="feature-desc" data-en="Pin any record — wiki page, asset, incident, task — to the persistent context panel. Ask the AI one question that synthesises all pinned items simultaneously. The AI also passively tracks what you're viewing across every module." data-es="Fija cualquier registro — página wiki, activo, incidencia, tarea — en el panel de contexto persistente. Haz una pregunta que sintetice todos los elementos fijados a la vez. La IA también rastrea pasivamente lo que estás viendo en cada módulo.">Pin any record — wiki page, asset, incident, task — to the persistent context panel. Ask the AI one question that synthesises all pinned items simultaneously. The AI also passively tracks what you're viewing across every module.</div>
-        <span class="feature-tag">CONTEXT PANEL · CROSS-MODULE</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🤖</span>
-        <div class="feature-title" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div>
-        <div class="feature-desc" data-en="Switch to Agent Mode and let the AI autonomously execute multi-step workflows: search documents, create tasks, query assets, generate incident reports — a full ReAct loop with live step-by-step reasoning visible in the UI." data-es="Activa el Modo Agente y deja que la IA ejecute flujos de trabajo de forma autónoma: busca documentos, crea tareas, consulta activos, genera informes de incidencia — un bucle ReAct completo con razonamiento paso a paso visible en la UI.">Switch to Agent Mode and let the AI autonomously execute multi-step workflows: search documents, create tasks, query assets, generate incident reports — a full ReAct loop with live step-by-step reasoning visible in the UI.</div>
-        <span class="feature-tag">REACT LOOP · AUTONOMOUS · SSE</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔄</span>
-        <div class="feature-title" data-en="n8n Workflow Automation" data-es="Automatización de Flujos n8n">n8n Workflow Automation</div>
-        <div class="feature-desc" data-en="Create, manage and execute n8n workflows directly from AI Agent Mode. Automate document processing, approval routing, notifications and integrations with your existing tools — all without leaving EngiIntel." data-es="Crea, gestiona y ejecuta flujos de trabajo n8n directamente desde el Modo Agente IA. Automatiza procesamiento de documentos, routing de aprobaciones, notificaciones e integraciones con tus herramientas existentes — todo sin salir de EngiIntel.">Create, manage and execute n8n workflows directly from AI Agent Mode. Automate document processing, approval routing, notifications and integrations with your existing tools — all without leaving EngiIntel.</div>
-        <span class="feature-tag">N8N · MCP · AUTOMATION</span>
-      </div>
-    </div>
-  </div>
-
-  <button class="features-toggle" id="featuresToggle" onclick="toggleFeatures()">
-    <span id="toggleText" data-en="Show all 22 features" data-es="Ver las 22 funciones">Show all 22 features</span>
-    <span class="toggle-arrow" id="toggleArrow">▼</span>
-  </button>
-</section>
-
-<!-- ── MODULES ── -->
-<section id="modules" class="modules-section fade-in">
-  <div class="section-label" data-en="Modular Platform" data-es="Plataforma Modular">Modular Platform</div>
-  <h2 data-en="Build your stack.<br>Pay for what you use." data-es="Construye tu stack.<br>Paga solo lo que usas.">Build your stack.<br>Pay for what you use.</h2>
-  <p class="section-sub" data-en="Every module works standalone or combined. Start with the RAG core and add capabilities as your team grows — no bloated suites, no forced bundles." data-es="Cada módulo funciona solo o combinado. Empieza con el núcleo RAG y añade capacidades según crece tu equipo — sin suites infladas, sin paquetes forzados.">Every module works standalone or combined. Start with the RAG core and add capabilities as your team grows — no bloated suites, no forced bundles.</p>
-
-  <!-- Core module — mandatory base -->
-  <div class="module-core-banner">
-    <div class="module-core-left">
-      <span class="module-core-icon">🧠</span>
-      <div>
-        <div class="module-core-title" data-en="Core — Document Intelligence Engine" data-es="Core — Motor de Inteligencia Documental">Core — Document Intelligence Engine</div>
-        <div class="module-core-desc" data-en="The mandatory base of every EngiIntel deployment. RAG pipeline with hybrid search, zero-hallucination answers with page-level citations, document connectors (SharePoint, Google Drive, Confluence), hierarchical folder system, role-based access control, OCR for scanned docs, and full audit logging. Your documents never leave your server." data-es="La base obligatoria de todo despliegue EngiIntel. Pipeline RAG con búsqueda híbrida, respuestas sin alucinación con citas de página exactas, conectores de documentos, sistema de carpetas jerárquico, control de acceso por roles, OCR y registro de auditoría completo. Tus documentos nunca salen de tu servidor.">The mandatory base of every EngiIntel deployment. RAG pipeline with hybrid search, zero-hallucination answers with page-level citations, document connectors (SharePoint, Google Drive, Confluence), hierarchical folder system, role-based access control, OCR for scanned docs, and full audit logging. Your documents never leave your server.</div>
-        <div class="module-core-tags">
-          <span class="module-core-tag">RAG · HYBRID SEARCH</span>
-          <span class="module-core-tag">SHAREPOINT · GDRIVE · CONFLUENCE</span>
-          <span class="module-core-tag">OCR · RBAC · AUDIT LOGS</span>
-          <span class="module-core-tag">LOCAL LLM · OLLAMA</span>
-        </div>
-      </div>
-    </div>
-    <div class="module-core-badge" data-en="INCLUDED IN ALL PLANS" data-es="INCLUIDO EN TODOS LOS PLANES">INCLUDED IN ALL PLANS</div>
-  </div>
-
-  <!-- Optional modules grid -->
-  <div class="modules-label" data-en="Optional modules — combine freely" data-es="Módulos opcionales — combina libremente">Optional modules — combine freely</div>
-  <div class="modules-grid">
-
-    <!-- Module 01: Operations Hub -->
-    <div class="module-card mod-ops">
-      <div class="module-number">MODULE 01</div>
-      <span class="module-icon">🗂️</span>
-      <div class="module-name" data-en="Operations Hub" data-es="Hub de Operaciones">Operations Hub</div>
-      <div class="module-tagline" data-en="Tasks · Kanban · Projects · Milestones" data-es="Tareas · Kanban · Proyectos · Hitos">Tasks · Kanban · Projects · Milestones</div>
-      <div class="module-desc" data-en="Full project and task management with kanban boards, milestone tracking, and deadline control — all integrated with the RAG engine so your team can query project status in natural language." data-es="Gestión completa de proyectos y tareas con tableros kanban, seguimiento de hitos y control de plazos — integrado con el motor RAG para consultar el estado del proyecto en lenguaje natural.">Full project and task management with kanban boards, milestone tracking, and deadline control — all integrated with the RAG engine so your team can query project status in natural language.</div>
-      <ul class="module-features">
-        <li data-en="Kanban board with custom columns" data-es="Tablero kanban con columnas personalizables">Kanban board with custom columns</li>
-        <li data-en="Milestone and deadline tracking" data-es="Seguimiento de hitos y plazos">Milestone and deadline tracking</li>
-        <li data-en="AI queries on task and project status" data-es="Consultas IA sobre estado de tareas y proyectos">AI queries on task and project status</li>
-        <li data-en="Cross-module context pinning" data-es="Fijado de contexto entre módulos">Cross-module context pinning</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 02: Excel Copilot -->
-    <div class="module-card mod-excel">
-      <div class="module-number">MODULE 02</div>
-      <span class="module-icon">📊</span>
-      <div class="module-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</div>
-      <div class="module-tagline" data-en="Natural language → queries, charts, macros" data-es="Lenguaje natural → consultas, gráficos, macros">Natural language → queries, charts, macros</div>
-      <div class="module-desc" data-en="Query Excel data in plain language and get instant results. Generate charts with one command like 'create a bar chart showing...'. Save queries as reusable macros with one click. Multi-sheet analysis and workflow automation built-in." data-es="Consulta datos de Excel en lenguaje natural y obtén resultados instantáneos. Genera gráficos con un comando como 'crea un gráfico de barras mostrando...'. Guarda consultas como macros reutilizables con un clic. Análisis multi-hoja y automatización de flujos incluidos.">Query Excel data in plain language and get instant results. Generate charts with one command like 'create a bar chart showing...'. Save queries as reusable macros with one click. Multi-sheet analysis and workflow automation built-in.</div>
-      <ul class="module-features">
-        <li data-en="Natural language queries on Excel data" data-es="Consultas en lenguaje natural sobre datos Excel">Natural language queries on Excel data</li>
-        <li data-en="One-command chart generation (bar, line, pie)" data-es="Generación de gráficos con un comando">One-command chart generation (bar, line, pie)</li>
-        <li data-en="Save queries as macros with one click" data-es="Guarda consultas como macros con un clic">Save queries as macros with one click</li>
-        <li data-en="Multi-sheet analysis and workflow automation" data-es="Análisis multi-hoja y automatización">Multi-sheet analysis and workflow automation</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 03: Wiki & Knowledge Base -->
-    <div class="module-card mod-wiki">
-      <div class="module-number">MODULE 03</div>
-      <span class="module-icon">📖</span>
-      <div class="module-name" data-en="Wiki & Knowledge Base" data-es="Wiki y Base de Conocimiento">Wiki & Knowledge Base</div>
-      <div class="module-tagline" data-en="Procedures · Checklists · Version history" data-es="Procedimientos · Checklists · Historial de versiones">Procedures · Checklists · Version history</div>
-      <div class="module-desc" data-en="Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes. All pages are RAG-indexed automatically and searchable alongside your uploaded documents." data-es="Wiki integrada con editor Markdown, historial de versiones y tipos de página. Todas las páginas se indexan automáticamente por RAG y son buscables junto a tus documentos subidos.">Built-in wiki with Markdown editor, version history, templates and page types — procedures, checklists, meeting notes. All pages are RAG-indexed automatically and searchable alongside your uploaded documents.</div>
-      <ul class="module-features">
-        <li data-en="Markdown editor with templates" data-es="Editor Markdown con plantillas">Markdown editor with templates</li>
-        <li data-en="Full version history and diff view" data-es="Historial completo y vista de diferencias">Full version history and diff view</li>
-        <li data-en="Auto-indexed in RAG on save" data-es="Auto-indexado en RAG al guardar">Auto-indexed in RAG on save</li>
-        <li data-en="Procedures, checklists, meeting notes" data-es="Procedimientos, checklists, notas de reunión">Procedures, checklists, meeting notes</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 04: Incidents & Assets -->
-    <div class="module-card mod-incidents">
-      <div class="module-number">MODULE 04</div>
-      <span class="module-icon">🏗️</span>
-      <div class="module-name" data-en="Incidents & Asset Registry" data-es="Incidencias y Registro de Activos">Incidents & Asset Registry</div>
-      <div class="module-tagline" data-en="Assets · Incidents · Regulatory deadlines" data-es="Activos · Incidencias · Plazos regulatorios">Assets · Incidents · Regulatory deadlines</div>
-      <div class="module-desc" data-en="Register and track physical assets — elevators, equipment, installations. Link incidents to assets, track regulatory response deadlines, and auto-generate AI-written incident reports directly from task data." data-es="Registra y gestiona activos físicos. Vincula incidencias a activos, rastrea plazos de respuesta regulatorios y genera automáticamente informes de incidencia con IA a partir de los datos de las tareas.">Register and track physical assets — elevators, equipment, installations. Link incidents to assets, track regulatory response deadlines, and auto-generate AI-written incident reports directly from task data.</div>
-      <ul class="module-features">
-        <li data-en="Asset registry with status tracking" data-es="Registro de activos con seguimiento de estado">Asset registry with status tracking</li>
-        <li data-en="Incident linked to asset and regulation" data-es="Incidencia vinculada a activo y normativa">Incident linked to asset and regulation</li>
-        <li data-en="AI-generated incident report (one click)" data-es="Informe de incidencia generado por IA (un clic)">AI-generated incident report (one click)</li>
-        <li data-en="Regulatory response deadline alerts" data-es="Alertas de plazo de respuesta regulatorio">Regulatory response deadline alerts</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 05: AI Agent Mode -->
-    <div class="module-card mod-agent">
-      <div class="module-number">MODULE 05</div>
-      <span class="module-icon">🤖</span>
-      <div class="module-name" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div>
-      <div class="module-tagline" data-en="Autonomous multi-step task execution" data-es="Ejecución autónoma de tareas en múltiples pasos">Autonomous multi-step task execution</div>
-      <div class="module-desc" data-en="Give the AI a complex instruction and it executes a multi-step plan autonomously — searching documents, creating tasks, generating reports, and updating assets in a single ReAct loop. Everything runs locally." data-es="Dale a la IA una instrucción compleja y ejecuta un plan de múltiples pasos de forma autónoma — buscando documentos, creando tareas, generando informes y actualizando activos en un único bucle ReAct. Todo corre localmente.">Give the AI a complex instruction and it executes a multi-step plan autonomously — searching documents, creating tasks, generating reports, and updating assets in a single ReAct loop. Everything runs locally.</div>
-      <ul class="module-features">
-        <li data-en="ReAct loop with 8 tool executors" data-es="Bucle ReAct con 8 ejecutores de herramientas">ReAct loop with 8 tool executors</li>
-        <li data-en="Real-time SSE step streaming" data-es="Streaming de pasos en tiempo real por SSE">Real-time SSE step streaming</li>
-        <li data-en="Cross-module autonomous actions" data-es="Acciones autónomas entre módulos">Cross-module autonomous actions</li>
-        <li data-en="Fully local — no external API" data-es="Completamente local — sin API externa">Fully local — no external API</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-    <!-- Module 06: Analytics & ROI -->
-    <div class="module-card mod-analytics">
-      <div class="module-number">MODULE 06</div>
-      <span class="module-icon">📈</span>
-      <div class="module-name" data-en="Analytics & ROI Dashboard" data-es="Panel de Analítica y ROI">Analytics & ROI Dashboard</div>
-      <div class="module-tagline" data-en="Usage · Hours saved · Executive reports" data-es="Uso · Horas ahorradas · Informes ejecutivos">Usage · Hours saved · Executive reports</div>
-      <div class="module-desc" data-en="Track query volume, response times (p50/p95/p99), hours saved per team, and recovered engineering time. One-click executive PDF report for quarterly reviews and ROI justification." data-es="Registra volumen de consultas, tiempos de respuesta, horas ahorradas por equipo y tiempo de ingeniería recuperado. Informe PDF ejecutivo en un clic para revisiones trimestrales y justificación de ROI.">Track query volume, response times (p50/p95/p99), hours saved per team, and recovered engineering time. One-click executive PDF report for quarterly reviews and ROI justification.</div>
-      <ul class="module-features">
-        <li data-en="Query volume and latency tracking" data-es="Seguimiento de volumen de consultas y latencia">Query volume and latency tracking</li>
-        <li data-en="Hours saved per team per week" data-es="Horas ahorradas por equipo a la semana">Hours saved per team per week</li>
-        <li data-en="One-click executive PDF report" data-es="Informe PDF ejecutivo en un clic">One-click executive PDF report</li>
-        <li data-en="ROI calculator for management" data-es="Calculadora de ROI para dirección">ROI calculator for management</li>
-      </ul>
-      <div class="module-price-hint" data-en="+ add-on per plan" data-es="+ complemento por plan">+ add-on per plan</div>
-    </div>
-
-  </div>
-
-  <!-- Composer callout -->
-  <div class="modules-composer">
-    <div class="composer-title" data-en="Example: a 3-module stack for a maintenance company" data-es="Ejemplo: un stack de 3 módulos para una empresa de mantenimiento">Example: a 3-module stack for a maintenance company</div>
-    <div class="composer-sub" data-en="Core + Incidents & Assets + Wiki — everything needed to query regulations, manage assets, track incidents with automated reports, and build internal procedures. No kanban, no analytics, no Excel. Pay only for what your team actually uses." data-es="Core + Incidencias y Activos + Wiki — todo lo necesario para consultar normativa, gestionar activos, registrar incidencias con informes automáticos y construir procedimientos internos. Sin kanban, sin analítica, sin Excel. Paga solo lo que tu equipo usa.">Core + Incidents & Assets + Wiki — everything needed to query regulations, manage assets, track incidents with automated reports, and build internal procedures. No kanban, no analytics, no Excel. Pay only for what your team actually uses.</div>
-    <div class="composer-row">
-      <div class="composer-module">
-        <span style="font-size:1.2rem">🧠</span>
-        <div class="composer-module-name" data-en="Core" data-es="Core">Core</div>
-        <div class="composer-module-price" data-en="always included" data-es="siempre incluido">always included</div>
-      </div>
-      <div class="composer-module">
-        <span style="font-size:1.2rem">🏗️</span>
-        <div class="composer-module-name" data-en="Incidents & Assets" data-es="Incidencias y Activos">Incidents & Assets</div>
-        <div class="composer-module-price" data-en="module 04" data-es="módulo 04">module 04</div>
-      </div>
-      <div class="composer-module">
-        <span style="font-size:1.2rem">📖</span>
-        <div class="composer-module-name" data-en="Wiki" data-es="Wiki">Wiki</div>
-        <div class="composer-module-price" data-en="module 03" data-es="módulo 03">module 03</div>
-      </div>
-      <div class="composer-module" style="background:rgba(0,212,255,0.04);border-left:2px solid rgba(0,212,255,0.3)">
-        <span style="font-size:1.2rem">✓</span>
-        <div class="composer-module-name" style="color:var(--accent)" data-en="Your stack" data-es="Tu stack">Your stack</div>
-        <div class="composer-module-price" data-en="configured at onboarding" data-es="configurado en el onboarding">configured at onboarding</div>
-      </div>
-    </div>
-    <div class="composer-note" data-en="All module combinations are supported · Modules can be added or removed at any time · Pricing scales with modules + seats" data-es="Todas las combinaciones de módulos están soportadas · Los módulos se pueden añadir o eliminar en cualquier momento · El precio escala con módulos + seats">All module combinations are supported · Modules can be added or removed at any time · Pricing scales with modules + seats</div>
-  </div>
-</section>
-
-<!-- ── HOW IT WORKS ── -->
-<section id="how" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-  <div class="section-label" data-en="Process" data-es="Proceso">Process</div>
-  <h2 data-en="From document to answer<br>in seconds." data-es="Del documento a la respuesta<br>en segundos.">From document to answer<br>in seconds.</h2>
-  <p class="section-sub" data-en="No complex setup. No training required. Upload your documents, ask your question, get your answer." data-es="Sin configuración compleja. Sin formación necesaria. Sube tus documentos, haz tu pregunta, obtén tu respuesta.">No complex setup. No training required. Upload your documents, ask your question, get your answer.</p>
-  <div class="steps fade-in">
-    <div class="step"><div class="step-num">01</div><div class="step-title" data-en="Deploy on Your Server" data-es="Desplegar en Tu Servidor">Deploy on Your Server</div><div class="step-desc" data-en="IT runs docker-compose up. The full stack — AI models, vector database, app — starts automatically on your hardware." data-es="TI ejecuta docker-compose up. La pila completa arranca automáticamente en tu hardware.">IT runs docker-compose up. The full stack — AI models, vector database, app — starts automatically on your hardware.</div></div>
-    <div class="step"><div class="step-num">02</div><div class="step-title" data-en="Upload Documents" data-es="Subir Documentos">Upload Documents</div><div class="step-desc" data-en="Upload PDFs, scanned documents or Excel files. EngiIntel deduplicates, processes and indexes them using local AI models. Excel files become queryable with natural language and chart generation." data-es="Sube PDFs, documentos escaneados o archivos Excel. EngiIntel deduplica, procesa e indexa con modelos IA locales. Los archivos Excel se vuelven consultables con lenguaje natural y generación de gráficos.">Upload PDFs, scanned documents or Excel files. EngiIntel deduplicates, processes and indexes them using local AI models. Excel files become queryable with natural language and chart generation.</div></div>
-    <div class="step"><div class="step-num">03</div><div class="step-title" data-en="Ask in Natural Language" data-es="Preguntar en Lenguaje Natural">Ask in Natural Language</div><div class="step-desc" data-en="Engineers type their question in plain language. The system checks the cache, then searches semantically across all indexed documents with cross-encoder reranking." data-es="Los ingenieros escriben su pregunta. El sistema comprueba la caché y luego busca semánticamente con reranking de codificador cruzado.">Engineers type their question in plain language. The system checks the cache, then searches semantically across all indexed documents with cross-encoder reranking.</div></div>
-    <div class="step"><div class="step-num">04</div><div class="step-title" data-en="Get Cited Answers" data-es="Obtener Respuestas Citadas">Get Cited Answers</div><div class="step-desc" data-en="Receive precise answers with document name and page number. Verify directly in the source in one click." data-es="Recibe respuestas precisas con nombre de documento y número de página. Verifica en la fuente con un clic.">Receive precise answers with document name and page number. Verify directly in the source in one click.</div></div>
-  </div>
-</section>
-
-<!-- ── INDUSTRIES ── -->
-<section id="industries">
-  <div class="section-label" data-en="Industries" data-es="Industrias">Industries</div>
-  <h2 data-en="Built for regulated<br>environments." data-es="Construido para entornos<br>regulados.">Built for regulated<br>environments.</h2>
-  <p class="section-sub" data-en="Where documentation accuracy is a legal requirement, not a preference." data-es="Donde la precisión documental es un requisito legal, no una preferencia.">Where documentation accuracy is a legal requirement, not a preference.</p>
-  <div class="industries-grid fade-in">
-    <div class="industry-card"><span class="industry-icon">🛗</span><div class="industry-name" data-en="Elevator & Vertical Transport" data-es="Ascensores y Transporte Vertical">Elevator & Vertical Transport</div><div class="industry-desc" data-en="BOE regulations, EN 81 series, inspection reports, maintenance schedules and modernisation projects — cited answers in seconds." data-es="Normativas BOE, serie EN 81, informes de inspección, planes de mantenimiento y proyectos de modernización — respuestas citadas en segundos.">BOE regulations, EN 81 series, inspection reports, maintenance schedules and modernisation projects — cited answers in seconds.</div></div>
-    <div class="industry-card"><span class="industry-icon">⚗️</span><div class="industry-name" data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical</div><div class="industry-desc" data-en="SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail." data-es="SOPs, protocolos de validación, presentaciones regulatorias y documentación GMP — todo consultable con trazabilidad completa.">SOPs, validation protocols, regulatory submissions and GMP documentation — all queryable with full audit trail.</div></div>
-    <div class="industry-card"><span class="industry-icon">✈️</span><div class="industry-name" data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace & Defence</div><div class="industry-desc" data-en="Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy." data-es="Manuales de mantenimiento, directivas de aeronavegabilidad, órdenes técnicas y especificaciones de componentes — precisión crítica.">Maintenance manuals, airworthiness directives, technical orders and component specs — mission-critical accuracy.</div></div>
-    <div class="industry-card"><span class="industry-icon">⚡</span><div class="industry-name" data-en="Energy & Utilities" data-es="Energía y Utilities">Energy & Utilities</div><div class="industry-desc" data-en="Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations." data-es="Documentación de planta, procedimientos de seguridad, normas IEC e informes de inspección. Acceso inmediato durante operaciones.">Plant documentation, safety procedures, IEC standards and inspection reports. Instant access during operations.</div></div>
-    <div class="industry-card"><span class="industry-icon">🏭</span><div class="industry-name" data-en="Manufacturing & Industry" data-es="Manufactura e Industria">Manufacturing & Industry</div><div class="industry-desc" data-en="Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer on the floor." data-es="Especificaciones técnicas, documentación CE, directivas de maquinaria y manuales de calidad — consultables por cualquier ingeniero.">Technical specs, CE documentation, machinery directives and quality manuals — queryable by any engineer.</div></div>
-    <div class="industry-card"><span class="industry-icon">🏗️</span><div class="industry-name" data-en="Construction & Infrastructure" data-es="Construcción e Infraestructura">Construction & Infrastructure</div><div class="industry-desc" data-en="Building codes, structural calculations, project specifications and inspection reports — all searchable from site." data-es="Códigos de construcción, cálculos estructurales, especificaciones de proyecto e informes — todo buscable desde obra.">Building codes, structural calculations, project specifications and inspection reports — all searchable from site.</div></div>
-  </div>
-</section>
-
-<!-- ── PRIVACY ── -->
-<section class="privacy-section">
-  <div class="privacy-grid fade-in">
-    <div>
-      <div class="section-label" data-en="Data Sovereignty" data-es="Soberanía de Datos">Data Sovereignty</div>
-      <h2 data-en="Your data never<br>leaves your building." data-es="Tus datos nunca<br>salen de tu edificio.">Your data never<br>leaves your building.</h2>
-      <p class="section-sub" data-en="EngiIntel was designed from day one for environments where data confidentiality is non-negotiable." data-es="EngiIntel fue diseñado desde el primer día para entornos donde la confidencialidad de los datos no es negociable.">EngiIntel was designed from day one for environments where data confidentiality is non-negotiable.</p>
-      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="Zero cloud dependency" data-es="Cero dependencia en la nube">Zero cloud dependency</strong> — <span data-en="AI inference runs locally. No OpenAI, no Google, no external APIs required." data-es="La inferencia IA se ejecuta localmente. Sin OpenAI, sin Google, sin APIs externas.">AI inference runs locally. No OpenAI, no Google, no external APIs required.</span></div></div>
-      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="GDPR compliant by architecture" data-es="GDPR conforme por arquitectura">GDPR compliant by architecture</strong> — <span data-en="Data never crosses jurisdictional boundaries. Residency guaranteed." data-es="Los datos nunca cruzan fronteras jurisdiccionales. Residencia garantizada.">Data never crosses jurisdictional boundaries. Residency guaranteed.</span></div></div>
-      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="Works fully offline" data-es="Funciona completamente sin conexión">Works fully offline</strong> — <span data-en="Deploy on your intranet. No internet required after initial setup." data-es="Despliega en tu intranet. Sin conexión a internet después de la configuración inicial.">Deploy on your intranet. No internet required after initial setup.</span></div></div>
-      <div class="check-item"><div class="check-icon">✓</div><div class="check-text"><strong data-en="IT has full control" data-es="TI tiene control total">IT has full control</strong> — <span data-en="Standard Docker deployment. Your team manages the server, backups and access." data-es="Despliegue Docker estándar. Tu equipo gestiona el servidor, copias de seguridad y acceso.">Standard Docker deployment. Your team manages the server, backups and access.</span></div></div>
-    </div>
-    <div class="privacy-visual">
-      <div><span class="t-dim"># Architecture overview</span></div><br>
-      <div><span class="t-accent">[ Your Server ]</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">EngiIntel App</span> <span class="t-dim">(port 3000)</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">PostgreSQL + pgvector</span> <span class="t-dim">(port 5432)</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">├──</span> <span class="t-white">Ollama LLM</span> <span class="t-dim">(port 11434)</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">│&nbsp;&nbsp;&nbsp;&nbsp;├──</span> <span class="t-yellow">mxbai-embed-large</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">│&nbsp;&nbsp;&nbsp;&nbsp;└──</span> <span class="t-yellow">llama3.1:8b</span></div>
-      <div>&nbsp;&nbsp;<span class="t-green">└──</span> <span class="t-white">pgAdmin</span> <span class="t-dim">(port 5050)</span></div><br>
-      <div><span class="t-dim">─────────────────────────</span></div>
-      <div><span class="t-danger">✗ OpenAI API</span>&nbsp;&nbsp;<span class="t-dim">not connected</span></div>
-      <div><span class="t-danger">✗ Google API</span>&nbsp;&nbsp;&nbsp;<span class="t-dim">not connected</span></div>
-      <div><span class="t-danger">✗ Any cloud</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-dim">not connected</span></div><br>
-      <div><span class="t-green">✓ 100% local inference</span></div>
-      <div><span class="t-green">✓ Zero data egress</span></div>
-      <div><span class="t-green">✓ Offline capable</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PRICING ── -->
-<section id="pricing">
-  <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
-  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
-  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
-
-  <!-- Interactive pricing calculator -->
-  <div class="pricing-calc fade-in">
-    <div class="calc-header">
-      <div>
-        <div class="calc-header-title" data-en="Configure your plan" data-es="Configura tu plan">Configure your plan</div>
-        <div class="calc-header-sub" data-en="Select seats and modules — price updates in real time" data-es="Selecciona seats y módulos — el precio se actualiza en tiempo real">Select seats and modules — price updates in real time</div>
-      </div>
-    </div>
-    <div class="calc-body">
-      <div class="calc-left">
-        <div class="calc-section-label" data-en="Number of seats" data-es="Número de seats">Number of seats</div>
-        <div class="calc-seats">
-          <button class="seats-btn" onclick="adjustSeats(-1)">−</button>
-          <input class="seats-input" type="number" id="seatsInput" value="5" min="1" max="500" oninput="calcPrice()">
-          <button class="seats-btn" onclick="adjustSeats(1)">+</button>
-          <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
-        </div>
-
-        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
-        <div class="calc-modules-grid">
-          <div class="calc-module-toggle core-mod">
-            <span class="calc-mod-icon">🧠</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
-            <span class="calc-mod-check">✓</span>
-          </div>
-          <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
-            <span class="calc-mod-icon">🗂️</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
-            <span class="calc-mod-check" id="chk-ops"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
-            <span class="calc-mod-icon">📊</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
-            <span class="calc-mod-check" id="chk-excel"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
-            <span class="calc-mod-icon">📖</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
-            <span class="calc-mod-check" id="chk-wiki"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
-            <span class="calc-mod-icon">🏗️</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
-            <span class="calc-mod-check" id="chk-incidents"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
-            <span class="calc-mod-icon">🤖</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
-            <span class="calc-mod-check" id="chk-agent"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
-            <span class="calc-mod-icon">📈</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
-            <span class="calc-mod-check" id="chk-analytics"></span>
-          </div>
-        </div>
-      </div>
-      <div class="calc-right">
-        <div class="calc-section-label" data-en="Your plan" data-es="Tu plan">Your plan</div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" data-en="Core · per seat" data-es="Core · por seat">Core · per seat</span>
-          <span class="calc-summary-val">€8<span style="font-size:0.75rem;font-weight:400;color:var(--text-dim)">/mo</span></span>
-        </div>
-        <div class="calc-summary-line" id="sum-modules-row" style="display:none">
-          <span class="calc-summary-key" id="sum-modules-label">+ 0 modules · per seat</span>
-          <span class="calc-summary-val" id="sum-modules-val">€0/mo</span>
-        </div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" id="sum-seats-label" data-en="× seats" data-es="× seats">× seats</span>
-          <span class="calc-summary-val" id="sum-seats-val">5</span>
-        </div>
-        <div class="calc-summary-line" id="sum-discount-row" style="display:none">
-          <span class="calc-summary-key" id="sum-discount-label" style="color:var(--accent3)">Volume discount</span>
-          <span class="calc-summary-val" id="sum-discount-val" style="color:var(--accent3)">−€0</span>
-        </div>
-        <div class="calc-total-row">
-          <div>
-            <div class="calc-total-label" data-en="Total / month" data-es="Total / mes">Total / month</div>
-            <div class="calc-total-period" data-en="billed monthly · cancel anytime" data-es="factura mensual · cancela cuando quieras">billed monthly · cancel anytime</div>
-          </div>
-          <div class="calc-total-price" id="calcTotal">€40</div>
-        </div>
-        <a href="#contact" class="calc-cta" data-en="Request this plan →" data-es="Solicitar este plan →">Request this plan →</a>
-        <div class="calc-note" id="calcNote" data-en="On-premise · no per-query costs · Docker install" data-es="On-premise · sin coste por consulta · instalación Docker">On-premise · no per-query costs · Docker install</div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- Tier reference cards -->
-  <div class="pricing-grid fade-in">
-    <div class="pricing-card">
-      <div class="pricing-plan">Starter</div>
-      <div class="pricing-price"><sup>€</sup>8</div>
-      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
-      <ul class="pricing-features">
-        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
-        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
-      </ul>
-      <a href="#contact" class="pricing-cta ghost" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</a>
-    </div>
-    <div class="pricing-card featured">
-      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
-      <div class="pricing-plan">Team</div>
-      <div class="pricing-price"><sup>€</sup>20</div>
-      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
-      <ul class="pricing-features">
-        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
-      </ul>
-      <a href="#contact" class="pricing-cta solid" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</a>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-plan">Enterprise</div>
-      <div class="pricing-price"><sup>€</sup>32</div>
-      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
-      <ul class="pricing-features">
-        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
-        <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
-        <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
-        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
-      </ul>
-      <a href="#contact" class="pricing-cta ghost" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</a>
-    </div>
-  </div>
-  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
-</section>
-
-<script>
-// ── Pricing calculator ──
-// Single source of truth: Core €8/seat + €4/seat per optional module
-// Volume discounts: ≥15 seats −10%, ≥25 −15%, ≥50 −20%
-const CORE_PER_SEAT = 8;
-const MODULE_PRICE_PER_SEAT = 4; // flat €4 per module per seat
-const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
-const selected = new Set();
-
-function toggleMod(id){
-  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
-  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
-  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
-  calcPrice();
-}
-function adjustSeats(delta){
-  const inp=document.getElementById('seatsInput');
-  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
-  inp.value=v; calcPrice();
-}
-function calcPrice(){
-  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
-  const modCount=selected.size;
-  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
-  let subtotal=pricePerSeat*seats;
-  let discountPct=0;
-  if(seats>=50) discountPct=20;
-  else if(seats>=25) discountPct=15;
-  else if(seats>=15) discountPct=10;
-  const discount=Math.round(subtotal*discountPct/100);
-  const total=subtotal-discount;
-
-  document.getElementById('calcTotal').textContent='€'+total;
-  document.getElementById('sum-seats-val').textContent=seats;
-
-  // modules line
-  const modRow=document.getElementById('sum-modules-row');
-  if(modCount>0){
-    modRow.style.display='flex';
-    const isEs=document.documentElement.lang==='es';
-    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
-    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
-  } else { modRow.style.display='none'; }
-
-  // discount line
-  const discRow=document.getElementById('sum-discount-row');
-  if(discount>0){
-    discRow.style.display='flex';
-    const isEs=document.documentElement.lang==='es';
-    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
-    document.getElementById('sum-discount-val').textContent='−€'+discount;
-  } else { discRow.style.display='none'; }
-
-  // note
-  const note=document.getElementById('calcNote');
-  const isEs=document.documentElement.lang==='es';
-  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
-  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
-
-  // highlight matching tier card
-  document.querySelectorAll('.pricing-card').forEach(c=>c.classList.remove('calc-highlight'));
-  if(modCount===0) document.querySelectorAll('.pricing-card')[0]?.classList.add('calc-highlight');
-  else if(modCount<=3) document.querySelectorAll('.pricing-card')[1]?.classList.add('calc-highlight');
-  else document.querySelectorAll('.pricing-card')[2]?.classList.add('calc-highlight');
-}
-calcPrice();
-</script>
-
-<!-- ── ROADMAP ── -->
-<section id="roadmap" style="background:var(--surface);border-top:1px solid var(--border)">
-  <div class="section-label" data-en="Roadmap" data-es="Hoja de Ruta">Roadmap</div>
-  <h2 data-en="Built in public.<br>Shipping fast." data-es="Construido abiertamente.<br>Enviando rápido.">Built in public.<br>Shipping fast.</h2>
-  <p class="section-sub" data-en="EngiIntel is production-ready. All core features are live. Active development continues on enterprise scale and deeper integrations." data-es="EngiIntel está listo para producción. Todas las funcionalidades principales están disponibles. El desarrollo continúa en escala enterprise e integraciones más profundas.">EngiIntel is production-ready. All core features are live. Active development continues on enterprise scale and deeper integrations.</p>
-  <div class="roadmap fade-in">
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Foundation" data-es="Fundación">Foundation</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Docker</span><span class="roadmap-tag done">Local AI</span><span class="roadmap-tag done">OCR</span><span class="roadmap-tag done">RAG Pipeline</span><span class="roadmap-tag done">JWT Auth</span><span class="roadmap-tag done">Audit Logs</span><span class="roadmap-tag done">Admin Panel</span><span class="roadmap-tag done">Self-hosted DB</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Connectors & Security" data-es="Conectores y Seguridad">Connectors & Security</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">SharePoint Sync</span><span class="roadmap-tag done">Google Drive</span><span class="roadmap-tag done">Confluence</span><span class="roadmap-tag done">Entra ID SSO</span><span class="roadmap-tag done">PII Detection</span><span class="roadmap-tag done">Multilingual</span><span class="roadmap-tag done">RBAC</span><span class="roadmap-tag done">Folder System</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Platform & Billing" data-es="Plataforma y Facturación">Platform & Billing</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Multi-tenant SaaS</span><span class="roadmap-tag done">Stripe Billing</span><span class="roadmap-tag done">ROI Dashboard</span><span class="roadmap-tag done">Onboarding Wizard</span><span class="roadmap-tag done">Public REST API</span><span class="roadmap-tag done">Webhooks</span><span class="roadmap-tag done">GDPR Erasure</span><span class="roadmap-tag done">SOC 2 Export</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Answer Quality" data-es="Calidad de Respuesta">Answer Quality</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Confidence Scoring</span><span class="roadmap-tag done">ReAct Agent Loop</span><span class="roadmap-tag done">Query Expansion</span><span class="roadmap-tag done">Cross-Encoder Reranking</span><span class="roadmap-tag done">Chunk Summaries</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Performance & Scale" data-es="Rendimiento y Escala">Performance & Scale</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Query Cache</span><span class="roadmap-tag done">Doc Deduplication</span><span class="roadmap-tag done">Top-20 Rerank</span><span class="roadmap-tag done">Latency p50/p95/p99</span><span class="roadmap-tag done">Lazy Loading</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Wiki & Incidents" data-es="Wiki e Incidencias">Wiki & Incidents</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Wiki Engine</span><span class="roadmap-tag done">Version History</span><span class="roadmap-tag done">Asset Registry</span><span class="roadmap-tag done">Incident Reports</span><span class="roadmap-tag done">AI Report Gen</span><span class="roadmap-tag done">RAG Auto-Index</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Context Intelligence" data-es="Inteligencia Contextual">Context Intelligence</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">Passive Context</span><span class="roadmap-tag done">Pinned Panel</span><span class="roadmap-tag done">Cross-Module AI</span><span class="roadmap-tag done">Full Resolution</span><span class="roadmap-tag done">Wiki Sources in RAG</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div><div class="phase-name phase-done" data-en="✓ Complete" data-es="✓ Completo">✓ Complete</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag done">ReAct Loop</span><span class="roadmap-tag done">8 Tool Executors</span><span class="roadmap-tag done">SSE Streaming</span><span class="roadmap-tag done">Step Rendering</span><span class="roadmap-tag done">Autonomous Tasks</span></div>
-    </div>
-    <div class="roadmap-item">
-      <div class="roadmap-phase"><div class="phase-label" data-en="Enterprise Scale" data-es="Escala Enterprise">Enterprise Scale</div><div class="phase-name phase-next">Q3 2026</div></div>
-      <div class="roadmap-content"><span class="roadmap-tag">SAML 2.0 / SCIM</span><span class="roadmap-tag">IP Allowlisting</span><span class="roadmap-tag">vLLM Scale</span><span class="roadmap-tag">SIEM Export</span><span class="roadmap-tag">Custom SLA</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FAQ ── -->
-<section id="faq">
-  <div class="section-label" data-en="FAQ" data-es="Preguntas Frecuentes">FAQ</div>
-  <h2 data-en="Questions IT always asks." data-es="Las preguntas que siempre hace TI.">Questions IT always asks.</h2>
-  <p class="section-sub" data-en="Straight answers to the questions that come up in every security review." data-es="Respuestas directas a las preguntas que surgen en cada revisión de seguridad.">Straight answers to the questions that come up in every security review.</p>
-  <div class="faq-list fade-in">
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Where is our data stored?" data-es="¿Dónde se almacenan nuestros datos?">Where is our data stored?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer"><div class="faq-answer-inner" data-en="100% on your own server. EngiIntel stores all documents, embeddings and query logs in a PostgreSQL database running in Docker on your hardware. No data is ever sent to any external service." data-es="100% en tu propio servidor. EngiIntel almacena todos los documentos, embeddings y registros en una base de datos PostgreSQL que se ejecuta en Docker en tu hardware. Nunca se envían datos a ningún servicio externo.">100% on your own server. EngiIntel stores all documents, embeddings and query logs in a PostgreSQL database running in Docker on your hardware. No data is ever sent to any external service.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Does it work without internet?" data-es="¿Funciona sin internet?">Does it work without internet?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer"><div class="faq-answer-inner" data-en="Yes. After initial setup and model download, EngiIntel operates entirely offline. It can be deployed on an air-gapped intranet with no outbound internet access required." data-es="Sí. Después de la configuración inicial y la descarga del modelo, EngiIntel funciona completamente sin conexión. Puede desplegarse en una intranet aislada sin acceso a internet saliente.">Yes. After initial setup and model download, EngiIntel operates entirely offline. It can be deployed on an air-gapped intranet with no outbound internet access required.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="What hardware do we need?" data-es="¿Qué hardware necesitamos?">What hardware do we need?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer"><div class="faq-answer-inner" data-en="For small teams (1–10 users): a modern workstation with 32GB RAM and a mid-range GPU (8GB+ VRAM) runs comfortably. For larger deployments a server with a GPU is recommended. EngiIntel runs on Windows, Linux and macOS via Docker." data-es="Para equipos pequeños (1–10 usuarios): una estación de trabajo moderna con 32GB RAM y una GPU de gama media (8GB+ VRAM) funciona cómodamente. Para despliegues mayores se recomienda un servidor con GPU.">For small teams (1–10 users): a modern workstation with 32GB RAM and a mid-range GPU (8GB+ VRAM) runs comfortably. For larger deployments a server with GPU is recommended. Runs on Windows, Linux and macOS via Docker.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="Is it GDPR compliant?" data-es="¿Cumple con el GDPR?">Is it GDPR compliant?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer"><div class="faq-answer-inner" data-en="Yes, by architecture. Since all data stays on your infrastructure, there is no cross-border data transfer. EngiIntel includes a GDPR right-to-erasure endpoint, PII detection scanning, and full audit trail export for compliance reviews." data-es="Sí, por arquitectura. Dado que todos los datos permanecen en tu infraestructura, no hay transferencia de datos transfronteriza. EngiIntel incluye endpoint de borrado GDPR, escaneo PII y exportación completa de auditoría.">Yes, by architecture. Since all data stays on your infrastructure, there is no cross-border data transfer. Includes a GDPR right-to-erasure endpoint, PII detection, and full audit trail export.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)"><span data-en="What happens if the server goes down?" data-es="¿Qué pasa si el servidor se cae?">What happens if the server goes down?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer"><div class="faq-answer-inner" data-en="EngiIntel is a standard Docker application. Your IT team manages backups, redundancy and uptime using your existing infrastructure procedures. Enterprise plans include deployment assistance and SLA documentation." data-es="EngiIntel es una aplicación Docker estándar. Tu equipo de TI gestiona los respaldos, la redundancia y el tiempo de actividad. Los planes Enterprise incluyen asistencia de despliegue y documentación SLA.">EngiIntel is a standard Docker application. Your IT team manages backups, redundancy and uptime using your existing infrastructure procedures. Enterprise plans include deployment assistance and SLA documentation.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ── -->
-<section id="contact" class="contact-section">
-  <div class="section-label" data-en="Get Started" data-es="Empezar">Get Started</div>
-  <div class="contact-grid fade-in">
-    <div>
-      <h2 data-en="Ready to deploy AI<br>on your infrastructure?" data-es="¿Listo para desplegar IA<br>en tu infraestructura?">Ready to deploy AI<br>on your infrastructure?</h2>
-      <p class="section-sub" data-en="Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups." data-es="Reserva una demo y te mostraremos EngiIntel funcionando en vivo con un conjunto de documentos real de tu industria — sin diapositivas, sin maquetas.">Book a demo and we'll show you EngiIntel running live on a real document set from your industry — no slides, no mockups.</p>
-      <div class="contact-detail"><span>📧</span><a href="mailto:eloycostas@engiintel.com" style="color:var(--accent);text-decoration:none">eloycostas@engiintel.com</a></div>
-      <div class="contact-detail"><span>📍</span><span data-en="Barcelona, Spain · Remote demos available" data-es="Barcelona, España · Demos remotas disponibles">Barcelona, Spain · Remote demos available</span></div>
-      <div class="contact-detail"><span>⏱</span><span data-en="Response within 24 hours" data-es="Respuesta en 24 horas">Response within 24 hours</span></div>
-    </div>
-    <div>
-      <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="fName" data-en="Name *" data-es="Nombre *">Name *</label>
-            <input type="text" id="fName" placeholder="Jane Smith" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="fCompany" data-en="Company *" data-es="Empresa *">Company *</label>
-            <input type="text" id="fCompany" placeholder="Acme Engineering" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fEmail">Email *</label>
-          <input type="email" id="fEmail" placeholder="jane@company.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fIndustry" data-en="Industry *" data-es="Industria *">Industry *</label>
-          <select id="fIndustry" required>
-            <option value="" disabled selected data-en="Select your industry..." data-es="Selecciona tu industria...">Select your industry...</option>
-            <option data-en="Elevator & Vertical Transport" data-es="Ascensores y Transporte Vertical">Elevator &amp; Vertical Transport</option>
-            <option data-en="Pharmaceutical" data-es="Farmacéutica">Pharmaceutical / Farmacéutica</option>
-            <option data-en="Aerospace & Defence" data-es="Aeroespacial y Defensa">Aerospace &amp; Defence</option>
-            <option data-en="Energy & Utilities" data-es="Energía y Utilities">Energy &amp; Utilities</option>
-            <option data-en="Manufacturing" data-es="Manufactura">Manufacturing / Manufactura</option>
-            <option data-en="Construction" data-es="Construcción">Construction / Construcción</option>
-            <option data-en="Other" data-es="Otro">Other / Otro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fMsg" data-en="Your document challenge (optional)" data-es="Tu reto con documentos (opcional)">Your document challenge (optional)</label>
-          <textarea id="fMsg" placeholder="We have 500 regulatory PDFs our engineers search daily..."></textarea>
-        </div>
-        <div class="form-error" id="formErr"></div>
-        <button type="submit" class="form-submit" data-en="Request Demo →" data-es="Solicitar Demo →">Request Demo →</button>
-        <p class="form-note" data-en="No commitment required. We'll reach out within 24h." data-es="Sin compromiso. Nos pondremos en contacto en 24h.">No commitment required. We'll reach out within 24h.</p>
-      </form>
-      <div class="success-msg" id="successMsg"></div>
-    </div>
-  </div>
-</section>
 
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">Engi<span>Intel</span></div>
-  <div class="footer-copy" data-en="© 2026 EngiIntel. All rights reserved." data-es="© 2026 EngiIntel. Todos los derechos reservados.">© 2026 EngiIntel. All rights reserved.</div>
+  <div class="footer-copy">© 2026 EngiIntel. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script>
-// ── Cursor ──
-(function(){
-  const curDot = document.getElementById('cursor'), curRing = document.getElementById('cursorRing');
-  if(!curDot || !curRing) return;
-  document.body.style.cursor = 'none';
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX; my=e.clientY;
-    curDot.style.left=(mx-4)+'px'; curDot.style.top=(my-4)+'px';
-  });
-  (function tick(){
-    rx+=(mx-rx-16)*0.15; ry+=(my-ry-16)*0.15;
-    curRing.style.left=rx+'px'; curRing.style.top=ry+'px';
-    requestAnimationFrame(tick);
-  })();
-  function attachCursor(){
-    document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
-      el.addEventListener('mouseenter',()=>{curDot.style.transform='scale(2.5)';curRing.style.borderColor='rgba(0,212,255,0.8)';});
-      el.addEventListener('mouseleave',()=>{curDot.style.transform='scale(1)';curRing.style.borderColor='rgba(0,212,255,0.4)';});
-    });
-  }
-  attachCursor();
-  window._reattachCursor = attachCursor;
-})();
-
-// ── Fade-in observer ──
-const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.05});
-document.querySelectorAll('.fade-in').forEach(el=>{el.classList.add('animate');obs.observe(el);});
-setTimeout(()=>document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('visible')),700);
-
-// ── Nav active on scroll ──
-const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll',()=>{
-  let activeId='';
-  document.querySelectorAll('section[id],div[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-140)activeId=s.id;});
-  navAnchors.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+activeId);});
-  document.getElementById('backTop').classList.toggle('visible',window.scrollY>600);
-},{ passive:true });
-
-// ── Features expand ──
-let featOpen=false;
-function toggleFeatures(){
-  featOpen=!featOpen;
-  document.getElementById('featuresMore').classList.toggle('open',featOpen);
-  document.getElementById('toggleArrow').classList.toggle('open',featOpen);
-  const t=document.getElementById('toggleText');
-  const isEs=document.documentElement.lang==='es';
-  t.textContent=featOpen?(isEs?'Ver menos funciones':'Show fewer features'):(isEs?'Ver las 17 funciones':'Show all 17 features');
-}
-
-// ── FAQ accordion ──
-function toggleFaq(el){
-  const ans=el.nextElementSibling, icon=el.querySelector('.faq-icon'), isOpen=ans.classList.contains('open');
-  document.querySelectorAll('.faq-answer.open').forEach(a=>a.classList.remove('open'));
-  document.querySelectorAll('.faq-icon.open').forEach(i=>i.classList.remove('open'));
-  if(!isOpen){ans.classList.add('open');icon.classList.add('open');}
-}
-
-// ── Language ──
-let lang='en';
-function setLang(l){
-  lang=l;
-  document.documentElement.lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    if(b.textContent.trim().toUpperCase()===l.toUpperCase()) b.classList.add('active');
-  });
-  document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));
-  document.querySelectorAll('[data-'+l+'-placeholder]').forEach(el=>el.placeholder=el.getAttribute('data-'+l+'-placeholder'));
-  if(window._reattachCursor) window._reattachCursor();
-}
-
-// ── Form validation & submission ──
-async function handleSubmit(e){
-  e.preventDefault();
-  const name=document.getElementById('fName').value.trim();
-  const email=document.getElementById('fEmail').value.trim();
-  const company=document.getElementById('fCompany').value.trim();
-  const industry=document.getElementById('fIndustry').value;
-  const message=document.getElementById('fMsg').value.trim();
-  const errEl=document.getElementById('formErr');
-  const btn=document.querySelector('.form-submit');
-  const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!name){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu nombre.':'⚠ Please enter your name.';return;}
-  if(!company){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce tu empresa.':'⚠ Please enter your company.';return;}
-  if(!re.test(email)){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor introduce un email válido.':'⚠ Please enter a valid email address.';return;}
-  if(!industry){errEl.style.display='block';errEl.textContent=lang==='es'?'⚠ Por favor selecciona tu industria.':'⚠ Please select your industry.';return;}
-  errEl.style.display='none';
-  btn.disabled=true;
-  btn.textContent=lang==='es'?'Enviando...':'Sending...';
-  try{
-    await fetch('/api/beta-signup',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name,email,company,industry,message})
-    });
-  }catch(err){ console.warn('signup post failed',err); }
-  // Redirect to thank you page
-  window.location.href='/thank-you.html';
-}
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
