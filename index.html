@@ -354,6 +354,56 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   .calc-left, .calc-right { padding: 20px; }
 }
 
+
+/* Improved Visual Hierarchy */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  margin-bottom: 24px !important;
+}
+
+.hero-sub {
+  font-size: 1.1rem !important;
+  line-height: 1.7 !important;
+  max-width: 700px !important;
+}
+
+.btn-primary {
+  font-size: 1rem !important;
+  padding: 16px 36px !important;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25) !important;
+  transition: all 0.3s !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 30px rgba(0, 212, 255, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+.tab-content {
+  padding: 100px 60px !important;
+}
+
+.section-label {
+  font-size: 0.8rem !important;
+  margin-bottom: 24px !important;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  margin-bottom: 20px !important;
+}
+
+.trust-signal {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 </head>
 <body>
@@ -377,9 +427,20 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Request Beta Access" data-es="Solicitar Acceso Beta">Request Beta Access</a>
+      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Reservar Demo">Book a Demo</a>
       <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
     </div>
+  <!-- Trust Signal -->
+  <div class="trust-signal" style="margin-top: 48px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
+    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;">
+      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</span>
+      <span style="color: var(--border);">•</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="On-premise deployment" data-es="Despliegue on-premise">On-premise deployment</span>
+      <span style="color: var(--border);">•</span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="100% data privacy" data-es="100% privacidad de datos">100% data privacy</span>
+    </div>
+  </div>
+
   </div>
 </section>
 
