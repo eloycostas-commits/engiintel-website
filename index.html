@@ -795,6 +795,210 @@ li + li {
   }
 }
 
+
+
+/* Accordion System Styles */
+
+/* Accordion System Styles */
+.capabilities-accordion {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  background: var(--surface);
+  transition: all 0.3s;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-item:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.accordion-item.active {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 28px 36px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.accordion-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.accordion-title {
+  flex: 1;
+}
+
+.accordion-title h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: var(--text);
+}
+
+.accordion-title p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.accordion-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-dim);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  padding: 0 36px;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 3000px;
+  padding: 0 36px 36px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .accordion-header {
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  
+  .accordion-icon {
+    font-size: 2rem;
+  }
+  
+  .accordion-title h3 {
+    font-size: 1.1rem;
+  }
+  
+  .accordion-title p {
+    font-size: 0.8rem;
+  }
+  
+  .accordion-content {
+    padding: 0 24px;
+  }
+  
+  .accordion-item.active .accordion-content {
+    padding: 0 24px 24px;
+  }
+}
+
+
+
+/* Pricing Module Tooltips */
+.info-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  cursor: help;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.info-tooltip:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.info-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface2);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.info-tooltip:hover::after {
+  opacity: 1;
+}
+
+/* Arrow for tooltip */
+.info-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--surface2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.info-tooltip:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .info-tooltip::after {
+    white-space: normal;
+    max-width: 200px;
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+  
+  .info-tooltip::before {
+    left: auto;
+    right: 10px;
+    transform: none;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1115,386 +1319,287 @@ li + li {
 </div>
 
 
-<!-- Tab Content: Features -->
+
+    <!-- Product Screenshots -->
+    <div style="margin-top: 80px;">
+      <div class="section-label" data-en="See It In Action" data-es="Míralo en Acción">See It In Action</div>
+      <h2 data-en="Real Screenshots from EngiIntel" data-es="Capturas Reales de EngiIntel">Real Screenshots from EngiIntel</h2>
+      <p class="section-sub" data-en="See how EngiIntel looks and works in real production environments." data-es="Mira cómo se ve y funciona EngiIntel en entornos de producción reales.">
+        See how EngiIntel looks and works in real production environments.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; margin-top: 40px;">
+        
+        <!-- Screenshot 1: Main Dashboard -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/panel principal.jpg" alt="Main Dashboard" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Main Dashboard" data-es="Panel Principal">Main Dashboard</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Central hub for all your documents, queries, and workflows" data-es="Centro principal para todos tus documentos, consultas y flujos">Central hub for all your documents, queries, and workflows</p>
+        </div>
+        
+        <!-- Screenshot 2: Document Comparison -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/comparar documentos.jpg" alt="Document Comparison" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Document Comparison" data-es="Comparación de Documentos">Document Comparison</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Compare multiple documents side-by-side with AI-powered analysis" data-es="Compara múltiples documentos lado a lado con análisis IA">Compare multiple documents side-by-side with AI-powered analysis</p>
+        </div>
+        
+        <!-- Screenshot 3: Wiki -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/wiki.jpg" alt="Wiki Knowledge Base" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Wiki Knowledge Base" data-es="Base de Conocimiento Wiki">Wiki Knowledge Base</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Organize team knowledge with markdown, version control, and AI search" data-es="Organiza el conocimiento del equipo con markdown, control de versiones y búsqueda IA">Organize team knowledge with markdown, version control, and AI search</p>
+        </div>
+        
+        <!-- Screenshot 4: Assets -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/activos.jpg" alt="Asset Registry" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Track equipment, maintenance schedules, and compliance documents" data-es="Rastrea equipos, programas de mantenimiento y documentos de cumplimiento">Track equipment, maintenance schedules, and compliance documents</p>
+        </div>
+        
+        <!-- Screenshot 5: Incidents -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/Incidencias.jpg" alt="Incident Reports" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Generate professional incident reports with AI assistance" data-es="Genera informes profesionales de incidencias con asistencia IA">Generate professional incident reports with AI assistance</p>
+        </div>
+        
+        <!-- Screenshot 6: Analytics -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/panel de metricas.jpg" alt="Analytics Dashboard" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Analytics Dashboard" data-es="Panel de Analítica">Analytics Dashboard</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Track usage patterns, query performance, and team productivity" data-es="Rastrea patrones de uso, rendimiento de consultas y productividad del equipo">Track usage patterns, query performance, and team productivity</p>
+        </div>
+        
+      </div>
+    </div>
+
+  <!-- Tab Content: Features -->
 <div id="features" class="tab-content">
-  <div class="section-label" data-en="Feature Comparison" data-es="Comparación de Características">Feature Comparison</div>
-  <h2 data-en="Choose the Right Plan" data-es="Elige el Plan Correcto">Choose the Right Plan</h2>
-  <p class="section-sub" data-en="Compare features across all plans. All plans include 100% on-premise deployment and unlimited queries." data-es="Compara características en todos los planes. Todos los planes incluyen despliegue 100% en servidor propio y consultas ilimitadas.">
-    Compare features across all plans. All plans include 100% on-premise deployment and unlimited queries.
+<!-- CAPABILITIES ACCORDION SYSTEM -->
+
+  <div class="section-label" data-en="Platform Capabilities" data-es="Capacidades de la Plataforma">Platform Capabilities</div>
+  <h2 data-en="Everything You Need, On Your Own Terms" data-es="Todo lo que Necesitas, en Tus Propios Términos">Everything You Need, On Your Own Terms</h2>
+  <p class="section-sub" data-en="EngiIntel organizes 22 powerful capabilities into 4 strategic pillars. Expand each to discover how we solve your engineering challenges." data-es="EngiIntel organiza 22 capacidades potentes en 4 pilares estratégicos. Expande cada uno para descubrir cómo resolvemos tus desafíos de ingeniería.">
+    EngiIntel organizes 22 powerful capabilities into 4 strategic pillars. Expand each to discover how we solve your engineering challenges.
   </p>
-  
-  <table class="comparison-table">
-    <thead>
-      <tr>
-        <th data-en="Feature" data-es="Característica">Feature</th>
-        <th data-en="Free" data-es="Gratis">Free</th>
-        <th data-en="Pro (€49/mo)" data-es="Pro (€49/mes)">Pro (€49/mo)</th>
-        <th data-en="Enterprise" data-es="Empresa">Enterprise</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-en="Document Intelligence (Core)" data-es="Inteligencia Documental (Núcleo)">Document Intelligence (Core)</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Documents" data-es="Documentos">Documents</td>
-        <td data-en="Up to 100" data-es="Hasta 100">Up to 100</td>
-        <td data-en="Unlimited" data-es="Ilimitados">Unlimited</td>
-        <td data-en="Unlimited" data-es="Ilimitados">Unlimited</td>
-      </tr>
-      <tr>
-        <td data-en="Users" data-es="Usuarios">Users</td>
-        <td>1</td>
-        <td data-en="Up to 10" data-es="Hasta 10">Up to 10</td>
-        <td data-en="Unlimited" data-es="Ilimitados">Unlimited</td>
-      </tr>
-      <tr>
-        <td data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Page-Level Citations" data-es="Citas a Nivel de Página">Page-Level Citations</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="OCR for Scanned Documents" data-es="OCR para Documentos Escaneados">OCR for Scanned Documents</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Document Connectors (SharePoint, Google Drive)" data-es="Conectores de Documentos (SharePoint, Google Drive)">Document Connectors (SharePoint, Google Drive)</td>
-        <td class="cross">—</td>
-        <td class="check">✓</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Excel Copilot (Add-on)" data-es="Excel Copilot (Adicional)">Excel Copilot (Add-on)</td>
-        <td class="cross">—</td>
-        <td data-en="€15/seat/mo" data-es="€15/usuario/mes">€15/seat/mo</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Wiki & Knowledge Base (Add-on)" data-es="Wiki y Base de Conocimiento (Adicional)">Wiki & Knowledge Base (Add-on)</td>
-        <td class="cross">—</td>
-        <td data-en="€10/mo" data-es="€10/mes">€10/mo</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Asset Registry (Add-on)" data-es="Registro de Activos (Adicional)">Asset Registry (Add-on)</td>
-        <td class="cross">—</td>
-        <td data-en="€15/mo" data-es="€15/mes">€15/mo</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Incident Reports (Add-on)" data-es="Informes de Incidencias (Adicional)">Incident Reports (Add-on)</td>
-        <td class="cross">—</td>
-        <td data-en="€10/mo" data-es="€10/mes">€10/mo</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="AI Agent Mode (Add-on)" data-es="Modo Agente IA (Adicional)">AI Agent Mode (Add-on)</td>
-        <td class="cross">—</td>
-        <td data-en="€25/mo" data-es="€25/mes">€25/mo</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Support" data-es="Soporte">Support</td>
-        <td data-en="Community" data-es="Comunidad">Community</td>
-        <td data-en="Priority" data-es="Prioritario">Priority</td>
-        <td data-en="Dedicated" data-es="Dedicado">Dedicated</td>
-      </tr>
-      <tr>
-        <td data-en="SLA Guarantee" data-es="Garantía SLA">SLA Guarantee</td>
-        <td class="cross">—</td>
-        <td class="cross">—</td>
-        <td data-en="99.9%" data-es="99.9%">99.9%</td>
-      </tr>
-      <tr>
-        <td data-en="Custom Integrations" data-es="Integraciones Personalizadas">Custom Integrations</td>
-        <td class="cross">—</td>
-        <td class="cross">—</td>
-        <td class="check">✓</td>
-      </tr>
-      <tr>
-        <td data-en="Dedicated Support Engineer" data-es="Ingeniero de Soporte Dedicado">Dedicated Support Engineer</td>
-        <td class="cross">—</td>
-        <td class="cross">—</td>
-        <td class="check">✓</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <div style="text-align: center; margin-top: 48px;">
-    <a href="#pricing" class="btn-primary" onclick="switchTab('pricing')" data-en="View Pricing Details" data-es="Ver Detalles de Precios">View Pricing Details</a>
+
+  <div class="capabilities-accordion" style="margin-top: 60px;">
+    
+    <!-- PILLAR 1: CORE ENGINE -->
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion('core')">
+        <span class="accordion-icon">🔥</span>
+        <div class="accordion-title">
+          <h3 data-en="Core Engine" data-es="Motor Principal">Core Engine</h3>
+          <p data-en="Foundation of AI-powered document intelligence" data-es="Fundamento de inteligencia documental con IA">Foundation of AI-powered document intelligence</p>
+        </div>
+        <span class="accordion-arrow">▼</span>
+      </button>
+      <div id="accordion-core" class="accordion-content">
+        <div class="modules-grid" style="margin-top: 24px;">
+          
+          <div class="module-card">
+            <span class="module-icon">🔍</span>
+            <div class="module-name" data-en="RAG Document Search" data-es="Búsqueda RAG de Documentos">RAG Document Search</div>
+            <div class="module-desc" data-en="Query 10,000+ documents in seconds with page-level citations. Hybrid semantic + keyword search." data-es="Consulta 10,000+ documentos en segundos con citas a nivel de página. Búsqueda híbrida semántica + palabras clave.">
+              Query 10,000+ documents in seconds with page-level citations. Hybrid semantic + keyword search.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">💬</span>
+            <div class="module-name" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
+            <div class="module-desc" data-en="Ask questions in plain Spanish or English. Get precise answers with exact page references." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas con referencias exactas de página.">
+              Ask questions in plain Spanish or English. Get precise answers with exact page references.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📄</span>
+            <div class="module-name" data-en="OCR for Scanned Documents" data-es="OCR para Documentos Escaneados">OCR for Scanned Documents</div>
+            <div class="module-desc" data-en="Process scanned PDFs and image-based documents. Legacy manuals work just as well as native PDFs." data-es="Procesa PDFs escaneados y documentos basados en imagen. Los manuales heredados funcionan igual que PDFs nativos.">
+              Process scanned PDFs and image-based documents. Legacy manuals work just as well as native PDFs.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🌍</span>
+            <div class="module-name" data-en="Multi-language Support" data-es="Soporte Multi-idioma">Multi-language Support</div>
+            <div class="module-desc" data-en="Works with Spanish, English, and other European languages. Automatic language detection." data-es="Funciona con español, inglés y otros idiomas europeos. Detección automática de idioma.">
+              Works with Spanish, English, and other European languages. Automatic language detection.
+            </div>
+          
+        </div>
+      </div>
+    
+    <!-- PILLAR 2: SECURITY & PRIVACY -->
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion('security')">
+        <span class="accordion-icon">🔒</span>
+        <div class="accordion-title">
+          <h3 data-en="Security & Privacy" data-es="Seguridad y Privacidad">Security & Privacy</h3>
+          <p data-en="Your primary differentiator - zero data risk" data-es="Tu diferenciador principal - cero riesgo de datos">Your primary differentiator - zero data risk</p>
+        </div>
+        <span class="accordion-arrow">▼</span>
+      </button>
+      <div id="accordion-security" class="accordion-content">
+        <div class="modules-grid" style="margin-top: 24px;">
+          
+          <div class="module-card">
+            <span class="module-icon">🏢</span>
+            <div class="module-name" data-en="100% On-Premise" data-es="100% On-Premise">100% On-Premise</div>
+            <div class="module-desc" data-en="Your data never leaves your infrastructure. Complete air-gapped deployment with zero cloud dependencies." data-es="Tus datos nunca salen de tu infraestructura. Despliegue completamente aislado sin dependencias en la nube.">
+              Your data never leaves your infrastructure. Complete air-gapped deployment with zero cloud dependencies.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🛡️</span>
+            <div class="module-name" data-en="Air-gapped Architecture" data-es="Arquitectura Aislada">Air-gapped Architecture</div>
+            <div class="module-desc" data-en="No external API calls. No internet connection required. Complete data sovereignty." data-es="Sin llamadas API externas. Sin conexión a internet requerida. Soberanía completa de datos.">
+              No external API calls. No internet connection required. Complete data sovereignty.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">✅</span>
+            <div class="module-name" data-en="GDPR Compliance" data-es="Cumplimiento GDPR">GDPR Compliance</div>
+            <div class="module-desc" data-en="Built-in compliance with GDPR and ISO 27001. Complete audit trails and data retention policies." data-es="Cumplimiento integrado con GDPR e ISO 27001. Registros de auditoría completos y políticas de retención.">
+              Built-in compliance with GDPR and ISO 27001. Complete audit trails and data retention policies.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🔐</span>
+            <div class="module-name" data-en="Role-Based Access Control" data-es="Control de Acceso por Roles">Role-Based Access Control</div>
+            <div class="module-desc" data-en="Granular permissions and user management. Control who can access what data and perform which actions." data-es="Permisos granulares y gestión de usuarios. Controla quién puede acceder a qué datos y realizar qué acciones.">
+              Granular permissions and user management. Control who can access what data and perform which actions.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📋</span>
+            <div class="module-name" data-en="Audit Trails" data-es="Registros de Auditoría">Audit Trails</div>
+            <div class="module-desc" data-en="Complete activity logging for compliance. Track every query, document access, and user action." data-es="Registro completo de actividad para cumplimiento. Rastrea cada consulta, acceso a documento y acción de usuario.">
+              Complete activity logging for compliance. Track every query, document access, and user action.
+            </div>
+          
+        </div>
+      </div>
+    
+    <!-- PILLAR 3: CONNECTIVITY -->
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion('connectivity')">
+        <span class="accordion-icon">🔗</span>
+        <div class="accordion-title">
+          <h3 data-en="Connectivity" data-es="Conectividad">Connectivity</h3>
+          <p data-en="Integrate with your existing tools and workflows" data-es="Integra con tus herramientas y flujos existentes">Integrate with your existing tools and workflows</p>
+        </div>
+        <span class="accordion-arrow">▼</span>
+      </button>
+      <div id="accordion-connectivity" class="accordion-content">
+        <div class="modules-grid" style="margin-top: 24px;">
+          
+          <div class="module-card">
+            <span class="module-icon">🐘</span>
+            <div class="module-name" data-en="PostgreSQL Support" data-es="Soporte PostgreSQL">PostgreSQL Support</div>
+            <div class="module-desc" data-en="Native PostgreSQL integration. Query databases alongside documents with natural language." data-es="Integración nativa con PostgreSQL. Consulta bases de datos junto con documentos en lenguaje natural.">
+              Native PostgreSQL integration. Query databases alongside documents with natural language.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🐳</span>
+            <div class="module-name" data-en="Docker Deployment" data-es="Despliegue Docker">Docker Deployment</div>
+            <div class="module-desc" data-en="One-command deployment with Docker Compose. Production-ready in minutes, not days." data-es="Despliegue con un comando usando Docker Compose. Listo para producción en minutos, no días.">
+              One-command deployment with Docker Compose. Production-ready in minutes, not days.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🔄</span>
+            <div class="module-name" data-en="n8n Workflows" data-es="Flujos n8n">n8n Workflows</div>
+            <div class="module-desc" data-en="Visual workflow builder with 300+ integrations. Connect to your existing tools without code." data-es="Constructor visual de flujos con 300+ integraciones. Conecta con tus herramientas existentes sin código.">
+              Visual workflow builder with 300+ integrations. Connect to your existing tools without code.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📡</span>
+            <div class="module-name" data-en="REST API" data-es="API REST">REST API</div>
+            <div class="module-desc" data-en="Complete REST API for custom integrations. Build your own tools on top of EngiIntel." data-es="API REST completa para integraciones personalizadas. Construye tus propias herramientas sobre EngiIntel.">
+              Complete REST API for custom integrations. Build your own tools on top of EngiIntel.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">☁️</span>
+            <div class="module-name" data-en="Cloud Connectors" data-es="Conectores Cloud">Cloud Connectors</div>
+            <div class="module-desc" data-en="Sync from SharePoint, Google Drive, and Confluence. Documents stay up to date automatically." data-es="Sincroniza desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados automáticamente.">
+              Sync from SharePoint, Google Drive, and Confluence. Documents stay up to date automatically.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📊</span>
+            <div class="module-name" data-en="Excel Integration" data-es="Integración Excel">Excel Integration</div>
+            <div class="module-desc" data-en="AI-powered Excel analysis. Query spreadsheets in natural language and generate charts with one command." data-es="Análisis de Excel potenciado por IA. Consulta hojas de cálculo en lenguaje natural y genera gráficos con un comando.">
+              AI-powered Excel analysis. Query spreadsheets in natural language and generate charts with one command.
+            </div>
+          
+        </div>
+      </div>
+    
+    <!-- PILLAR 4: ANALYSIS TOOLS -->
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion('analysis')">
+        <span class="accordion-icon">📊</span>
+        <div class="accordion-title">
+          <h3 data-en="Analysis Tools" data-es="Herramientas de Análisis">Analysis Tools</h3>
+          <p data-en="Boost productivity and automate workflows" data-es="Aumenta productividad y automatiza flujos">Boost productivity and automate workflows</p>
+        </div>
+        <span class="accordion-arrow">▼</span>
+      </button>
+      <div id="accordion-analysis" class="accordion-content">
+        <div class="modules-grid" style="margin-top: 24px;">
+          
+          <div class="module-card">
+            <span class="module-icon">📚</span>
+            <div class="module-name" data-en="Wiki Knowledge Base" data-es="Base de Conocimiento Wiki">Wiki Knowledge Base</div>
+            <div class="module-desc" data-en="Centralized knowledge management with AI search. Keep your team's expertise accessible." data-es="Gestión centralizada del conocimiento con búsqueda IA. Mantén la experiencia de tu equipo accesible.">
+              Centralized knowledge management with AI search. Keep your team's expertise accessible.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🏗️</span>
+            <div class="module-name" data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</div>
+            <div class="module-desc" data-en="Track equipment, installations, and maintenance history. Replace spreadsheets with AI-powered search." data-es="Rastrea equipos, instalaciones e historial de mantenimiento. Reemplaza hojas de cálculo con búsqueda IA.">
+              Track equipment, installations, and maintenance history. Replace spreadsheets with AI-powered search.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📝</span>
+            <div class="module-name" data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</div>
+            <div class="module-desc" data-en="Generate incident reports in one click. Reduce 2+ hours to 10 minutes with automated templates." data-es="Genera informes de incidencias en un clic. Reduce 2+ horas a 10 minutos con plantillas automatizadas.">
+              Generate incident reports in one click. Reduce 2+ hours to 10 minutes with automated templates.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">🤖</span>
+            <div class="module-name" data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</div>
+            <div class="module-desc" data-en="Autonomous AI agents that execute multi-step tasks. From data extraction to workflow automation." data-es="Agentes IA autónomos que ejecutan tareas multi-paso. Desde extracción de datos hasta automatización de flujos.">
+              Autonomous AI agents that execute multi-step tasks. From data extraction to workflow automation.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">📈</span>
+            <div class="module-name" data-en="Analytics Dashboard" data-es="Panel de Analítica">Analytics Dashboard</div>
+            <div class="module-desc" data-en="Track usage, query patterns, and team productivity. Identify bottlenecks and optimize workflows." data-es="Rastrea uso, patrones de consulta y productividad del equipo. Identifica cuellos de botella y optimiza flujos.">
+              Track usage, query patterns, and team productivity. Identify bottlenecks and optimize workflows.
+            </div>
+          
+          <div class="module-card">
+            <span class="module-icon">⚡</span>
+            <div class="module-name" data-en="Automated Reports" data-es="Informes Automatizados">Automated Reports</div>
+            <div class="module-desc" data-en="Schedule automated report generation. Daily, weekly, or monthly compliance reports without manual work." data-es="Programa generación automática de informes. Informes de cumplimiento diarios, semanales o mensuales sin trabajo manual.">
+              Schedule automated report generation. Daily, weekly, or monthly compliance reports without manual work.
+            </div>
+          
+        </div>
+      </div>
+    
   </div>
 </div>
-
-
-<div id="document-intelligence" class="tab-content">
-  <div class="section-label" data-en="Core Module" data-es="Módulo Principal">Core Module</div>
-  <h2 data-en="Document Intelligence" data-es="Inteligencia Documental">Document Intelligence</h2>
-  <p class="section-sub" data-en="RAG-powered document search with page-level citations. Query your technical documentation in natural language." data-es="Búsqueda de documentos potenciada por RAG con citas a nivel de p├ígina. Consulta tu documentación técnica en lenguaje natural.">
-    RAG-powered document search with page-level citations. Query your technical documentation in natural language.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">🔍</span>
-      <div class="module-name" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
-      <div class="module-desc" data-en="Ask questions in plain Spanish or English. Get precise answers with exact page citations." data-es="Haz preguntas en castellano o inglés. Obtén respuestas precisas con citas de p├ígina exactas.">
-        Ask questions in plain Spanish or English. Get precise answers with exact page citations.
-      </div>
-      <ul class="module-features">
-        <li data-en="Hybrid search (semantic + keyword)" data-es="Búsqueda hábrida (sem├íntica + palabras clave)">Hybrid search (semantic + keyword)</li>
-        <li data-en="Page-level citations" data-es="Citas a nivel de p├ígina">Page-level citations</li>
-        <li data-en="Multi-document context" data-es="Contexto multi-documento">Multi-document context</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">📄</span>
-      <div class="module-name" data-en="OCR for Scanned Documents" data-es="OCR para Documentos Escaneados">OCR for Scanned Documents</div>
-      <div class="module-desc" data-en="Processes scanned PDFs and image-based documents. Legacy manuals work just as well as native PDFs." data-es="Procesa PDFs escaneados y documentos basados en imagen. Los manuales heredados funcionan igual que PDFs nativos.">
-        Processes scanned PDFs and image-based documents. Legacy manuals work just as well as native PDFs.
-      </div>
-      <ul class="module-features">
-        <li data-en="Tesseract OCR engine" data-es="Motor OCR Tesseract">Tesseract OCR engine</li>
-        <li data-en="Multi-language support" data-es="Soporte multi-idioma">Multi-language support</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">🔗</span>
-      <div class="module-name" data-en="Document Connectors" data-es="Conectores de Documentos">Document Connectors</div>
-      <div class="module-desc" data-en="Automatic sync from SharePoint, Google Drive and Confluence." data-es="Sincronización autom├ítica desde SharePoint, Google Drive y Confluence.">
-        Automatic sync from SharePoint, Google Drive and Confluence.
-      </div>
-      <ul class="module-features">
-        <li data-en="SharePoint integration" data-es="Integración SharePoint">SharePoint integration</li>
-        <li data-en="Google Drive sync" data-es="Sincronización Google Drive">Google Drive sync</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div id="excel-copilot" class="tab-content">
-  <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
-  <h2 data-en="Excel Copilot" data-es="Excel Copilot">Excel Copilot</h2>
-  <p class="section-sub" data-en="AI-powered Excel analysis. Query spreadsheets in natural language, generate charts with one command, automate workflows with macros." data-es="An├ílisis de Excel potenciado por IA. Consulta hojas de c├ílculo en lenguaje natural, genera gr├íficos con un comando, automatiza flujos con macros.">
-    AI-powered Excel analysis. Query spreadsheets in natural language, generate charts with one command, automate workflows with macros.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
-      <div class="module-desc" data-en="Ask questions about your Excel data in plain language. Get instant tables with filtered results." data-es="Haz preguntas sobre tus datos de Excel en lenguaje natural. Obtén tablas instant├íneas con resultados filtrados.">
-        Ask questions about your Excel data in plain language. Get instant tables with filtered results.
-      </div>
-      <ul class="module-features">
-        <li data-en="Multi-sheet analysis" data-es="An├ílisis multi-hoja">Multi-sheet analysis</li>
-        <li data-en="Complex filtering" data-es="Filtrado complejo">Complex filtering</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="One-Click Chart Generation" data-es="Generación de Gr├íficos">One-Click Chart Generation</div>
-      <div class="module-desc" data-en="Create charts with a single command. AI generates and embeds charts in downloadable Excel files." data-es="Crea gr├íficos con un solo comando. La IA genera e incrusta gr├íficos en archivos Excel descargables.">
-        Create charts with a single command. AI generates and embeds charts in downloadable Excel files.
-      </div>
-      <ul class="module-features">
-        <li data-en="Bar, line, pie charts" data-es="Gr├íficos de barras, láneas, circular">Bar, line, pie charts</li>
-        <li data-en="Auto-embedded in Excel" data-es="Auto-incrustado en Excel">Auto-embedded in Excel</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Macro System" data-es="Sistema de Macros">Macro System</div>
-      <div class="module-desc" data-en="Save frequent queries as macros for one-click reuse. Share with your team." data-es="Guarda consultas frecuentes como macros para reutilizarlas con un clic. Comparte con tu equipo.">
-        Save frequent queries as macros for one-click reuse. Share with your team.
-      </div>
-      <ul class="module-features">
-        <li data-en="Reusable templates" data-es="Plantillas reutilizables">Reusable templates</li>
-        <li data-en="Team sharing" data-es="Compartir con equipo">Team sharing</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div id="wiki" class="tab-content">
-  <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
-  <h2 data-en="Wiki & Knowledge Base" data-es="Wiki y Base de Conocimiento">Wiki & Knowledge Base</h2>
-  <p class="section-sub" data-en="Internal knowledge base with version history, markdown support, and full-text search." data-es="Base de conocimiento interna con historial de versiones, soporte markdown y búsqueda de texto completo.">
-    Internal knowledge base with version history, markdown support, and full-text search.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Markdown Editor" data-es="Editor Markdown">Markdown Editor</div>
-      <div class="module-desc" data-en="Write documentation in markdown with live preview." data-es="Escribe documentación en markdown con vista previa en vivo.">
-        Write documentation in markdown with live preview.
-      </div>
-      <ul class="module-features">
-        <li data-en="Live preview" data-es="Vista previa en vivo">Live preview</li>
-        <li data-en="Syntax highlighting" data-es="Resaltado de sintaxis">Syntax highlighting</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Version History" data-es="Historial de Versiones">Version History</div>
-      <div class="module-desc" data-en="Track all changes with full version history. Restore previous versions." data-es="Rastrea todos los cambios con historial completo. Restaura versiones anteriores.">
-        Track all changes with full version history. Restore previous versions.
-      </div>
-      <ul class="module-features">
-        <li data-en="Full audit trail" data-es="Rastro de auditoráa completo">Full audit trail</li>
-        <li data-en="One-click restore" data-es="Restauración con un clic">One-click restore</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">🔍</span>
-      <div class="module-name" data-en="Full-Text Search" data-es="Búsqueda de Texto Completo">Full-Text Search</div>
-      <div class="module-desc" data-en="Search across all wiki pages instantly." data-es="Busca en todas las p├íginas wiki instant├íneamente.">
-        Search across all wiki pages instantly.
-      </div>
-      <ul class="module-features">
-        <li data-en="Instant search" data-es="Búsqueda instant├ínea">Instant search</li>
-        <li data-en="Tag filtering" data-es="Filtrado por etiquetas">Tag filtering</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div id="assets" class="tab-content">
-  <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
-  <h2 data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</h2>
-  <p class="section-sub" data-en="Track equipment and assets with custom fields, maintenance schedules, and document attachments." data-es="Rastrea equipos y activos con campos personalizados, programas de mantenimiento y adjuntos de documentos.">
-    Track equipment and assets with custom fields, maintenance schedules, and document attachments.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Asset Database" data-es="Base de Datos de Activos">Asset Database</div>
-      <div class="module-desc" data-en="Centralized registry for all your assets with custom fields and tags." data-es="Registro centralizado para todos tus activos con campos personalizados y etiquetas.">
-        Centralized registry for all your assets with custom fields and tags.
-      </div>
-      <ul class="module-features">
-        <li data-en="Custom fields" data-es="Campos personalizados">Custom fields</li>
-        <li data-en="Bulk import/export" data-es="Importación/exportación masiva">Bulk import/export</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Maintenance Tracking" data-es="Seguimiento de Mantenimiento">Maintenance Tracking</div>
-      <div class="module-desc" data-en="Schedule preventive maintenance and track service history." data-es="Programa mantenimiento preventivo y rastrea historial de servicio.">
-        Schedule preventive maintenance and track service history.
-      </div>
-      <ul class="module-features">
-        <li data-en="Maintenance schedules" data-es="Programas de mantenimiento">Maintenance schedules</li>
-        <li data-en="Compliance alerts" data-es="Alertas de cumplimiento">Compliance alerts</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Document Attachments" data-es="Adjuntos de Documentos">Document Attachments</div>
-      <div class="module-desc" data-en="Attach certificates, manuals, and reports directly to each asset." data-es="Adjunta certificados, manuales e informes directamente a cada activo.">
-        Attach certificates, manuals, and reports directly to each asset.
-      </div>
-      <ul class="module-features">
-        <li data-en="Multiple file types" data-es="Múltiples tipos de archivo">Multiple file types</li>
-        <li data-en="Version control" data-es="Control de versiones">Version control</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div id="incidents" class="tab-content">
-  <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
-  <h2 data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</h2>
-  <p class="section-sub" data-en="Generate incident reports with AI assistance. Link to assets, attach photos, export to PDF." data-es="Genera informes de incidencias con asistencia de IA. Vincula a activos, adjunta fotos, exporta a PDF.">
-    Generate incident reports with AI assistance. Link to assets, attach photos, export to PDF.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">●</span>
-      <div class="module-name" data-en="AI-Assisted Reports" data-es="Informes Asistidos por IA">AI-Assisted Reports</div>
-      <div class="module-desc" data-en="Describe incidents in natural language and AI helps structure the report." data-es="Describe incidencias en lenguaje natural y la IA ayuda a estructurar el informe.">
-        Describe incidents in natural language and AI helps structure the report.
-      </div>
-      <ul class="module-features">
-        <li data-en="Natural language input" data-es="Entrada en lenguaje natural">Natural language input</li>
-        <li data-en="Regulation suggestions" data-es="Sugerencias de normativas">Regulation suggestions</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">🔗</span>
-      <div class="module-name" data-en="Asset Linking" data-es="Vinculación de Activos">Asset Linking</div>
-      <div class="module-desc" data-en="Link incidents directly to assets. Track incident history per asset." data-es="Vincula incidencias directamente a activos. Rastrea historial de incidencias por activo.">
-        Link incidents directly to assets. Track incident history per asset.
-      </div>
-      <ul class="module-features">
-        <li data-en="Asset integration" data-es="Integración de activos">Asset integration</li>
-        <li data-en="Pattern detection" data-es="Detección de patrones">Pattern detection</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">📄</span>
-      <div class="module-name" data-en="PDF Export" data-es="Exportación a PDF">PDF Export</div>
-      <div class="module-desc" data-en="Export reports to professional PDF format with your company branding." data-es="Exporta informes a formato PDF profesional con tu marca corporativa.">
-        Export reports to professional PDF format with your company branding.
-      </div>
-      <ul class="module-features">
-        <li data-en="Custom branding" data-es="Marca personalizada">Custom branding</li>
-        <li data-en="Digital signatures" data-es="Firmas digitales">Digital signatures</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div id="ai-agent" class="tab-content">
-  <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
-  <h2 data-en="AI Agent Mode" data-es="Modo Agente IA">AI Agent Mode</h2>
-  <p class="section-sub" data-en="Autonomous AI agent that can search documents, create tasks, update assets, and generate reports." data-es="Agente IA autónomo que puede buscar documentos, crear tareas, actualizar activos y generar informes.">
-    Autonomous AI agent that can search documents, create tasks, update assets, and generate reports.
-  </p>
-  <div class="modules-grid">
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="ReAct Loop" data-es="Bucle ReAct">ReAct Loop</div>
-      <div class="module-desc" data-en="Agent reasons about tasks and executes multi-step workflows autonomously." data-es="El agente razona sobre tareas y ejecuta flujos multi-paso autónomamente.">
-        Agent reasons about tasks and executes multi-step workflows autonomously.
-      </div>
-      <ul class="module-features">
-        <li data-en="Multi-step reasoning" data-es="Razonamiento multi-paso">Multi-step reasoning</li>
-        <li data-en="Tool selection" data-es="Selección de herramientas">Tool selection</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Tool Integration" data-es="Integración de Herramientas">Tool Integration</div>
-      <div class="module-desc" data-en="Agent can search documents, query assets, create incidents, and more." data-es="El agente puede buscar documentos, consultar activos, crear incidencias y m├ís.">
-        Agent can search documents, query assets, create incidents, and more.
-      </div>
-      <ul class="module-features">
-        <li data-en="Document search" data-es="Búsqueda de documentos">Document search</li>
-        <li data-en="Report generation" data-es="Generación de informes">Report generation</li>
-      </ul>
-    </div>
-    <div class="module-card">
-      <span class="module-icon">­●</span>
-      <div class="module-name" data-en="Workflow Automation" data-es="Automatización de Flujos">Workflow Automation</div>
-      <div class="module-desc" data-en="Define complex workflows that the agent executes automatically." data-es="Define flujos complejos que el agente ejecuta autom├íticamente.">
-        Define complex workflows that the agent executes automatically.
-      </div>
-      <ul class="module-features">
-        <li data-en="Event triggers" data-es="Disparadores de eventos">Event triggers</li>
-        <li data-en="Scheduled execution" data-es="Ejecución programada">Scheduled execution</li>
-      </ul>
-    </div>
-  </div>
 </div>
 
 <!-- Tab Content: Industries -->
@@ -1880,41 +1985,71 @@ li + li {
           <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
         </div>
 
-        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
+        
+          <!-- Pricing Presets -->
+          <div style="margin-bottom: 32px;">
+            <div class="calc-section-label" data-en="Quick presets" data-es="Preajustes rápidos">Quick presets</div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+              
+              <!-- Preset 1: Starter -->
+              <button onclick="applyPreset('starter')" style="background: var(--surface); border: 1px solid var(--border); padding: 16px; cursor: pointer; transition: all 0.2s; text-align: left;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px;" data-en="Starter" data-es="Inicial">Starter</div>
+                <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px;" data-en="Core + Wiki" data-es="Core + Wiki">Core + Wiki</div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="~€12/seat" data-es="~€12/usuario">~€12/seat</div>
+              </button>
+              
+              <!-- Preset 2: Professional -->
+              <button onclick="applyPreset('professional')" style="background: var(--surface2); border: 2px solid var(--accent); padding: 16px; cursor: pointer; transition: all 0.2s; text-align: left; position: relative;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,212,255,0.2)'" onmouseout="this.style.boxShadow='none'">
+                <div style="position: absolute; top: 8px; right: 8px; background: var(--accent); color: var(--bg); padding: 2px 8px; font-size: 0.65rem; font-family: 'DM Mono', monospace; font-weight: 700;" data-en="POPULAR" data-es="POPULAR">POPULAR</div>
+                <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px;" data-en="Professional" data-es="Profesional">Professional</div>
+                <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px;" data-en="Core + Excel + Wiki + Assets" data-es="Core + Excel + Wiki + Activos">Core + Excel + Wiki + Assets</div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="~€20/seat" data-es="~€20/usuario">~€20/seat</div>
+              </button>
+              
+              <!-- Preset 3: Enterprise -->
+              <button onclick="applyPreset('enterprise')" style="background: var(--surface); border: 1px solid var(--border); padding: 16px; cursor: pointer; transition: all 0.2s; text-align: left;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px;" data-en="Enterprise" data-es="Empresa">Enterprise</div>
+                <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px;" data-en="All modules included" data-es="Todos los módulos incluidos">All modules included</div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="~€32/seat" data-es="~€32/usuario">~€32/seat</div>
+              </button>
+              
+            </div>
+          </div>
+<div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
         <div class="calc-modules-grid">
           <div class="calc-module-toggle core-mod">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
+            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span><span class="info-tooltip" data-tooltip="AI document search with page-level citations. Always included.">ⓘ</span>
             <span class="calc-mod-check">✓</span>
           </div>
           <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
+            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span><span class="info-tooltip" data-tooltip="Task management, projects, and workflow automation">ⓘ</span>
             <span class="calc-mod-check" id="chk-ops"></span>
           </div>
           <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
+            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span><span class="info-tooltip" data-tooltip="Query Excel in natural language, generate charts with one command">ⓘ</span>
             <span class="calc-mod-check" id="chk-excel"></span>
           </div>
           <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
+            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span><span class="info-tooltip" data-tooltip="Knowledge base with markdown, version control, and AI search">ⓘ</span>
             <span class="calc-mod-check" id="chk-wiki"></span>
           </div>
           <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
+            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span><span class="info-tooltip" data-tooltip="Generate incident reports with AI assistance and PDF export">ⓘ</span>
             <span class="calc-mod-check" id="chk-incidents"></span>
           </div>
           <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
+            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span><span class="info-tooltip" data-tooltip="Autonomous AI agents for multi-step tasks and workflow automation">ⓘ</span>
             <span class="calc-mod-check" id="chk-agent"></span>
           </div>
           <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
+            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span><span class="info-tooltip" data-tooltip="Usage tracking, query patterns, and team productivity metrics">ⓘ</span>
             <span class="calc-mod-check" id="chk-analytics"></span>
           </div>
         </div>
@@ -2080,6 +2215,129 @@ function declineCookies() {
 
 // Show banner on page load
 window.addEventListener('DOMContentLoaded', showGDPRBanner);
+</script>
+
+
+<script>
+
+// Accordion Toggle Logic
+function toggleAccordion(id) {
+  const item = document.querySelector(`#accordion-${id}`).parentElement;
+  const isActive = item.classList.contains('active');
+  
+  // Close all accordions
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('active');
+  });
+  
+  // Open clicked accordion if it wasn't active
+  if (!isActive) {
+    item.classList.add('active');
+  }
+}
+
+// Open first accordion by default
+document.addEventListener('DOMContentLoaded', () => {
+  const firstAccordion = document.querySelector('.accordion-item');
+  if (firstAccordion) {
+    firstAccordion.classList.add('active');
+  }
+});
+
+</script>
+
+
+<script>
+
+// Unified CTA behavior for all demo/contact buttons
+function bookDemo() {
+  switchTab('resources');
+  setTimeout(() => {
+    const form = document.querySelector('.contact-form');
+    if (form) {
+      form.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      // Focus on first input
+      const nameInput = document.querySelector('#name');
+      if (nameInput) {
+        setTimeout(() => nameInput.focus(), 500);
+      }
+    }
+  }, 300);
+}
+
+// Apply to all CTA buttons on page load
+document.addEventListener('DOMContentLoaded', () => {
+  // Find all buttons with demo/contact related text
+  document.querySelectorAll('button, a').forEach(el => {
+    const text = el.textContent.toLowerCase();
+    if (text.includes('book') || text.includes('demo') || text.includes('contact') || text.includes('solicitar')) {
+      // Don't override if it already has onclick with switchTab('resources')
+      const onclick = el.getAttribute('onclick');
+      if (onclick && onclick.includes("switchTab('resources')")) {
+        el.onclick = bookDemo;
+      }
+    }
+  });
+});
+
+
+
+// Pricing Presets
+function applyPreset(presetName) {
+  // Clear all selections first
+  selected.clear();
+  document.querySelectorAll('.calc-module-toggle').forEach(el => {
+    el.classList.remove('selected');
+    const checkId = el.id ? el.id.replace('mod-', 'chk-') : null;
+    if (checkId) {
+      const check = document.getElementById(checkId);
+      if (check) check.textContent = '';
+    }
+  });
+  
+  // Apply preset selections
+  const presets = {
+    'starter': ['wiki'],
+    'professional': ['excel', 'wiki', 'ops'],
+    'enterprise': ['ops', 'excel', 'wiki', 'incidents', 'agent', 'analytics']
+  };
+  
+  const modules = presets[presetName] || [];
+  modules.forEach(modId => {
+    selected.add(modId);
+    const el = document.getElementById('mod-' + modId);
+    const chk = document.getElementById('chk-' + modId);
+    if (el) el.classList.add('selected');
+    if (chk) chk.textContent = '✓';
+  });
+  
+  // Set default seats based on preset
+  const defaultSeats = {
+    'starter': 5,
+    'professional': 15,
+    'enterprise': 50
+  };
+  
+  const seats = defaultSeats[presetName] || 10;
+  document.getElementById('seatsInput').value = seats;
+  
+  // Recalculate price
+  calcPrice();
+  
+  // Visual feedback
+  const buttons = document.querySelectorAll('[onclick^="applyPreset"]');
+  buttons.forEach(btn => {
+    btn.style.transform = '';
+  });
+  event.target.closest('button').style.transform = 'scale(0.95)';
+  setTimeout(() => {
+    event.target.closest('button').style.transform = '';
+  }, 150);
+}
+
 </script>
 
 </body>
