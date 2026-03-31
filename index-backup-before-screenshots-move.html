@@ -1163,8 +1163,7 @@ li + li {
     <button class="tab-btn" onclick="switchTab('assets')" data-en="Assets" data-es="Activos">Assets</button>
     <button class="tab-btn" onclick="switchTab('incidents')" data-en="Incidents" data-es="Incidencias">Incidents</button>
     <button class="tab-btn" onclick="switchTab('ai-agent')" data-en="AI Agent" data-es="Agente IA">AI Agent</button>
-    <button class="tab-btn" onclick="switchTab(\'screenshots\')" data-en="Screenshots" data-es="Capturas">Screenshots</button>
-      <button class="tab-btn" onclick="switchTab('industries')" data-en="Industries" data-es="Industrias">Industries</button>
+    <button class="tab-btn" onclick="switchTab('industries')" data-en="Industries" data-es="Industrias">Industries</button>
     <button class="tab-btn" onclick="switchTab('pricing')" data-en="Pricing" data-es="Precios">Pricing</button>
     <button class="tab-btn" onclick="switchTab('resources')" data-en="Resources" data-es="Recursos">Resources</button>
   </div>
@@ -1318,6 +1317,63 @@ li + li {
     </div>
   </div>
 </div>
+
+
+
+    <!-- Product Screenshots -->
+    <div style="margin-top: 80px;">
+      <div class="section-label" data-en="See It In Action" data-es="Míralo en Acción">See It In Action</div>
+      <h2 data-en="Real Screenshots from EngiIntel" data-es="Capturas Reales de EngiIntel">Real Screenshots from EngiIntel</h2>
+      <p class="section-sub" data-en="See how EngiIntel looks and works in real production environments." data-es="Mira cómo se ve y funciona EngiIntel en entornos de producción reales.">
+        See how EngiIntel looks and works in real production environments.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; margin-top: 40px;">
+        
+        <!-- Screenshot 1: Main Dashboard -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/panel principal.jpg" alt="Main Dashboard" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Main Dashboard" data-es="Panel Principal">Main Dashboard</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Central hub for all your documents, queries, and workflows" data-es="Centro principal para todos tus documentos, consultas y flujos">Central hub for all your documents, queries, and workflows</p>
+        </div>
+        
+        <!-- Screenshot 2: Document Comparison -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/comparar documentos.jpg" alt="Document Comparison" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Document Comparison" data-es="Comparación de Documentos">Document Comparison</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Compare multiple documents side-by-side with AI-powered analysis" data-es="Compara múltiples documentos lado a lado con análisis IA">Compare multiple documents side-by-side with AI-powered analysis</p>
+        </div>
+        
+        <!-- Screenshot 3: Wiki -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/wiki.jpg" alt="Wiki Knowledge Base" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Wiki Knowledge Base" data-es="Base de Conocimiento Wiki">Wiki Knowledge Base</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Organize team knowledge with markdown, version control, and AI search" data-es="Organiza el conocimiento del equipo con markdown, control de versiones y búsqueda IA">Organize team knowledge with markdown, version control, and AI search</p>
+        </div>
+        
+        <!-- Screenshot 4: Assets -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/activos.jpg" alt="Asset Registry" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Track equipment, maintenance schedules, and compliance documents" data-es="Rastrea equipos, programas de mantenimiento y documentos de cumplimiento">Track equipment, maintenance schedules, and compliance documents</p>
+        </div>
+        
+        <!-- Screenshot 5: Incidents -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/Incidencias.jpg" alt="Incident Reports" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Generate professional incident reports with AI assistance" data-es="Genera informes profesionales de incidencias con asistencia IA">Generate professional incident reports with AI assistance</p>
+        </div>
+        
+        <!-- Screenshot 6: Analytics -->
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,0.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="screenshots/panel de metricas.jpg" alt="Analytics Dashboard" style="width: 100%; height: auto; border: 1px solid var(--border); margin-bottom: 16px;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px;" data-en="Analytics Dashboard" data-es="Panel de Analítica">Analytics Dashboard</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dim);" data-en="Track usage patterns, query performance, and team productivity" data-es="Rastrea patrones de uso, rendimiento de consultas y productividad del equipo">Track usage patterns, query performance, and team productivity</p>
+        </div>
+        
+      </div>
+    </div>
 
   </div>
 
@@ -1546,129 +1602,6 @@ li + li {
     
   </div>
 </div>
-</div>
-
-
-<!-- Tab Content: Screenshots -->
-<div id="screenshots" class="tab-content">
-  <div class="section-label" data-en="Product Screenshots" data-es="Capturas del Producto">Product Screenshots</div>
-  <h2 data-en="See EngiIntel in Action" data-es="Mira EngiIntel en Acción">See EngiIntel in Action</h2>
-  <p class="section-sub" data-en="Real screenshots from our production application. See how EngiIntel looks and works in real engineering environments." data-es="Capturas reales de nuestra aplicación en producción. Mira cómo se ve y funciona EngiIntel en entornos de ingeniería reales.">
-    Real screenshots from our production application. See how EngiIntel looks and works in real engineering environments.
-  </p>
-
-  <!-- Vertical Screenshot Layout -->
-  <div style="max-width: 1000px; margin: 40px auto; display: flex; flex-direction: column; gap: 60px;">
-    
-    <!-- Screenshot 1: Main Dashboard -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div>
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Main Dashboard" data-es="Panel Principal">Main Dashboard</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Your central hub for all documents, queries, and workflows. Access everything from one clean interface." data-es="Tu centro principal para todos los documentos, consultas y flujos. Accede a todo desde una interfaz limpia.">
-          Your central hub for all documents, queries, and workflows. Access everything from one clean interface.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Quick search across all documents" data-es="Búsqueda rápida en todos los documentos">Quick search across all documents</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Recent queries and results" data-es="Consultas y resultados recientes">Recent queries and results</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Module shortcuts" data-es="Atajos de módulos">Module shortcuts</span></li>
-        </ul>
-      </div>
-      <div>
-        <img src="screenshots/panel principal.jpg" alt="Main Dashboard" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-    <!-- Screenshot 2: Document Comparison -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div style="order: 2;">
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Document Comparison" data-es="Comparación de Documentos">Document Comparison</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Compare multiple documents side-by-side with AI-powered analysis. Find differences and similarities instantly." data-es="Compara múltiples documentos lado a lado con análisis IA. Encuentra diferencias y similitudes al instante.">
-          Compare multiple documents side-by-side with AI-powered analysis. Find differences and similarities instantly.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Side-by-side comparison" data-es="Comparación lado a lado">Side-by-side comparison</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="AI-powered difference detection" data-es="Detección de diferencias con IA">AI-powered difference detection</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Export comparison reports" data-es="Exportar informes de comparación">Export comparison reports</span></li>
-        </ul>
-      </div>
-      <div style="order: 1;">
-        <img src="screenshots/comparar documentos.jpg" alt="Document Comparison" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-    <!-- Screenshot 3: Wiki -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div>
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Wiki Knowledge Base" data-es="Base de Conocimiento Wiki">Wiki Knowledge Base</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Centralized knowledge management with markdown support, version control, and AI-powered search." data-es="Gestión centralizada del conocimiento con soporte markdown, control de versiones y búsqueda IA.">
-          Centralized knowledge management with markdown support, version control, and AI-powered search.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Markdown editor with live preview" data-es="Editor markdown con vista previa">Markdown editor with live preview</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Full version history" data-es="Historial completo de versiones">Full version history</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="AI search across all pages" data-es="Búsqueda IA en todas las páginas">AI search across all pages</span></li>
-        </ul>
-      </div>
-      <div>
-        <img src="screenshots/wiki.jpg" alt="Wiki Knowledge Base" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-    <!-- Screenshot 4: Assets -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div style="order: 2;">
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Track equipment, installations, and maintenance history. Perfect for regulated industries with compliance requirements." data-es="Rastrea equipos, instalaciones e historial de mantenimiento. Perfecto para industrias reguladas con requisitos de cumplimiento.">
-          Track equipment, installations, and maintenance history. Perfect for regulated industries with compliance requirements.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Custom fields and categories" data-es="Campos y categorías personalizados">Custom fields and categories</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Maintenance scheduling" data-es="Programación de mantenimiento">Maintenance scheduling</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Document attachments" data-es="Adjuntos de documentos">Document attachments</span></li>
-        </ul>
-      </div>
-      <div style="order: 1;">
-        <img src="screenshots/activos.jpg" alt="Asset Registry" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-    <!-- Screenshot 5: Incidents -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div>
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Generate professional incident reports with AI assistance. Reduce report time from 2+ hours to 10 minutes." data-es="Genera informes profesionales de incidencias con asistencia IA. Reduce el tiempo de informe de 2+ horas a 10 minutos.">
-          Generate professional incident reports with AI assistance. Reduce report time from 2+ hours to 10 minutes.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="AI-assisted report generation" data-es="Generación asistida por IA">AI-assisted report generation</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Link to assets and documents" data-es="Vincular a activos y documentos">Link to assets and documents</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="PDF export with branding" data-es="Exportación PDF con marca">PDF export with branding</span></li>
-        </ul>
-      </div>
-      <div>
-        <img src="screenshots/Incidencias.jpg" alt="Incident Reports" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-    <!-- Screenshot 6: Analytics -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div style="order: 2;">
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 16px; color: var(--accent);" data-en="Analytics Dashboard" data-es="Panel de Analítica">Analytics Dashboard</h3>
-        <p style="font-size: 1rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px;" data-en="Track usage patterns, query performance, and team productivity. Identify bottlenecks and optimize workflows." data-es="Rastrea patrones de uso, rendimiento de consultas y productividad del equipo. Identifica cuellos de botella y optimiza flujos.">
-          Track usage patterns, query performance, and team productivity. Identify bottlenecks and optimize workflows.
-        </p>
-        <ul style="list-style: none; padding: 0;">
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Usage metrics and trends" data-es="Métricas y tendencias de uso">Usage metrics and trends</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Query performance analysis" data-es="Análisis de rendimiento de consultas">Query performance analysis</span></li>
-          <li style="padding: 8px 0; color: var(--text-dim); display: flex; align-items: center; gap: 12px;"><span style="color: var(--accent);">✓</span><span data-en="Team productivity insights" data-es="Información de productividad del equipo">Team productivity insights</span></li>
-        </ul>
-      </div>
-      <div style="order: 1;">
-        <img src="screenshots/panel de metricas.jpg" alt="Analytics Dashboard" style="width: 100%; height: auto; border: 2px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <!-- Tab Content: Industries -->
