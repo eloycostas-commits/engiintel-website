@@ -521,6 +521,135 @@ h2 + p {
   }
 }
 
+
+/* Fix CTA scroll behavior for all screen sizes */
+#resources {
+  scroll-margin-top: 100px;
+}
+
+html {
+  scroll-padding-top: 100px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Improved code block contrast (WCAG AA) */
+.code-block,
+.terminal-block,
+pre {
+  background: #0a0e13;
+  border: 1px solid var(--border);
+}
+
+.code-comment {
+  color: #8a9bab !important; /* Lighter gray for better contrast */
+}
+
+.code-keyword {
+  color: var(--accent) !important;
+}
+
+.code-string {
+  color: var(--accent3) !important;
+}
+
+.code-function {
+  color: #00d4ff !important;
+}
+
+
+/* Increased whitespace for better readability */
+.tab-content > div {
+  margin-bottom: 80px !important; /* Increased from 40px */
+}
+
+.capability-card,
+.solution-card,
+.problem-section,
+.how-it-works-section {
+  padding: 48px 40px !important; /* More generous padding */
+}
+
+/* Better section separation */
+section + section {
+  margin-top: 80px;
+}
+
+/* More breathing room in cards */
+.module-card,
+.pricing-card {
+  padding: 48px 36px !important;
+}
+
+
+/* Improved typography */
+p, .section-sub, .hero-sub {
+  text-align: left !important; /* No justify */
+  line-height: 1.7 !important; /* Better readability */
+}
+
+/* Better paragraph spacing */
+p + p {
+  margin-top: 1.2em;
+}
+
+/* Improved heading spacing */
+h2 {
+  margin-bottom: 24px !important;
+}
+
+h3 {
+  margin-bottom: 16px !important;
+}
+
+/* Better list spacing */
+ul, ol {
+  line-height: 1.8;
+}
+
+li + li {
+  margin-top: 0.5em;
+}
+
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 60px 24px !important;
+  }
+  
+  .capability-card,
+  .solution-card,
+  .problem-section {
+    padding: 32px 24px !important;
+  }
+  
+  /* Larger touch targets */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    padding: 14px 28px !important;
+  }
+  
+  /* Better mobile typography */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Reduce excessive whitespace on mobile */
+  .tab-content > div {
+    margin-bottom: 48px !important;
+  }
+}
+
 </style>
 </head>
 <body>
