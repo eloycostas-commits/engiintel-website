@@ -202,8 +202,24 @@ h1 .accent2 { color: var(--accent3); }
 .btn-secondary { border: 1px solid var(--border); color: var(--text-mid); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; background: transparent; cursor: pointer; }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-.tabs-container { position: sticky; top: 70px; z-index: 90; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 60px; }
-.tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.tabs-container {
+  position: sticky;
+  top: 70px;
+  z-index: 90;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn { background: none; border: none; color: var(--text-dim); padding: 20px 28px; font-family: 'DM Mono', monospace; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
 .tab-btn:hover { color: var(--text); background: rgba(0,212,255,0.05); }
@@ -484,6 +500,25 @@ h2 + p {
 .capability-card > div:first-child,
 .problem-stat > div:first-child {
   white-space: nowrap; /* Keep numbers on one line */
+}
+
+
+/* Responsive tabs alignment */
+@media (max-width: 1200px) {
+  .tabs-container {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tabs-container {
+    padding: 0 30px;
+  }
+  
+  .tabs {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
 }
 
 </style>
