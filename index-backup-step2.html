@@ -770,66 +770,6 @@ li + li {
   }
 }
 
-
-
-/* Tooltip System */
-.info-tooltip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--border);
-  color: var(--text-dim);
-  font-size: 0.7rem;
-  font-family: 'DM Mono', monospace;
-  cursor: help;
-  margin-left: 6px;
-  position: relative;
-  transition: all 0.2s;
-}
-
-.info-tooltip:hover {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-.info-tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--surface2);
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  border: 1px solid var(--border);
-  z-index: 1000;
-  font-family: 'DM Sans', sans-serif;
-  max-width: 250px;
-  white-space: normal;
-  text-align: center;
-}
-
-.info-tooltip:hover::after {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .info-tooltip::after {
-    left: auto;
-    right: 0;
-    transform: none;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -2045,37 +1985,37 @@ li + li {
         <div class="calc-modules-grid">
           <div class="calc-module-toggle core-mod">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span><span class="info-tooltip" data-tooltip="AI document search with page-level citations">ⓘ</span>
+            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
             <span class="calc-mod-check">✓</span>
           </div>
           <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span><span class="info-tooltip" data-tooltip="Task management, projects, workflow automation">ⓘ</span>
+            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
             <span class="calc-mod-check" id="chk-ops"></span>
           </div>
           <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span><span class="info-tooltip" data-tooltip="Query Excel in natural language, generate charts">ⓘ</span>
+            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
             <span class="calc-mod-check" id="chk-excel"></span>
           </div>
           <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span><span class="info-tooltip" data-tooltip="Knowledge base with markdown and version control">ⓘ</span>
+            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
             <span class="calc-mod-check" id="chk-wiki"></span>
           </div>
           <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span><span class="info-tooltip" data-tooltip="Generate incident reports with AI assistance">ⓘ</span>
+            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
             <span class="calc-mod-check" id="chk-incidents"></span>
           </div>
           <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span><span class="info-tooltip" data-tooltip="Autonomous AI agents for multi-step tasks">ⓘ</span>
+            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
             <span class="calc-mod-check" id="chk-agent"></span>
           </div>
           <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
             <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span><span class="info-tooltip" data-tooltip="Usage tracking and productivity metrics">ⓘ</span>
+            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
             <span class="calc-mod-check" id="chk-analytics"></span>
           </div>
         </div>
