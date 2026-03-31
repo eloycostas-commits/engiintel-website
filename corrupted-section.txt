@@ -1,0 +1,15 @@
+﻿.pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; }
+.pricing-card.featured { border-color: var(--accent2); background: var(--surface2); }
+.pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+.pricing-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); line-height: 1; margin-bottom: 8px; }
+.pricing-features { list-style: none; margin: 32px 0; }
+.pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+.pricing-features li::before { content: 'Ô£ô'; color: var(--accent3); flex-shrink: 0; }
+
+footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
+.footer-logo span { color: var(--accent); }
+.footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+
+@media (max-width: 768px) {
+  nav, .tabs-container, .tab-content, footer { padding-left: 20px; padding-right: 20px; }

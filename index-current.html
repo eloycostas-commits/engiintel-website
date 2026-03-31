@@ -202,24 +202,8 @@ h1 .accent2 { color: var(--accent3); }
 .btn-secondary { border: 1px solid var(--border); color: var(--text-mid); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; background: transparent; cursor: pointer; }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-.tabs-container {
-  position: sticky;
-  top: 70px;
-  z-index: 90;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0 120px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.tabs {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+.tabs-container { position: sticky; top: 70px; z-index: 90; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 60px; }
+.tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn { background: none; border: none; color: var(--text-dim); padding: 20px 28px; font-family: 'DM Mono', monospace; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
 .tab-btn:hover { color: var(--text); background: rgba(0,212,255,0.05); }
@@ -244,7 +228,7 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .module-features li:last-child { border-bottom: none; }
 .module-features li::before { content: '•'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
 .pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; }
 .pricing-card.featured { border-color: var(--accent2); background: var(--surface2); }
 .pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
@@ -267,20 +251,20 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
 }
 
 /* Phase 1 Styles */
-.stats-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 60px; }
 .stat-card { text-align: center; padding: 24px; background: var(--surface); border: 1px solid var(--border); }
 .stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
 .stat-label { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
 
 .problem-section { background: var(--surface); border: 1px solid var(--border); padding: 48px; margin-bottom: 60px; }
 .problem-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--accent3); margin-bottom: 24px; text-align: center; }
-.problem-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+.problem-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
 .problem-stat { text-align: center; }
 .problem-stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--text); margin-bottom: 8px; }
 .problem-stat-desc { font-size: 0.9rem; color: var(--text-mid); }
 
 .how-it-works { margin-bottom: 60px; }
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 40px; }
 .step-card { text-align: center; }
 .step-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--accent); opacity: 0.3; margin-bottom: 16px; }
 .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
@@ -370,286 +354,6 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   .calc-left, .calc-right { padding: 20px; }
 }
 
-
-/* Improved Visual Hierarchy */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem) !important;
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-  margin-bottom: 24px !important;
-}
-
-.hero-sub {
-  font-size: 1.1rem !important;
-  line-height: 1.7 !important;
-  max-width: 700px !important;
-}
-
-.btn-primary {
-  font-size: 1rem !important;
-  padding: 16px 36px !important;
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25) !important;
-  transition: all 0.3s !important;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 6px 30px rgba(0, 212, 255, 0.4) !important;
-  transform: translateY(-2px) !important;
-}
-
-.tab-content {
-  padding: 100px 120px !important;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.8rem !important;
-  margin-bottom: 24px !important;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3rem) !important;
-  margin-bottom: 20px !important;
-}
-
-.trust-signal {
-  animation: fadeIn 0.6s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Phase 2 Components */
-.capability-card:hover {
-  border-color: rgba(0, 212, 255, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.problem-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.problem-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent3), var(--accent));
-}
-
-/* Better section spacing */
-.tab-content > div {
-  margin-bottom: 40px;
-}
-
-/* Improved readability */
-p {
-  max-width: 800px;
-}
-
-h2 + p {
-  margin-top: 20px;
-}
-
-/* Number badges in how it works */
-.how-it-works-step {
-  transition: all 0.3s;
-}
-
-.how-it-works-step:hover {
-  transform: scale(1.05);
-}
-
-
-/* Better responsive layout */
-@media (max-width: 1200px) {
-  .tab-content {
-    padding: 80px 60px !important;
-  }
-}
-
-@media (max-width: 900px) {
-  .capabilities-grid,
-  .problem-section > div:last-child,
-  .solution-section > div:last-child,
-  .how-it-works-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .tab-content {
-    padding: 60px 30px !important;
-  }
-}
-
-/* Ensure text doesn't wrap unnecessarily */
-.capability-card,
-.problem-stat,
-.solution-card,
-.how-it-works-step {
-  min-width: 0; /* Allow flex items to shrink */
-}
-
-.capability-card > div:first-child,
-.problem-stat > div:first-child {
-  white-space: nowrap; /* Keep numbers on one line */
-}
-
-
-/* Responsive tabs alignment */
-@media (max-width: 1200px) {
-  .tabs-container {
-    padding: 0 60px;
-  }
-}
-
-@media (max-width: 900px) {
-  .tabs-container {
-    padding: 0 30px;
-  }
-  
-  .tabs {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-  }
-}
-
-
-/* Fix CTA scroll behavior for all screen sizes */
-#resources {
-  scroll-margin-top: 100px;
-}
-
-html {
-  scroll-padding-top: 100px;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-
-/* Improved code block contrast (WCAG AA) */
-.code-block,
-.terminal-block,
-pre {
-  background: #0a0e13;
-  border: 1px solid var(--border);
-}
-
-.code-comment {
-  color: #8a9bab !important; /* Lighter gray for better contrast */
-}
-
-.code-keyword {
-  color: var(--accent) !important;
-}
-
-.code-string {
-  color: var(--accent3) !important;
-}
-
-.code-function {
-  color: #00d4ff !important;
-}
-
-
-/* Increased whitespace for better readability */
-.tab-content > div {
-  margin-bottom: 80px !important; /* Increased from 40px */
-}
-
-.capability-card,
-.solution-card,
-.problem-section,
-.how-it-works-section {
-  padding: 48px 40px !important; /* More generous padding */
-}
-
-/* Better section separation */
-section + section {
-  margin-top: 80px;
-}
-
-/* More breathing room in cards */
-.module-card,
-.pricing-card {
-  padding: 48px 36px !important;
-}
-
-
-/* Improved typography */
-p, .section-sub, .hero-sub {
-  text-align: left !important; /* No justify */
-  line-height: 1.7 !important; /* Better readability */
-}
-
-/* Better paragraph spacing */
-p + p {
-  margin-top: 1.2em;
-}
-
-/* Improved heading spacing */
-h2 {
-  margin-bottom: 24px !important;
-}
-
-h3 {
-  margin-bottom: 16px !important;
-}
-
-/* Better list spacing */
-ul, ol {
-  line-height: 1.8;
-}
-
-li + li {
-  margin-top: 0.5em;
-}
-
-
-/* Mobile-specific improvements */
-@media (max-width: 768px) {
-  .tab-content {
-    padding: 60px 24px !important;
-  }
-  
-  .capability-card,
-  .solution-card,
-  .problem-section {
-    padding: 32px 24px !important;
-  }
-  
-  /* Larger touch targets */
-  .btn-primary,
-  .btn-secondary {
-    min-height: 48px;
-    padding: 14px 28px !important;
-  }
-  
-  /* Better mobile typography */
-  h1 {
-    font-size: 2rem !important;
-  }
-  
-  h2 {
-    font-size: 1.5rem !important;
-  }
-  
-  /* Reduce excessive whitespace on mobile */
-  .tab-content > div {
-    margin-bottom: 48px !important;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -673,134 +377,9 @@ li + li {
       Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Reservar Demo">Book a Demo</a>
+      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Request Beta Access" data-es="Solicitar Acceso Beta">Request Beta Access</a>
       <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
     </div>
-  <!-- Trust Signal -->
-  <div class="trust-signal" style="margin-top: 48px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
-    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;">
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</span>
-      <span style="color: var(--border);">•</span>
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="On-premise deployment" data-es="Despliegue on-premise">On-premise deployment</span>
-      <span style="color: var(--border);">•</span>
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="100% data privacy" data-es="100% privacidad de datos">100% data privacy</span>
-    </div>
-  </div>
-  <!-- Product Capabilities -->
-  <div class="capabilities-grid" style="margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent); margin-bottom: 12px;">10,000+</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="Documents processed in seconds" data-es="Documentos procesados en segundos">Documents processed in seconds</div>
-    </div>
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent3); margin-bottom: 12px;">1-Click</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="Report generation" data-es="Generación de informes">Report generation</div>
-    </div>
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent2); margin-bottom: 12px;">100%</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="On-premise data privacy" data-es="Privacidad de datos on-premise">On-premise data privacy</div>
-    </div>
-  </div>
-
-  <!-- The Problem -->
-  <div class="problem-section" style="margin-top: 80px; padding: 60px 80px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">
-    <div class="section-label" data-en="THE CHALLENGE" data-es="EL DESAFÍO">THE CHALLENGE</div>
-    <h2 data-en="Engineering Teams Waste 15+ Hours Per Week on Documentation" data-es="Los Equipos de Ingeniería Pierden 15+ Horas por Semana en Documentación">Engineering Teams Waste 15+ Hours Per Week on Documentation</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 40px;" data-en="Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation." data-es="Buscar en regulaciones, generar informes de cumplimiento y rastrear activos manualmente crea cuellos de botella que ralentizan toda tu operación.">
-      Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">2+ hrs</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Average time per regulation query" data-es="Tiempo promedio por consulta de regulación">Average time per regulation query</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">73%</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Say documentation is their #1 bottleneck" data-es="Dicen que la documentación es su cuello de botella #1">Say documentation is their #1 bottleneck</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">High</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Compliance risk from outdated info" data-es="Riesgo de cumplimiento por info desactualizada">Compliance risk from outdated info</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Solution -->
-  <div style="margin-top: 80px;">
-    <div class="section-label" data-en="THE SOLUTION" data-es="LA SOLUCIÓN">THE SOLUTION</div>
-    <h2 data-en="Your AI-Powered Engineering Command Center" data-es="Tu Centro de Comando de Ingeniería Impulsado por IA">Your AI-Powered Engineering Command Center</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management." data-es="EngiIntel transforma cómo los equipos de ingeniería manejan documentación, cumplimiento y gestión del conocimiento.">
-      EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">⚡</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Instant Regulation Search" data-es="Búsqueda Instantánea de Regulaciones">Instant Regulation Search</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Query thousands of documents in natural language. Get answers with page-level citations in seconds, not hours." data-es="Consulta miles de documentos en lenguaje natural. Obtén respuestas con citas a nivel de página en segundos, no horas.">
-          Query thousands of documents in natural language. Get answers with page-level citations in seconds, not hours.
-        </p>
-      </div>
-      
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent3);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">📊</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Automated Report Generation" data-es="Generación Automatizada de Informes">Automated Report Generation</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Generate compliance reports, incident documentation, and technical summaries with one click. Always accurate, always up-to-date." data-es="Genera informes de cumplimiento, documentación de incidentes y resúmenes técnicos con un clic. Siempre preciso, siempre actualizado.">
-          Generate compliance reports, incident documentation, and technical summaries with one click. Always accurate, always up-to-date.
-        </p>
-      </div>
-      
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent2);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">🔒</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Real-Time Asset Tracking" data-es="Seguimiento de Activos en Tiempo Real">Real-Time Asset Tracking</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Maintain a complete registry of equipment, inspections, and maintenance history. Never miss a compliance deadline." data-es="Mantén un registro completo de equipos, inspecciones e historial de mantenimiento. Nunca pierdas una fecha límite de cumplimiento.">
-          Maintain a complete registry of equipment, inspections, and maintenance history. Never miss a compliance deadline.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- How It Works -->
-  <div style="margin-top: 80px; padding: 60px 80px; background: var(--bg); border: 1px solid var(--border);">
-    <div class="section-label" data-en="HOW IT WORKS" data-es="CÓMO FUNCIONA">HOW IT WORKS</div>
-    <h2 data-en="Get Started in 3 Simple Steps" data-es="Comienza en 3 Pasos Simples">Get Started in 3 Simple Steps</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="Deploy EngiIntel on your infrastructure and start querying your documents immediately." data-es="Despliega EngiIntel en tu infraestructura y comienza a consultar tus documentos inmediatamente.">
-      Deploy EngiIntel on your infrastructure and start querying your documents immediately.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">1</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Deploy On-Premise" data-es="Despliega On-Premise">Deploy On-Premise</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Install EngiIntel on your servers with Docker. Your data never leaves your infrastructure." data-es="Instala EngiIntel en tus servidores con Docker. Tus datos nunca salen de tu infraestructura.">
-          Install EngiIntel on your servers with Docker. Your data never leaves your infrastructure.
-        </p>
-      </div>
-      
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent3); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">2</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Upload Your Documents" data-es="Sube Tus Documentos">Upload Your Documents</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Import regulations, manuals, and technical documentation. EngiIntel processes and indexes everything automatically." data-es="Importa regulaciones, manuales y documentación técnica. EngiIntel procesa e indexa todo automáticamente.">
-          Import regulations, manuals, and technical documentation. EngiIntel processes and indexes everything automatically.
-        </p>
-      </div>
-      
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">3</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Ask Questions" data-es="Haz Preguntas">Ask Questions</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Query in natural language. Get instant answers with citations. Generate reports. Track assets. All in one platform." data-es="Consulta en lenguaje natural. Obtén respuestas instantáneas con citas. Genera informes. Rastrea activos. Todo en una plataforma.">
-          Query in natural language. Get instant answers with citations. Generate reports. Track assets. All in one platform.
-        </p>
-      </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 48px;">
-      <button class="btn-primary" onclick="switchTab('resources')" data-en="See It In Action" data-es="Ver en Acción">See It In Action</button>
-    </div>
-  </div>
-
-
   </div>
 </section>
 
@@ -1497,7 +1076,7 @@ li + li {
   <!-- Security & Compliance Section -->
   <div style="background: var(--surface); border: 1px solid var(--border); padding: 40px; margin-bottom: 48px;">
     <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 24px;" data-en="Security & Compliance" data-es="Seguridad y Cumplimiento">Security & Compliance</h3>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
       <div>
         <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px; color: var(--accent);" data-en="100% On-Premise" data-es="100% En Servidor Propio">100% On-Premise</div>
         <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="All data stays on your infrastructure. No cloud dependencies." data-es="Todos los datos permanecen en tu infraestructura. Sin dependencias en la nube.">
@@ -1853,89 +1432,3 @@ li + li {
   </div>
   <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
 </div>
-
-<!-- Footer -->
-<footer style="border-top: 1px solid var(--border); padding: 48px 60px; background: var(--surface);">
-  <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;">
-    
-    <!-- Column 1: Brand -->
-    <div>
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 16px;">
-        Engi<span style="color: var(--accent);">Intel</span>
-      </div>
-      <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.7;" data-en="100% on-premise AI platform for regulated industries. Your data never leaves your server." data-es="Plataforma de IA 100% on-premise para industrias reguladas. Tus datos nunca salen de tu servidor.">
-        100% on-premise AI platform for regulated industries. Your data never leaves your server.
-      </p>
-    </div>
-    
-    <!-- Column 2: Legal -->
-    <div>
-      <h4 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px;" data-en="Legal" data-es="Legal">Legal</h4>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="privacy-policy.html" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'" data-en="Privacy Policy" data-es="Política de Privacidad">Privacy Policy</a>
-        <a href="terms-of-service.html" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'" data-en="Terms of Service" data-es="Términos de Servicio">Terms of Service</a>
-      </div>
-    </div>
-    
-    <!-- Column 3: Contact -->
-    <div>
-      <h4 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px;" data-en="Contact" data-es="Contacto">Contact</h4>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="mailto:eloycostas@engiintel.com" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'">eloycostas@engiintel.com</a>
-        <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</p>
-      </div>
-    </div>
-    
-  </div>
-  
-  <!-- Copyright -->
-  <div style="max-width: 1400px; margin: 32px auto 0; padding-top: 32px; border-top: 1px solid var(--border); text-align: center;">
-    <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);">
-      © 2026 EngiIntel. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span>
-    </p>
-  </div>
-</footer>
-
-<!-- GDPR Cookie Consent Banner -->
-<div id="gdpr-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface2); border-top: 2px solid var(--accent); padding: 24px; z-index: 1000; display: none;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px;">
-      <p style="font-size: 0.9rem; color: var(--text); margin: 0;" data-en="We use cookies to improve your experience and analyze site usage. By continuing to use this site, you consent to our use of cookies." data-es="Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Al continuar usando este sitio, consientes nuestro uso de cookies.">
-        We use cookies to improve your experience and analyze site usage. By continuing to use this site, you consent to our use of cookies.
-      </p>
-      <a href="privacy-policy.html" style="color: var(--accent); font-size: 0.85rem; text-decoration: none;" data-en="Learn more" data-es="Más información">Learn more</a>
-    </div>
-    <div style="display: flex; gap: 12px;">
-      <button onclick="acceptCookies()" style="background: var(--accent); color: var(--bg); border: none; padding: 12px 24px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;" data-en="Accept" data-es="Aceptar">Accept</button>
-      <button onclick="declineCookies()" style="background: transparent; color: var(--text-mid); border: 1px solid var(--border); padding: 12px 24px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;" data-en="Decline" data-es="Rechazar">Decline</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// GDPR Cookie Consent
-function showGDPRBanner() {
-  const consent = localStorage.getItem('gdpr-consent');
-  if (!consent) {
-    document.getElementById('gdpr-banner').style.display = 'block';
-  }
-}
-
-function acceptCookies() {
-  localStorage.setItem('gdpr-consent', 'accepted');
-  document.getElementById('gdpr-banner').style.display = 'none';
-}
-
-function declineCookies() {
-  localStorage.setItem('gdpr-consent', 'declined');
-  document.getElementById('gdpr-banner').style.display = 'none';
-  // Disable Google Analytics if declined
-  window['ga-disable-G-5P3VL8DTRG'] = true;
-}
-
-// Show banner on page load
-window.addEventListener('DOMContentLoaded', showGDPRBanner);
-</script>
-
-</body>
-</html>

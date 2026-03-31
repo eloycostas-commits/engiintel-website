@@ -110,63 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-5P3VL8DTRG');
-
-// Pricing calculator
-const CORE_PER_SEAT = 8;
-const MODULE_PRICE_PER_SEAT = 4;
-const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
-const selected = new Set();
-
-function toggleMod(id){
-  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
-  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
-  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
-  calcPrice();
-}
-
-function adjustSeats(delta){
-  const inp=document.getElementById('seatsInput');
-  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
-  inp.value=v; calcPrice();
-}
-
-function calcPrice(){
-  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
-  const modCount=selected.size;
-  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
-  let subtotal=pricePerSeat*seats;
-  let discountPct=0;
-  if(seats>=50) discountPct=20;
-  else if(seats>=25) discountPct=15;
-  else if(seats>=15) discountPct=10;
-  const discount=Math.round(subtotal*discountPct/100);
-  const total=subtotal-discount;
-
-  document.getElementById('calcTotal').textContent='€'+total;
-  document.getElementById('sum-seats-val').textContent=seats;
-
-  const modRow=document.getElementById('sum-modules-row');
-  if(modCount>0){
-    modRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
-    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
-  } else { modRow.style.display='none'; }
-
-  const discRow=document.getElementById('sum-discount-row');
-  if(discount>0){
-    discRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
-    document.getElementById('sum-discount-val').textContent='−€'+discount;
-  } else { discRow.style.display='none'; }
-
-  const note=document.getElementById('calcNote');
-  const isEs=currentLang==='es';
-  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
-  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
-}
-
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -202,24 +145,8 @@ h1 .accent2 { color: var(--accent3); }
 .btn-secondary { border: 1px solid var(--border); color: var(--text-mid); padding: 15px 34px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; background: transparent; cursor: pointer; }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-.tabs-container {
-  position: sticky;
-  top: 70px;
-  z-index: 90;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0 120px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.tabs {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+.tabs-container { position: sticky; top: 70px; z-index: 90; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 60px; }
+.tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn { background: none; border: none; color: var(--text-dim); padding: 20px 28px; font-family: 'DM Mono', monospace; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
 .tab-btn:hover { color: var(--text); background: rgba(0,212,255,0.05); }
@@ -244,7 +171,7 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .module-features li:last-child { border-bottom: none; }
 .module-features li::before { content: '•'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
 .pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; }
 .pricing-card.featured { border-color: var(--accent2); background: var(--surface2); }
 .pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
@@ -267,20 +194,20 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
 }
 
 /* Phase 1 Styles */
-.stats-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 60px; }
 .stat-card { text-align: center; padding: 24px; background: var(--surface); border: 1px solid var(--border); }
 .stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
 .stat-label { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
 
 .problem-section { background: var(--surface); border: 1px solid var(--border); padding: 48px; margin-bottom: 60px; }
 .problem-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--accent3); margin-bottom: 24px; text-align: center; }
-.problem-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+.problem-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
 .problem-stat { text-align: center; }
 .problem-stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--text); margin-bottom: 8px; }
 .problem-stat-desc { font-size: 0.9rem; color: var(--text-mid); }
 
 .how-it-works { margin-bottom: 60px; }
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 40px; }
 .step-card { text-align: center; }
 .step-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--accent); opacity: 0.3; margin-bottom: 16px; }
 .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
@@ -325,331 +252,6 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   .problem-section { padding: 32px 24px; }
 }
 
-
-/* MODULE PRICING CALCULATOR */
-.pricing-calc { border: 1px solid var(--border); background: var(--surface); margin-bottom: 48px; overflow: hidden; }
-.calc-header { padding: 28px 36px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-.calc-header-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
-.calc-header-sub { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-.calc-body { display: grid; grid-template-columns: 1fr 300px; }
-.calc-left { padding: 28px 36px; border-right: 1px solid var(--border); }
-.calc-right { padding: 28px 28px; display: flex; flex-direction: column; gap: 0; }
-.calc-section-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-.calc-seats { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-.calc-seats-label { font-size: 0.88rem; color: var(--text-mid); min-width: 60px; }
-.seats-input { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 1rem; padding: 8px 14px; width: 80px; text-align: center; appearance: none; -moz-appearance: textfield; }
-.seats-input::-webkit-inner-spin-button { display: none; }
-.seats-btn { width: 32px; height: 32px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-mid); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Mono', monospace; }
-.seats-btn:hover { border-color: var(--accent); color: var(--accent); }
-.calc-modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.calc-module-toggle { border: 1px solid var(--border); padding: 14px 16px; cursor: pointer; transition: all 0.2s; background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: 8px; user-select: none; }
-.calc-module-toggle:hover { border-color: rgba(0,212,255,0.3); }
-.calc-module-toggle.selected { border-color: var(--accent); background: rgba(0,212,255,0.05); }
-.calc-module-toggle.core-mod { border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.04); cursor: default; }
-.calc-mod-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text); }
-.calc-mod-icon { font-size: 1rem; flex-shrink: 0; }
-.calc-mod-check { width: 18px; height: 18px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; color: var(--accent3); transition: all 0.15s; }
-.calc-module-toggle.selected .calc-mod-check { background: var(--accent3); color: var(--bg); border-color: var(--accent3); }
-.calc-module-toggle.core-mod .calc-mod-check { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-.calc-summary-line { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.calc-summary-line:last-of-type { border-bottom: none; }
-.calc-summary-key { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; }
-.calc-summary-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); }
-.calc-total-row { margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--accent); display: flex; justify-content: space-between; align-items: baseline; }
-.calc-total-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
-.calc-total-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); line-height: 1; }
-.calc-total-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); }
-.calc-cta { display: block; text-align: center; padding: 13px; background: var(--accent2); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; margin-top: 20px; transition: all 0.2s; border: none; cursor: pointer; width: 100%; }
-.calc-cta:hover { background: #0055dd; box-shadow: 0 0 20px rgba(0,102,255,0.35); }
-.calc-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-align: center; margin-top: 10px; line-height: 1.5; }
-@media (max-width: 768px) { 
-  .calc-body { grid-template-columns: 1fr; } 
-  .calc-left { border-right: none; border-bottom: 1px solid var(--border); } 
-  .calc-modules-grid { grid-template-columns: 1fr; }
-  .calc-header { padding: 20px; }
-  .calc-left, .calc-right { padding: 20px; }
-}
-
-
-/* Improved Visual Hierarchy */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem) !important;
-  font-weight: 800 !important;
-  line-height: 1.1 !important;
-  margin-bottom: 24px !important;
-}
-
-.hero-sub {
-  font-size: 1.1rem !important;
-  line-height: 1.7 !important;
-  max-width: 700px !important;
-}
-
-.btn-primary {
-  font-size: 1rem !important;
-  padding: 16px 36px !important;
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25) !important;
-  transition: all 0.3s !important;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 6px 30px rgba(0, 212, 255, 0.4) !important;
-  transform: translateY(-2px) !important;
-}
-
-.tab-content {
-  padding: 100px 120px !important;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.8rem !important;
-  margin-bottom: 24px !important;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3rem) !important;
-  margin-bottom: 20px !important;
-}
-
-.trust-signal {
-  animation: fadeIn 0.6s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Phase 2 Components */
-.capability-card:hover {
-  border-color: rgba(0, 212, 255, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.problem-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.problem-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent3), var(--accent));
-}
-
-/* Better section spacing */
-.tab-content > div {
-  margin-bottom: 40px;
-}
-
-/* Improved readability */
-p {
-  max-width: 800px;
-}
-
-h2 + p {
-  margin-top: 20px;
-}
-
-/* Number badges in how it works */
-.how-it-works-step {
-  transition: all 0.3s;
-}
-
-.how-it-works-step:hover {
-  transform: scale(1.05);
-}
-
-
-/* Better responsive layout */
-@media (max-width: 1200px) {
-  .tab-content {
-    padding: 80px 60px !important;
-  }
-}
-
-@media (max-width: 900px) {
-  .capabilities-grid,
-  .problem-section > div:last-child,
-  .solution-section > div:last-child,
-  .how-it-works-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .tab-content {
-    padding: 60px 30px !important;
-  }
-}
-
-/* Ensure text doesn't wrap unnecessarily */
-.capability-card,
-.problem-stat,
-.solution-card,
-.how-it-works-step {
-  min-width: 0; /* Allow flex items to shrink */
-}
-
-.capability-card > div:first-child,
-.problem-stat > div:first-child {
-  white-space: nowrap; /* Keep numbers on one line */
-}
-
-
-/* Responsive tabs alignment */
-@media (max-width: 1200px) {
-  .tabs-container {
-    padding: 0 60px;
-  }
-}
-
-@media (max-width: 900px) {
-  .tabs-container {
-    padding: 0 30px;
-  }
-  
-  .tabs {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-  }
-}
-
-
-/* Fix CTA scroll behavior for all screen sizes */
-#resources {
-  scroll-margin-top: 100px;
-}
-
-html {
-  scroll-padding-top: 100px;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-
-/* Improved code block contrast (WCAG AA) */
-.code-block,
-.terminal-block,
-pre {
-  background: #0a0e13;
-  border: 1px solid var(--border);
-}
-
-.code-comment {
-  color: #8a9bab !important; /* Lighter gray for better contrast */
-}
-
-.code-keyword {
-  color: var(--accent) !important;
-}
-
-.code-string {
-  color: var(--accent3) !important;
-}
-
-.code-function {
-  color: #00d4ff !important;
-}
-
-
-/* Increased whitespace for better readability */
-.tab-content > div {
-  margin-bottom: 80px !important; /* Increased from 40px */
-}
-
-.capability-card,
-.solution-card,
-.problem-section,
-.how-it-works-section {
-  padding: 48px 40px !important; /* More generous padding */
-}
-
-/* Better section separation */
-section + section {
-  margin-top: 80px;
-}
-
-/* More breathing room in cards */
-.module-card,
-.pricing-card {
-  padding: 48px 36px !important;
-}
-
-
-/* Improved typography */
-p, .section-sub, .hero-sub {
-  text-align: left !important; /* No justify */
-  line-height: 1.7 !important; /* Better readability */
-}
-
-/* Better paragraph spacing */
-p + p {
-  margin-top: 1.2em;
-}
-
-/* Improved heading spacing */
-h2 {
-  margin-bottom: 24px !important;
-}
-
-h3 {
-  margin-bottom: 16px !important;
-}
-
-/* Better list spacing */
-ul, ol {
-  line-height: 1.8;
-}
-
-li + li {
-  margin-top: 0.5em;
-}
-
-
-/* Mobile-specific improvements */
-@media (max-width: 768px) {
-  .tab-content {
-    padding: 60px 24px !important;
-  }
-  
-  .capability-card,
-  .solution-card,
-  .problem-section {
-    padding: 32px 24px !important;
-  }
-  
-  /* Larger touch targets */
-  .btn-primary,
-  .btn-secondary {
-    min-height: 48px;
-    padding: 14px 28px !important;
-  }
-  
-  /* Better mobile typography */
-  h1 {
-    font-size: 2rem !important;
-  }
-  
-  h2 {
-    font-size: 1.5rem !important;
-  }
-  
-  /* Reduce excessive whitespace on mobile */
-  .tab-content > div {
-    margin-bottom: 48px !important;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -673,134 +275,9 @@ li + li {
       Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Reservar Demo">Book a Demo</a>
+      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Request Beta Access" data-es="Solicitar Acceso Beta">Request Beta Access</a>
       <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
     </div>
-  <!-- Trust Signal -->
-  <div class="trust-signal" style="margin-top: 48px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
-    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;">
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</span>
-      <span style="color: var(--border);">•</span>
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="On-premise deployment" data-es="Despliegue on-premise">On-premise deployment</span>
-      <span style="color: var(--border);">•</span>
-      <span style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);" data-en="100% data privacy" data-es="100% privacidad de datos">100% data privacy</span>
-    </div>
-  </div>
-  <!-- Product Capabilities -->
-  <div class="capabilities-grid" style="margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent); margin-bottom: 12px;">10,000+</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="Documents processed in seconds" data-es="Documentos procesados en segundos">Documents processed in seconds</div>
-    </div>
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent3); margin-bottom: 12px;">1-Click</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="Report generation" data-es="Generación de informes">Report generation</div>
-    </div>
-    <div class="capability-card" style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s;">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent2); margin-bottom: 12px;">100%</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-mid);" data-en="On-premise data privacy" data-es="Privacidad de datos on-premise">On-premise data privacy</div>
-    </div>
-  </div>
-
-  <!-- The Problem -->
-  <div class="problem-section" style="margin-top: 80px; padding: 60px 80px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">
-    <div class="section-label" data-en="THE CHALLENGE" data-es="EL DESAFÍO">THE CHALLENGE</div>
-    <h2 data-en="Engineering Teams Waste 15+ Hours Per Week on Documentation" data-es="Los Equipos de Ingeniería Pierden 15+ Horas por Semana en Documentación">Engineering Teams Waste 15+ Hours Per Week on Documentation</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 40px;" data-en="Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation." data-es="Buscar en regulaciones, generar informes de cumplimiento y rastrear activos manualmente crea cuellos de botella que ralentizan toda tu operación.">
-      Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">2+ hrs</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Average time per regulation query" data-es="Tiempo promedio por consulta de regulación">Average time per regulation query</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">73%</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Say documentation is their #1 bottleneck" data-es="Dicen que la documentación es su cuello de botella #1">Say documentation is their #1 bottleneck</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">High</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Compliance risk from outdated info" data-es="Riesgo de cumplimiento por info desactualizada">Compliance risk from outdated info</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Solution -->
-  <div style="margin-top: 80px;">
-    <div class="section-label" data-en="THE SOLUTION" data-es="LA SOLUCIÓN">THE SOLUTION</div>
-    <h2 data-en="Your AI-Powered Engineering Command Center" data-es="Tu Centro de Comando de Ingeniería Impulsado por IA">Your AI-Powered Engineering Command Center</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management." data-es="EngiIntel transforma cómo los equipos de ingeniería manejan documentación, cumplimiento y gestión del conocimiento.">
-      EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">⚡</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Instant Regulation Search" data-es="Búsqueda Instantánea de Regulaciones">Instant Regulation Search</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Query thousands of documents in natural language. Get answers with page-level citations in seconds, not hours." data-es="Consulta miles de documentos en lenguaje natural. Obtén respuestas con citas a nivel de página en segundos, no horas.">
-          Query thousands of documents in natural language. Get answers with page-level citations in seconds, not hours.
-        </p>
-      </div>
-      
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent3);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">📊</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Automated Report Generation" data-es="Generación Automatizada de Informes">Automated Report Generation</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Generate compliance reports, incident documentation, and technical summaries with one click. Always accurate, always up-to-date." data-es="Genera informes de cumplimiento, documentación de incidentes y resúmenes técnicos con un clic. Siempre preciso, siempre actualizado.">
-          Generate compliance reports, incident documentation, and technical summaries with one click. Always accurate, always up-to-date.
-        </p>
-      </div>
-      
-      <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent2);">
-        <div style="font-size: 2rem; margin-bottom: 16px;">🔒</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Real-Time Asset Tracking" data-es="Seguimiento de Activos en Tiempo Real">Real-Time Asset Tracking</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Maintain a complete registry of equipment, inspections, and maintenance history. Never miss a compliance deadline." data-es="Mantén un registro completo de equipos, inspecciones e historial de mantenimiento. Nunca pierdas una fecha límite de cumplimiento.">
-          Maintain a complete registry of equipment, inspections, and maintenance history. Never miss a compliance deadline.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- How It Works -->
-  <div style="margin-top: 80px; padding: 60px 80px; background: var(--bg); border: 1px solid var(--border);">
-    <div class="section-label" data-en="HOW IT WORKS" data-es="CÓMO FUNCIONA">HOW IT WORKS</div>
-    <h2 data-en="Get Started in 3 Simple Steps" data-es="Comienza en 3 Pasos Simples">Get Started in 3 Simple Steps</h2>
-    <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="Deploy EngiIntel on your infrastructure and start querying your documents immediately." data-es="Despliega EngiIntel en tu infraestructura y comienza a consultar tus documentos inmediatamente.">
-      Deploy EngiIntel on your infrastructure and start querying your documents immediately.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">1</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Deploy On-Premise" data-es="Despliega On-Premise">Deploy On-Premise</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Install EngiIntel on your servers with Docker. Your data never leaves your infrastructure." data-es="Instala EngiIntel en tus servidores con Docker. Tus datos nunca salen de tu infraestructura.">
-          Install EngiIntel on your servers with Docker. Your data never leaves your infrastructure.
-        </p>
-      </div>
-      
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent3); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">2</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Upload Your Documents" data-es="Sube Tus Documentos">Upload Your Documents</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Import regulations, manuals, and technical documentation. EngiIntel processes and indexes everything automatically." data-es="Importa regulaciones, manuales y documentación técnica. EngiIntel procesa e indexa todo automáticamente.">
-          Import regulations, manuals, and technical documentation. EngiIntel processes and indexes everything automatically.
-        </p>
-      </div>
-      
-      <div style="text-align: center;">
-        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">3</div>
-        <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Ask Questions" data-es="Haz Preguntas">Ask Questions</h3>
-        <p style="color: var(--text-dim); line-height: 1.7;" data-en="Query in natural language. Get instant answers with citations. Generate reports. Track assets. All in one platform." data-es="Consulta en lenguaje natural. Obtén respuestas instantáneas con citas. Genera informes. Rastrea activos. Todo en una plataforma.">
-          Query in natural language. Get instant answers with citations. Generate reports. Track assets. All in one platform.
-        </p>
-      </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 48px;">
-      <button class="btn-primary" onclick="switchTab('resources')" data-en="See It In Action" data-es="Ver en Acción">See It In Action</button>
-    </div>
-  </div>
-
-
   </div>
 </section>
 
@@ -1497,7 +974,7 @@ li + li {
   <!-- Security & Compliance Section -->
   <div style="background: var(--surface); border: 1px solid var(--border); padding: 40px; margin-bottom: 48px;">
     <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 24px;" data-en="Security & Compliance" data-es="Seguridad y Cumplimiento">Security & Compliance</h3>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
       <div>
         <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px; color: var(--accent);" data-en="100% On-Premise" data-es="100% En Servidor Propio">100% On-Premise</div>
         <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="All data stays on your infrastructure. No cloud dependencies." data-es="Todos los datos permanecen en tu infraestructura. Sin dependencias en la nube.">
@@ -1714,227 +1191,122 @@ li + li {
 
 <div id="pricing" class="tab-content">
   <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
-  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
-  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
-
-  <!-- Interactive pricing calculator -->
-  <div class="pricing-calc fade-in">
-    <div class="calc-header">
-      <div>
-        <div class="calc-header-title" data-en="Configure your plan" data-es="Configura tu plan">Configure your plan</div>
-        <div class="calc-header-sub" data-en="Select seats and modules — price updates in real time" data-es="Selecciona seats y módulos — el precio se actualiza en tiempo real">Select seats and modules — price updates in real time</div>
-      </div>
-    </div>
-    <div class="calc-body">
-      <div class="calc-left">
-        <div class="calc-section-label" data-en="Number of seats" data-es="Número de seats">Number of seats</div>
-        <div class="calc-seats">
-          <button class="seats-btn" onclick="adjustSeats(-1)">−</button>
-          <input class="seats-input" type="number" id="seatsInput" value="5" min="1" max="500" oninput="calcPrice()">
-          <button class="seats-btn" onclick="adjustSeats(1)">+</button>
-          <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
-        </div>
-
-        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
-        <div class="calc-modules-grid">
-          <div class="calc-module-toggle core-mod">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
-            <span class="calc-mod-check">✓</span>
-          </div>
-          <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
-            <span class="calc-mod-check" id="chk-ops"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
-            <span class="calc-mod-check" id="chk-excel"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
-            <span class="calc-mod-check" id="chk-wiki"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
-            <span class="calc-mod-check" id="chk-incidents"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
-            <span class="calc-mod-check" id="chk-agent"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
-            <span class="calc-mod-check" id="chk-analytics"></span>
-          </div>
-        </div>
-      </div>
-      <div class="calc-right">
-        <div class="calc-section-label" data-en="Your plan" data-es="Tu plan">Your plan</div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" data-en="Core · per seat" data-es="Core · por seat">Core · per seat</span>
-          <span class="calc-summary-val">€8<span style="font-size:0.75rem;font-weight:400;color:var(--text-dim)">/mo</span></span>
-        </div>
-        <div class="calc-summary-line" id="sum-modules-row" style="display:none">
-          <span class="calc-summary-key" id="sum-modules-label">+ 0 modules · per seat</span>
-          <span class="calc-summary-val" id="sum-modules-val">€0/mo</span>
-        </div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" id="sum-seats-label" data-en="× seats" data-es="× seats">× seats</span>
-          <span class="calc-summary-val" id="sum-seats-val">5</span>
-        </div>
-        <div class="calc-summary-line" id="sum-discount-row" style="display:none">
-          <span class="calc-summary-key" id="sum-discount-label" style="color:var(--accent3)">Volume discount</span>
-          <span class="calc-summary-val" id="sum-discount-val" style="color:var(--accent3)">−€0</span>
-        </div>
-        <div class="calc-total-row">
-          <div>
-            <div class="calc-total-label" data-en="Total / month" data-es="Total / mes">Total / month</div>
-            <div class="calc-total-period" data-en="billed monthly · cancel anytime" data-es="factura mensual · cancela cuando quieras">billed monthly · cancel anytime</div>
-          </div>
-          <div class="calc-total-price" id="calcTotal">€40</div>
-        </div>
-        <button class="calc-cta" onclick="switchTab('resources')" data-en="Request this plan →" data-es="Solicitar este plan →">Request this plan →</button>
-        <div class="calc-note" id="calcNote" data-en="On-premise · no per-query costs · Docker install" data-es="On-premise · sin coste por consulta · instalación Docker">On-premise · no per-query costs · Docker install</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tier reference cards -->
-  <div class="pricing-grid fade-in">
+  <h2 data-en="Simple, Transparent Pricing" data-es="Precios Simples y Transparentes">Simple, Transparent Pricing</h2>
+  <p class="section-sub" data-en="Choose the modules you need. Pay only for what you use. No hidden fees." data-es="Elige los módulos que necesitas. Paga solo por lo que usas. Sin tarifas ocultas.">
+    Choose the modules you need. Pay only for what you use. No hidden fees.
+  </p>
+  <div class="pricing-grid">
     <div class="pricing-card">
-      <div class="pricing-plan">Starter</div>
-      <div class="pricing-price"><sup>€</sup>8</div>
-      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
+      <div class="pricing-plan" data-en="Free" data-es="Gratis">Free</div>
+      <div class="pricing-price">€0</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="Forever free" data-es="Gratis para siempre">Forever free</p>
       <ul class="pricing-features">
-        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
-        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
+        <li data-en="Document Intelligence (core)" data-es="Inteligencia Documental (núcleo)">Document Intelligence (core)</li>
+        <li data-en="Up to 100 documents" data-es="Hasta 100 documentos">Up to 100 documents</li>
+        <li data-en="1 user" data-es="1 usuario">1 user</li>
+        <li data-en="Community support" data-es="Soporte comunitario">Community support</li>
       </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</button>
+      <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Get Started" data-es="Comenzar">Get Started</a>
     </div>
     <div class="pricing-card featured">
-      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
-      <div class="pricing-plan">Team</div>
-      <div class="pricing-price"><sup>€</sup>20</div>
-      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
+      <div class="pricing-plan" data-en="Pro" data-es="Pro">Pro</div>
+      <div class="pricing-price">€49</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="per month" data-es="por mes">per month</p>
       <ul class="pricing-features">
-        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
+        <li data-en="Everything in Free" data-es="Todo en Gratis">Everything in Free</li>
+        <li data-en="Unlimited documents" data-es="Documentos ilimitados">Unlimited documents</li>
+        <li data-en="Up to 10 users" data-es="Hasta 10 usuarios">Up to 10 users</li>
+        <li data-en="All add-on modules available" data-es="Todos los módulos adicionales disponibles">All add-on modules available</li>
         <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
       </ul>
-      <button class="pricing-cta solid" onclick="switchTab('resources')" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</button>
+      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Start Free Trial" data-es="Iniciar Prueba Gratis">Start Free Trial</a>
     </div>
     <div class="pricing-card">
-      <div class="pricing-plan">Enterprise</div>
-      <div class="pricing-price"><sup>€</sup>32</div>
-      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
+      <div class="pricing-plan" data-en="Enterprise" data-es="Empresa">Enterprise</div>
+      <div class="pricing-price" data-en="Custom" data-es="Personalizado">Custom</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="Contact us" data-es="Cont├íctanos">Contact us</p>
       <ul class="pricing-features">
-        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
-        <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
-        <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
-        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
+        <li data-en="Everything in Pro" data-es="Todo en Pro">Everything in Pro</li>
+        <li data-en="Unlimited users" data-es="Usuarios ilimitados">Unlimited users</li>
+        <li data-en="Custom integrations" data-es="Integraciones personalizadas">Custom integrations</li>
+        <li data-en="Dedicated support" data-es="Soporte dedicado">Dedicated support</li>
+        <li data-en="SLA guarantee" data-es="Garantáa SLA">SLA guarantee</li>
       </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</button>
+      <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Contact Sales" data-es="Contactar Ventas">Contact Sales</a>
     </div>
   </div>
-  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
+  <div style="margin-top: 48px; padding: 32px; background: var(--surface); border: 1px solid var(--border);">
+    <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 16px;" data-en="Add-on Modules" data-es="Módulos Adicionales">Add-on Modules</h3>
+    <p style="color: var(--text-dim); margin-bottom: 24px;" data-en="Available for Pro and Enterprise plans:" data-es="Disponible para planes Pro y Empresa:">Available for Pro and Enterprise plans:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Excel Copilot" data-es="Excel Copilot">Excel Copilot</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="€15/month per seat" data-es="€15/mes por usuario">€15/month per seat</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Wiki" data-es="Wiki">Wiki</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="€10/month" data-es="€10/mes">€10/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Assets" data-es="Activos">Assets</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="€15/month" data-es="€15/mes">€15/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Incidents" data-es="Incidencias">Incidents</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="€10/month" data-es="€10/mes">€10/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="AI Agent" data-es="Agente IA">AI Agent</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="€25/month" data-es="€25/mes">€25/month</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Footer -->
-<footer style="border-top: 1px solid var(--border); padding: 48px 60px; background: var(--surface);">
-  <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;">
-    
-    <!-- Column 1: Brand -->
-    <div>
-      <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 16px;">
-        Engi<span style="color: var(--accent);">Intel</span>
-      </div>
-      <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.7;" data-en="100% on-premise AI platform for regulated industries. Your data never leaves your server." data-es="Plataforma de IA 100% on-premise para industrias reguladas. Tus datos nunca salen de tu servidor.">
-        100% on-premise AI platform for regulated industries. Your data never leaves your server.
-      </p>
-    </div>
-    
-    <!-- Column 2: Legal -->
-    <div>
-      <h4 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px;" data-en="Legal" data-es="Legal">Legal</h4>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="privacy-policy.html" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'" data-en="Privacy Policy" data-es="Política de Privacidad">Privacy Policy</a>
-        <a href="terms-of-service.html" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'" data-en="Terms of Service" data-es="Términos de Servicio">Terms of Service</a>
-      </div>
-    </div>
-    
-    <!-- Column 3: Contact -->
-    <div>
-      <h4 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px;" data-en="Contact" data-es="Contacto">Contact</h4>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="mailto:eloycostas@engiintel.com" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'">eloycostas@engiintel.com</a>
-        <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</p>
-      </div>
-    </div>
-    
-  </div>
-  
-  <!-- Copyright -->
-  <div style="max-width: 1400px; margin: 32px auto 0; padding-top: 32px; border-top: 1px solid var(--border); text-align: center;">
-    <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);">
-      © 2026 EngiIntel. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span>
-    </p>
-  </div>
+<footer>
+  <div class="footer-logo">Engi<span>Intel</span></div>
+  <div class="footer-copy">┬® 2026 EngiIntel. All rights reserved.</div>
 </footer>
 
-<!-- GDPR Cookie Consent Banner -->
-<div id="gdpr-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface2); border-top: 2px solid var(--accent); padding: 24px; z-index: 1000; display: none;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px;">
-      <p style="font-size: 0.9rem; color: var(--text); margin: 0;" data-en="We use cookies to improve your experience and analyze site usage. By continuing to use this site, you consent to our use of cookies." data-es="Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Al continuar usando este sitio, consientes nuestro uso de cookies.">
-        We use cookies to improve your experience and analyze site usage. By continuing to use this site, you consent to our use of cookies.
-      </p>
-      <a href="privacy-policy.html" style="color: var(--accent); font-size: 0.85rem; text-decoration: none;" data-en="Learn more" data-es="Más información">Learn more</a>
-    </div>
-    <div style="display: flex; gap: 12px;">
-      <button onclick="acceptCookies()" style="background: var(--accent); color: var(--bg); border: none; padding: 12px 24px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;" data-en="Accept" data-es="Aceptar">Accept</button>
-      <button onclick="declineCookies()" style="background: transparent; color: var(--text-mid); border: 1px solid var(--border); padding: 12px 24px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;" data-en="Decline" data-es="Rechazar">Decline</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// GDPR Cookie Consent
-function showGDPRBanner() {
-  const consent = localStorage.getItem('gdpr-consent');
-  if (!consent) {
-    document.getElementById('gdpr-banner').style.display = 'block';
-  }
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else {
+        el.innerHTML = text;
+      }
+    }
+  });
 }
 
-function acceptCookies() {
-  localStorage.setItem('gdpr-consent', 'accepted');
-  document.getElementById('gdpr-banner').style.display = 'none';
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+  
+  document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function declineCookies() {
-  localStorage.setItem('gdpr-consent', 'declined');
-  document.getElementById('gdpr-banner').style.display = 'none';
-  // Disable Google Analytics if declined
-  window['ga-disable-G-5P3VL8DTRG'] = true;
-}
-
-// Show banner on page load
-window.addEventListener('DOMContentLoaded', showGDPRBanner);
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+});
 </script>
 
 </body>
