@@ -267,8 +267,8 @@ function initContactForm() {
     };
     
     try {
-      // Send to n8n webhook
-      const response = await fetch('http://localhost:5678/webhook/contact-form', {
+      // Send to Formspree (free form backend)
+      const response = await fetch('https://formspree.io/f/xanykorv', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
