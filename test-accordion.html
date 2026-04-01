@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accordion Test</title>
+<style>
+:root {
+  --bg: #080c10;
+  --surface: #0d1219;
+  --border: #1a2433;
+  --accent: #00d4ff;
+  --text: #e8edf2;
+  --text-dim: #8a9bab;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  padding: 40px;
+}
+
+.accordion-item {
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  background: var(--surface);
+  transition: all 0.3s;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-item:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.accordion-item.active {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 28px 36px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  color: var(--text);
+}
+
+.accordion-header:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.accordion-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.accordion-title {
+  flex: 1;
+}
+
+.accordion-title h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: var(--text);
+}
+
+.accordion-title p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.accordion-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-dim);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  padding: 0 36px;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 3000px;
+  padding: 0 36px 36px;
+}
+</style>
+</head>
+<body>
+
+<h1>Accordion Test</h1>
+<p>Click on the pillars below to test the accordion:</p>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion('test1')">
+    <span class="accordion-icon">🔥</span>
+    <div class="accordion-title">
+      <h3>Test Pillar 1</h3>
+      <p>Click to expand</p>
+    </div>
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div id="accordion-test1" class="accordion-content">
+    <p style="padding: 20px 0;">This is the content of pillar 1. It should expand smoothly when you click the header.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion('test2')">
+    <span class="accordion-icon">🔒</span>
+    <div class="accordion-title">
+      <h3>Test Pillar 2</h3>
+      <p>Click to expand</p>
+    </div>
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div id="accordion-test2" class="accordion-content">
+    <p style="padding: 20px 0;">This is the content of pillar 2. When you click this, pillar 1 should close.</p>
+  </div>
+</div>
+
+<script>
+function toggleAccordion(id) {
+  console.log('toggleAccordion called with id:', id);
+  const item = document.querySelector(`#accordion-${id}`).parentElement;
+  const isActive = item.classList.contains('active');
+  
+  console.log('Item found:', item);
+  console.log('Is active:', isActive);
+  
+  // Close all accordions
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('active');
+  });
+  
+  // Open clicked accordion if it wasn't active
+  if (!isActive) {
+    item.classList.add('active');
+    console.log('Opened accordion:', id);
+  } else {
+    console.log('Closed accordion:', id);
+  }
+}
+
+// Open first accordion by default
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, opening first accordion');
+  const firstAccordion = document.querySelector('.accordion-item');
+  if (firstAccordion) {
+    firstAccordion.classList.add('active');
+    console.log('First accordion opened');
+  }
+});
+</script>
+
+</body>
+</html>
