@@ -149,6 +149,7 @@ h1 .accent2 { color: var(--accent3); }
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 0 8%;
+  overflow: hidden;
 }
 .tabs {
   display: flex;
@@ -157,6 +158,7 @@ h1 .accent2 { color: var(--accent3); }
   scrollbar-width: none;
   justify-content: center;
   flex-wrap: wrap;
+  -webkit-overflow-scrolling: touch;
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab-btn { background: none; border: none; color: var(--text-dim); padding: 20px 28px; font-family: 'DM Mono', monospace; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
@@ -644,7 +646,6 @@ li + li {
   box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
   min-width: 400px;
 }
-
 .roi-value {
   font-family: 'Syne', sans-serif;
   font-size: 4rem;
@@ -1007,6 +1008,91 @@ html[lang="es"] .info-icon::after {
   color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 12px;
+}
+
+/* =============================================
+   MOBILE RESPONSIVENESS
+   ============================================= */
+
+/* ROI card: no fixed min-width on mobile */
+@media (max-width: 900px) {
+  .roi-card {
+    min-width: 0 !important;
+    width: 100%;
+  }
+}
+
+/* Tabs: scroll within bar, don't overflow page */
+@media (max-width: 900px) {
+  .tabs-container {
+    padding: 0 16px;
+  }
+  .tabs {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tighter tab buttons */
+  .tab-btn {
+    padding: 14px 16px;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* Hero: re-center text that was overridden to left-align */
+  .hero .hero-sub,
+  .hero p {
+    text-align: center !important;
+  }
+
+  /* Reduce module card bloated padding on mobile */
+  .module-card {
+    padding: 28px 24px !important;
+  }
+
+  /* Accordion content padding tighter on mobile */
+  .accordion-item.active .accordion-content {
+    padding: 0 16px 20px;
+  }
+
+  /* Nav: fit logo + lang-switch on small screens */
+  nav {
+    padding: 16px 16px;
+  }
+  .hero {
+    padding: 110px 16px 40px;
+  }
+  .tab-content {
+    padding: 48px 16px !important;
+  }
+  footer {
+    padding: 28px 16px;
+  }
+}
+
+/* Very small phones (≤ 480px) */
+@media (max-width: 480px) {
+  .tabs-container {
+    padding: 0;
+  }
+  .tab-btn {
+    padding: 12px 12px;
+    font-size: 0.65rem;
+  }
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  h2 {
+    font-size: 1.4rem !important;
+  }
+  .roi-value {
+    font-size: 2.5rem;
+  }
+  .stat-value {
+    font-size: 1.6rem;
+  }
 }
 
   </style>
