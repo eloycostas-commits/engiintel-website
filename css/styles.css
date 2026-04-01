@@ -890,7 +890,8 @@ html[lang="es"] .info-icon::after {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.screenshot-frame img { width: 100%; display: block; aspect-ratio: 2559 / 1332; }
+.screenshot-frame picture { display: block; width: 100%; }
+.screenshot-frame img { width: 100%; height: auto; display: block; }
 .screenshot-caption {
   background: var(--surface);
   padding: 16px 20px;
