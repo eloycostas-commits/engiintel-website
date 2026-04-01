@@ -56,7 +56,7 @@ module.exports = async function handler(req, res) {
   const safe = (s) => String(s || '—').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // Prepare email payload
-  const founderEmail = process.env.BETA_FOUNDER_EMAIL || 'eloycostas@engiintel.com';
+  const founderEmail = process.env.BETA_FOUNDER_EMAIL || 'eloycostas@outlook.com';
   const fromAddress = process.env.RESEND_FROM || 'onboarding@resend.dev';
 
   console.log('Sending email from:', fromAddress);
