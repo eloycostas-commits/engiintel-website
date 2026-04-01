@@ -365,8 +365,9 @@ function initAccordion() {
 }
 
 // Initialize on page load
+// Components are already inlined by the build script — no dynamic loading needed
 document.addEventListener('DOMContentLoaded', () => {
-  loadAllComponents();
+  initializeApp();
 });
 
 // Unified CTA behavior - all "Book Demo" buttons go to contact form
