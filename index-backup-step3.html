@@ -830,56 +830,6 @@ li + li {
   }
 }
 
-
-
-/* Pricing Presets */
-.pricing-presets {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 32px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.preset-btn {
-  padding: 16px 32px;
-  background: var(--surface);
-  border: 2px solid var(--border);
-  color: var(--text);
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-radius: 4px;
-  min-width: 180px;
-  text-align: center;
-}
-
-.preset-btn:hover {
-  border-color: var(--accent);
-  background: rgba(0, 212, 255, 0.05);
-}
-
-.preset-btn.active {
-  border-color: var(--accent);
-  background: rgba(0, 212, 255, 0.1);
-  color: var(--accent);
-}
-
-.preset-label {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.preset-desc {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  font-family: 'DM Mono', monospace;
-}
-
 </style>
 </head>
 <body>
@@ -2073,23 +2023,6 @@ li + li {
   <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
   <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
 
-
-  <!-- Pricing Presets -->
-  <div class="pricing-presets">
-    <button class="preset-btn" onclick="applyPreset('starter')">
-      <span class="preset-label" data-en="Starter" data-es="Inicial">Starter</span>
-      <span class="preset-desc" data-en="5 seats · Core only" data-es="5 seats · Solo Core">5 seats · Core only</span>
-    </button>
-    <button class="preset-btn" onclick="applyPreset('professional')">
-      <span class="preset-label" data-en="Professional" data-es="Profesional">Professional</span>
-      <span class="preset-desc" data-en="10 seats · Core + 3 modules" data-es="10 seats · Core + 3 módulos">10 seats · Core + 3 modules</span>
-    </button>
-    <button class="preset-btn" onclick="applyPreset('enterprise')">
-      <span class="preset-label" data-en="Enterprise" data-es="Empresa">Enterprise</span>
-      <span class="preset-desc" data-en="25 seats · All modules" data-es="25 seats · Todos los módulos">25 seats · All modules</span>
-    </button>
-  </div>
-
   <!-- Interactive pricing calculator -->
   <div class="pricing-calc fade-in">
     <div class="calc-header">
@@ -2336,49 +2269,6 @@ document.addEventListener('DOMContentLoaded', () => {
     firstAccordion.classList.add('active');
   }
 });
-
-
-
-// Pricing Presets
-function applyPreset(preset) {
-  // Clear all selections first
-  selected.clear();
-  document.querySelectorAll('.calc-module-toggle').forEach(el => {
-    el.classList.remove('selected');
-    const chk = el.querySelector('.calc-mod-check');
-    if (chk && chk.id) chk.textContent = '';
-  });
-  
-  // Remove active class from all preset buttons
-  document.querySelectorAll('.preset-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  
-  // Add active class to clicked preset
-  event.target.closest('.preset-btn').classList.add('active');
-  
-  if (preset === 'starter') {
-    // 5 seats, Core only
-    document.getElementById('seatsInput').value = 5;
-  } else if (preset === 'professional') {
-    // 10 seats, Core + Operations + Excel + Wiki
-    document.getElementById('seatsInput').value = 10;
-    toggleMod('ops');
-    toggleMod('excel');
-    toggleMod('wiki');
-  } else if (preset === 'enterprise') {
-    // 25 seats, All modules
-    document.getElementById('seatsInput').value = 25;
-    toggleMod('ops');
-    toggleMod('excel');
-    toggleMod('wiki');
-    toggleMod('incidents');
-    toggleMod('agent');
-    toggleMod('analytics');
-  }
-  
-  calcPrice();
-}
 
 </script>
 
