@@ -44,11 +44,82 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://engiintel.com/">
+  <meta property="og:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
+  <meta property="og:description" content="Self-hosted AI platform for regulated industries. Query regulations in natural language with page-level citations, manage assets, generate incident reports — 100% on-premise, zero data leakage.">
+  <meta property="og:image" content="https://engiintel.com/screenshots/panel%20principal.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:site_name" content="EngiIntel">
+  <meta property="og:locale" content="en_GB">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EngiIntel — AI Document Intelligence for Regulated Industries">
+  <meta name="twitter:description" content="Self-hosted AI for regulated industries. Query technical docs in natural language with page-level citations. 100% on-premise — no cloud, no data leakage.">
+  <meta name="twitter:image" content="https://engiintel.com/screenshots/panel%20principal.jpg">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "EngiIntel",
+    "description": "Self-hosted AI document intelligence platform for regulated industries. Query technical documentation in natural language with page-level citations, manage assets, generate incident reports, track compliance.",
+    "url": "https://engiintel.com",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Docker (Linux, Windows Server, macOS)",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "description": "Beta access — contact for pricing"
+    },
+    "featureList": [
+      "Natural language document queries with page-level citations",
+      "OCR for scanned PDFs and legacy manuals",
+      "Excel Copilot with one-click chart generation",
+      "Asset registry with maintenance scheduling",
+      "AI-assisted incident report generation",
+      "Wiki and internal knowledge base",
+      "100% on-premise — no cloud dependencies",
+      "GDPR compliant by design",
+      "Audit logging for regulatory compliance"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "EngiIntel",
+      "url": "https://engiintel.com"
+    }
+  }
+  </script>
+  
+  <!-- Google Analytics — Consent Mode v2 (defaults to denied until GDPR accept) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    // Restore consent if user already accepted in a previous visit
+    try {
+      if (localStorage.getItem('gdpr-consent') === 'accepted') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+    } catch(e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-5P3VL8DTRG');
   </script>

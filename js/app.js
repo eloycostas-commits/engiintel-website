@@ -301,6 +301,14 @@ function initContactForm() {
       console.log('API response:', result);
       
       if (response.ok && result.success) {
+        // Fire conversion event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generate_lead', {
+            'event_category': 'Contact',
+            'event_label': formData.industry || 'unknown',
+            'value': 1
+          });
+        }
         window.location.href = '/thank-you.html';
       } else {
         throw new Error(result.error || 'Failed to send message');
@@ -328,6 +336,14 @@ function showGDPRBanner() {
 function acceptCookies() {
   localStorage.setItem('gdpr-consent', 'accepted');
   document.getElementById('gdpr-banner').style.display = 'none';
+  if (typeof gtag !== 'undefined') {
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+  }
 }
 
 function declineCookies() {

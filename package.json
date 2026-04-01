@@ -6,5 +6,8 @@
     "build": "node build-landing.js",
     "dev": "node build-landing.js"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
 }
