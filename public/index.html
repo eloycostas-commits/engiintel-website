@@ -131,7 +131,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 8%
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.3;
 }
-.hero-content { max-width: 1400px; width: 100%; }
+.hero-content { max-width: none; width: 100%; }
 h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
 h1 .accent { color: var(--accent); }
 h1 .accent2 { color: var(--accent3); }
@@ -149,8 +149,6 @@ h1 .accent2 { color: var(--accent3); }
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 0 8%;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 .tabs {
   display: flex;
@@ -193,7 +191,7 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .pricing-features li::before { content: '•'; color: var(--accent3); flex-shrink: 0; }
 
-footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
+footer { border-top: 1px solid var(--border); padding: 32px 8%; display: flex; justify-content: space-between; align-items: center; }
 .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
 .footer-logo span { color: var(--accent); }
 .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
@@ -339,8 +337,6 @@ h1 {
 
 .tab-content {
   padding: 80px 8% !important;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 .section-label {
@@ -592,9 +588,8 @@ li + li {
 
 /* Two-Column Benefits Layout */
 .benefits-section {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 0 60px;
+  margin: 60px 0;
+  padding: 0;
 }
 
 .benefits-grid {
@@ -718,15 +713,11 @@ li + li {
 
 /* Content Section Container */
 .content-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 60px;
+  padding: 0;
 }
 
 .content-section-wide {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 60px;
+  padding: 0;
 }
 
 @media (max-width: 900px) {
