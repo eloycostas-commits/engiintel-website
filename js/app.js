@@ -263,12 +263,39 @@ function declineCookies() {
   window['ga-disable-G-5P3VL8DTRG'] = true;
 }
 
+// Accordion Toggle Logic
+function toggleAccordion(id) {
+  const item = document.querySelector(`#accordion-${id}`).parentElement;
+  const isActive = item.classList.contains('active');
+  
+  // Close all accordions
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('active');
+  });
+  
+  // Open clicked accordion if it wasn't active
+  if (!isActive) {
+    item.classList.add('active');
+  }
+}
+
+// Initialize accordion - open first one by default
+function initAccordion() {
+  const firstAccordion = document.querySelector('.accordion-item');
+  if (firstAccordion) {
+    firstAccordion.classList.add('active');
+  }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadAllComponents();
 });
 
-// Re-initialize form after components load
+// Re-initialize form and accordion after components load
 window.addEventListener('load', () => {
-  setTimeout(initContactForm, 500);
+  setTimeout(() => {
+    initContactForm();
+    initAccordion();
+  }, 500);
 });

@@ -618,3 +618,122 @@ li + li {
     padding: 0 30px;
   }
 }
+
+
+/* Accordion System Styles */
+.capabilities-accordion {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  background: var(--surface);
+  transition: all 0.3s;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.accordion-item:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.accordion-item.active {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 28px 36px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.accordion-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.accordion-title {
+  flex: 1;
+}
+
+.accordion-title h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: var(--text);
+}
+
+.accordion-title p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.accordion-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-dim);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  padding: 0 36px;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 3000px;
+  padding: 0 36px 36px;
+}
+
+/* Mobile responsive accordion */
+@media (max-width: 768px) {
+  .accordion-header {
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  
+  .accordion-icon {
+    font-size: 2rem;
+  }
+  
+  .accordion-title h3 {
+    font-size: 1.1rem;
+  }
+  
+  .accordion-title p {
+    font-size: 0.8rem;
+  }
+  
+  .accordion-content {
+    padding: 0 24px;
+  }
+  
+  .accordion-item.active .accordion-content {
+    padding: 0 24px 24px;
+  }
+}
