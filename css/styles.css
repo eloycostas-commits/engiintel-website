@@ -99,10 +99,8 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .pricing-features li::before { content: '•'; color: var(--accent3); flex-shrink: 0; }
 
-footer { border-top: 1px solid var(--border); padding: 32px 8%; display: block; }
-.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
-.footer-logo span { color: var(--accent); }
-.footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+/* Old tag-level footer rules removed — use .site-footer instead */
+.footer-email { word-break: break-all; }
 
 @media (max-width: 768px) {
   nav, .tabs-container, .tab-content { padding-left: 20px; padding-right: 20px; }

@@ -194,10 +194,8 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .pricing-features li::before { content: '•'; color: var(--accent3); flex-shrink: 0; }
 
-footer { border-top: 1px solid var(--border); padding: 32px 8%; display: block; }
-.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
-.footer-logo span { color: var(--accent); }
-.footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
+/* Old tag-level footer rules removed — use .site-footer instead */
+.footer-email { word-break: break-all; }
 
 @media (max-width: 768px) {
   nav, .tabs-container, .tab-content { padding-left: 20px; padding-right: 20px; }
@@ -1459,8 +1457,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Document Intelligence</div>
     </div>
     <picture>
-      <source srcset="/screenshots/panel principal.webp" type="image/webp">
-      <img src="/screenshots/panel principal.jpg" alt="EngiIntel main dashboard — AI query interface, document library, and live metrics" loading="lazy" decoding="async" width="2558" height="1333">
+      <source srcset="/screenshots/panel%20principal.webp" type="image/webp">
+      <img src="/screenshots/panel%20principal.jpg" alt="EngiIntel main dashboard — AI query interface, document library, and live metrics" loading="lazy" decoding="async" width="2558" height="1333">
     </picture>
     <div class="screenshot-caption" data-en="Main dashboard — natural language queries, document library, and real-time AI responses" data-es="Panel principal — consultas en lenguaje natural, biblioteca de documentos y respuestas IA en tiempo real">Main dashboard — natural language queries, document library, and real-time AI responses</div>
   </div>
@@ -1557,8 +1555,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Analytics & Metrics</div>
     </div>
     <picture>
-      <source srcset="/screenshots/panel de metricas.webp" type="image/webp">
-      <img src="/screenshots/panel de metricas.jpg" alt="EngiIntel analytics panel showing usage metrics, query statistics, and performance data" loading="lazy" decoding="async" width="2559" height="1336">
+      <source srcset="/screenshots/panel%20de%20metricas.webp" type="image/webp">
+      <img src="/screenshots/panel%20de%20metricas.jpg" alt="EngiIntel analytics panel showing usage metrics, query statistics, and performance data" loading="lazy" decoding="async" width="2559" height="1336">
     </picture>
     <div class="screenshot-caption" data-en="Analytics dashboard — query volume, document usage, and team performance metrics" data-es="Panel de analíticas — volumen de consultas, uso de documentos y métricas de rendimiento del equipo">Analytics dashboard — query volume, document usage, and team performance metrics</div>
   </div>
@@ -1922,8 +1920,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Analysis Area</div>
     </div>
     <picture>
-      <source srcset="/screenshots/are de analisis.webp" type="image/webp">
-      <img src="/screenshots/are de analisis.jpg" alt="EngiIntel analysis area showing document search results with page-level citations" loading="lazy" decoding="async" width="2558" height="1330">
+      <source srcset="/screenshots/are%20de%20analisis.webp" type="image/webp">
+      <img src="/screenshots/are%20de%20analisis.jpg" alt="EngiIntel analysis area showing document search results with page-level citations" loading="lazy" decoding="async" width="2558" height="1330">
     </picture>
     <div class="screenshot-caption" data-en="Analysis area — AI-powered search with precise page citations from your technical documents" data-es="Área de análisis — búsqueda potenciada por IA con citas precisas de tus documentos técnicos">Analysis area — AI-powered search with precise page citations from your technical documents</div>
   </div>
@@ -1936,8 +1934,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Compare Documents</div>
     </div>
     <picture>
-      <source srcset="/screenshots/comparar documentos.webp" type="image/webp">
-      <img src="/screenshots/comparar documentos.jpg" alt="EngiIntel document comparison view showing side-by-side analysis of two documents" loading="lazy" decoding="async" width="2559" height="1332">
+      <source srcset="/screenshots/comparar%20documentos.webp" type="image/webp">
+      <img src="/screenshots/comparar%20documentos.jpg" alt="EngiIntel document comparison view showing side-by-side analysis of two documents" loading="lazy" decoding="async" width="2559" height="1332">
     </picture>
     <div class="screenshot-caption" data-en="Document comparison — identify differences and extract insights across multiple versions" data-es="Comparación de documentos — identifica diferencias y extrae información entre múltiples versiones">Document comparison — identify differences and extract insights across multiple versions</div>
   </div>
@@ -1995,8 +1993,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Excel Copilot</div>
     </div>
     <picture>
-      <source srcset="/screenshots/libros excel.webp" type="image/webp">
-      <img src="/screenshots/libros excel.jpg" alt="EngiIntel Excel Copilot showing spreadsheet analysis with AI-generated charts and natural language queries" loading="lazy" decoding="async" width="2559" height="1330">
+      <source srcset="/screenshots/libros%20excel.webp" type="image/webp">
+      <img src="/screenshots/libros%20excel.jpg" alt="EngiIntel Excel Copilot showing spreadsheet analysis with AI-generated charts and natural language queries" loading="lazy" decoding="async" width="2559" height="1330">
     </picture>
     <div class="screenshot-caption" data-en="Excel Copilot — query spreadsheets in natural language and generate charts with a single command" data-es="Excel Copilot — consulta hojas de cálculo en lenguaje natural y genera gráficos con un solo comando">Excel Copilot — query spreadsheets in natural language and generate charts with a single command</div>
   </div>
@@ -2273,8 +2271,8 @@ pre, code, .code-block {
         <div class="chrome-url">app.engiintel.com — My Tasks</div>
       </div>
       <picture>
-        <source srcset="/screenshots/My Tasks.webp" type="image/webp">
-        <img src="/screenshots/My Tasks.jpg" alt="EngiIntel My Tasks personal dashboard showing assigned tasks and deadlines" loading="lazy" decoding="async" width="2559" height="1332">
+        <source srcset="/screenshots/My%20Tasks.webp" type="image/webp">
+        <img src="/screenshots/My%20Tasks.jpg" alt="EngiIntel My Tasks personal dashboard showing assigned tasks and deadlines" loading="lazy" decoding="async" width="2559" height="1332">
       </picture>
       <div class="screenshot-caption" data-en="My Tasks — personal task dashboard with deadlines and priority filters" data-es="Mis Tareas — panel personal de tareas con fechas límite y filtros de prioridad">My Tasks</div>
     </div>
@@ -2605,8 +2603,8 @@ pre, code, .code-block {
       <div class="chrome-url">app.engiintel.com — Administration Panel</div>
     </div>
     <picture>
-      <source srcset="/screenshots/Paneld e Administración.webp" type="image/webp">
-      <img src="/screenshots/Paneld e Administración.jpg" alt="EngiIntel Administration Panel showing user management, audit logs, and system configuration" loading="lazy" decoding="async" width="2559" height="1332">
+      <source srcset="/screenshots/Paneld%20e%20Administraci%C3%B3n.webp" type="image/webp">
+      <img src="/screenshots/Paneld%20e%20Administraci%C3%B3n.jpg" alt="EngiIntel Administration Panel showing user management, audit logs, and system configuration" loading="lazy" decoding="async" width="2559" height="1332">
     </picture>
     <div class="screenshot-caption" data-en="Admin Panel — user management, role-based access control, audit logs, and system configuration" data-es="Panel de Administración — gestión de usuarios, control de acceso basado en roles, registros de auditoría y configuración del sistema">Admin Panel — user management, role-based access control, audit logs, and system configuration</div>
   </div>
@@ -2830,8 +2828,8 @@ pre, code, .code-block {
 
 
 
-<footer style="border-top: 1px solid var(--border); padding: 48px 60px; background: var(--surface);">
-  <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;">
+<footer class="site-footer">
+  <div class="footer-inner">
     
     <!-- Column 1: Brand -->
     <div>
@@ -2856,7 +2854,7 @@ pre, code, .code-block {
     <div>
       <h4 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px;" data-en="Contact" data-es="Contacto">Contact</h4>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="mailto:eloycostas@engiintel.com" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'">eloycostas@engiintel.com</a>
+        <a href="mailto:eloycostas@engiintel.com" class="footer-email" style="color: var(--text-mid); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-mid)'">eloycostas@engiintel.com</a>
         <p style="font-size: 0.85rem; color: var(--text-dim); margin: 0;" data-en="Built by engineers, for engineers" data-es="Construido por ingenieros, para ingenieros">Built by engineers, for engineers</p>
       </div>
     </div>
@@ -2864,7 +2862,7 @@ pre, code, .code-block {
   </div>
   
   <!-- Copyright -->
-  <div style="max-width: 1400px; margin: 32px auto 0; padding-top: 32px; border-top: 1px solid var(--border); text-align: center;">
+  <div class="footer-copy-bar">
     <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim);">
       © 2026 EngiIntel. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span>
     </p>
