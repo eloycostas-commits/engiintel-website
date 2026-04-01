@@ -34,7 +34,7 @@ const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
   <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
   <meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents.">
   <meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">

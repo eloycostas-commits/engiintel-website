@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
   <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
   <meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents.">
   <meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
@@ -1125,6 +1125,47 @@ html[lang="es"] .info-icon::after {
 }
 
 /* =============================================
+   FOOTER
+   ============================================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 8%;
+  background: var(--surface);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-copy-bar {
+  max-width: 1400px;
+  margin: 32px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 16px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-copy-bar {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+  /* Testimonial blockquote: smaller on mobile */
+  .testimonial-quote {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* =============================================
    DESKTOP: WIDE SCREEN CONTENT CAP (> 1600px)
    ============================================= */
 @media (min-width: 1600px) {
@@ -1524,7 +1565,7 @@ pre, code, .code-block {
   <!-- Testimonial Section -->
   <div class="testimonial-section" style="margin-top: 80px; padding: 60px 40px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">`
     <div class="section-label" data-en="CUSTOMER SUCCESS" data-es="ÉXITO DEL CLIENTE">CUSTOMER SUCCESS</div>
-    <blockquote style="font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.6; color: var(--text); margin: 24px 0; font-style: italic;">
+    <blockquote class="testimonial-quote" style="font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.6; color: var(--text); margin: 24px 0; font-style: italic;">
       <span data-en="&ldquo;EngiIntel transformed how we handle elevator regulations. What took 2 hours now takes 10 minutes. The on-premise deployment means we never worry about data security.&rdquo;" data-es="&ldquo;EngiIntel transformó cómo manejamos las regulaciones de ascensores. Lo que tomaba 2 horas ahora toma 10 minutos. El despliegue on-premise significa que nunca nos preocupamos por la seguridad de datos.&rdquo;">
         &ldquo;EngiIntel transformed how we handle elevator regulations. What took 2 hours now takes 10 minutes. The on-premise deployment means we never worry about data security.&rdquo;
       </span>
