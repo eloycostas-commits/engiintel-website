@@ -124,10 +124,18 @@ function switchTab(tabId) {
     }
   }
   
-  // Scroll to tabs container
-  const tabsContainer = document.querySelector('.tabs-container');
-  if (tabsContainer) {
-    tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Scroll to top of tab content (just below the sticky tabs bar)
+  // Use hero's natural bottom position so this works regardless of current scroll depth
+  const hero = document.querySelector('.hero');
+  const navHeight = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70;
+  if (hero) {
+    const heroNaturalBottom = hero.getBoundingClientRect().bottom + window.pageYOffset;
+    window.scrollTo({ top: Math.max(0, heroNaturalBottom - navHeight), behavior: 'smooth' });
+  } else {
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (tabsContainer) {
+      window.scrollTo({ top: Math.max(0, tabsContainer.getBoundingClientRect().top + window.pageYOffset - navHeight), behavior: 'smooth' });
+    }
   }
 }
 

@@ -194,17 +194,16 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .pricing-features li::before { content: '•'; color: var(--accent3); flex-shrink: 0; }
 
-footer { border-top: 1px solid var(--border); padding: 32px 8%; display: flex; justify-content: space-between; align-items: center; }
+footer { border-top: 1px solid var(--border); padding: 32px 8%; display: block; }
 .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
 .footer-logo span { color: var(--accent); }
 .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); }
 
 @media (max-width: 768px) {
-  nav, .tabs-container, .tab-content, footer { padding-left: 20px; padding-right: 20px; }
+  nav, .tabs-container, .tab-content { padding-left: 20px; padding-right: 20px; }
   .hero { padding: 120px 20px 40px; }
   .tab-btn { padding: 16px 20px; font-size: 0.75rem; }
   .modules-grid, .pricing-grid { grid-template-columns: 1fr; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
 }
 
 /* Phase 1 Styles */
@@ -2975,10 +2974,18 @@ function switchTab(tabId) {
     }
   }
   
-  // Scroll to tabs container
-  const tabsContainer = document.querySelector('.tabs-container');
-  if (tabsContainer) {
-    tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Scroll to top of tab content (just below the sticky tabs bar)
+  // Use hero's natural bottom position so this works regardless of current scroll depth
+  const hero = document.querySelector('.hero');
+  const navHeight = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70;
+  if (hero) {
+    const heroNaturalBottom = hero.getBoundingClientRect().bottom + window.pageYOffset;
+    window.scrollTo({ top: Math.max(0, heroNaturalBottom - navHeight), behavior: 'smooth' });
+  } else {
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (tabsContainer) {
+      window.scrollTo({ top: Math.max(0, tabsContainer.getBoundingClientRect().top + window.pageYOffset - navHeight), behavior: 'smooth' });
+    }
   }
 }
 
