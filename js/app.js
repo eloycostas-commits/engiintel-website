@@ -301,10 +301,7 @@ function initContactForm() {
       console.log('API response:', result);
       
       if (response.ok && result.success) {
-        alert(currentLang === 'en' 
-          ? 'Thank you! Your message has been sent successfully. We will contact you soon.' 
-          : '¡Gracias! Tu mensaje ha sido enviado exitosamente. Te contactaremos pronto.');
-        contactForm.reset();
+        window.location.href = '/thank-you.html';
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
