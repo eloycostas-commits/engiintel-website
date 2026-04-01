@@ -102,9 +102,11 @@ if (!fs.existsSync('public')) {
   fs.mkdirSync('public');
 }
 
-// Write the built file to both root and public
-fs.writeFileSync('index.html', html, 'utf8');
+// Write to public/ (Vercel serves from here) and root (local dev / backup)
 fs.writeFileSync('public/index.html', html, 'utf8');
+fs.writeFileSync('index.html', html, 'utf8');
 console.log('✅ Built index.html from components');
+console.log(`   → public/index.html  (Vercel / production)`);
+console.log(`   → index.html         (local backup)`);
 console.log(`   Size: ${Math.round(html.length / 1024)}KB`);
 console.log(`   Components: ${Object.keys(components).length}`);
