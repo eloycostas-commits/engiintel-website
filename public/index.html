@@ -880,6 +880,72 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* =============================================
+   SCREENSHOT FRAMES (Product Screenshots)
+   ============================================= */
+.screenshot-frame {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 48px 0;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+.screenshot-chrome {
+  background: var(--surface2);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.chrome-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.chrome-dot.red { background: #ff5f57; }
+.chrome-dot.yellow { background: #febc2e; }
+.chrome-dot.green { background: #28c840; }
+.chrome-url {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.screenshot-frame img { width: 100%; display: block; }
+.screenshot-caption {
+  background: var(--surface);
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.screenshot-caption::before { content: '↑'; color: var(--accent); }
+.screenshot-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+.screenshot-gallery .screenshot-frame { margin: 0; }
+@media (max-width: 768px) {
+  .screenshot-gallery { grid-template-columns: 1fr; }
+}
+.screenshot-section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
   </style>
 </head>
 <body>
@@ -1071,6 +1137,19 @@ html[lang="es"] .info-icon::after {
       <div class="stat-label" data-en="Anthropic AI Certified" data-es="Certificado Anthropic AI">Anthropic AI Certified</div>
     </div>
   </div>
+
+  <!-- Product Preview Screenshot -->
+  <div class="screenshot-section-label" data-en="See It In Action" data-es="Vélo en Acción">See It In Action</div>
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Document Intelligence</div>
+    </div>
+    <img src="/screenshots/panel principal.jpg" alt="EngiIntel main dashboard — AI query interface, document library, and live metrics" loading="lazy">
+    <div class="screenshot-caption" data-en="Main dashboard — natural language queries, document library, and real-time AI responses" data-es="Panel principal — consultas en lenguaje natural, biblioteca de documentos y respuestas IA en tiempo real">Main dashboard — natural language queries, document library, and real-time AI responses</div>
+  </div>
   
   <!-- Problem Section - Two Column Layout -->
   <div class="benefits-section">
@@ -1118,7 +1197,6 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="Ask questions in plain language. Get answers with page-level citations from your technical documentation." data-es="Haz preguntas en lenguaje natural. Obtén respuestas con citas de página de tu documentación técnica.">
         Ask questions in plain language. Get answers with page-level citations from your technical documentation.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: Query + Results]" data-es="[Captura: Consulta + Resultados]">[Screenshot: Query + Results]</div>
     </div>
     <div class="module-card">
       <span class="module-icon">🔒</span>
@@ -1126,7 +1204,6 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="No cloud. No data leakage. All processing happens on your infrastructure. GDPR compliant by design." data-es="Sin nube. Sin fuga de datos. Todo el procesamiento ocurre en tu infraestructura. Cumple GDPR por diseño.">
         No cloud. No data leakage. All processing happens on your infrastructure. GDPR compliant by design.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: Architecture Diagram]" data-es="[Captura: Diagrama de Arquitectura]">[Screenshot: Architecture Diagram]</div>
     </div>
     <div class="module-card">
       <span class="module-icon">📄</span>
@@ -1134,7 +1211,6 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="Process scanned PDFs and legacy manuals. Old regulations work just as well as new ones." data-es="Procesa PDFs escaneados y manuales heredados. Las normativas antiguas funcionan igual que las nuevas.">
         Process scanned PDFs and legacy manuals. Old regulations work just as well as new ones.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: OCR Processing]" data-es="[Captura: Procesamiento OCR]">[Screenshot: OCR Processing]</div>
     </div>
     <div class="module-card">
       <span class="module-icon">📈</span>
@@ -1142,7 +1218,6 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="Query Excel data in natural language. Generate charts with one command. Download Excel files with embedded charts." data-es="Consulta datos de Excel en lenguaje natural. Genera gráficos con un comando. Descarga archivos Excel con gráficos incrustados.">
         Query Excel data in natural language. Generate charts with one command. Download Excel files with embedded charts.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: Chart Generation]" data-es="[Captura: Generación de Gráficos]">[Screenshot: Chart Generation]</div>
     </div>
     <div class="module-card">
       <span class="module-icon">🔗</span>
@@ -1150,7 +1225,6 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="Automatic sync from SharePoint, Google Drive, and Confluence. Documents stay up to date." data-es="Sincronización automática desde SharePoint, Google Drive y Confluence. Los documentos se mantienen actualizados.">
         Automatic sync from SharePoint, Google Drive, and Confluence. Documents stay up to date.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: Connectors]" data-es="[Captura: Conectores]">[Screenshot: Connectors]</div>
     </div>
     <div class="module-card">
       <span class="module-icon">📋</span>
@@ -1158,8 +1232,19 @@ html[lang="es"] .info-icon::after {
       <div class="module-desc" data-en="Full audit trail for regulatory compliance. Track who accessed what and when." data-es="Rastro de auditoría completo para cumplimiento regulatorio. Rastrea quién accedió a qué y cuándo.">
         Full audit trail for regulatory compliance. Track who accessed what and when.
       </div>
-      <div class="screenshot-placeholder" data-en="[Screenshot: Audit Log]" data-es="[Captura: Registro de Auditoría]">[Screenshot: Audit Log]</div>
     </div>
+  </div>
+
+  <!-- Metrics Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Analytics & Metrics</div>
+    </div>
+    <img src="/screenshots/panel de metricas.jpg" alt="EngiIntel analytics panel showing usage metrics, query statistics, and performance data" loading="lazy">
+    <div class="screenshot-caption" data-en="Analytics dashboard — query volume, document usage, and team performance metrics" data-es="Panel de analíticas — volumen de consultas, uso de documentos y métricas de rendimiento del equipo">Analytics dashboard — query volume, document usage, and team performance metrics</div>
   </div>
   
   <!-- How It Works -->
@@ -1175,7 +1260,6 @@ html[lang="es"] .info-icon::after {
         <div class="step-desc" data-en="One Docker command. Works on any server. No cloud dependencies." data-es="Un comando Docker. Funciona en cualquier servidor. Sin dependencias en la nube.">
           One Docker command. Works on any server. No cloud dependencies.
         </div>
-        <div class="screenshot-placeholder" data-en="[Screenshot: Docker Deploy]" data-es="[Captura: Despliegue Docker]">[Screenshot: Docker Deploy]</div>
       </div>
       <div class="step-card">
         <div class="step-number">2</div>
@@ -1183,7 +1267,6 @@ html[lang="es"] .info-icon::after {
         <div class="step-desc" data-en="Drag and drop PDFs, Excel files, or connect to SharePoint/Google Drive." data-es="Arrastra y suelta PDFs, archivos Excel o conecta a SharePoint/Google Drive.">
           Drag and drop PDFs, Excel files, or connect to SharePoint/Google Drive.
         </div>
-        <div class="screenshot-placeholder" data-en="[Screenshot: Upload Interface]" data-es="[Captura: Interfaz de Subida]">[Screenshot: Upload Interface]</div>
       </div>
       <div class="step-card">
         <div class="step-number">3</div>
@@ -1191,7 +1274,6 @@ html[lang="es"] .info-icon::after {
         <div class="step-desc" data-en="Ask questions in Spanish or English. No special syntax required." data-es="Haz preguntas en español o inglés. No se requiere sintaxis especial.">
           Ask questions in Spanish or English. No special syntax required.
         </div>
-        <div class="screenshot-placeholder" data-en="[Screenshot: Query Interface]" data-es="[Captura: Interfaz de Consulta]">[Screenshot: Query Interface]</div>
       </div>
       <div class="step-card">
         <div class="step-number">4</div>
@@ -1199,7 +1281,6 @@ html[lang="es"] .info-icon::after {
         <div class="step-desc" data-en="Precise answers with exact page references. Always know the source." data-es="Respuestas precisas con referencias exactas de página. Siempre conoce la fuente.">
           Precise answers with exact page references. Always know the source.
         </div>
-        <div class="screenshot-placeholder" data-en="[Screenshot: Answer with Citations]" data-es="[Captura: Respuesta con Citas]">[Screenshot: Answer with Citations]</div>
       </div>
     </div>
   </div>
@@ -1515,6 +1596,29 @@ html[lang="es"] .info-icon::after {
       </ul>
     </div>
   </div>
+
+  <!-- Product Screenshots -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Analysis Area</div>
+    </div>
+    <img src="/screenshots/are de analisis.jpg" alt="EngiIntel analysis area showing document search results with page-level citations" loading="lazy">
+    <div class="screenshot-caption" data-en="Analysis area — AI-powered search with precise page citations from your technical documents" data-es="Área de análisis — búsqueda potenciada por IA con citas precisas de tus documentos técnicos">Analysis area — AI-powered search with precise page citations from your technical documents</div>
+  </div>
+
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Compare Documents</div>
+    </div>
+    <img src="/screenshots/comparar documentos.jpg" alt="EngiIntel document comparison view showing side-by-side analysis of two documents" loading="lazy">
+    <div class="screenshot-caption" data-en="Document comparison — identify differences and extract insights across multiple versions" data-es="Comparación de documentos — identifica diferencias y extrae información entre múltiples versiones">Document comparison — identify differences and extract insights across multiple versions</div>
+  </div>
 </div>
 
 
@@ -1558,6 +1662,18 @@ html[lang="es"] .info-icon::after {
         <li data-en="Team sharing" data-es="Compartir con equipo">Team sharing</li>
       </ul>
     </div>
+  </div>
+
+  <!-- Product Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Excel Copilot</div>
+    </div>
+    <img src="/screenshots/libros excel.jpg" alt="EngiIntel Excel Copilot showing spreadsheet analysis with AI-generated charts and natural language queries" loading="lazy">
+    <div class="screenshot-caption" data-en="Excel Copilot — query spreadsheets in natural language and generate charts with a single command" data-es="Excel Copilot — consulta hojas de cálculo en lenguaje natural y genera gráficos con un solo comando">Excel Copilot — query spreadsheets in natural language and generate charts with a single command</div>
   </div>
 </div>
 
@@ -1603,6 +1719,18 @@ html[lang="es"] .info-icon::after {
       </ul>
     </div>
   </div>
+
+  <!-- Product Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Wiki & Knowledge Base</div>
+    </div>
+    <img src="/screenshots/wiki.jpg" alt="EngiIntel Wiki showing internal knowledge base with markdown editor, search, and version history" loading="lazy">
+    <div class="screenshot-caption" data-en="Wiki & Knowledge Base — structured documentation with full-text search and version control" data-es="Wiki y Base de Conocimiento — documentación estructurada con búsqueda de texto completo y control de versiones">Wiki & Knowledge Base — structured documentation with full-text search and version control</div>
+  </div>
 </div>
 
 
@@ -1646,6 +1774,18 @@ html[lang="es"] .info-icon::after {
         <li data-en="Version control" data-es="Control de versiones">Version control</li>
       </ul>
     </div>
+  </div>
+
+  <!-- Product Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Asset Registry</div>
+    </div>
+    <img src="/screenshots/activos.jpg" alt="EngiIntel Asset Registry showing equipment list with status filters, search, and maintenance tracking" loading="lazy">
+    <div class="screenshot-caption" data-en="Asset Registry — centralized equipment database with status tracking, maintenance schedules, and document attachments" data-es="Registro de Activos — base de datos centralizada de equipos con seguimiento de estado, programas de mantenimiento y adjuntos">Asset Registry — centralized equipment database with status tracking, maintenance schedules, and document attachments</div>
   </div>
 </div>
 
@@ -1691,6 +1831,18 @@ html[lang="es"] .info-icon::after {
       </ul>
     </div>
   </div>
+
+  <!-- Product Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Incident Reports</div>
+    </div>
+    <img src="/screenshots/Incidencias.jpg" alt="EngiIntel Incident Reports showing incident list with severity filters, status badges, and CSV export" loading="lazy">
+    <div class="screenshot-caption" data-en="Incident Reports — AI-assisted report creation with severity tracking, asset linking, and PDF export" data-es="Informes de Incidencias — creación de informes asistida por IA con seguimiento de severidad, vinculación de activos y exportación a PDF">Incident Reports — AI-assisted report creation with severity tracking, asset linking, and PDF export</div>
+  </div>
 </div>
 
 
@@ -1733,6 +1885,62 @@ html[lang="es"] .info-icon::after {
         <li data-en="Event triggers" data-es="Disparadores de eventos">Event triggers</li>
         <li data-en="Scheduled execution" data-es="Ejecución programada">Scheduled execution</li>
       </ul>
+    </div>
+  </div>
+
+  <!-- Product Screenshots Gallery -->
+  <div class="screenshot-section-label" data-en="Project Management in Action" data-es="Gestión de Proyectos en Acción">Project Management in Action</div>
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Projects</div>
+    </div>
+    <img src="/screenshots/Proyectos.jpg" alt="EngiIntel Projects view showing project list with status and team assignments" loading="lazy">
+    <div class="screenshot-caption" data-en="Projects — manage engineering projects with status tracking and team assignments" data-es="Proyectos — gestiona proyectos de ingeniería con seguimiento de estado y asignaciones de equipo">Projects — manage engineering projects with status tracking and team assignments</div>
+  </div>
+
+  <div class="screenshot-gallery">
+    <div class="screenshot-frame">
+      <div class="screenshot-chrome">
+        <div class="chrome-dot red"></div>
+        <div class="chrome-dot yellow"></div>
+        <div class="chrome-dot green"></div>
+        <div class="chrome-url">app.engiintel.com — Kanban Board</div>
+      </div>
+      <img src="/screenshots/board.jpg" alt="EngiIntel Kanban board view with task cards organized by status columns" loading="lazy">
+      <div class="screenshot-caption" data-en="Kanban Board — visual task management with drag-and-drop workflow" data-es="Tablero Kanban — gestión visual de tareas con flujo de trabajo drag-and-drop">Kanban Board</div>
+    </div>
+    <div class="screenshot-frame">
+      <div class="screenshot-chrome">
+        <div class="chrome-dot red"></div>
+        <div class="chrome-dot yellow"></div>
+        <div class="chrome-dot green"></div>
+        <div class="chrome-url">app.engiintel.com — Backlog</div>
+      </div>
+      <img src="/screenshots/Backlog.jpg" alt="EngiIntel Backlog view showing prioritized task list with sprint assignments" loading="lazy">
+      <div class="screenshot-caption" data-en="Backlog — prioritized task queue with sprint planning and estimations" data-es="Backlog — cola de tareas priorizada con planificación de sprints y estimaciones">Backlog</div>
+    </div>
+    <div class="screenshot-frame">
+      <div class="screenshot-chrome">
+        <div class="chrome-dot red"></div>
+        <div class="chrome-dot yellow"></div>
+        <div class="chrome-dot green"></div>
+        <div class="chrome-url">app.engiintel.com — My Tasks</div>
+      </div>
+      <img src="/screenshots/My Tasks.jpg" alt="EngiIntel My Tasks personal dashboard showing assigned tasks and deadlines" loading="lazy">
+      <div class="screenshot-caption" data-en="My Tasks — personal task dashboard with deadlines and priority filters" data-es="Mis Tareas — panel personal de tareas con fechas límite y filtros de prioridad">My Tasks</div>
+    </div>
+    <div class="screenshot-frame">
+      <div class="screenshot-chrome">
+        <div class="chrome-dot red"></div>
+        <div class="chrome-dot yellow"></div>
+        <div class="chrome-dot green"></div>
+        <div class="chrome-url">app.engiintel.com — Reports</div>
+      </div>
+      <img src="/screenshots/Reports.jpg" alt="EngiIntel Reports view showing generated compliance and project reports" loading="lazy">
+      <div class="screenshot-caption" data-en="Reports — AI-generated compliance and project reports with export options" data-es="Informes — informes de cumplimiento y proyectos generados por IA con opciones de exportación">Reports</div>
     </div>
   </div>
 </div>
@@ -2038,6 +2246,18 @@ html[lang="es"] .info-icon::after {
 <div id="resources" class="tab-content">
   <div class="section-label" data-en="Resources & Support" data-es="Recursos y Soporte">Resources & Support</div>
   <h2 data-en="Everything You Need to Get Started" data-es="Todo lo que Necesitas para Comenzar">Everything You Need to Get Started</h2>
+
+  <!-- Admin Panel Screenshot -->
+  <div class="screenshot-frame">
+    <div class="screenshot-chrome">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+      <div class="chrome-url">app.engiintel.com — Administration Panel</div>
+    </div>
+    <img src="/screenshots/Paneld e Administración.jpg" alt="EngiIntel Administration Panel showing user management, audit logs, and system configuration" loading="lazy">
+    <div class="screenshot-caption" data-en="Admin Panel — user management, role-based access control, audit logs, and system configuration" data-es="Panel de Administración — gestión de usuarios, control de acceso basado en roles, registros de auditoría y configuración del sistema">Admin Panel — user management, role-based access control, audit logs, and system configuration</div>
+  </div>
   
   <!-- Security & Compliance Section -->
   <div style="background: var(--surface); border: 1px solid var(--border); padding: 40px; margin-bottom: 48px;">
