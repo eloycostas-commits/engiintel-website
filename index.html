@@ -185,7 +185,8 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .module-features li::before { content: '•'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
 
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
-.pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; }
+.pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; transition: all 0.25s; }
+.pricing-card:hover { border-color: var(--accent2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 .pricing-card.featured { border-color: var(--accent2); background: var(--surface2); }
 .pricing-plan { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
 .pricing-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); line-height: 1; margin-bottom: 8px; }
@@ -279,7 +280,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 8%; display: flex; j
 .calc-seats-label { font-size: 0.88rem; color: var(--text-mid); min-width: 60px; }
 .seats-input { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 1rem; padding: 8px 14px; width: 80px; text-align: center; appearance: none; -moz-appearance: textfield; }
 .seats-input::-webkit-inner-spin-button { display: none; }
-.seats-btn { width: 32px; height: 32px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-mid); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Mono', monospace; }
+.seats-btn { width: 44px; height: 44px; min-width: 44px; min-height: 44px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-mid); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Mono', monospace; }
 .seats-btn:hover { border-color: var(--accent); color: var(--accent); }
 .calc-modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .calc-module-toggle { border: 1px solid var(--border); padding: 14px 16px; cursor: pointer; transition: all 0.2s; background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: 8px; user-select: none; }
@@ -1123,6 +1124,59 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* =============================================
+   DESKTOP: WIDE SCREEN CONTENT CAP (> 1600px)
+   ============================================= */
+@media (min-width: 1600px) {
+  .tab-content {
+    max-width: 1600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* =============================================
+   MOBILE: HERO INLINE GRID OVERRIDES
+   Fixes hero.html 3-column grids (inline styles need !important)
+   ============================================= */
+@media (max-width: 768px) {
+  .hero .capabilities-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-stats-grid,
+  .hero-solution-grid,
+  .hero-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .hero .problem-section {
+    padding: 40px 16px !important;
+    margin-top: 48px !important;
+  }
+  .hero-how-it-works {
+    padding: 40px 16px !important;
+    margin-top: 48px !important;
+  }
+  .hero-solution-section {
+    margin-top: 48px !important;
+  }
+  /* Hero capability cards: more breathing room */
+  .hero .capability-card {
+    padding: 24px 20px !important;
+  }
+}
+
+/* =============================================
+   CODE & PRE BLOCKS — prevent horizontal overflow
+   ============================================= */
+pre, code, .code-block {
+  overflow-x: auto;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  display: block;
+}
+
   </style>
 </head>
 <body>
@@ -1176,14 +1230,14 @@ html[lang="es"] .info-icon::after {
   </div>
 
   <!-- The Problem -->
-  <div class="problem-section" style="margin-top: 80px; padding: 60px 80px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">
+  <div class="problem-section" style="margin-top: 80px; padding: 60px 40px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">
     <div class="section-label" data-en="THE CHALLENGE" data-es="EL DESAFÍO">THE CHALLENGE</div>
     <h2 data-en="Engineering Teams Waste 15+ Hours Per Week on Documentation" data-es="Los Equipos de Ingeniería Pierden 15+ Horas por Semana en Documentación">Engineering Teams Waste 15+ Hours Per Week on Documentation</h2>
     <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 40px;" data-en="Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation." data-es="Buscar en regulaciones, generar informes de cumplimiento y rastrear activos manualmente crea cuellos de botella que ralentizan toda tu operación.">
       Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation.
     </p>
     
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+    <div class="hero-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
       <div style="text-align: center;">
         <div style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); margin-bottom: 8px;">2+ hrs</div>
         <div style="font-size: 0.9rem; color: var(--text-dim);" data-en="Average time per regulation query" data-es="Tiempo promedio por consulta de regulación">Average time per regulation query</div>
@@ -1200,14 +1254,14 @@ html[lang="es"] .info-icon::after {
   </div>
 
   <!-- The Solution -->
-  <div style="margin-top: 80px;">
+  <div class="hero-solution-section" style="margin-top: 80px;">
     <div class="section-label" data-en="THE SOLUTION" data-es="LA SOLUCIÓN">THE SOLUTION</div>
     <h2 data-en="Your AI-Powered Engineering Command Center" data-es="Tu Centro de Comando de Ingeniería Impulsado por IA">Your AI-Powered Engineering Command Center</h2>
     <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management." data-es="EngiIntel transforma cómo los equipos de ingeniería manejan documentación, cumplimiento y gestión del conocimiento.">
       EngiIntel transforms how engineering teams handle documentation, compliance, and knowledge management.
     </p>
     
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+    <div class="hero-solution-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
       <div style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent);">
         <div style="font-size: 2rem; margin-bottom: 16px;">⚡</div>
         <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px;" data-en="Instant Regulation Search" data-es="Búsqueda Instantánea de Regulaciones">Instant Regulation Search</h3>
@@ -1235,14 +1289,14 @@ html[lang="es"] .info-icon::after {
   </div>
 
   <!-- How It Works -->
-  <div style="margin-top: 80px; padding: 60px 80px; background: var(--bg); border: 1px solid var(--border);">
+  <div class="hero-how-it-works" style="margin-top: 80px; padding: 60px 40px; background: var(--bg); border: 1px solid var(--border);">
     <div class="section-label" data-en="HOW IT WORKS" data-es="CÓMO FUNCIONA">HOW IT WORKS</div>
     <h2 data-en="Get Started in 3 Simple Steps" data-es="Comienza en 3 Pasos Simples">Get Started in 3 Simple Steps</h2>
     <p style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 48px;" data-en="Deploy EngiIntel on your infrastructure and start querying your documents immediately." data-es="Despliega EngiIntel en tu infraestructura y comienza a consultar tus documentos inmediatamente.">
       Deploy EngiIntel on your infrastructure and start querying your documents immediately.
     </p>
     
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+    <div class="hero-steps-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
       <div style="text-align: center;">
         <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;">1</div>
         <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 12px;" data-en="Deploy On-Premise" data-es="Despliega On-Premise">Deploy On-Premise</h3>
