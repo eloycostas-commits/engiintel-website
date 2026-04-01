@@ -192,6 +192,55 @@ function calcPrice() {
   }
 }
 
+// Pricing presets
+function applyPreset(preset) {
+  const seatsInput = document.getElementById('seatsInput');
+  if (!seatsInput) return;
+  
+  // Clear all selections first
+  selected.clear();
+  ALL_MODULES.forEach(id => {
+    const el = document.getElementById('mod-' + id);
+    const chk = document.getElementById('chk-' + id);
+    if (el && chk) {
+      el.classList.remove('selected');
+      chk.textContent = '';
+    }
+  });
+  
+  // Apply preset configuration
+  if (preset === 'starter') {
+    seatsInput.value = 5;
+    // Core only, no modules
+  } else if (preset === 'team') {
+    seatsInput.value = 10;
+    // Add 3 most popular modules
+    ['ops', 'excel', 'wiki'].forEach(id => {
+      selected.add(id);
+      const el = document.getElementById('mod-' + id);
+      const chk = document.getElementById('chk-' + id);
+      if (el && chk) {
+        el.classList.add('selected');
+        chk.textContent = '✓';
+      }
+    });
+  } else if (preset === 'enterprise') {
+    seatsInput.value = 25;
+    // Add all modules
+    ALL_MODULES.forEach(id => {
+      selected.add(id);
+      const el = document.getElementById('mod-' + id);
+      const chk = document.getElementById('chk-' + id);
+      if (el && chk) {
+        el.classList.add('selected');
+        chk.textContent = '✓';
+      }
+    });
+  }
+  
+  calcPrice();
+}
+
 // Contact form handler
 function initContactForm() {
   const contactForm = document.querySelector('.contact-form');

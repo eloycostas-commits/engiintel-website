@@ -843,6 +843,42 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+
+/* Pricing Presets */
+.pricing-presets {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  padding: 12px 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .preset-btn {
+    font-size: 0.75rem;
+    padding: 10px 18px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1825,6 +1861,13 @@ html[lang="es"] .info-icon::after {
   <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
   <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
 
+  <!-- Pricing Presets -->
+  <div class="pricing-presets" style="display: flex; gap: 12px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap;">
+    <button class="preset-btn" onclick="applyPreset('starter')" data-en="Starter (5 seats, Core only)" data-es="Starter (5 seats, solo Core)">Starter (5 seats, Core only)</button>
+    <button class="preset-btn" onclick="applyPreset('team')" data-en="Team (10 seats, Core + 3 modules)" data-es="Team (10 seats, Core + 3 módulos)">Team (10 seats, Core + 3 modules)</button>
+    <button class="preset-btn" onclick="applyPreset('enterprise')" data-en="Enterprise (25 seats, all modules)" data-es="Enterprise (25 seats, todos los módulos)">Enterprise (25 seats, all modules)</button>
+  </div>
+
   <!-- Interactive pricing calculator -->
   <div class="pricing-calc fade-in">
     <div class="calc-header">
@@ -2444,6 +2487,55 @@ function calcPrice() {
   } else {
     note.textContent = isEs ? 'On-premise · sin coste por consulta · instalación Docker' : 'On-premise · no per-query costs · Docker install';
   }
+}
+
+// Pricing presets
+function applyPreset(preset) {
+  const seatsInput = document.getElementById('seatsInput');
+  if (!seatsInput) return;
+  
+  // Clear all selections first
+  selected.clear();
+  ALL_MODULES.forEach(id => {
+    const el = document.getElementById('mod-' + id);
+    const chk = document.getElementById('chk-' + id);
+    if (el && chk) {
+      el.classList.remove('selected');
+      chk.textContent = '';
+    }
+  });
+  
+  // Apply preset configuration
+  if (preset === 'starter') {
+    seatsInput.value = 5;
+    // Core only, no modules
+  } else if (preset === 'team') {
+    seatsInput.value = 10;
+    // Add 3 most popular modules
+    ['ops', 'excel', 'wiki'].forEach(id => {
+      selected.add(id);
+      const el = document.getElementById('mod-' + id);
+      const chk = document.getElementById('chk-' + id);
+      if (el && chk) {
+        el.classList.add('selected');
+        chk.textContent = '✓';
+      }
+    });
+  } else if (preset === 'enterprise') {
+    seatsInput.value = 25;
+    // Add all modules
+    ALL_MODULES.forEach(id => {
+      selected.add(id);
+      const el = document.getElementById('mod-' + id);
+      const chk = document.getElementById('chk-' + id);
+      if (el && chk) {
+        el.classList.add('selected');
+        chk.textContent = '✓';
+      }
+    });
+  }
+  
+  calcPrice();
 }
 
 // Contact form handler
