@@ -68,6 +68,10 @@ function initializeApp() {
 // Language switching
 function setLang(lang) {
   currentLang = lang;
+  
+  // Update html lang attribute for tooltips
+  document.documentElement.lang = lang;
+  
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
   });
@@ -297,5 +301,43 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     initContactForm();
     initAccordion();
+  }, 500);
+});
+
+
+// Unified CTA behavior - all "Book Demo" buttons go to contact form
+function bookDemo() {
+  switchTab('resources');
+  setTimeout(() => {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      const nameInput = document.querySelector('#name');
+      if (nameInput) {
+        nameInput.focus();
+      }
+    }
+  }, 300);
+}
+
+// Initialize CTA handlers after components load
+function initCTAHandlers() {
+  document.querySelectorAll('[data-action="book-demo"]').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      bookDemo();
+    };
+  });
+}
+
+// Update initialization
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    initContactForm();
+    initAccordion();
+    initCTAHandlers();
   }, 500);
 });

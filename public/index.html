@@ -783,6 +783,66 @@ li + li {
   }
 }
 
+
+/* Tooltip System */
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  cursor: help;
+  position: relative;
+  margin-left: 6px;
+  transition: color 0.2s;
+}
+
+.info-icon:hover {
+  color: var(--accent);
+}
+
+.info-icon::after {
+  content: attr(data-tooltip-en);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.info-icon:hover::after {
+  opacity: 1;
+}
+
+/* Spanish tooltip content */
+html[lang="es"] .info-icon::after {
+  content: attr(data-tooltip-es);
+}
+
+/* Mobile: Show tooltip below on small screens */
+@media (max-width: 768px) {
+  .info-icon::after {
+    bottom: auto;
+    top: calc(100% + 8px);
+    white-space: normal;
+    max-width: 200px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -804,8 +864,8 @@ li + li {
       Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Reservar Demo">Book a Demo</a>
-      <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
+      <a href="#contact" class="btn-primary" data-action="book-demo" data-en="Book a Demo" data-es="Reservar Demo">Book a Demo</a>
+      <a href="#overview" class="btn-secondary" onclick="switchTab('overview'); return false;" data-en="See How It Works" data-es="Ver Cómo Funciona">See How It Works</a>
     </div>
   <!-- Trust Signal -->
   <div class="trust-signal" style="margin-top: 48px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
@@ -1788,36 +1848,43 @@ li + li {
           <div class="calc-module-toggle core-mod">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
+            <span class="info-icon" data-tooltip-en="Document intelligence with AI search, OCR, and citations" data-tooltip-es="Inteligencia documental con búsqueda IA, OCR y citas">ⓘ</span>
             <span class="calc-mod-check">✓</span>
           </div>
           <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
+            <span class="info-icon" data-tooltip-en="Document connectors, workflows, and automation" data-tooltip-es="Conectores de documentos, flujos y automatización">ⓘ</span>
             <span class="calc-mod-check" id="chk-ops"></span>
           </div>
           <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
+            <span class="info-icon" data-tooltip-en="AI-powered Excel analysis and chart generation" data-tooltip-es="Análisis de Excel con IA y generación de gráficos">ⓘ</span>
             <span class="calc-mod-check" id="chk-excel"></span>
           </div>
           <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
+            <span class="info-icon" data-tooltip-en="Knowledge base with AI search and version control" data-tooltip-es="Base de conocimiento con búsqueda IA y control de versiones">ⓘ</span>
             <span class="calc-mod-check" id="chk-wiki"></span>
           </div>
           <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
+            <span class="info-icon" data-tooltip-en="Automated incident report generation with templates" data-tooltip-es="Generación automatizada de informes de incidencias con plantillas">ⓘ</span>
             <span class="calc-mod-check" id="chk-incidents"></span>
           </div>
           <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
+            <span class="info-icon" data-tooltip-en="Autonomous AI agents for multi-step task automation" data-tooltip-es="Agentes IA autónomos para automatización de tareas multi-paso">ⓘ</span>
             <span class="calc-mod-check" id="chk-agent"></span>
           </div>
           <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
             <span class="calc-mod-icon">●</span>
             <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
+            <span class="info-icon" data-tooltip-en="Usage tracking, query patterns, and productivity metrics" data-tooltip-es="Seguimiento de uso, patrones de consulta y métricas de productividad">ⓘ</span>
             <span class="calc-mod-check" id="chk-analytics"></span>
           </div>
         </div>
@@ -2255,6 +2322,10 @@ function initializeApp() {
 // Language switching
 function setLang(lang) {
   currentLang = lang;
+  
+  // Update html lang attribute for tooltips
+  document.documentElement.lang = lang;
+  
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
   });
@@ -2484,6 +2555,44 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     initContactForm();
     initAccordion();
+  }, 500);
+});
+
+
+// Unified CTA behavior - all "Book Demo" buttons go to contact form
+function bookDemo() {
+  switchTab('resources');
+  setTimeout(() => {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      const nameInput = document.querySelector('#name');
+      if (nameInput) {
+        nameInput.focus();
+      }
+    }
+  }, 300);
+}
+
+// Initialize CTA handlers after components load
+function initCTAHandlers() {
+  document.querySelectorAll('[data-action="book-demo"]').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      bookDemo();
+    };
+  });
+}
+
+// Update initialization
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    initContactForm();
+    initAccordion();
+    initCTAHandlers();
   }, 500);
 });
 
