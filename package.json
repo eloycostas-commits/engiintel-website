@@ -6,9 +6,5 @@
     "build": "node build-landing.js",
     "dev": "node build-landing.js"
   },
-  "type": "commonjs",
-  "vercel": {
-    "buildCommand": "npm run build",
-    "outputDirectory": "public"
-  }
+  "type": "commonjs"
 }
