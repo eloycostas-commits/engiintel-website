@@ -63,6 +63,9 @@ function initializeApp() {
   setLang('en');
   showGDPRBanner();
   calcPrice(); // Initialize pricing calculator
+  initContactForm(); // Initialize contact form
+  initAccordion(); // Initialize accordion
+  initCTAHandlers(); // Initialize CTA handlers
 }
 
 // Language switching
@@ -255,16 +258,34 @@ function initContactForm() {
     submitBtn.disabled = true;
     
     // Collect form data
+    const nameField = contactForm.querySelector('#name');
+    const emailField = contactForm.querySelector('#email');
+    const companyField = contactForm.querySelector('#company');
+    const industryField = contactForm.querySelector('#industry');
+    const messageField = contactForm.querySelector('#message');
+    
     const formData = {
-      name: contactForm.querySelector('#name').value,
-      email: contactForm.querySelector('#email').value,
-      company: contactForm.querySelector('#company').value,
-      industry: contactForm.querySelector('#industry').value,
+      name: nameField ? nameField.value : '',
+      email: emailField ? emailField.value : '',
+      company: companyField ? companyField.value : '',
+      industry: industryField ? industryField.value : '',
       interests: Array.from(contactForm.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
-      message: contactForm.querySelector('#message').value,
+      message: messageField ? messageField.value : '',
       language: currentLang,
       timestamp: new Date().toISOString()
     };
+    
+    console.log('Form data being sent:', formData);
+    
+    // Client-side validation
+    if (!formData.name || !formData.email) {
+      alert(currentLang === 'en' 
+        ? 'Please fill in your name and email.' 
+        : 'Por favor completa tu nombre y correo electrónico.');
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      return;
+    }
     
     try {
       // Send to Vercel serverless function (uses Resend API)
@@ -277,6 +298,7 @@ function initContactForm() {
       });
       
       const result = await response.json();
+      console.log('API response:', result);
       
       if (response.ok && result.success) {
         alert(currentLang === 'en' 
@@ -347,15 +369,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadAllComponents();
 });
 
-// Re-initialize form and accordion after components load
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    initContactForm();
-    initAccordion();
-  }, 500);
-});
-
-
 // Unified CTA behavior - all "Book Demo" buttons go to contact form
 function bookDemo() {
   switchTab('resources');
@@ -383,12 +396,3 @@ function initCTAHandlers() {
     };
   });
 }
-
-// Update initialization
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    initContactForm();
-    initAccordion();
-    initCTAHandlers();
-  }, 500);
-});
