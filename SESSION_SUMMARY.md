@@ -5,11 +5,12 @@
 **Modular Component System** (prevents HTML corruption)
 - 15 component files in `/components` (each <300 lines)
 - CSS in `/css/styles.css` (23KB)
-- JavaScript in `/js/app.js` (240 lines)
-- Build script: `build-landing.js` combines components → `index.html`
+- JavaScript in `/js/app.js`
+- Build script: `build-landing.js` combines components → `index.html` AND `public/index.html`
 - Workflow: Edit components → `npm run build` → Commit → Vercel auto-deploys
 
 **Critical Rule**: NEVER use Python regex scripts - they corrupt HTML. Always edit component files and rebuild.
+**Vercel serves from `public/`** — build script writes there automatically, never edit `public/` manually.
 
 ---
 
@@ -71,38 +72,25 @@
 - Accept/Decline options
 - Disables Google Analytics if declined
 
+### 9. Contact Form — FULLY WORKING ✅
+- Fixed ES module syntax crash (`export default` → `module.exports`)
+- Fixed `vercel.json` Content-Type header overriding API JSON responses
+- Fixed `loadAllComponents()` 404 flood — replaced with `initializeApp()` directly
+- Delivery address corrected to `eloycostas@outlook.com` (Resend sandbox restriction)
+- On success: redirects user to `thank-you.html`
+- `thank-you.html` deployed to `public/` (Vercel serves from there)
+- Vercel env var `BETA_FOUNDER_EMAIL` must stay as `eloycostas@outlook.com`
+
+### 10. Build Pipeline Fixed ✅
+- `build-landing.js` now writes both `index.html` (root) and `public/index.html` (Vercel)
+- No manual copy step needed
+- 41 stale backup index files deleted, clean repo
+
 ---
 
 ## ⚠️ Current Issue: Contact Form
 
-**Problem**: Form submission returns error on live site
-
-**Root Cause**: Vercel deployment configuration issue
-
-**What We've Done**:
-1. ✅ Created `/api/contact-form.js` - Vercel serverless function using Resend API
-2. ✅ Updated `/js/app.js` - Form handler calls `/api/contact-form`
-3. ✅ Fixed `vercel.json` - Removed `outputDirectory` that was blocking API functions
-4. ✅ Fixed `package.json` - Removed conflicting Vercel config
-5. ✅ Added comprehensive logging to API function
-6. ✅ Rebuilt `index.html` with correct code
-7. ✅ Pushed to GitHub (commit: cb8b6c3)
-
-**Environment Variables Set in Vercel**:
-- `RESEND_API_KEY=re_43jiWP48_3vxjr9PnCFKBaQCrY4UvdJNJ`
-- `RESEND_FROM=onboarding@resend.dev`
-- `BETA_FOUNDER_EMAIL=eloycostas@engiintel.com`
-
-**Current Status**: 
-- Local code is correct
-- Git has correct version
-- Vercel may be serving cached/old version
-
-**Next Steps to Fix**:
-1. Hard refresh browser (Ctrl+Shift+R) to clear cache
-2. Or in Vercel dashboard: Deployments → Latest → "Redeploy"
-3. Check Vercel function logs: Deployments → Functions → `/api/contact-form`
-4. If still failing, check if `eloycostas@engiintel.com` is your Resend signup email (free tier restriction)
+**Status: RESOLVED** — form works end-to-end as of April 1, 2026
 
 ---
 
@@ -161,18 +149,18 @@ engiintel-website/
 ## 📋 Pending Improvements
 
 ### High Priority
-1. **Fix Contact Form** - Currently debugging Vercel deployment
-2. **Add Product Screenshots** - Placeholders exist, need real images
+1. **Add Product Screenshots** — Placeholders (`[Screenshot: ...]`) exist in all tab components, need real images
+2. **Verify BETA_FOUNDER_EMAIL in Vercel** — Must be `eloycostas@outlook.com` (not engiintel.com)
 
 ### Medium Priority
-3. **Language Consistency** - Some sections may need translation review
-4. **Mobile Testing** - Verify all features work on mobile
-5. **Performance Optimization** - Lazy load images, minify CSS/JS
+3. **Language Consistency** — Review Spanish translations in all tab components
+4. **Mobile Testing** — Verify accordion, pricing calculator, and contact form on mobile
+5. **Performance Optimization** — Lazy load images when screenshots are added, minify CSS/JS
 
 ### Low Priority
-6. **SEO Enhancements** - Add more structured data, meta tags
-7. **Analytics Setup** - Verify Google Analytics tracking
-8. **A/B Testing** - Test different CTA copy
+6. **SEO Enhancements** — Add structured data (JSON-LD), improve meta descriptions per tab
+7. **Analytics Verification** — Confirm Google Analytics G-5P3VL8DTRG is tracking events correctly
+8. **A/B Testing** — Test different hero CTA copy
 
 ---
 
@@ -198,21 +186,15 @@ engiintel-website/
 **Contact Form**:
 - Fields: name, email, company, industry, interests (checkboxes), message
 - Sends to: `/api/contact-form` (Vercel serverless function)
-- Backend: Resend API
-- Emails to: eloycostas@engiintel.com
+- Backend: Resend API (`onboarding@resend.dev` sender)
+- Emails to: `eloycostas@outlook.com` (Vercel env var `BETA_FOUNDER_EMAIL`)
+- On success: redirects to `thank-you.html`
 
 ---
 
 ## 🐛 Known Issues
 
-1. **Contact Form Not Working on Live Site**
-   - Error: 404 or 405 on `/api/contact-form`
-   - Likely cause: Vercel caching or configuration
-   - Solution: Redeploy in Vercel dashboard
-
-2. **Vercel May Be Serving Old Version**
-   - Symptoms: Seeing screenshots everywhere, old layout
-   - Solution: Hard refresh or redeploy
+None currently. All previously tracked issues are resolved.
 
 ---
 
@@ -255,13 +237,12 @@ git push
 
 ## 📞 Contact Form Debugging Checklist
 
-If form still doesn't work:
-1. Check Vercel function logs: Dashboard → Deployments → Functions → `/api/contact-form`
-2. Verify environment variables are set in Vercel
-3. Check if `eloycostas@engiintel.com` is your Resend signup email
-4. Try redeploying in Vercel dashboard
-5. Check browser console (F12) for JavaScript errors
-6. Verify API endpoint exists: `https://your-domain.com/api/contact-form`
+Form is working. If it ever breaks again, check:
+1. Vercel env var `BETA_FOUNDER_EMAIL` = `eloycostas@outlook.com`
+2. Vercel env var `RESEND_API_KEY` is set
+3. `api/contact-form.js` uses `module.exports =` (not `export default`)
+4. `vercel.json` Content-Type header excludes `/api/*` routes
+5. `js/app.js` DOMContentLoaded calls `initializeApp()` directly (not `loadAllComponents()`)
 
 ---
 
@@ -275,6 +256,6 @@ If form still doesn't work:
 
 ---
 
-**Last Updated**: April 1, 2026 14:15
-**Git Commit**: cb8b6c3
-**Status**: Contact form needs deployment verification
+**Last Updated**: April 1, 2026 — Session 2
+**Git Commit**: 2c37ed9
+**Status**: ✅ All working — contact form, thank-you redirect, build pipeline
