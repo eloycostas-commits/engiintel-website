@@ -97,8 +97,14 @@ ${js}
 </html>
 `;
 
-// Write the built file
+// Create public directory if it doesn't exist
+if (!fs.existsSync('public')) {
+  fs.mkdirSync('public');
+}
+
+// Write the built file to both root and public
 fs.writeFileSync('index.html', html, 'utf8');
+fs.writeFileSync('public/index.html', html, 'utf8');
 console.log('✅ Built index.html from components');
 console.log(`   Size: ${Math.round(html.length / 1024)}KB`);
 console.log(`   Components: ${Object.keys(components).length}`);
