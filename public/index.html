@@ -38,7 +38,28 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60
 .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 6px 12px; font-family: 'DM Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
 .lang-btn.active, .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-.hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 140px 60px 60px; text-align: center; }
+/* Full-Width Hero Background */
+.hero {
+  background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 60px 60px;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+}
 .hero-content { max-width: 800px; }
 h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
 h1 .accent { color: var(--accent); }
@@ -952,27 +973,35 @@ li + li {
     </div>
   </div>
   
-  <!-- Problem Section -->
-  <div class="problem-section">
-    <div class="problem-title" data-en="Engineers spend 30 minutes searching for an answer that should take 30 seconds." data-es="Los ingenieros pasan 30 minutos buscando una respuesta que debería tomar 30 segundos.">
-      Engineers spend 30 minutes searching for an answer that should take 30 seconds.
-    </div>
-    <div class="problem-stats">
-      <div class="problem-stat">
-        <div class="problem-stat-value">73%</div>
-        <div class="problem-stat-desc" data-en="of engineering time spent searching, not creating" data-es="del tiempo de ingeniería buscando, no creando">of engineering time spent searching, not creating</div>
+  <!-- Problem Section - Two Column Layout -->
+  <div class="benefits-section">
+    <div class="benefits-grid">
+      <div class="benefits-text">
+        <div class="section-label" data-en="The Challenge" data-es="El Desafío">The Challenge</div>
+        <h2 data-en="Engineering Teams Waste 15+ Hours Per Week" data-es="Los Equipos de Ingeniería Pierden 15+ Horas Por Semana">Engineering Teams Waste 15+ Hours Per Week</h2>
+        <p data-en="Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation." data-es="Buscar en normativas, generar informes de cumplimiento y rastrear activos manualmente crea cuellos de botella que ralentizan toda tu operación.">
+          Searching through regulations, generating compliance reports, and tracking assets manually creates bottlenecks that slow down your entire operation.
+        </p>
+        <ul>
+          <li data-en="<strong>2+ hours</strong> per incident report" data-es="<strong>2+ horas</strong> por informe de incidencia"><strong>2+ hours</strong> per incident report</li>
+          <li data-en="<strong>73%</strong> of time spent searching, not creating" data-es="<strong>73%</strong> del tiempo buscando, no creando"><strong>73%</strong> of time spent searching, not creating</li>
+          <li data-en="<strong>High risk</strong> from cloud AI exposing sensitive data" data-es="<strong>Alto riesgo</strong> de IA en nube exponiendo datos sensibles"><strong>High risk</strong> from cloud AI exposing sensitive data</li>
+          <li data-en="<strong>Manual compliance</strong> tracking prone to errors" data-es="<strong>Seguimiento manual</strong> de cumplimiento propenso a errores"><strong>Manual compliance</strong> tracking prone to errors</li>
+        </ul>
       </div>
-      <div class="problem-stat">
-        <div class="problem-stat-value">4h</div>
-        <div class="problem-stat-desc" data-en="lost per engineer per week" data-es="perdidas por ingeniero por semana">lost per engineer per week</div>
-      </div>
-      <div class="problem-stat">
-        <div class="problem-stat-value">€960</div>
-        <div class="problem-stat-desc" data-en="recovered per engineer/month with EngiIntel" data-es="recuperados por ingeniero/mes con EngiIntel">recovered per engineer/month with EngiIntel</div>
-      </div>
-      <div class="problem-stat">
-        <div class="problem-stat-value">0</div>
-        <div class="problem-stat-desc" data-en="documents leave your server. Ever." data-es="documentos salen de tu servidor. Nunca.">documents leave your server. Ever.</div>
+      <div class="benefits-visual">
+        <div class="roi-card">
+          <div class="roi-value">€960</div>
+          <div class="roi-label" data-en="Saved Per Engineer/Month" data-es="Ahorrado Por Ingeniero/Mes">Saved Per Engineer/Month</div>
+          <div class="roi-breakdown" data-en="<strong>Time Savings:</strong><br>• 15 hrs/week × €16/hr = €960<br><br><strong>Additional Benefits:</strong><br>• Reduced compliance risk<br>• Faster incident response<br>• Zero data exposure" data-es="<strong>Ahorro de Tiempo:</strong><br>• 15 hrs/semana × €16/hr = €960<br><br><strong>Beneficios Adicionales:</strong><br>• Riesgo de cumplimiento reducido<br>• Respuesta más rápida a incidencias<br>• Cero exposición de datos">
+            <strong>Time Savings:</strong><br>
+            • 15 hrs/week × €16/hr = €960<br><br>
+            <strong>Additional Benefits:</strong><br>
+            • Reduced compliance risk<br>
+            • Faster incident response<br>
+            • Zero data exposure
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -14,7 +14,28 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60
 .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 6px 12px; font-family: 'DM Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
 .lang-btn.active, .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-.hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 140px 60px 60px; text-align: center; }
+/* Full-Width Hero Background */
+.hero {
+  background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 60px 60px;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+}
 .hero-content { max-width: 800px; }
 h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
 h1 .accent { color: var(--accent); }
