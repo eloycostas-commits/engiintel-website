@@ -66,6 +66,7 @@ function initializeApp() {
   initContactForm(); // Initialize contact form
   initAccordion(); // Initialize accordion
   initCTAHandlers(); // Initialize CTA handlers
+  initTabsScrollIndicator(); // Initialize tab scroll hint
 }
 
 // Language switching
@@ -113,6 +114,14 @@ function switchTab(tabId) {
   const targetBtn = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
   if (targetBtn) {
     targetBtn.classList.add('active');
+    // Scroll the active button into center view within the tabs bar
+    const tabsEl = document.querySelector('.tabs');
+    if (tabsEl) {
+      const btnLeft = targetBtn.offsetLeft;
+      const btnWidth = targetBtn.offsetWidth;
+      const tabsWidth = tabsEl.clientWidth;
+      tabsEl.scrollTo({ left: btnLeft - (tabsWidth / 2) + (btnWidth / 2), behavior: 'smooth' });
+    }
   }
   
   // Scroll to tabs container
@@ -120,6 +129,23 @@ function switchTab(tabId) {
   if (tabsContainer) {
     tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+}
+
+// Tab scroll indicator: show/hide right-edge gradient
+function initTabsScrollIndicator() {
+  const tabsEl = document.querySelector('.tabs');
+  const tabsContainer = document.querySelector('.tabs-container');
+  if (!tabsEl || !tabsContainer) return;
+
+  function updateIndicator() {
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 8;
+    tabsContainer.classList.toggle('tabs-at-end', atEnd);
+  }
+
+  tabsEl.addEventListener('scroll', updateIndicator);
+  // Run once on load and on resize
+  updateIndicator();
+  window.addEventListener('resize', updateIndicator);
 }
 
 // Pricing calculator functions

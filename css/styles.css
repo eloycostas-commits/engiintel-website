@@ -548,7 +548,9 @@ li + li {
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-  min-width: 400px;
+  min-width: 0;
+  width: 100%;
+  max-width: 480px;
 }
 .roi-value {
   font-family: 'Syne', sans-serif;
@@ -847,6 +849,15 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* Prevent text/content from breaking out of cards on small screens */
+.module-card, .stat-card, .step-card, .pricing-card, .industry-card, .faq-item,
+.accordion-item, .problem-section, .roi-card, .testimonial-section {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* =============================================
    SCREENSHOT FRAMES (Product Screenshots)
    ============================================= */
@@ -918,14 +929,6 @@ html[lang="es"] .info-icon::after {
    MOBILE RESPONSIVENESS
    ============================================= */
 
-/* ROI card: no fixed min-width on mobile */
-@media (max-width: 900px) {
-  .roi-card {
-    min-width: 0 !important;
-    width: 100%;
-  }
-}
-
 /* Tabs: scroll within bar, don't overflow page */
 @media (max-width: 900px) {
   .tabs-container {
@@ -937,12 +940,44 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* Tab scroll indicator — fades right edge to hint there are more tabs */
+.tabs-container {
+  position: sticky; /* already set, explicit for ::after context */
+}
+.tabs-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 1px;
+  width: 72px;
+  background: linear-gradient(to right, transparent, var(--bg) 85%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+@media (max-width: 900px) {
+  .tabs-container::after {
+    opacity: 1;
+  }
+  .tabs-container.tabs-at-end::after {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 768px) {
   /* Tighter tab buttons */
   .tab-btn {
     padding: 14px 16px;
     font-size: 0.72rem;
     letter-spacing: 0.02em;
+  }
+
+  /* Testimonial: trim large horizontal padding on mobile */
+  .testimonial-section {
+    padding: 40px 24px !important;
+    margin-top: 48px !important;
   }
 
   /* Reduce module card bloated padding on mobile */

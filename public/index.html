@@ -643,7 +643,9 @@ li + li {
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-  min-width: 400px;
+  min-width: 0;
+  width: 100%;
+  max-width: 480px;
 }
 .roi-value {
   font-family: 'Syne', sans-serif;
@@ -942,6 +944,15 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* Prevent text/content from breaking out of cards on small screens */
+.module-card, .stat-card, .step-card, .pricing-card, .industry-card, .faq-item,
+.accordion-item, .problem-section, .roi-card, .testimonial-section {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* =============================================
    SCREENSHOT FRAMES (Product Screenshots)
    ============================================= */
@@ -1013,14 +1024,6 @@ html[lang="es"] .info-icon::after {
    MOBILE RESPONSIVENESS
    ============================================= */
 
-/* ROI card: no fixed min-width on mobile */
-@media (max-width: 900px) {
-  .roi-card {
-    min-width: 0 !important;
-    width: 100%;
-  }
-}
-
 /* Tabs: scroll within bar, don't overflow page */
 @media (max-width: 900px) {
   .tabs-container {
@@ -1032,12 +1035,44 @@ html[lang="es"] .info-icon::after {
   }
 }
 
+/* Tab scroll indicator — fades right edge to hint there are more tabs */
+.tabs-container {
+  position: sticky; /* already set, explicit for ::after context */
+}
+.tabs-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 1px;
+  width: 72px;
+  background: linear-gradient(to right, transparent, var(--bg) 85%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+@media (max-width: 900px) {
+  .tabs-container::after {
+    opacity: 1;
+  }
+  .tabs-container.tabs-at-end::after {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 768px) {
   /* Tighter tab buttons */
   .tab-btn {
     padding: 14px 16px;
     font-size: 0.72rem;
     letter-spacing: 0.02em;
+  }
+
+  /* Testimonial: trim large horizontal padding on mobile */
+  .testimonial-section {
+    padding: 40px 24px !important;
+    margin-top: 48px !important;
   }
 
   /* Reduce module card bloated padding on mobile */
@@ -1433,7 +1468,7 @@ html[lang="es"] .info-icon::after {
   </div>
   
   <!-- Testimonial Section -->
-  <div class="testimonial-section" style="margin-top: 80px; padding: 60px 80px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">
+  <div class="testimonial-section" style="margin-top: 80px; padding: 60px 40px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);">`
     <div class="section-label" data-en="CUSTOMER SUCCESS" data-es="ÉXITO DEL CLIENTE">CUSTOMER SUCCESS</div>
     <blockquote style="font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.6; color: var(--text); margin: 24px 0; font-style: italic;">
       <span data-en="&ldquo;EngiIntel transformed how we handle elevator regulations. What took 2 hours now takes 10 minutes. The on-premise deployment means we never worry about data security.&rdquo;" data-es="&ldquo;EngiIntel transformó cómo manejamos las regulaciones de ascensores. Lo que tomaba 2 horas ahora toma 10 minutos. El despliegue on-premise significa que nunca nos preocupamos por la seguridad de datos.&rdquo;">
@@ -2787,6 +2822,7 @@ function initializeApp() {
   initContactForm(); // Initialize contact form
   initAccordion(); // Initialize accordion
   initCTAHandlers(); // Initialize CTA handlers
+  initTabsScrollIndicator(); // Initialize tab scroll hint
 }
 
 // Language switching
@@ -2834,6 +2870,14 @@ function switchTab(tabId) {
   const targetBtn = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
   if (targetBtn) {
     targetBtn.classList.add('active');
+    // Scroll the active button into center view within the tabs bar
+    const tabsEl = document.querySelector('.tabs');
+    if (tabsEl) {
+      const btnLeft = targetBtn.offsetLeft;
+      const btnWidth = targetBtn.offsetWidth;
+      const tabsWidth = tabsEl.clientWidth;
+      tabsEl.scrollTo({ left: btnLeft - (tabsWidth / 2) + (btnWidth / 2), behavior: 'smooth' });
+    }
   }
   
   // Scroll to tabs container
@@ -2841,6 +2885,23 @@ function switchTab(tabId) {
   if (tabsContainer) {
     tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+}
+
+// Tab scroll indicator: show/hide right-edge gradient
+function initTabsScrollIndicator() {
+  const tabsEl = document.querySelector('.tabs');
+  const tabsContainer = document.querySelector('.tabs-container');
+  if (!tabsEl || !tabsContainer) return;
+
+  function updateIndicator() {
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 8;
+    tabsContainer.classList.toggle('tabs-at-end', atEnd);
+  }
+
+  tabsEl.addEventListener('scroll', updateIndicator);
+  // Run once on load and on resize
+  updateIndicator();
+  window.addEventListener('resize', updateIndicator);
 }
 
 // Pricing calculator functions
