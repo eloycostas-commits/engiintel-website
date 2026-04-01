@@ -3,170 +3,10 @@
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
 <script>
-let currentLang = 'en';
-
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
-  });
-
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const text = el.getAttribute(`data-${lang}`);
-    if (text) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = text;
-      } else {
-        el.innerHTML = text;
-      }
-    }
-  });
-}
-
-function switchTab(tabId) {
-  // Remove active class from all tab contents
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.remove('active');
-  });
-
-  // Remove active class from all tab buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  // Add active class to selected tab content
-  document.getElementById(tabId).classList.add('active');
-  
-  // Add active class to corresponding tab button
-  const targetBtn = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
-  if (targetBtn) {
-    targetBtn.classList.add('active');
-  }
-  
-  // Scroll to tabs container
-  document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Form submission handler
-document.addEventListener('DOMContentLoaded', () => {
-  setLang('en');
-  
-  // Handle contact form submission
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('.form-submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
-      submitBtn.disabled = true;
-      
-      // Collect form data
-      const formData = {
-        name: contactForm.querySelector('#name').value,
-        email: contactForm.querySelector('#email').value,
-        company: contactForm.querySelector('#company').value,
-        industry: contactForm.querySelector('#industry').value,
-        interests: Array.from(contactForm.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
-        message: contactForm.querySelector('#message').value,
-        language: currentLang,
-        timestamp: new Date().toISOString()
-      };
-      
-      try {
-        // Send to n8n webhook
-        const response = await fetch('http://localhost:5678/webhook/contact-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-        
-        if (response.ok) {
-          alert(currentLang === 'en' 
-            ? 'Thank you! Your message has been sent successfully. We will contact you soon.' 
-            : '¡Gracias! Tu mensaje ha sido enviado exitosamente. Te contactaremos pronto.');
-          contactForm.reset();
-        } else {
-          throw new Error('Failed to send message');
-        }
-      } catch (error) {
-        console.error('Form submission error:', error);
-        alert(currentLang === 'en'
-          ? 'Sorry, there was an error sending your message. Please try again or email us directly at eloycostas@engiintel.com'
-          : 'Lo sentimos, hubo un error al enviar tu mensaje. Por favor intenta de nuevo o envíanos un email directamente a eloycostas@engiintel.com');
-      } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-  }
-});
-</script>
-<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-5P3VL8DTRG');
-
-// Pricing calculator
-const CORE_PER_SEAT = 8;
-const MODULE_PRICE_PER_SEAT = 4;
-const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
-const selected = new Set();
-
-function toggleMod(id){
-  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
-  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
-  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
-  calcPrice();
-}
-
-function adjustSeats(delta){
-  const inp=document.getElementById('seatsInput');
-  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
-  inp.value=v; calcPrice();
-}
-
-function calcPrice(){
-  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
-  const modCount=selected.size;
-  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
-  let subtotal=pricePerSeat*seats;
-  let discountPct=0;
-  if(seats>=50) discountPct=20;
-  else if(seats>=25) discountPct=15;
-  else if(seats>=15) discountPct=10;
-  const discount=Math.round(subtotal*discountPct/100);
-  const total=subtotal-discount;
-
-  document.getElementById('calcTotal').textContent='€'+total;
-  document.getElementById('sum-seats-val').textContent=seats;
-
-  const modRow=document.getElementById('sum-modules-row');
-  if(modCount>0){
-    modRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
-    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
-  } else { modRow.style.display='none'; }
-
-  const discRow=document.getElementById('sum-discount-row');
-  if(discount>0){
-    discRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
-    document.getElementById('sum-discount-val').textContent='−€'+discount;
-  } else { discRow.style.display='none'; }
-
-  const note=document.getElementById('calcNote');
-  const isEs=currentLang==='es';
-  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
-  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
-}
-
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -226,7 +66,7 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .module-features { list-style: none; }
 .module-features li { font-size: 0.85rem; color: var(--text-mid); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .module-features li:last-child { border-bottom: none; }
-.module-features li::before { content: '•'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+.module-features li::before { content: 'ÔåÆ'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
 
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
 .pricing-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; }
@@ -235,7 +75,7 @@ h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,
 .pricing-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--text); line-height: 1; margin-bottom: 8px; }
 .pricing-features { list-style: none; margin: 32px 0; }
 .pricing-features li { font-size: 0.88rem; color: var(--text-mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
-.pricing-features li::before { content: '•'; color: var(--accent3); flex-shrink: 0; }
+.pricing-features li::before { content: 'Ô£ô'; color: var(--accent3); flex-shrink: 0; }
 
 footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; }
 .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-dim); }
@@ -249,66 +89,6 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   .modules-grid, .pricing-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 12px; text-align: center; }
 }
-
-/* Phase 1 Styles */
-.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 60px; }
-.stat-card { text-align: center; padding: 24px; background: var(--surface); border: 1px solid var(--border); }
-.stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
-.stat-label { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
-
-.problem-section { background: var(--surface); border: 1px solid var(--border); padding: 48px; margin-bottom: 60px; }
-.problem-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--accent3); margin-bottom: 24px; text-align: center; }
-.problem-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
-.problem-stat { text-align: center; }
-.problem-stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--text); margin-bottom: 8px; }
-.problem-stat-desc { font-size: 0.9rem; color: var(--text-mid); }
-
-.how-it-works { margin-bottom: 60px; }
-.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 40px; }
-.step-card { text-align: center; }
-.step-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--accent); opacity: 0.3; margin-bottom: 16px; }
-.step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
-.step-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
-
-.comparison-table { width: 100%; border-collapse: collapse; margin: 40px 0; }
-.comparison-table th, .comparison-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
-.comparison-table th { font-family: 'Syne', sans-serif; font-weight: 700; background: var(--surface); }
-.comparison-table td { font-size: 0.9rem; color: var(--text-mid); }
-.comparison-table .check { color: var(--accent3); font-weight: 700; }
-.comparison-table .cross { color: var(--text-dim); opacity: 0.3; }
-
-.industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 40px; }
-.industry-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; transition: all 0.3s; }
-.industry-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
-.industry-icon { font-size: 2.5rem; margin-bottom: 16px; }
-.industry-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 16px; }
-.industry-challenge { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px; }
-.industry-challenge strong { color: var(--accent); }
-.industry-solution { font-size: 0.85rem; color: var(--text-mid); margin-bottom: 12px; }
-.industry-solution strong { color: var(--accent3); }
-.industry-usecase { font-size: 0.85rem; color: var(--text-dim); font-style: italic; padding: 12px; background: var(--bg); border-left: 2px solid var(--accent); margin-top: 12px; }
-
-.faq-section { margin-top: 48px; }
-.faq-item { background: var(--surface); border: 1px solid var(--border); padding: 24px; margin-bottom: 16px; }
-.faq-question { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 12px; }
-.faq-answer { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
-
-.contact-form { max-width: 600px; margin: 40px auto; }
-.form-group { margin-bottom: 24px; }
-.form-label { display: block; font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-.form-input, .form-textarea, .form-select { width: 100%; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
-.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
-.form-textarea { min-height: 120px; resize: vertical; }
-.form-checkbox-group { display: flex; flex-direction: column; gap: 12px; }
-.form-checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-mid); cursor: pointer; }
-.form-checkbox { width: 18px; height: 18px; }
-.form-submit { width: 100%; margin-top: 24px; }
-
-@media (max-width: 768px) {
-  .stats-strip, .problem-stats, .steps-grid, .industry-grid { grid-template-columns: 1fr; }
-  .problem-section { padding: 32px 24px; }
-}
-
 
 /* MODULE PRICING CALCULATOR */
 .pricing-calc { border: 1px solid var(--border); background: var(--surface); margin-bottom: 48px; overflow: hidden; }
@@ -346,9 +126,10 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
 .calc-cta { display: block; text-align: center; padding: 13px; background: var(--accent2); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; margin-top: 20px; transition: all 0.2s; border: none; cursor: pointer; width: 100%; }
 .calc-cta:hover { background: #0055dd; box-shadow: 0 0 20px rgba(0,102,255,0.35); }
 .calc-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); text-align: center; margin-top: 10px; line-height: 1.5; }
-@media (max-width: 768px) { 
-  .calc-body { grid-template-columns: 1fr; } 
-  .calc-left { border-right: none; border-bottom: 1px solid var(--border); } 
+
+@media (max-width: 768px) {
+  .calc-body { grid-template-columns: 1fr; }
+  .calc-left { border-right: none; border-bottom: 1px solid var(--border); }
   .calc-modules-grid { grid-template-columns: 1fr; }
   .calc-header { padding: 20px; }
   .calc-left, .calc-right { padding: 20px; }
@@ -377,8 +158,8 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows and run autonomous AI agents — with zero data leaving your server.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" onclick="switchTab('resources'); return false;" data-en="Request Beta Access" data-es="Solicitar Acceso Beta">Request Beta Access</a>
-      <a href="#contact" class="btn-secondary" onclick="switchTab('resources'); return false;" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
+      <a href="#" class="btn-primary" data-en="Request Beta Access" data-es="Solicitar Acceso Beta">Request Beta Access</a>
+      <a href="#" class="btn-secondary" data-en="Book a Demo" data-es="Solicitar Demo">Book a Demo</a>
     </div>
   </div>
 </section>
@@ -724,7 +505,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </p>
   <div class="modules-grid">
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒôè</span>
       <div class="module-name" data-en="Natural Language Queries" data-es="Consultas en Lenguaje Natural">Natural Language Queries</div>
       <div class="module-desc" data-en="Ask questions about your Excel data in plain language. Get instant tables with filtered results." data-es="Haz preguntas sobre tus datos de Excel en lenguaje natural. Obtén tablas instant├íneas con resultados filtrados.">
         Ask questions about your Excel data in plain language. Get instant tables with filtered results.
@@ -735,7 +516,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒôê</span>
       <div class="module-name" data-en="One-Click Chart Generation" data-es="Generación de Gr├íficos">One-Click Chart Generation</div>
       <div class="module-desc" data-en="Create charts with a single command. AI generates and embeds charts in downloadable Excel files." data-es="Crea gr├íficos con un solo comando. La IA genera e incrusta gr├íficos en archivos Excel descargables.">
         Create charts with a single command. AI generates and embeds charts in downloadable Excel files.
@@ -746,7 +527,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒÆ¥</span>
       <div class="module-name" data-en="Macro System" data-es="Sistema de Macros">Macro System</div>
       <div class="module-desc" data-en="Save frequent queries as macros for one-click reuse. Share with your team." data-es="Guarda consultas frecuentes como macros para reutilizarlas con un clic. Comparte con tu equipo.">
         Save frequent queries as macros for one-click reuse. Share with your team.
@@ -767,7 +548,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </p>
   <div class="modules-grid">
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒôÜ</span>
       <div class="module-name" data-en="Markdown Editor" data-es="Editor Markdown">Markdown Editor</div>
       <div class="module-desc" data-en="Write documentation in markdown with live preview." data-es="Escribe documentación en markdown con vista previa en vivo.">
         Write documentation in markdown with live preview.
@@ -778,7 +559,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒòÉ</span>
       <div class="module-name" data-en="Version History" data-es="Historial de Versiones">Version History</div>
       <div class="module-desc" data-en="Track all changes with full version history. Restore previous versions." data-es="Rastrea todos los cambios con historial completo. Restaura versiones anteriores.">
         Track all changes with full version history. Restore previous versions.
@@ -810,7 +591,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </p>
   <div class="modules-grid">
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒÅó</span>
       <div class="module-name" data-en="Asset Database" data-es="Base de Datos de Activos">Asset Database</div>
       <div class="module-desc" data-en="Centralized registry for all your assets with custom fields and tags." data-es="Registro centralizado para todos tus activos con campos personalizados y etiquetas.">
         Centralized registry for all your assets with custom fields and tags.
@@ -821,7 +602,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒöº</span>
       <div class="module-name" data-en="Maintenance Tracking" data-es="Seguimiento de Mantenimiento">Maintenance Tracking</div>
       <div class="module-desc" data-en="Schedule preventive maintenance and track service history." data-es="Programa mantenimiento preventivo y rastrea historial de servicio.">
         Schedule preventive maintenance and track service history.
@@ -832,7 +613,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒôÄ</span>
       <div class="module-name" data-en="Document Attachments" data-es="Adjuntos de Documentos">Document Attachments</div>
       <div class="module-desc" data-en="Attach certificates, manuals, and reports directly to each asset." data-es="Adjunta certificados, manuales e informes directamente a cada activo.">
         Attach certificates, manuals, and reports directly to each asset.
@@ -853,7 +634,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </p>
   <div class="modules-grid">
     <div class="module-card">
-      <span class="module-icon">●</span>
+      <span class="module-icon">ÔÜá´©Å</span>
       <div class="module-name" data-en="AI-Assisted Reports" data-es="Informes Asistidos por IA">AI-Assisted Reports</div>
       <div class="module-desc" data-en="Describe incidents in natural language and AI helps structure the report." data-es="Describe incidencias en lenguaje natural y la IA ayuda a estructurar el informe.">
         Describe incidents in natural language and AI helps structure the report.
@@ -896,7 +677,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </p>
   <div class="modules-grid">
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒñû</span>
       <div class="module-name" data-en="ReAct Loop" data-es="Bucle ReAct">ReAct Loop</div>
       <div class="module-desc" data-en="Agent reasons about tasks and executes multi-step workflows autonomously." data-es="El agente razona sobre tareas y ejecuta flujos multi-paso autónomamente.">
         Agent reasons about tasks and executes multi-step workflows autonomously.
@@ -907,7 +688,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒøá´©Å</span>
       <div class="module-name" data-en="Tool Integration" data-es="Integración de Herramientas">Tool Integration</div>
       <div class="module-desc" data-en="Agent can search documents, query assets, create incidents, and more." data-es="El agente puede buscar documentos, consultar activos, crear incidencias y m├ís.">
         Agent can search documents, query assets, create incidents, and more.
@@ -918,7 +699,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
       </ul>
     </div>
     <div class="module-card">
-      <span class="module-icon">­●</span>
+      <span class="module-icon">­ƒöä</span>
       <div class="module-name" data-en="Workflow Automation" data-es="Automatización de Flujos">Workflow Automation</div>
       <div class="module-desc" data-en="Define complex workflows that the agent executes automatically." data-es="Define flujos complejos que el agente ejecuta autom├íticamente.">
         Define complex workflows that the agent executes automatically.
@@ -1293,9 +1074,10 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
 
 <div id="pricing" class="tab-content">
   <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
-  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
-  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
-
+  <h2 data-en="Simple, Transparent Pricing" data-es="Precios Simples y Transparentes">Simple, Transparent Pricing</h2>
+  <p class="section-sub" data-en="Choose the modules you need. Pay only for what you use. No hidden fees." data-es="Elige los módulos que necesitas. Paga solo por lo que usas. Sin tarifas ocultas.">
+    Choose the modules you need. Pay only for what you use. No hidden fees.
+  </p>
   <!-- Interactive pricing calculator -->
   <div class="pricing-calc fade-in">
     <div class="calc-header">
@@ -1385,50 +1167,284 @@ footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex;
   </div>
 
   <!-- Tier reference cards -->
-  <div class="pricing-grid fade-in">
+  <div class="pricing-grid">
     <div class="pricing-card">
-      <div class="pricing-plan">Starter</div>
-      <div class="pricing-price"><sup>€</sup>8</div>
-      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
+      <div class="pricing-plan" data-en="Free" data-es="Gratis">Free</div>
+      <div class="pricing-price">Ôé¼0</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="Forever free" data-es="Gratis para siempre">Forever free</p>
       <ul class="pricing-features">
-        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
-        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
+        <li data-en="Document Intelligence (core)" data-es="Inteligencia Documental (núcleo)">Document Intelligence (core)</li>
+        <li data-en="Up to 100 documents" data-es="Hasta 100 documentos">Up to 100 documents</li>
+        <li data-en="1 user" data-es="1 usuario">1 user</li>
+        <li data-en="Community support" data-es="Soporte comunitario">Community support</li>
       </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</button>
+      <a href="#" class="btn-secondary" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Get Started" data-es="Comenzar">Get Started</a>
     </div>
     <div class="pricing-card featured">
-      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
-      <div class="pricing-plan">Team</div>
-      <div class="pricing-price"><sup>€</sup>20</div>
-      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
+      <div class="pricing-plan" data-en="Pro" data-es="Pro">Pro</div>
+      <div class="pricing-price">Ôé¼49</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="per month" data-es="por mes">per month</p>
       <ul class="pricing-features">
-        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
+        <li data-en="Everything in Free" data-es="Todo en Gratis">Everything in Free</li>
+        <li data-en="Unlimited documents" data-es="Documentos ilimitados">Unlimited documents</li>
+        <li data-en="Up to 10 users" data-es="Hasta 10 usuarios">Up to 10 users</li>
+        <li data-en="All add-on modules available" data-es="Todos los módulos adicionales disponibles">All add-on modules available</li>
         <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
       </ul>
-      <button class="pricing-cta solid" onclick="switchTab('resources')" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</button>
+      <a href="#" class="btn-primary" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Start Free Trial" data-es="Iniciar Prueba Gratis">Start Free Trial</a>
     </div>
     <div class="pricing-card">
-      <div class="pricing-plan">Enterprise</div>
-      <div class="pricing-price"><sup>€</sup>32</div>
-      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
+      <div class="pricing-plan" data-en="Enterprise" data-es="Empresa">Enterprise</div>
+      <div class="pricing-price" data-en="Custom" data-es="Personalizado">Custom</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--text-dim); margin-bottom: 32px;" data-en="Contact us" data-es="Cont├íctanos">Contact us</p>
       <ul class="pricing-features">
-        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
-        <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
-        <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
-        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
+        <li data-en="Everything in Pro" data-es="Todo en Pro">Everything in Pro</li>
+        <li data-en="Unlimited users" data-es="Usuarios ilimitados">Unlimited users</li>
+        <li data-en="Custom integrations" data-es="Integraciones personalizadas">Custom integrations</li>
+        <li data-en="Dedicated support" data-es="Soporte dedicado">Dedicated support</li>
+        <li data-en="SLA guarantee" data-es="Garantáa SLA">SLA guarantee</li>
       </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</button>
+      <a href="#" class="btn-secondary" style="width: 100%; margin-top: 20px; display: block; text-align: center;" data-en="Contact Sales" data-es="Contactar Ventas">Contact Sales</a>
     </div>
   </div>
-  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
+  <div style="margin-top: 48px; padding: 32px; background: var(--surface); border: 1px solid var(--border);">
+    <h3 style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 16px;" data-en="Add-on Modules" data-es="Módulos Adicionales">Add-on Modules</h3>
+    <p style="color: var(--text-dim); margin-bottom: 24px;" data-en="Available for Pro and Enterprise plans:" data-es="Disponible para planes Pro y Empresa:">Available for Pro and Enterprise plans:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Excel Copilot" data-es="Excel Copilot">Excel Copilot</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="Ôé¼15/month per seat" data-es="Ôé¼15/mes por usuario">Ôé¼15/month per seat</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Wiki" data-es="Wiki">Wiki</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="Ôé¼10/month" data-es="Ôé¼10/mes">Ôé¼10/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Assets" data-es="Activos">Assets</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="Ôé¼15/month" data-es="Ôé¼15/mes">Ôé¼15/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="Incidents" data-es="Incidencias">Incidents</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="Ôé¼10/month" data-es="Ôé¼10/mes">Ôé¼10/month</div>
+      </div>
+      <div style="padding: 16px; border: 1px solid var(--border); background: var(--bg);">
+        <div style="font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 8px;" data-en="AI Agent" data-es="Agente IA">AI Agent</div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent);" data-en="Ôé¼25/month" data-es="Ôé¼25/mes">Ôé¼25/month</div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<footer>
+  <div class="footer-logo">Engi<span>Intel</span></div>
+  <div class="footer-copy">┬® 2026 EngiIntel. All rights reserved.</div>
+</footer>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else {
+        el.innerHTML = text;
+      }
+    }
+  });
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+  
+  document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+});
+</script>
+
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else {
+        el.innerHTML = text;
+      }
+    }
+  });
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  const targetTab = document.getElementById(tabId);
+  if (targetTab) {
+    targetTab.classList.add('active');
+    event.target.classList.add('active');
+    document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Pricing calculator
+const CORE_PER_SEAT = 8;
+const MODULE_PRICE_PER_SEAT = 4;
+const selected = new Set();
+
+function toggleMod(id){
+  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
+  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
+  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
+  calcPrice();
+}
+
+function adjustSeats(delta){
+  const inp=document.getElementById('seatsInput');
+  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
+  inp.value=v; calcPrice();
+}
+
+function calcPrice(){
+  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
+  const modCount=selected.size;
+  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
+  let subtotal=pricePerSeat*seats;
+  let discountPct=0;
+  if(seats>=50) discountPct=20;
+  else if(seats>=25) discountPct=15;
+  else if(seats>=15) discountPct=10;
+  const discount=Math.round(subtotal*discountPct/100);
+  const total=subtotal-discount;
+
+  document.getElementById('calcTotal').textContent='€'+total;
+  document.getElementById('sum-seats-val').textContent=seats;
+
+  const modRow=document.getElementById('sum-modules-row');
+  if(modCount>0){
+    modRow.style.display='flex';
+    const isEs=currentLang==='es';
+    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
+    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
+  } else { modRow.style.display='none'; }
+
+  const discRow=document.getElementById('sum-discount-row');
+  if(discount>0){
+    discRow.style.display='flex';
+    const isEs=currentLang==='es';
+    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
+    document.getElementById('sum-discount-val').textContent='−€'+discount;
+  } else { discRow.style.display='none'; }
+
+  const note=document.getElementById('calcNote');
+  const isEs=currentLang==='es';
+  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
+  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
+}
+
+// Contact form submission
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+  
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+      
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        company: form.company.value || '',
+        industry: form.industry.value || '',
+        interests: Array.from(form.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value),
+        message: form.message.value || '',
+        language: currentLang,
+        timestamp: new Date().toISOString()
+      };
+      
+      try {
+        // Send directly to Resend API
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer re_43jiWP48_3vxjr9PnCFKBaQCrY4UvdJNJ'
+          },
+          body: JSON.stringify({
+            from: 'EngiIntel Website <onboarding@resend.dev>',
+            to: ['eloycostas@engiintel.com'],
+            subject: `New Contact Form Submission from ${formData.name}`,
+            html: `
+              <h2>New Contact Form Submission</h2>
+              <p><strong>Name:</strong> ${formData.name}</p>
+              <p><strong>Email:</strong> ${formData.email}</p>
+              <p><strong>Company:</strong> ${formData.company}</p>
+              <p><strong>Industry:</strong> ${formData.industry}</p>
+              <p><strong>Interests:</strong> ${formData.interests.join(', ')}</p>
+              <p><strong>Message:</strong></p>
+              <p>${formData.message}</p>
+              <p><strong>Language:</strong> ${formData.language}</p>
+              <p><strong>Timestamp:</strong> ${formData.timestamp}</p>
+            `
+          })
+        });
+        
+        if (response.ok) {
+          alert(currentLang === 'es' 
+            ? '¡Gracias! Tu mensaje ha sido enviado. Te contactaremos pronto.' 
+            : 'Thank you! Your message has been sent. We will contact you soon.');
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        alert(currentLang === 'es'
+          ? 'Error al enviar el formulario. Por favor, intenta de nuevo o contacta directamente a eloycostas@engiintel.com'
+          : 'Error sending form. Please try again or contact directly at eloycostas@engiintel.com');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>
