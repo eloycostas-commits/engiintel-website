@@ -1,179 +1,27 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
-<script>
-let currentLang = 'en';
-
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
-  });
-
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const text = el.getAttribute(`data-${lang}`);
-    if (text) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = text;
-      } else {
-        el.innerHTML = text;
-      }
-    }
-  });
-}
-
-function switchTab(tabId) {
-  // Remove active class from all tab contents
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.remove('active');
-  });
-
-  // Remove active class from all tab buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  // Add active class to selected tab content
-  document.getElementById(tabId).classList.add('active');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
+  <meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents.">
+  <meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
+  <link rel="canonical" href="https://engiintel.com/">
   
-  // Add active class to corresponding tab button
-  const targetBtn = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
-  if (targetBtn) {
-    targetBtn.classList.add('active');
-  }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   
-  // Scroll to tabs container
-  document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Form submission handler
-document.addEventListener('DOMContentLoaded', () => {
-  setLang('en');
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3VL8DTRG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5P3VL8DTRG');
+  </script>
   
-  // Handle contact form submission
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('.form-submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
-      submitBtn.disabled = true;
-      
-      // Collect form data
-      const formData = {
-        name: contactForm.querySelector('#name').value,
-        email: contactForm.querySelector('#email').value,
-        company: contactForm.querySelector('#company').value,
-        industry: contactForm.querySelector('#industry').value,
-        interests: Array.from(contactForm.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
-        message: contactForm.querySelector('#message').value,
-        language: currentLang,
-        timestamp: new Date().toISOString()
-      };
-      
-      try {
-        // Send to n8n webhook
-        const response = await fetch('http://localhost:5678/webhook/contact-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-        
-        if (response.ok) {
-          alert(currentLang === 'en' 
-            ? 'Thank you! Your message has been sent successfully. We will contact you soon.' 
-            : '¡Gracias! Tu mensaje ha sido enviado exitosamente. Te contactaremos pronto.');
-          contactForm.reset();
-        } else {
-          throw new Error('Failed to send message');
-        }
-      } catch (error) {
-        console.error('Form submission error:', error);
-        alert(currentLang === 'en'
-          ? 'Sorry, there was an error sending your message. Please try again or email us directly at eloycostas@engiintel.com'
-          : 'Lo sentimos, hubo un error al enviar tu mensaje. Por favor intenta de nuevo o envíanos un email directamente a eloycostas@engiintel.com');
-      } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-  }
-});
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5P3VL8DTRG');
-
-// Pricing calculator
-const CORE_PER_SEAT = 8;
-const MODULE_PRICE_PER_SEAT = 4;
-const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
-const selected = new Set();
-
-function toggleMod(id){
-  const el=document.getElementById('mod-'+id), chk=document.getElementById('chk-'+id);
-  if(selected.has(id)){ selected.delete(id); el.classList.remove('selected'); chk.textContent=''; }
-  else { selected.add(id); el.classList.add('selected'); chk.textContent='✓'; }
-  calcPrice();
-}
-
-function adjustSeats(delta){
-  const inp=document.getElementById('seatsInput');
-  const v=Math.max(1,Math.min(500,(parseInt(inp.value)||1)+delta));
-  inp.value=v; calcPrice();
-}
-
-function calcPrice(){
-  const seats=Math.max(1,parseInt(document.getElementById('seatsInput').value)||1);
-  const modCount=selected.size;
-  const pricePerSeat=CORE_PER_SEAT+(modCount*MODULE_PRICE_PER_SEAT);
-  let subtotal=pricePerSeat*seats;
-  let discountPct=0;
-  if(seats>=50) discountPct=20;
-  else if(seats>=25) discountPct=15;
-  else if(seats>=15) discountPct=10;
-  const discount=Math.round(subtotal*discountPct/100);
-  const total=subtotal-discount;
-
-  document.getElementById('calcTotal').textContent='€'+total;
-  document.getElementById('sum-seats-val').textContent=seats;
-
-  const modRow=document.getElementById('sum-modules-row');
-  if(modCount>0){
-    modRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-modules-label').textContent='+ '+modCount+(isEs?' módulo'+(modCount>1?'s':'')+' · por seat':' module'+(modCount>1?'s':'')+' · per seat');
-    document.getElementById('sum-modules-val').textContent='€'+(modCount*MODULE_PRICE_PER_SEAT)+'/seat';
-  } else { modRow.style.display='none'; }
-
-  const discRow=document.getElementById('sum-discount-row');
-  if(discount>0){
-    discRow.style.display='flex';
-    const isEs=currentLang==='es';
-    document.getElementById('sum-discount-label').textContent=(isEs?'Descuento volumen':'Volume discount')+' ('+discountPct+'%)';
-    document.getElementById('sum-discount-val').textContent='−€'+discount;
-  } else { discRow.style.display='none'; }
-
-  const note=document.getElementById('calcNote');
-  const isEs=currentLang==='es';
-  if(discountPct>0) note.textContent=(isEs?'Descuento '+discountPct+'% por volumen aplicado':'Volume discount '+discountPct+'% applied');
-  else note.textContent=isEs?'On-premise · sin coste por consulta · instalación Docker':'On-premise · no per-query costs · Docker install';
-}
-
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>
+  <style>
 :root {
   --bg: #080c10; --surface: #0d1219; --surface2: #111820; --border: #1a2433;
   --accent: #00d4ff; --accent2: #0066ff; --accent3: #00ff9d;
@@ -794,11 +642,9 @@ li + li {
     padding: 0 30px;
   }
 }
-
-</style>
+  </style>
 </head>
 <body>
-
 <nav>
   <a href="#" class="nav-logo">Engi<span>Intel</span></a>
   <div class="lang-switch">
@@ -806,7 +652,6 @@ li + li {
     <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </nav>
-
 <section class="hero">
   <div class="hero-content">
     <h1>
@@ -948,7 +793,6 @@ li + li {
 
   </div>
 </section>
-
 <div class="tabs-container">
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('overview')" data-en="Overview" data-es="Resumen">Overview</button>
@@ -964,8 +808,6 @@ li + li {
     <button class="tab-btn" onclick="switchTab('resources')" data-en="Resources" data-es="Recursos">Resources</button>
   </div>
 </div>
-
-<!-- Tab Content: Overview -->
 <div id="overview" class="tab-content active">
   <div class="section-label" data-en="Platform Overview" data-es="Resumen de Plataforma">Platform Overview</div>
   <h2 data-en="AI Document Intelligence for Regulated Industries" data-es="Inteligencia Documental IA para Industrias Reguladas">AI Document Intelligence for Regulated Industries</h2>
@@ -1116,6 +958,7 @@ li + li {
 
 
 <!-- Tab Content: Features -->
+
 <div id="features" class="tab-content">
   <div class="section-label" data-en="Feature Comparison" data-es="Comparación de Características">Feature Comparison</div>
   <h2 data-en="Choose the Right Plan" data-es="Elige el Plan Correcto">Choose the Right Plan</h2>
@@ -1238,6 +1081,7 @@ li + li {
 </div>
 
 
+
 <div id="document-intelligence" class="tab-content">
   <div class="section-label" data-en="Core Module" data-es="Módulo Principal">Core Module</div>
   <h2 data-en="Document Intelligence" data-es="Inteligencia Documental">Document Intelligence</h2>
@@ -1282,6 +1126,7 @@ li + li {
   </div>
 </div>
 
+
 <div id="excel-copilot" class="tab-content">
   <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
   <h2 data-en="Excel Copilot" data-es="Excel Copilot">Excel Copilot</h2>
@@ -1324,6 +1169,7 @@ li + li {
     </div>
   </div>
 </div>
+
 
 <div id="wiki" class="tab-content">
   <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
@@ -1368,6 +1214,7 @@ li + li {
   </div>
 </div>
 
+
 <div id="assets" class="tab-content">
   <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
   <h2 data-en="Asset Registry" data-es="Registro de Activos">Asset Registry</h2>
@@ -1411,6 +1258,7 @@ li + li {
   </div>
 </div>
 
+
 <div id="incidents" class="tab-content">
   <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
   <h2 data-en="Incident Reports" data-es="Informes de Incidencias">Incident Reports</h2>
@@ -1453,6 +1301,7 @@ li + li {
     </div>
   </div>
 </div>
+
 
 <div id="ai-agent" class="tab-content">
   <div class="section-label" data-en="Add-on Module" data-es="Módulo Adicional">Add-on Module</div>
@@ -1498,6 +1347,7 @@ li + li {
 </div>
 
 <!-- Tab Content: Industries -->
+
 <div id="industries" class="tab-content">
   <div class="section-label" data-en="Industry Solutions" data-es="Soluciones por Industria">Industry Solutions</div>
   <h2 data-en="Built for Regulated Industries" data-es="Construido para Industrias Reguladas">Built for Regulated Industries</h2>
@@ -1635,6 +1485,151 @@ li + li {
 
 
 <!-- Tab Content: Resources -->
+
+<div id="pricing" class="tab-content">
+  <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
+  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
+  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
+
+  <!-- Interactive pricing calculator -->
+  <div class="pricing-calc fade-in">
+    <div class="calc-header">
+      <div>
+        <div class="calc-header-title" data-en="Configure your plan" data-es="Configura tu plan">Configure your plan</div>
+        <div class="calc-header-sub" data-en="Select seats and modules — price updates in real time" data-es="Selecciona seats y módulos — el precio se actualiza en tiempo real">Select seats and modules — price updates in real time</div>
+      </div>
+    </div>
+    <div class="calc-body">
+      <div class="calc-left">
+        <div class="calc-section-label" data-en="Number of seats" data-es="Número de seats">Number of seats</div>
+        <div class="calc-seats">
+          <button class="seats-btn" onclick="adjustSeats(-1)">−</button>
+          <input class="seats-input" type="number" id="seatsInput" value="5" min="1" max="500" oninput="calcPrice()">
+          <button class="seats-btn" onclick="adjustSeats(1)">+</button>
+          <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
+        </div>
+
+        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
+        <div class="calc-modules-grid">
+          <div class="calc-module-toggle core-mod">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
+            <span class="calc-mod-check">✓</span>
+          </div>
+          <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
+            <span class="calc-mod-check" id="chk-ops"></span>
+          </div>
+          <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
+            <span class="calc-mod-check" id="chk-excel"></span>
+          </div>
+          <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
+            <span class="calc-mod-check" id="chk-wiki"></span>
+          </div>
+          <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
+            <span class="calc-mod-check" id="chk-incidents"></span>
+          </div>
+          <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
+            <span class="calc-mod-check" id="chk-agent"></span>
+          </div>
+          <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
+            <span class="calc-mod-icon">●</span>
+            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
+            <span class="calc-mod-check" id="chk-analytics"></span>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="calc-section-label" data-en="Your plan" data-es="Tu plan">Your plan</div>
+        <div class="calc-summary-line">
+          <span class="calc-summary-key" data-en="Core · per seat" data-es="Core · por seat">Core · per seat</span>
+          <span class="calc-summary-val">€8<span style="font-size:0.75rem;font-weight:400;color:var(--text-dim)">/mo</span></span>
+        </div>
+        <div class="calc-summary-line" id="sum-modules-row" style="display:none">
+          <span class="calc-summary-key" id="sum-modules-label">+ 0 modules · per seat</span>
+          <span class="calc-summary-val" id="sum-modules-val">€0/mo</span>
+        </div>
+        <div class="calc-summary-line">
+          <span class="calc-summary-key" id="sum-seats-label" data-en="× seats" data-es="× seats">× seats</span>
+          <span class="calc-summary-val" id="sum-seats-val">5</span>
+        </div>
+        <div class="calc-summary-line" id="sum-discount-row" style="display:none">
+          <span class="calc-summary-key" id="sum-discount-label" style="color:var(--accent3)">Volume discount</span>
+          <span class="calc-summary-val" id="sum-discount-val" style="color:var(--accent3)">−€0</span>
+        </div>
+        <div class="calc-total-row">
+          <div>
+            <div class="calc-total-label" data-en="Total / month" data-es="Total / mes">Total / month</div>
+            <div class="calc-total-period" data-en="billed monthly · cancel anytime" data-es="factura mensual · cancela cuando quieras">billed monthly · cancel anytime</div>
+          </div>
+          <div class="calc-total-price" id="calcTotal">€40</div>
+        </div>
+        <button class="calc-cta" onclick="switchTab('resources')" data-en="Request this plan →" data-es="Solicitar este plan →">Request this plan →</button>
+        <div class="calc-note" id="calcNote" data-en="On-premise · no per-query costs · Docker install" data-es="On-premise · sin coste por consulta · instalación Docker">On-premise · no per-query costs · Docker install</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier reference cards -->
+  <div class="pricing-grid fade-in">
+    <div class="pricing-card">
+      <div class="pricing-plan">Starter</div>
+      <div class="pricing-price"><sup>€</sup>8</div>
+      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
+      <ul class="pricing-features">
+        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
+        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
+        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
+        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
+        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
+        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
+      </ul>
+      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
+      <div class="pricing-plan">Team</div>
+      <div class="pricing-price"><sup>€</sup>20</div>
+      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
+      <ul class="pricing-features">
+        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
+        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
+        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
+        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
+        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
+        <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
+      </ul>
+      <button class="pricing-cta solid" onclick="switchTab('resources')" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-plan">Enterprise</div>
+      <div class="pricing-price"><sup>€</sup>32</div>
+      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
+      <ul class="pricing-features">
+        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
+        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
+        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
+        <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
+        <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
+        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
+      </ul>
+      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</button>
+    </div>
+  </div>
+  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
+</div>
+
+<!-- Footer -->
+
 <div id="resources" class="tab-content">
   <div class="section-label" data-en="Resources & Support" data-es="Recursos y Soporte">Resources & Support</div>
   <h2 data-en="Everything You Need to Get Started" data-es="Todo lo que Necesitas para Comenzar">Everything You Need to Get Started</h2>
@@ -1857,149 +1852,7 @@ li + li {
 </div>
 
 
-<div id="pricing" class="tab-content">
-  <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
-  <h2 data-en="Scales with your team.<br>Not with your queries." data-es="Escala con tu equipo.<br>No con tus consultas.">Scales with your team.<br>Not with your queries.</h2>
-  <p class="section-sub" data-en="Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price." data-es="El Core siempre está incluido. Añade solo los módulos que tu equipo realmente usa — la calculadora muestra tu precio exacto.">Core is always included. Add only the modules your team actually uses — the calculator below shows your exact price.</p>
 
-  <!-- Interactive pricing calculator -->
-  <div class="pricing-calc fade-in">
-    <div class="calc-header">
-      <div>
-        <div class="calc-header-title" data-en="Configure your plan" data-es="Configura tu plan">Configure your plan</div>
-        <div class="calc-header-sub" data-en="Select seats and modules — price updates in real time" data-es="Selecciona seats y módulos — el precio se actualiza en tiempo real">Select seats and modules — price updates in real time</div>
-      </div>
-    </div>
-    <div class="calc-body">
-      <div class="calc-left">
-        <div class="calc-section-label" data-en="Number of seats" data-es="Número de seats">Number of seats</div>
-        <div class="calc-seats">
-          <button class="seats-btn" onclick="adjustSeats(-1)">−</button>
-          <input class="seats-input" type="number" id="seatsInput" value="5" min="1" max="500" oninput="calcPrice()">
-          <button class="seats-btn" onclick="adjustSeats(1)">+</button>
-          <span class="calc-seats-label" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--text-dim)" data-en="users" data-es="usuarios">users</span>
-        </div>
-
-        <div class="calc-section-label" data-en="Select modules" data-es="Selecciona módulos">Select modules</div>
-        <div class="calc-modules-grid">
-          <div class="calc-module-toggle core-mod">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Core (RAG)" data-es="Core (RAG)">Core (RAG)</span>
-            <span class="calc-mod-check">✓</span>
-          </div>
-          <div class="calc-module-toggle" id="mod-ops" onclick="toggleMod('ops')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Operations" data-es="Operaciones">Operations</span>
-            <span class="calc-mod-check" id="chk-ops"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-excel" onclick="toggleMod('excel')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Excel Copilot" data-es="Copiloto Excel">Excel Copilot</span>
-            <span class="calc-mod-check" id="chk-excel"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-wiki" onclick="toggleMod('wiki')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Wiki" data-es="Wiki">Wiki</span>
-            <span class="calc-mod-check" id="chk-wiki"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-incidents" onclick="toggleMod('incidents')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Incidents" data-es="Incidencias">Incidents</span>
-            <span class="calc-mod-check" id="chk-incidents"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-agent" onclick="toggleMod('agent')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="AI Agent" data-es="Agente IA">AI Agent</span>
-            <span class="calc-mod-check" id="chk-agent"></span>
-          </div>
-          <div class="calc-module-toggle" id="mod-analytics" onclick="toggleMod('analytics')">
-            <span class="calc-mod-icon">●</span>
-            <span class="calc-mod-name" data-en="Analytics" data-es="Analítica">Analytics</span>
-            <span class="calc-mod-check" id="chk-analytics"></span>
-          </div>
-        </div>
-      </div>
-      <div class="calc-right">
-        <div class="calc-section-label" data-en="Your plan" data-es="Tu plan">Your plan</div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" data-en="Core · per seat" data-es="Core · por seat">Core · per seat</span>
-          <span class="calc-summary-val">€8<span style="font-size:0.75rem;font-weight:400;color:var(--text-dim)">/mo</span></span>
-        </div>
-        <div class="calc-summary-line" id="sum-modules-row" style="display:none">
-          <span class="calc-summary-key" id="sum-modules-label">+ 0 modules · per seat</span>
-          <span class="calc-summary-val" id="sum-modules-val">€0/mo</span>
-        </div>
-        <div class="calc-summary-line">
-          <span class="calc-summary-key" id="sum-seats-label" data-en="× seats" data-es="× seats">× seats</span>
-          <span class="calc-summary-val" id="sum-seats-val">5</span>
-        </div>
-        <div class="calc-summary-line" id="sum-discount-row" style="display:none">
-          <span class="calc-summary-key" id="sum-discount-label" style="color:var(--accent3)">Volume discount</span>
-          <span class="calc-summary-val" id="sum-discount-val" style="color:var(--accent3)">−€0</span>
-        </div>
-        <div class="calc-total-row">
-          <div>
-            <div class="calc-total-label" data-en="Total / month" data-es="Total / mes">Total / month</div>
-            <div class="calc-total-period" data-en="billed monthly · cancel anytime" data-es="factura mensual · cancela cuando quieras">billed monthly · cancel anytime</div>
-          </div>
-          <div class="calc-total-price" id="calcTotal">€40</div>
-        </div>
-        <button class="calc-cta" onclick="switchTab('resources')" data-en="Request this plan →" data-es="Solicitar este plan →">Request this plan →</button>
-        <div class="calc-note" id="calcNote" data-en="On-premise · no per-query costs · Docker install" data-es="On-premise · sin coste por consulta · instalación Docker">On-premise · no per-query costs · Docker install</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tier reference cards -->
-  <div class="pricing-grid fade-in">
-    <div class="pricing-card">
-      <div class="pricing-plan">Starter</div>
-      <div class="pricing-price"><sup>€</sup>8</div>
-      <div class="pricing-period" data-en="per seat / month · Core only" data-es="por seat / mes · solo Core">per seat / month · Core only</div>
-      <ul class="pricing-features">
-        <li data-en="Core module (RAG + connectors + OCR)" data-es="Módulo Core (RAG + conectores + OCR)">Core module (RAG + connectors + OCR)</li>
-        <li data-en="From 1 seat — no minimum" data-es="Desde 1 seat — sin mínimo">From 1 seat — no minimum</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Add any module: +€4/seat each" data-es="Añade cualquier módulo: +€4/seat cada uno">Add any module: +€4/seat each</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li class="muted" data-en="No SSO / Entra ID" data-es="Sin SSO / Entra ID">No SSO / Entra ID</li>
-      </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Start Free Trial" data-es="Iniciar Prueba Gratuita">Start Free Trial</button>
-    </div>
-    <div class="pricing-card featured">
-      <div class="pricing-badge" data-en="MOST POPULAR" data-es="MÁS POPULAR">MOST POPULAR</div>
-      <div class="pricing-plan">Team</div>
-      <div class="pricing-price"><sup>€</sup>20</div>
-      <div class="pricing-period" data-en="per seat / month · Core + 3 modules" data-es="por seat / mes · Core + 3 módulos">per seat / month · Core + 3 modules</div>
-      <ul class="pricing-features">
-        <li data-en="Core + choose any 3 modules (+€4 each)" data-es="Core + elige 3 módulos (+€4 cada uno)">Core + choose any 3 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento por volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Unlimited documents & AI queries" data-es="Documentos y consultas IA ilimitados">Unlimited documents & AI queries</li>
-        <li data-en="Public REST API + Webhooks" data-es="API REST pública + Webhooks">Public REST API + Webhooks</li>
-        <li data-en="On-premise — your infrastructure" data-es="On-premise — tu infraestructura">On-premise — your infrastructure</li>
-        <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
-      </ul>
-      <button class="pricing-cta solid" onclick="switchTab('resources')" data-en="Start Team Trial" data-es="Iniciar Prueba Team">Start Team Trial</button>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-plan">Enterprise</div>
-      <div class="pricing-price"><sup>€</sup>32</div>
-      <div class="pricing-period" data-en="per seat / month · all 6 modules" data-es="por seat / mes · los 6 módulos">per seat / month · all 6 modules</div>
-      <ul class="pricing-features">
-        <li data-en="Core + all 6 modules (+€4 each)" data-es="Core + los 6 módulos (+€4 cada uno)">Core + all 6 modules (+€4 each)</li>
-        <li data-en="Volume discount from 15 seats (−10%)" data-es="Descuento volumen desde 15 seats (−10%)">Volume discount from 15 seats (−10%)</li>
-        <li data-en="Microsoft Entra ID SSO" data-es="SSO Microsoft Entra ID">Microsoft Entra ID SSO</li>
-        <li data-en="Dedicated SLA + 24h support" data-es="SLA dedicado + soporte 24h">Dedicated SLA + 24h support</li>
-        <li data-en="Custom onboarding + ERP integration" data-es="Onboarding personalizado + integración ERP">Custom onboarding + ERP integration</li>
-        <li data-en="Multi-site / multi-department" data-es="Multi-sede / multi-departamento">Multi-site / multi-department</li>
-      </ul>
-      <button class="pricing-cta ghost" onclick="switchTab('resources')" data-en="Request Enterprise Demo" data-es="Solicitar Demo Enterprise">Request Enterprise Demo</button>
-    </div>
-  </div>
-  <p class="pricing-note" data-en="All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime" data-es="Todos los planes: on-premise · Core €8/seat · cada módulo +€4/seat · descuentos desde 15 seats · sin coste por consulta · cancela cuando quieras">All plans: on-premise · Core €8/seat · each module +€4/seat · volume discounts from 15 seats · no per-query costs · cancel anytime</p>
-</div>
-
-<!-- Footer -->
 <footer style="border-top: 1px solid var(--border); padding: 48px 60px; background: var(--surface);">
   <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;">
     
@@ -2041,7 +1894,7 @@ li + li {
   </div>
 </footer>
 
-<!-- GDPR Cookie Consent Banner -->
+<!-- GDPR Banner -->
 <div id="gdpr-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface2); border-top: 2px solid var(--accent); padding: 24px; z-index: 1000; display: none;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 300px;">
@@ -2058,6 +1911,251 @@ li + li {
 </div>
 
 <script>
+/**
+ * EngiIntel Website - Main Application
+ * Component loader and core functionality
+ */
+
+// Global state
+let currentLang = 'en';
+const CORE_PER_SEAT = 8;
+const MODULE_PRICE_PER_SEAT = 4;
+const ALL_MODULES = ['ops','excel','wiki','incidents','agent','analytics'];
+const selected = new Set();
+
+// Component loader
+async function loadComponent(componentPath, containerId) {
+  try {
+    const response = await fetch(componentPath);
+    if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
+    const html = await response.text();
+    document.getElementById(containerId).innerHTML = html;
+    return true;
+  } catch (error) {
+    console.error(`Error loading component ${componentPath}:`, error);
+    return false;
+  }
+}
+
+// Load all components
+async function loadAllComponents() {
+  const components = [
+    { path: 'components/header.html', container: 'header-container' },
+    { path: 'components/hero.html', container: 'hero-container' },
+    { path: 'components/tabs.html', container: 'tabs-container' },
+    { path: 'components/overview-tab.html', container: 'overview-tab-container' },
+    { path: 'components/features-tab.html', container: 'features-tab-container' },
+    { path: 'components/document-intelligence-tab.html', container: 'document-intelligence-tab-container' },
+    { path: 'components/excel-copilot-tab.html', container: 'excel-copilot-tab-container' },
+    { path: 'components/wiki-tab.html', container: 'wiki-tab-container' },
+    { path: 'components/assets-tab.html', container: 'assets-tab-container' },
+    { path: 'components/incidents-tab.html', container: 'incidents-tab-container' },
+    { path: 'components/ai-agent-tab.html', container: 'ai-agent-tab-container' },
+    { path: 'components/industries-tab.html', container: 'industries-tab-container' },
+    { path: 'components/pricing-tab.html', container: 'pricing-tab-container' },
+    { path: 'components/resources-tab.html', container: 'resources-tab-container' },
+    { path: 'components/footer.html', container: 'footer-container' }
+  ];
+
+  // Load all components in parallel
+  const results = await Promise.all(
+    components.map(c => loadComponent(c.path, c.container))
+  );
+
+  // Check if all loaded successfully
+  if (results.every(r => r)) {
+    document.getElementById('loading').style.display = 'none';
+    initializeApp();
+  } else {
+    document.getElementById('loading').textContent = 'Error loading components. Please refresh.';
+  }
+}
+
+// Initialize app after components load
+function initializeApp() {
+  setLang('en');
+  showGDPRBanner();
+  calcPrice(); // Initialize pricing calculator
+}
+
+// Language switching
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else {
+        el.innerHTML = text;
+      }
+    }
+  });
+}
+
+// Tab switching
+function switchTab(tabId) {
+  // Remove active class from all tab contents
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+
+  // Remove active class from all tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Add active class to selected tab content
+  const tabElement = document.getElementById(tabId);
+  if (tabElement) {
+    tabElement.classList.add('active');
+  }
+  
+  // Add active class to corresponding tab button
+  const targetBtn = document.querySelector(`[onclick="switchTab('${tabId}')"]`);
+  if (targetBtn) {
+    targetBtn.classList.add('active');
+  }
+  
+  // Scroll to tabs container
+  const tabsContainer = document.querySelector('.tabs-container');
+  if (tabsContainer) {
+    tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Pricing calculator functions
+function toggleMod(id) {
+  const el = document.getElementById('mod-'+id);
+  const chk = document.getElementById('chk-'+id);
+  
+  if (selected.has(id)) {
+    selected.delete(id);
+    el.classList.remove('selected');
+    chk.textContent = '';
+  } else {
+    selected.add(id);
+    el.classList.add('selected');
+    chk.textContent = '✓';
+  }
+  calcPrice();
+}
+
+function adjustSeats(delta) {
+  const inp = document.getElementById('seatsInput');
+  const v = Math.max(1, Math.min(500, (parseInt(inp.value) || 1) + delta));
+  inp.value = v;
+  calcPrice();
+}
+
+function calcPrice() {
+  const seatsInput = document.getElementById('seatsInput');
+  if (!seatsInput) return; // Not on pricing page yet
+  
+  const seats = Math.max(1, parseInt(seatsInput.value) || 1);
+  const modCount = selected.size;
+  const pricePerSeat = CORE_PER_SEAT + (modCount * MODULE_PRICE_PER_SEAT);
+  let subtotal = pricePerSeat * seats;
+  let discountPct = 0;
+  
+  if (seats >= 50) discountPct = 20;
+  else if (seats >= 25) discountPct = 15;
+  else if (seats >= 15) discountPct = 10;
+  
+  const discount = Math.round(subtotal * discountPct / 100);
+  const total = subtotal - discount;
+
+  document.getElementById('calcTotal').textContent = '€' + total;
+  document.getElementById('sum-seats-val').textContent = seats;
+
+  const modRow = document.getElementById('sum-modules-row');
+  if (modCount > 0) {
+    modRow.style.display = 'flex';
+    const isEs = currentLang === 'es';
+    document.getElementById('sum-modules-label').textContent = '+ ' + modCount + (isEs ? ' módulo' + (modCount > 1 ? 's' : '') + ' · por seat' : ' module' + (modCount > 1 ? 's' : '') + ' · per seat');
+    document.getElementById('sum-modules-val').textContent = '€' + (modCount * MODULE_PRICE_PER_SEAT) + '/seat';
+  } else {
+    modRow.style.display = 'none';
+  }
+
+  const discRow = document.getElementById('sum-discount-row');
+  if (discount > 0) {
+    discRow.style.display = 'flex';
+    const isEs = currentLang === 'es';
+    document.getElementById('sum-discount-label').textContent = (isEs ? 'Descuento volumen' : 'Volume discount') + ' (' + discountPct + '%)';
+    document.getElementById('sum-discount-val').textContent = '−€' + discount;
+  } else {
+    discRow.style.display = 'none';
+  }
+
+  const note = document.getElementById('calcNote');
+  const isEs = currentLang === 'es';
+  if (discountPct > 0) {
+    note.textContent = (isEs ? 'Descuento ' + discountPct + '% por volumen aplicado' : 'Volume discount ' + discountPct + '% applied');
+  } else {
+    note.textContent = isEs ? 'On-premise · sin coste por consulta · instalación Docker' : 'On-premise · no per-query costs · Docker install';
+  }
+}
+
+// Contact form handler
+function initContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+  if (!contactForm) return;
+  
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector('.form-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
+    submitBtn.disabled = true;
+    
+    // Collect form data
+    const formData = {
+      name: contactForm.querySelector('#name').value,
+      email: contactForm.querySelector('#email').value,
+      company: contactForm.querySelector('#company').value,
+      industry: contactForm.querySelector('#industry').value,
+      interests: Array.from(contactForm.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
+      message: contactForm.querySelector('#message').value,
+      language: currentLang,
+      timestamp: new Date().toISOString()
+    };
+    
+    try {
+      // Send to n8n webhook
+      const response = await fetch('http://localhost:5678/webhook/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        alert(currentLang === 'en' 
+          ? 'Thank you! Your message has been sent successfully. We will contact you soon.' 
+          : '¡Gracias! Tu mensaje ha sido enviado exitosamente. Te contactaremos pronto.');
+        contactForm.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert(currentLang === 'en'
+        ? 'Sorry, there was an error sending your message. Please try again or email us directly at eloycostas@engiintel.com'
+        : 'Lo sentimos, hubo un error al enviar tu mensaje. Por favor intenta de nuevo o envíanos un email directamente a eloycostas@engiintel.com');
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+}
+
 // GDPR Cookie Consent
 function showGDPRBanner() {
   const consent = localStorage.getItem('gdpr-consent');
@@ -2078,9 +2176,16 @@ function declineCookies() {
   window['ga-disable-G-5P3VL8DTRG'] = true;
 }
 
-// Show banner on page load
-window.addEventListener('DOMContentLoaded', showGDPRBanner);
-</script>
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadAllComponents();
+});
 
+// Re-initialize form after components load
+window.addEventListener('load', () => {
+  setTimeout(initContactForm, 500);
+});
+
+</script>
 </body>
 </html>

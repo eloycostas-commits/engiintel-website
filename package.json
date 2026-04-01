@@ -1,0 +1,10 @@
+{
+  "name": "engiintel-website",
+  "version": "1.0.0",
+  "description": "EngiIntel landing page with modular component architecture",
+  "scripts": {
+    "build": "node build-landing.js",
+    "dev": "node build-landing.js"
+  },
+  "type": "commonjs"
+}
