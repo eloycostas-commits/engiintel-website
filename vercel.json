@@ -1,29 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "https://www.engiintel.com/:path*",
-      "destination": "https://engiintel.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
-    {
-      "source": "/((?!api).*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html; charset=utf-8"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "index, follow"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
-      ]
-    },
     {
       "source": "/sitemap.xml",
       "headers": [
@@ -34,6 +10,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
         }
       ]
     }
