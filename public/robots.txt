@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://engiintel.com/sitemap.xml
