@@ -41,8 +41,9 @@ const html = `<!DOCTYPE html>
   <link rel="canonical" href="https://engiintel.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-  <!-- hreflang: single URL, English default (language switched client-side) -->
+  <!-- hreflang: same URL serves EN and ES via JS language switcher -->
   <link rel="alternate" hreflang="en" href="https://engiintel.com/">
+  <link rel="alternate" hreflang="es" href="https://engiintel.com/">
   <link rel="alternate" hreflang="x-default" href="https://engiintel.com/">
   
   <!-- Google Fonts -->
@@ -59,6 +60,7 @@ const html = `<!DOCTYPE html>
   <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="EngiIntel">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="es_ES">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
