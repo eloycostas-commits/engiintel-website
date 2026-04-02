@@ -88,6 +88,10 @@ const html = `<!DOCTYPE html>
   </script>
 
   <!-- Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
     "name": "EngiIntel",
     "description": "Self-hosted AI document intelligence platform for regulated industries. Query technical documentation in natural language with page-level citations, manage assets, generate incident reports, track compliance.",
     "url": "https://engiintel.com",
