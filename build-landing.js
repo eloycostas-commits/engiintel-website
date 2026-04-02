@@ -41,9 +41,8 @@ const html = `<!DOCTYPE html>
   <link rel="canonical" href="https://engiintel.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-  <!-- hreflang: bilingual EN/ES on same URL -->
+  <!-- hreflang: single URL, English default (language switched client-side) -->
   <link rel="alternate" hreflang="en" href="https://engiintel.com/">
-  <link rel="alternate" hreflang="es" href="https://engiintel.com/">
   <link rel="alternate" hreflang="x-default" href="https://engiintel.com/">
   
   <!-- Google Fonts -->
