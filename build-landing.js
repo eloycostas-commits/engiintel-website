@@ -35,10 +35,16 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
-  <title>EngiIntel — AI Document Intelligence for Regulated Industries</title>
-  <meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage knowledge base, track assets, generate incident reports, automate workflows with n8n and run autonomous AI agents.">
+  <title>EngiIntel | AI for Regulated Industries</title>
+  <meta name="description" content="Self-hosted AI platform for regulated industries. Query regulations, manage docs, track assets and generate compliance reports — 100% on-premise.">
   <meta name="keywords" content="AI document intelligence, engineering knowledge base, RAG, self-hosted AI, regulated industries, elevator regulations, incident reports, asset registry, AI agent, on-premise AI">
   <link rel="canonical" href="https://engiintel.com/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- hreflang: bilingual EN/ES on same URL -->
+  <link rel="alternate" hreflang="en" href="https://engiintel.com/">
+  <link rel="alternate" hreflang="es" href="https://engiintel.com/">
+  <link rel="alternate" hreflang="x-default" href="https://engiintel.com/">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,11 +67,24 @@ const html = `<!DOCTYPE html>
   <meta name="twitter:description" content="Self-hosted AI for regulated industries. Query technical docs in natural language with page-level citations. 100% on-premise — no cloud, no data leakage.">
   <meta name="twitter:image" content="https://engiintel.com/screenshots/panel%20principal.jpg">
   
-  <!-- Structured Data -->
+  <!-- Structured Data: Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "Organization",
+    "name": "EngiIntel",
+    "url": "https://engiintel.com",
+    "logo": "https://engiintel.com/favicon.svg",
+    "description": "Self-hosted AI platform for regulated industries. Query regulations, manage docs, track assets and generate compliance reports — 100% on-premise.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "eloycostas@engiintel.com",
+      "contactType": "sales"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: SoftwareApplication -->
     "name": "EngiIntel",
     "description": "Self-hosted AI document intelligence platform for regulated industries. Query technical documentation in natural language with page-level citations, manage assets, generate incident reports, track compliance.",
     "url": "https://engiintel.com",
