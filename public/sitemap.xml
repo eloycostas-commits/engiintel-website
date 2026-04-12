@@ -4,55 +4,29 @@
   <!-- Home / Landing page -->
   <url>
     <loc>https://engiintel.com/</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Home with anchor sections (same page, hash fragments for Google discovery) -->
-  <url>
-    <loc>https://engiintel.com/#overview</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://engiintel.com/#features</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://engiintel.com/#pricing</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://engiintel.com/#contact</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Standalone pages -->
+  <!-- Note: hash fragment URLs (#overview, #features, etc.) are intentionally
+       excluded – Google does not index fragment-only URLs and their presence
+       in a sitemap generates "Discovered: not indexed" noise in Search Console. -->
   <url>
     <loc>https://engiintel.com/privacy-policy.html</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://engiintel.com/terms-of-service.html</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://engiintel.com/thank-you.html</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
+
+  <!-- thank-you.html is intentionally excluded from the sitemap:
+       it carries noindex and should never appear in search results. -->
 
 </urlset>

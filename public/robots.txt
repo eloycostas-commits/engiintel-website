@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# API endpoints are not crawlable
+Disallow: /api/
+
 Sitemap: https://engiintel.com/sitemap.xml
